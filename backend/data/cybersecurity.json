@@ -1,0 +1,35 @@
+{
+  "role": "cybersecurity",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Explain the CIA triad in cybersecurity.",
+      "expected_answer": "The CIA triad is a fundamental model in information security consisting of three core principles. Confidentiality ensures that information is accessible only to authorized individuals through encryption, access controls, and authentication mechanisms. Integrity maintains the accuracy and completeness of data, preventing unauthorized modification through checksums, digital signatures, and version control. Availability ensures that information and resources are accessible to authorized users when needed through redundancy, backup systems, and disaster recovery plans. These three principles form the foundation of security policies and must be balanced based on organizational needs. Sometimes a fourth element, Non-repudiation, is added to prevent denial of actions.",
+      "keywords": ["CIA triad", "confidentiality", "integrity", "availability", "encryption", "access control", "security"]
+    },
+    {
+      "id": "q2",
+      "question": "What is the difference between symmetric and asymmetric encryption?",
+      "expected_answer": "Symmetric encryption uses the same key for both encryption and decryption. It's fast and efficient for large amounts of data but requires secure key distribution. Examples include AES, DES, and 3DES. The main challenge is securely sharing the key between parties. Asymmetric encryption uses a pair of keys: a public key for encryption and a private key for decryption. It solves the key distribution problem as the public key can be shared openly. Examples include RSA, ECC, and Diffie-Hellman. It's slower than symmetric encryption and typically used for key exchange, digital signatures, and securing small amounts of data. Hybrid systems often combine both approaches.",
+      "keywords": ["symmetric", "asymmetric", "encryption", "public key", "private key", "AES", "RSA", "cryptography"]
+    },
+    {
+      "id": "q3",
+      "question": "What is a firewall and what are its types?",
+      "expected_answer": "A firewall is a network security device that monitors and controls incoming and outgoing traffic based on predetermined security rules. Packet-filtering firewalls inspect packet headers and filter based on IP addresses, ports, and protocols. Stateful inspection firewalls track connection states and make decisions based on context. Application-layer firewalls (proxy firewalls) inspect the actual content of traffic and can filter based on application-specific protocols. Next-generation firewalls (NGFW) combine traditional firewall capabilities with intrusion prevention, deep packet inspection, and application awareness. Host-based firewalls run on individual devices, while network firewalls protect entire networks. Firewalls are essential for creating security perimeters and enforcing access policies.",
+      "keywords": ["firewall", "packet filtering", "stateful inspection", "network security", "access control", "intrusion prevention"]
+    },
+    {
+      "id": "q4",
+      "question": "Explain common types of cyber attacks.",
+      "expected_answer": "Common cyber attacks include: Phishing uses fraudulent emails or websites to steal credentials or install malware. Malware includes viruses, trojans, ransomware, and spyware that damage systems or steal data. DDoS (Distributed Denial of Service) attacks overwhelm systems with traffic, making them unavailable. SQL injection exploits vulnerabilities in web applications to access databases. Cross-Site Scripting (XSS) injects malicious scripts into web pages. Man-in-the-Middle attacks intercept communications between parties. Social engineering manipulates people into revealing confidential information. Zero-day exploits target unknown vulnerabilities. Ransomware encrypts data and demands payment for decryption. Defense requires multiple layers including firewalls, antivirus, employee training, and regular security updates.",
+      "keywords": ["phishing", "malware", "DDoS", "SQL injection", "XSS", "ransomware", "social engineering", "attacks"]
+    },
+    {
+      "id": "q5",
+      "question": "What is penetration testing and why is it important?",
+      "expected_answer": "Penetration testing (pen testing) is an authorized simulated cyber attack on systems to identify security vulnerabilities before malicious actors exploit them. Types include black box testing (no prior knowledge), white box testing (full knowledge), and gray box testing (partial knowledge). The process involves reconnaissance, scanning, gaining access, maintaining access, and covering tracks, followed by detailed reporting. Pen testing identifies weaknesses in networks, applications, and physical security. It validates security controls, tests incident response procedures, and ensures compliance with security standards. Regular pen testing is crucial for maintaining strong security posture, especially after major changes. It provides actionable insights for improving defenses and prioritizing security investments.",
+      "keywords": ["penetration testing", "pen testing", "vulnerability", "security assessment", "black box", "white box", "ethical hacking"]
+    }
+  ]
+}

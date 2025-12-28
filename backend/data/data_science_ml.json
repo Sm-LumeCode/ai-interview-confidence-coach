@@ -1,0 +1,35 @@
+{
+  "role": "data_science_ml",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Explain the bias-variance tradeoff in machine learning.",
+      "expected_answer": "The bias-variance tradeoff is a fundamental concept in machine learning that describes the relationship between model complexity and prediction error. Bias refers to errors from overly simplistic assumptions in the model, leading to underfitting. High bias models fail to capture important patterns in the data. Variance refers to errors from excessive sensitivity to small fluctuations in training data, leading to overfitting. High variance models perform well on training data but poorly on new data. The goal is to find the optimal balance that minimizes total error, which is the sum of bias squared, variance, and irreducible error.",
+      "keywords": ["bias", "variance", "tradeoff", "overfitting", "underfitting", "model complexity", "error"]
+    },
+    {
+      "id": "q2",
+      "question": "What is the difference between supervised and unsupervised learning?",
+      "expected_answer": "Supervised learning uses labeled training data where both input features and target outputs are provided. The algorithm learns to map inputs to outputs and can make predictions on new data. Examples include classification and regression tasks like spam detection and house price prediction. Unsupervised learning works with unlabeled data, discovering hidden patterns and structures without predefined outputs. Examples include clustering, dimensionality reduction, and anomaly detection. Semi-supervised learning combines both approaches, using small amounts of labeled data with large amounts of unlabeled data. Reinforcement learning is another paradigm where agents learn through interaction and rewards.",
+      "keywords": ["supervised", "unsupervised", "labeled", "unlabeled", "classification", "regression", "clustering"]
+    },
+    {
+      "id": "q3",
+      "question": "Explain regularization techniques in machine learning.",
+      "expected_answer": "Regularization techniques prevent overfitting by adding a penalty term to the loss function that discourages complex models. L1 regularization (Lasso) adds the absolute value of coefficients as penalty, which can shrink some coefficients to zero, performing feature selection. L2 regularization (Ridge) adds the squared value of coefficients, distributing penalty across all features and preventing any single coefficient from becoming too large. Elastic Net combines both L1 and L2 penalties. Dropout randomly deactivates neurons during training in neural networks. Early stopping halts training when validation performance stops improving. These techniques help models generalize better to unseen data.",
+      "keywords": ["regularization", "L1", "L2", "Lasso", "Ridge", "overfitting", "dropout", "penalty"]
+    },
+    {
+      "id": "q4",
+      "question": "What are precision and recall, and how do they differ?",
+      "expected_answer": "Precision and recall are evaluation metrics for classification models. Precision measures the proportion of positive predictions that are actually correct, calculated as True Positives divided by (True Positives plus False Positives). High precision means fewer false alarms. Recall (sensitivity) measures the proportion of actual positives that were correctly identified, calculated as True Positives divided by (True Positives plus False Negatives). High recall means fewer missed cases. There's often a tradeoff between them. F1-score is the harmonic mean of precision and recall, providing a balanced metric. The choice depends on the problem: precision is crucial when false positives are costly, while recall matters when false negatives are dangerous.",
+      "keywords": ["precision", "recall", "F1-score", "true positives", "false positives", "false negatives", "evaluation"]
+    },
+    {
+      "id": "q5",
+      "question": "Explain the working of a Random Forest algorithm.",
+      "expected_answer": "Random Forest is an ensemble learning method that builds multiple decision trees and combines their predictions. During training, it creates each tree using a random subset of training data (bootstrap sampling) and considers only a random subset of features at each split. This introduces diversity among trees, reducing correlation. For classification, predictions are made by majority voting across all trees. For regression, predictions are averaged. Random Forest reduces overfitting compared to individual decision trees, handles high-dimensional data well, provides feature importance scores, and is robust to outliers. The randomness in data sampling and feature selection makes the model more generalizable.",
+      "keywords": ["Random Forest", "ensemble", "decision trees", "bootstrap", "bagging", "feature importance", "overfitting"]
+    }
+  ]
+}
