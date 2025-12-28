@@ -1,0 +1,35 @@
+{
+  "role": "software_developer",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Explain the four pillars of Object-Oriented Programming (OOP).",
+      "expected_answer": "Object-oriented programming (OOP) is based on 4 fundamental pillars: Encapsulation involves bundling data and methods that operate on that data within a single unit (class) and hiding internal implementation details. Inheritance allows classes to inherit properties and methods from parent classes, promoting code reuse. Polymorphism enables objects to take multiple forms, allowing the same interface to be used for different data types. Abstraction focuses on hiding complex implementation details and showing only essential features to the user.",
+      "keywords": ["encapsulation", "inheritance", "polymorphism", "abstraction"]
+    },
+    {
+      "id": "q2",
+      "question": "What is the difference between SQL and NoSQL databases?",
+      "expected_answer": "SQL databases are relational databases that use structured schemas with tables, rows, and columns. They follow ACID properties and use SQL for queries. Examples include MySQL and PostgreSQL. NoSQL databases are non-relational and offer flexible schemas, allowing storage of unstructured or semi-structured data. They are horizontally scalable and often follow eventual consistency models. Examples include MongoDB, Cassandra, and Redis. SQL is better for complex queries and transactions, while NoSQL excels at handling large volumes of distributed data.",
+      "keywords": ["relational", "schema", "ACID", "scalability", "unstructured", "consistency"]
+    },
+    {
+      "id": "q3",
+      "question": "Explain the concept of RESTful API and its main HTTP methods.",
+      "expected_answer": "REST (Representational State Transfer) is an architectural style for designing networked applications. RESTful APIs use HTTP requests to access and manipulate resources. The main HTTP methods are: GET retrieves data from the server, POST creates new resources, PUT updates existing resources completely, PATCH updates resources partially, and DELETE removes resources. REST principles include statelessness, client-server architecture, cacheability, and uniform interface. Resources are identified by URIs and representations are typically in JSON or XML format.",
+      "keywords": ["REST", "HTTP", "GET", "POST", "PUT", "DELETE", "stateless", "resources"]
+    },
+    {
+      "id": "q4",
+      "question": "What is version control and why is Git important?",
+      "expected_answer": "Version control is a system that tracks changes to files over time, allowing multiple developers to collaborate on code. Git is a distributed version control system that enables developers to track code history, create branches for features, merge changes, and revert to previous versions. Key concepts include commits (snapshots of changes), branches (parallel development lines), merging (combining changes), and repositories (project storage). Git facilitates collaboration, maintains code history, enables rollback capabilities, and supports continuous integration workflows.",
+      "keywords": ["version control", "Git", "commits", "branches", "merge", "repository", "collaboration"]
+    },
+    {
+      "id": "q5",
+      "question": "Explain the difference between synchronous and asynchronous programming.",
+      "expected_answer": "Synchronous programming executes code sequentially, where each operation must complete before the next one starts. This can lead to blocking behavior where the program waits for slow operations to finish. Asynchronous programming allows operations to run independently without blocking the main thread. Multiple operations can be initiated and the program continues execution while waiting for results. Async operations use callbacks, promises, or async/await syntax. This approach improves performance and responsiveness, especially for I/O operations, network requests, and user interfaces.",
+      "keywords": ["synchronous", "asynchronous", "blocking", "non-blocking", "promises", "async", "await", "callbacks"]
+    }
+  ]
+}
