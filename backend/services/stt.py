@@ -7,7 +7,7 @@
 import whisper
 import tempfile
 import os
-from audio_utils import preprocess_audio
+from utils.audio_utils import preprocess_audio
 
 class SpeechToTextService:
     def __init__(self, model_size="base"):
