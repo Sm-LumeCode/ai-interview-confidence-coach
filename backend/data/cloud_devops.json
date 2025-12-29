@@ -4,31 +4,26 @@
     {
       "id": "q1",
       "question": "What is DevOps and what are its key principles?",
-      "expected_answer": "DevOps is a culture and set of practices that combines software development and IT operations to shorten the development lifecycle and deliver high-quality software continuously. Key principles include continuous integration and continuous delivery (CI/CD), where code changes are automatically built, tested, and deployed. Infrastructure as Code (IaC) manages infrastructure through version-controlled configuration files. Automation reduces manual tasks and human errors. Collaboration between development and operations teams breaks down silos. Monitoring and logging provide visibility into system performance. Feedback loops enable rapid iteration and improvement. The goal is faster time to market, improved reliability, and better collaboration.",
       "keywords": ["DevOps", "CI/CD", "automation", "Infrastructure as Code", "collaboration", "continuous delivery"]
     },
     {
       "id": "q2",
       "question": "Explain the difference between containerization and virtualization.",
-      "expected_answer": "Virtualization creates multiple virtual machines on a single physical server, each running its own operating system and applications. A hypervisor manages these VMs, providing strong isolation but with significant overhead. Containerization packages applications with their dependencies into lightweight containers that share the host OS kernel. Containers are managed by container runtimes like Docker. Containers start faster, use fewer resources, and are more portable than VMs. VMs provide stronger isolation and can run different operating systems, while containers are better for microservices and cloud-native applications. Containers are ideal for consistent environments across development, testing, and production.",
       "keywords": ["containerization", "virtualization", "Docker", "virtual machines", "hypervisor", "containers", "isolation"]
     },
     {
       "id": "q3",
       "question": "What is Kubernetes and why is it important?",
-      "expected_answer": "Kubernetes is an open-source container orchestration platform that automates deployment, scaling, and management of containerized applications. It provides features like automatic load balancing, self-healing by restarting failed containers, rolling updates and rollbacks, service discovery, storage orchestration, and secrets management. Kubernetes uses a declarative approach where you define desired state and it maintains that state. Key components include the control plane (API server, scheduler, controller manager) and worker nodes running pods. It's important because it enables efficient resource utilization, high availability, and scalability for microservices architectures in cloud environments.",
       "keywords": ["Kubernetes", "orchestration", "containers", "pods", "scaling", "deployment", "microservices"]
     },
     {
       "id": "q4",
       "question": "Explain Infrastructure as Code (IaC) and its benefits.",
-      "expected_answer": "Infrastructure as Code (IaC) is the practice of managing and provisioning infrastructure through machine-readable definition files rather than manual processes. Tools like Terraform, CloudFormation, and Ansible enable IaC implementation. Benefits include version control for infrastructure changes, enabling rollback and audit trails. It ensures consistency and reproducibility across environments, eliminating configuration drift. Automation reduces deployment time and human errors. Documentation is embedded in code. Infrastructure can be tested, reviewed, and validated like application code. IaC enables rapid scaling and disaster recovery. It's essential for cloud computing and DevOps practices.",
       "keywords": ["Infrastructure as Code", "IaC", "Terraform", "automation", "version control", "consistency", "cloud"]
     },
     {
       "id": "q5",
       "question": "What is a CI/CD pipeline and what are its stages?",
-      "expected_answer": "A CI/CD pipeline automates the software delivery process from code commit to production deployment. Continuous Integration (CI) automatically builds and tests code whenever changes are committed to version control. Stages include source code checkout, compilation or build, unit testing, code quality analysis, and artifact creation. Continuous Delivery (CD) extends CI by automatically deploying to staging environments and running integration and acceptance tests. Continuous Deployment goes further by automatically deploying to production after all tests pass. Key tools include Jenkins, GitLab CI, GitHub Actions, and CircleCI. Benefits include faster feedback, reduced integration problems, and reliable releases.",
       "keywords": ["CI/CD", "pipeline", "continuous integration", "continuous delivery", "automation", "testing", "deployment"]
     }
     [
