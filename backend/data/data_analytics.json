@@ -4,31 +4,26 @@
     {
       "id": "q1",
       "question": "What is the difference between data analytics and data analysis?",
-      "expected_answer": "Data analysis is the process of inspecting, cleaning, and modeling data to discover useful information and support decision-making. It focuses on examining past data to understand what happened. Data analytics is a broader term that encompasses the entire process of collecting, processing, analyzing, and interpreting data to extract actionable insights. It includes predictive and prescriptive analytics to forecast future trends and recommend actions. Data analytics uses various tools, techniques, and technologies including statistical analysis, machine learning, and data visualization.",
       "keywords": ["data analysis", "data analytics", "insights", "predictive", "decision-making", "visualization"]
     },
     {
       "id": "q2",
       "question": "Explain the different types of data analytics.",
-      "expected_answer": "There are four main types of data analytics: Descriptive analytics answers 'What happened?' by summarizing historical data using reports and dashboards. Diagnostic analytics answers 'Why did it happen?' by identifying patterns and correlations in data. Predictive analytics answers 'What will happen?' using statistical models and machine learning to forecast future outcomes. Prescriptive analytics answers 'What should we do?' by recommending actions based on predictions and optimization algorithms. Each type builds on the previous one, progressing from hindsight to insight to foresight.",
       "keywords": ["descriptive", "diagnostic", "predictive", "prescriptive", "analytics types", "forecasting"]
     },
     {
       "id": "q3",
       "question": "What is data cleaning and why is it important?",
-      "expected_answer": "Data cleaning is the process of detecting and correcting errors, inconsistencies, and inaccuracies in datasets. It involves handling missing values, removing duplicates, correcting data types, standardizing formats, and filtering outliers. Data cleaning is crucial because poor data quality leads to incorrect analysis and unreliable insights. It typically consumes 60-80% of an analyst's time but is essential for ensuring data accuracy, consistency, and reliability. Clean data improves the performance of analytical models and supports better business decisions.",
       "keywords": ["data cleaning", "data quality", "missing values", "duplicates", "outliers", "preprocessing"]
     },
     {
       "id": "q4",
       "question": "Explain SQL JOINs and their types.",
-      "expected_answer": "SQL JOINs combine rows from two or more tables based on related columns. INNER JOIN returns only matching rows from both tables. LEFT JOIN returns all rows from the left table and matching rows from the right table, with NULLs for non-matches. RIGHT JOIN returns all rows from the right table and matching rows from the left table. FULL OUTER JOIN returns all rows from both tables, with NULLs where there are no matches. CROSS JOIN returns the Cartesian product of both tables. SELF JOIN joins a table to itself.",
       "keywords": ["SQL", "JOIN", "INNER JOIN", "LEFT JOIN", "RIGHT JOIN", "OUTER JOIN", "tables"]
     },
     {
       "id": "q5",
       "question": "What is the difference between OLTP and OLAP systems?",
-      "expected_answer": "OLTP (Online Transaction Processing) systems are designed for managing day-to-day operational transactions. They handle large numbers of short, simple transactions with emphasis on speed and data integrity. OLTP databases are normalized to reduce redundancy and support INSERT, UPDATE, DELETE operations. OLAP (Online Analytical Processing) systems are designed for complex analytical queries and business intelligence. They handle fewer but more complex queries on large datasets, often using denormalized data warehouses. OLAP focuses on read operations, aggregations, and multi-dimensional analysis for decision support.",
       "keywords": ["OLTP", "OLAP", "transactions", "analytical", "data warehouse", "normalization", "queries"]
     }
     [
