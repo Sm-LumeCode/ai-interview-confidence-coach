@@ -4,32 +4,403 @@
     {
       "id": "q1",
       "question": "Explain the CIA triad in cybersecurity.",
-      "expected_answer": "The CIA triad is a fundamental model in information security consisting of three core principles. Confidentiality ensures that information is accessible only to authorized individuals through encryption, access controls, and authentication mechanisms. Integrity maintains the accuracy and completeness of data, preventing unauthorized modification through checksums, digital signatures, and version control. Availability ensures that information and resources are accessible to authorized users when needed through redundancy, backup systems, and disaster recovery plans. These three principles form the foundation of security policies and must be balanced based on organizational needs. Sometimes a fourth element, Non-repudiation, is added to prevent denial of actions.",
       "keywords": ["CIA triad", "confidentiality", "integrity", "availability", "encryption", "access control", "security"]
     },
     {
       "id": "q2",
       "question": "What is the difference between symmetric and asymmetric encryption?",
-      "expected_answer": "Symmetric encryption uses the same key for both encryption and decryption. It's fast and efficient for large amounts of data but requires secure key distribution. Examples include AES, DES, and 3DES. The main challenge is securely sharing the key between parties. Asymmetric encryption uses a pair of keys: a public key for encryption and a private key for decryption. It solves the key distribution problem as the public key can be shared openly. Examples include RSA, ECC, and Diffie-Hellman. It's slower than symmetric encryption and typically used for key exchange, digital signatures, and securing small amounts of data. Hybrid systems often combine both approaches.",
       "keywords": ["symmetric", "asymmetric", "encryption", "public key", "private key", "AES", "RSA", "cryptography"]
     },
     {
       "id": "q3",
       "question": "What is a firewall and what are its types?",
-      "expected_answer": "A firewall is a network security device that monitors and controls incoming and outgoing traffic based on predetermined security rules. Packet-filtering firewalls inspect packet headers and filter based on IP addresses, ports, and protocols. Stateful inspection firewalls track connection states and make decisions based on context. Application-layer firewalls (proxy firewalls) inspect the actual content of traffic and can filter based on application-specific protocols. Next-generation firewalls (NGFW) combine traditional firewall capabilities with intrusion prevention, deep packet inspection, and application awareness. Host-based firewalls run on individual devices, while network firewalls protect entire networks. Firewalls are essential for creating security perimeters and enforcing access policies.",
       "keywords": ["firewall", "packet filtering", "stateful inspection", "network security", "access control", "intrusion prevention"]
     },
     {
       "id": "q4",
       "question": "Explain common types of cyber attacks.",
-      "expected_answer": "Common cyber attacks include: Phishing uses fraudulent emails or websites to steal credentials or install malware. Malware includes viruses, trojans, ransomware, and spyware that damage systems or steal data. DDoS (Distributed Denial of Service) attacks overwhelm systems with traffic, making them unavailable. SQL injection exploits vulnerabilities in web applications to access databases. Cross-Site Scripting (XSS) injects malicious scripts into web pages. Man-in-the-Middle attacks intercept communications between parties. Social engineering manipulates people into revealing confidential information. Zero-day exploits target unknown vulnerabilities. Ransomware encrypts data and demands payment for decryption. Defense requires multiple layers including firewalls, antivirus, employee training, and regular security updates.",
       "keywords": ["phishing", "malware", "DDoS", "SQL injection", "XSS", "ransomware", "social engineering", "attacks"]
     },
     {
       "id": "q5",
       "question": "What is penetration testing and why is it important?",
-      "expected_answer": "Penetration testing (pen testing) is an authorized simulated cyber attack on systems to identify security vulnerabilities before malicious actors exploit them. Types include black box testing (no prior knowledge), white box testing (full knowledge), and gray box testing (partial knowledge). The process involves reconnaissance, scanning, gaining access, maintaining access, and covering tracks, followed by detailed reporting. Pen testing identifies weaknesses in networks, applications, and physical security. It validates security controls, tests incident response procedures, and ensures compliance with security standards. Regular pen testing is crucial for maintaining strong security posture, especially after major changes. It provides actionable insights for improving defenses and prioritizing security investments.",
       "keywords": ["penetration testing", "pen testing", "vulnerability", "security assessment", "black box", "white box", "ethical hacking"]
     }
+    //application security 
+    [
+  {
+    "id": 1,
+    "question": "What do you think about a good password? How would you store it securely in a database?",
+    "keyword": "Password Management, Secure Storage, Hashing, Salt",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 2,
+    "question": "How do you stop brute force attacks on login/signup/forgot password pages?",
+    "keyword": "Brute Force, MFA, Rate Limiting, Captcha, CSRF",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 3,
+    "question": "What happens when you type google.com in a browser?",
+    "keyword": "DNS, TCP Handshake, HTTPS, MiTM, SSL/TLS",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 4,
+    "question": "How does SSL/TLS secure content over the internet?",
+    "keyword": "SSL, TLS, Encryption, PFS, Certificate, Key Exchange",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 5,
+    "question": "How would you make developers aware and involved in secure code development?",
+    "keyword": "Secure Coding, Training, OWASP, SAST, IDE Plugin",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 6,
+    "question": "Which one would you prefer: manual secure code review, automated, or both? Why?",
+    "keyword": "Code Review, SAST, Security Tools, Automation",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 7,
+    "question": "What is the difference between SAST and SCA?",
+    "keyword": "SAST, SCA, Static Analysis, Component Analysis",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 8,
+    "question": "How well do you understand SQL Injection (SQLi) and how do you prevent it?",
+    "keyword": "SQL Injection, Code Review, Prepared Statements, SAST",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 9,
+    "question": "Do you understand the key differences between encryption, hashing, salt, obfuscation, and encoding?",
+    "keyword": "Crypto, Security Concepts, Hashing, Encryption",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 10,
+    "question": "How do you handle authentication (AuthN) and authorization (AuthZ) in applications?",
+    "keyword": "AuthN, AuthZ, Access Control, Security Design",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 11,
+    "question": "How do you implement Content Security Policy (CSP) and how does it improve web application security?",
+    "keyword": "CSP, Web Security, Mitigation, XSS, Policy",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 12,
+    "question": "What steps would you take for successful data loss prevention (DLP) controls?",
+    "keyword": "DLP, Risk Management, Incident Response, Security Framework",
+    "difficulty": "Difficult"
+  }
+]
+//aws security
+    [
+  {
+    "id": 1,
+    "question": "How would you find evidence of malicious activity within AWS services like EBS, Lambda, etc.?",
+    "keyword": "GuardDuty, CloudTrail, Security Monitoring, Threat Detection",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 2,
+    "question": "Explain the difference between CloudTrail and CloudWatch from a security perspective.",
+    "keyword": "CloudTrail, CloudWatch, Logging, Event Analysis, Security Monitoring",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 3,
+    "question": "How is IMDSv1 vulnerable to SSRF and how does IMDSv2 mitigate it?",
+    "keyword": "IMDSv1, IMDSv2, SSRF, Metadata Service Security",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 4,
+    "question": "How are logs stored in AWS and how can you monitor them for security incidents?",
+    "keyword": "CloudTrail, CloudWatch, Log Storage, Monitoring, Security Alerts",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 5,
+    "question": "What security considerations should you take when exposing database access to applications?",
+    "keyword": "Database Security, Network Security, Access Control, Best Practices",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 6,
+    "question": "Explain how you would secure a WordPress site hosted in AWS.",
+    "keyword": "Infrastructure Security, Web Security, Hardening, IAM, Logging",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 7,
+    "question": "Describe how you would configure AWS GuardDuty to minimize false positives.",
+    "keyword": "GuardDuty, Threat Detection, Security Alerts, False Positive Reduction",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 8,
+    "question": "Explain this IAM policy: Deny all users not using MFA. How does it work?",
+    "keyword": "IAM Policy, MFA, Access Control, Security Best Practices",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 9,
+    "question": "How do you secure data transfer in transit and at rest in AWS?",
+    "keyword": "Encryption, KMS, TLS, S3, RDS, Data Protection",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 10,
+    "question": "How would you implement key rotation for CMK keys and why is it important?",
+    "keyword": "KMS, Key Management, Key Rotation, Cloud Security, Compliance",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 11,
+    "question": "Describe a scenario where you would analyze non-compliant AWS Config rules and send alerts using Lambda and SES.",
+    "keyword": "AWS Config, Lambda, SES, Multi-Account, Alerting, Compliance",
+    "difficulty": "Difficult"
+  },
+  {
+    "id": 12,
+    "question": "How would you monitor EC2 instance vulnerabilities and automate patch management using AWS services?",
+    "keyword": "EC2, AWS Inspector, Patch Management, Automated Security",
+    "difficulty": "Medium"
+  }
+]
+//web security
+  [
+  {
+    "id": 1,
+    "question": "What makes a good password and how should it be stored securely in a database?",
+    "keyword": "Password Security, Hashing, Salting, Encryption, Secure Storage",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 2,
+    "question": "How do you prevent brute-force attacks on login, signup, and password reset pages?",
+    "keyword": "Brute-force Protection, MFA, Captcha, Rate Limiting, Account Lockout",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 3,
+    "question": "Explain what happens when a user types a URL in the browser, from DNS resolution to HTTPS handshake.",
+    "keyword": "DNS, TCP Handshake, HTTPS, SSL/TLS, MiTM Prevention",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 4,
+    "question": "How does SSL/TLS ensure secure communication over the internet?",
+    "keyword": "TLS, Encryption, Certificate, Key Exchange, PFS, Cipher Suites",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 5,
+    "question": "Which one would you prefer and why: manual secure code review, automated tools, or both?",
+    "keyword": "Secure Code Review, SAST, Manual vs Automated, Code Security",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 6,
+    "question": "Explain the difference between SAST and SCA, and when to use each.",
+    "keyword": "Static Analysis, SAST, Software Composition Analysis, Vulnerability Detection",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 7,
+    "question": "How do you detect and prevent SQL Injection in an application?",
+    "keyword": "SQLi, Input Validation, Prepared Statements, Secure Coding, SAST",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 8,
+    "question": "What is the difference between encryption, hashing, salting, obfuscation, and encoding?",
+    "keyword": "Cryptography, Data Protection, Secure Storage, Security Concepts",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 9,
+    "question": "How do you handle authentication (AuthN) and authorization (AuthZ) in a web application?",
+    "keyword": "AuthN, AuthZ, Access Control, JWT, OAuth, Role-based Access",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 10,
+    "question": "How do you implement CSP (Content Security Policy), SoP, and CORS to enhance web security?",
+    "keyword": "CSP, SoP, CORS, Browser Security, XSS Prevention",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 11,
+    "question": "List the techniques you use to prevent web server attacks.",
+    "keyword": "Server Hardening, Patch Management, Firewall, Alerts, Logging, Vulnerability Scanning",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 12,
+    "question": "Where do you implement security controls in the SDLC and why?",
+    "keyword": "SDLC, Secure Development, Threat Modeling, Code Review, Security Testing",
+    "difficulty": "Medium"
+  }
+]
+//network security
+[
+  {
+    "id": 1,
+    "question": "What is the difference between private and public IP addresses?",
+    "keyword": "IP Addressing, Network Design, NAT",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 2,
+    "question": "Explain the role of a subnet mask in a network.",
+    "keyword": "Subnetting, Network Addressing, Routing",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 3,
+    "question": "What is NAT and why is it used?",
+    "keyword": "Network Address Translation, Internet Access, Security",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 4,
+    "question": "What are the types of firewalls and their differences?",
+    "keyword": "Firewall, Packet Filtering, Stateful, Proxy, NGFW",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 5,
+    "question": "What is a VPN and how does it secure remote communication?",
+    "keyword": "VPN, Encryption, Secure Tunnels, Remote Access",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 6,
+    "question": "Explain ARP and how it is used in local networks.",
+    "keyword": "ARP, MAC Address, IP Mapping, LAN Communication",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 7,
+    "question": "What is a DMZ and why is it important in network security?",
+    "keyword": "Demilitarized Zone, Perimeter Security, Public Services",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 8,
+    "question": "What are IDS and IPS and how do they differ?",
+    "keyword": "Intrusion Detection, Intrusion Prevention, Network Monitoring",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 9,
+    "question": "What is Zero Trust Security and how is it implemented?",
+    "keyword": "Zero Trust, Network Security Model, Access Controls",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 10,
+    "question": "Explain the difference between TCP and UDP and when to use each.",
+    "keyword": "Transport Layer, Protocols, Reliability vs Speed",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 11,
+    "question": "How do you mitigate DDoS attacks on a network?",
+    "keyword": "DDoS, Traffic Filtering, Rate Limiting, Cloud Protection",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 12,
+    "question": "What is network segmentation and how does it improve security?",
+    "keyword": "Network Design, VLAN, Security Zones, Access Control",
+    "difficulty": "Medium"
+  }
+]
+//devescops
+[
+  {
+    "id": 1,
+    "question": "What is DevSecOps and why is it important?",
+    "keyword": "DevSecOps, Security Automation, CI/CD, Shift Left",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 2,
+    "question": "How do you integrate security in a CI/CD pipeline?",
+    "keyword": "CI/CD, Automation, SAST, DAST, Security Checks",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 3,
+    "question": "Explain the difference between SAST, DAST, and SCA in DevSecOps.",
+    "keyword": "Static Analysis, Dynamic Analysis, Software Composition Analysis",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 4,
+    "question": "What is container security and how do you secure Docker/Kubernetes environments?",
+    "keyword": "Container Security, Docker, Kubernetes, Image Scanning, RBAC",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 5,
+    "question": "How do you ensure secrets management in DevOps pipelines?",
+    "keyword": "Secrets, Vault, Environment Variables, IAM, Encryption",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 6,
+    "question": "What is Infrastructure as Code (IaC) and how do you secure it?",
+    "keyword": "IaC, Terraform, CloudFormation, Security Policies, Scanning",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 7,
+    "question": "How do you implement monitoring and alerting for security in a DevOps environment?",
+    "keyword": "Monitoring, CloudWatch, Prometheus, Alerts, Anomaly Detection",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 8,
+    "question": "Explain the concept of shift-left security in the software development lifecycle.",
+    "keyword": "Shift-Left, Early Security Testing, Secure Code Review",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 9,
+    "question": "How do you handle vulnerability management in a CI/CD pipeline?",
+    "keyword": "Vulnerability Scanning, Patching, Automation, Alerts",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 10,
+    "question": "What are security best practices for cloud-native applications?",
+    "keyword": "Cloud Security, DevSecOps, IAM, Encryption, Monitoring",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 11,
+    "question": "How would you enforce compliance in automated pipelines?",
+    "keyword": "Compliance, Policies, Auditing, Security Gates",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 12,
+    "question": "How do you reduce false positives in security tools integrated into DevOps pipelines?",
+    "keyword": "False Positives, SAST/DAST Tuning, CI/CD, Alerting",
+    "difficulty": "Medium"
+  }
+]
+
   ]
 }
