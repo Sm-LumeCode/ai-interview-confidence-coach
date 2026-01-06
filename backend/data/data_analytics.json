@@ -2,178 +2,180 @@
   "role": "data_analytics",
   "questions": [
     {
-      "id": "q1",
+      "id": 1,
       "question": "What is the difference between data analytics and data analysis?",
-      "keywords": ["data analysis", "data analytics", "insights", "predictive", "decision-making", "visualization"]
+      "keywords": ["data analysis", "data analytics", "insights", "predictive", "decision-making", "visualization"],
+      "difficulty": "easy"
     },
     {
-      "id": "q2",
+      "id": 2,
       "question": "Explain the different types of data analytics.",
-      "keywords": ["descriptive", "diagnostic", "predictive", "prescriptive", "analytics types", "forecasting"]
+      "keywords": ["descriptive", "diagnostic", "predictive", "prescriptive", "analytics types", "forecasting"],
+      "difficulty": "easy"
     },
     {
-      "id": "q3",
+      "id": 3,
       "question": "What is data cleaning and why is it important?",
-      "keywords": ["data cleaning", "data quality", "missing values", "duplicates", "outliers", "preprocessing"]
+      "keywords": ["data cleaning", "data quality", "missing values", "duplicates", "outliers", "preprocessing"],
+      "difficulty": "easy"
     },
     {
-      "id": "q4",
+      "id": 4,
       "question": "Explain SQL JOINs and their types.",
-      "keywords": ["SQL", "JOIN", "INNER JOIN", "LEFT JOIN", "RIGHT JOIN", "OUTER JOIN", "tables"]
+      "keywords": ["SQL", "JOIN", "INNER JOIN", "LEFT JOIN", "RIGHT JOIN", "OUTER JOIN", "tables"],
+      "difficulty": "easy"
     },
     {
-      "id": "q5",
+      "id": 5,
       "question": "What is the difference between OLTP and OLAP systems?",
-      "keywords": ["OLTP", "OLAP", "transactions", "analytical", "data warehouse", "normalization", "queries"]
-    }
-    [
-  {
-    "id": 1,
-    "question": "Explain the differences between lists, tuples, sets, and dictionaries in Python and their use cases.",
-    "keywords": ["lists", "tuples", "sets", "dictionaries", "mutability", "data structures"],
-    "difficulty": "easy"
-  },
-  {
-    "id": 2,
-    "question": "What are the advantages of using sets and dictionaries in Python for data analysis?",
-    "keywords": ["sets", "dictionaries", "unique values", "lookup efficiency", "data analysis"],
-    "difficulty": "easy"
-  },
-  {
-    "id": 3,
-    "question": "How does pandas merge datasets and why is it important in data analysis?",
-    "keywords": ["pandas", "merge", "data integration", "dataframes", "analysis"],
-    "difficulty": "easy"
-  },
-  {
-    "id": 4,
-    "question": "What is the difference between GROUP BY and window functions in SQL?",
-    "keywords": ["SQL", "GROUP BY", "window functions", "aggregation", "analytics"],
-    "difficulty": "medium"
-  },
-  {
-    "id": 5,
-    "question": "Explain how ROW_NUMBER() and DENSE_RANK() differ and when to use them.",
-    "keywords": ["ROW_NUMBER", "DENSE_RANK", "ranking", "SQL analytics"],
-    "difficulty": "medium"
-  },
-  {
-    "id": 6,
-    "question": "How do you calculate daily user-level metrics in SQL and why is it important?",
-    "keywords": ["SQL", "aggregation", "daily metrics", "user analysis"],
-    "difficulty": "medium"
-  },
-  {
-    "id": 7,
-    "question": "Explain Import mode and DirectQuery mode in Power BI.",
-    "keywords": ["Power BI", "Import mode", "DirectQuery", "data connectivity"],
-    "difficulty": "easy"
-  },
-  {
-    "id": 8,
-    "question": "When would you choose DirectQuery over Import mode in Power BI?",
-    "keywords": ["Power BI", "DirectQuery", "large datasets", "real-time data"],
-    "difficulty": "medium"
-  },
-  {
-    "id": 9,
-    "question": "What are slicers in Power BI and how do they differ from visual-level filters?",
-    "keywords": ["Power BI", "slicers", "filters", "dashboard interaction"],
-    "difficulty": "medium"
-  },
-  {
-    "id": 10,
-    "question": "Explain how Row-Level Security (RLS) works in Power BI.",
-    "keywords": ["Power BI", "Row-Level Security", "RLS", "data security"],
-    "difficulty": "difficult"
-  },
-  {
-    "id": 11,
-    "question": "What is dynamic Row-Level Security and when is it used?",
-    "keywords": ["Power BI", "dynamic RLS", "USERPRINCIPALNAME", "access control"],
-    "difficulty": "difficult"
-  },
-  {
-    "id": 12,
-    "question": "What is a paginated report in Power BI and when should it be used?",
-    "keywords": ["Power BI", "paginated reports", "printing", "invoices", "multi-page reports"],
-    "difficulty": "easy"
-  }
-]
-[
-  {
-    "id": 1,
-    "question": "How do you handle missing values in a dataset?",
-    "keywords": ["missing values", "data cleaning", "imputation", "numerical data", "categorical data"],
-    "difficulty": "easy"
-  },
-  {
-    "id": 2,
-    "question": "How do you deal with outliers in data analysis?",
-    "keywords": ["outliers", "data preprocessing", "IQR", "z-score", "data quality"],
-    "difficulty": "easy"
-  },
-  {
-    "id": 3,
-    "question": "Explain the VLOOKUP function in Excel.",
-    "keywords": ["VLOOKUP", "Excel", "lookup function", "data retrieval"],
-    "difficulty": "easy"
-  },
-  {
-    "id": 4,
-    "question": "What is time series analysis and where is it used?",
-    "keywords": ["time series", "trend", "seasonality", "forecasting"],
-    "difficulty": "medium"
-  },
-  {
-    "id": 5,
-    "question": "What is the difference between DAX and M Query in Power BI?",
-    "keywords": ["DAX", "M Query", "Power BI", "data modeling", "data transformation"],
-    "difficulty": "medium"
-  },
-  {
-    "id": 6,
-    "question": "What is the difference between DELETE and DROP in SQL?",
-    "keywords": ["DELETE", "DROP", "SQL", "data removal", "DDL vs DML"],
-    "difficulty": "easy"
-  },
-  {
-    "id": 7,
-    "question": "How do you decide which column should be indexed in a database table?",
-    "keywords": ["indexing", "database optimization", "query performance", "indexes"],
-    "difficulty": "medium"
-  },
-  {
-    "id": 8,
-    "question": "Explain normalization and indexing and why they are important.",
-    "keywords": ["normalization", "indexing", "database design", "performance"],
-    "difficulty": "medium"
-  },
-  {
-    "id": 9,
-    "question": "What is the difference between WHERE and HAVING clauses?",
-    "keywords": ["WHERE", "HAVING", "SQL", "filtering", "aggregation"],
-    "difficulty": "easy"
-  },
-  {
-    "id": 10,
-    "question": "Explain the different types of SQL joins.",
-    "keywords": ["joins", "inner join", "left join", "right join", "full join", "self join"],
-    "difficulty": "easy"
-  },
-  {
-    "id": 11,
-    "question": "What are window functions and why are they used?",
-    "keywords": ["window functions", "SQL analytics", "ranking", "partition"],
-    "difficulty": "difficult"
-  },
-  {
-    "id": 12,
-    "question": "Explain the difference between RANK, DENSE_RANK, and ROW_NUMBER.",
-    "keywords": ["RANK", "DENSE_RANK", "ROW_NUMBER", "window functions"],
-    "difficulty": "difficult"
-  }
-]
+      "keywords": ["OLTP", "OLAP", "transactions", "analytical", "data warehouse", "normalization", "queries"],
+      "difficulty": "medium"
+    },
 
+    {
+      "id": 6,
+      "question": "Explain the differences between lists, tuples, sets, and dictionaries in Python and their use cases.",
+      "keywords": ["lists", "tuples", "sets", "dictionaries", "mutability", "data structures"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 7,
+      "question": "What are the advantages of using sets and dictionaries in Python for data analysis?",
+      "keywords": ["sets", "dictionaries", "unique values", "lookup efficiency", "data analysis"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 8,
+      "question": "How does pandas merge datasets and why is it important in data analysis?",
+      "keywords": ["pandas", "merge", "data integration", "dataframes", "analysis"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 9,
+      "question": "What is the difference between GROUP BY and window functions in SQL?",
+      "keywords": ["SQL", "GROUP BY", "window functions", "aggregation", "analytics"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 10,
+      "question": "Explain how ROW_NUMBER() and DENSE_RANK() differ and when to use them.",
+      "keywords": ["ROW_NUMBER", "DENSE_RANK", "ranking", "SQL analytics"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 11,
+      "question": "How do you calculate daily user-level metrics in SQL and why is it important?",
+      "keywords": ["SQL", "aggregation", "daily metrics", "user analysis"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 12,
+      "question": "Explain Import mode and DirectQuery mode in Power BI.",
+      "keywords": ["Power BI", "Import mode", "DirectQuery", "data connectivity"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 13,
+      "question": "When would you choose DirectQuery over Import mode in Power BI?",
+      "keywords": ["Power BI", "DirectQuery", "large datasets", "real-time data"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 14,
+      "question": "What are slicers in Power BI and how do they differ from visual-level filters?",
+      "keywords": ["Power BI", "slicers", "filters", "dashboard interaction"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 15,
+      "question": "Explain how Row-Level Security (RLS) works in Power BI.",
+      "keywords": ["Power BI", "Row-Level Security", "RLS", "data security"],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 16,
+      "question": "What is dynamic Row-Level Security and when is it used?",
+      "keywords": ["Power BI", "dynamic RLS", "USERPRINCIPALNAME", "access control"],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 17,
+      "question": "What is a paginated report in Power BI and when should it be used?",
+      "keywords": ["Power BI", "paginated reports", "printing", "invoices", "multi-page reports"],
+      "difficulty": "easy"
+    },
+
+    {
+      "id": 18,
+      "question": "How do you handle missing values in a dataset?",
+      "keywords": ["missing values", "data cleaning", "imputation", "numerical data", "categorical data"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 19,
+      "question": "How do you deal with outliers in data analysis?",
+      "keywords": ["outliers", "data preprocessing", "IQR", "z-score", "data quality"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 20,
+      "question": "Explain the VLOOKUP function in Excel.",
+      "keywords": ["VLOOKUP", "Excel", "lookup function", "data retrieval"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 21,
+      "question": "What is time series analysis and where is it used?",
+      "keywords": ["time series", "trend", "seasonality", "forecasting"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 22,
+      "question": "What is the difference between DAX and M Query in Power BI?",
+      "keywords": ["DAX", "M Query", "Power BI", "data modeling", "data transformation"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 23,
+      "question": "What is the difference between DELETE and DROP in SQL?",
+      "keywords": ["DELETE", "DROP", "SQL", "data removal", "DDL vs DML"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 24,
+      "question": "How do you decide which column should be indexed in a database table?",
+      "keywords": ["indexing", "database optimization", "query performance", "indexes"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 25,
+      "question": "Explain normalization and indexing and why they are important.",
+      "keywords": ["normalization", "indexing", "database design", "performance"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 26,
+      "question": "What is the difference between WHERE and HAVING clauses?",
+      "keywords": ["WHERE", "HAVING", "SQL", "filtering", "aggregation"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 27,
+      "question": "Explain the different types of SQL joins.",
+      "keywords": ["joins", "inner join", "left join", "right join", "full join", "self join"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 28,
+      "question": "What are window functions and why are they used?",
+      "keywords": ["window functions", "SQL analytics", "ranking", "partition"],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 29,
+      "question": "Explain the difference between RANK, DENSE_RANK, and ROW_NUMBER.",
+      "keywords": ["RANK", "DENSE_RANK", "ROW_NUMBER", "window functions"],
+      "difficulty": "difficult"
+    }
   ]
 }

@@ -1,402 +1,52 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api'
+const API_BASE_URL = "http://127.0.0.1:8000/api";
 
-// Helper function to handle API responses
-const handleResponse = async (response) => {
+/**
+ * Generic helper for GET requests
+ */
+async function get(url) {
+  const response = await fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  // Log raw response for debugging
+  console.log("API response status:", response.status);
+
   if (!response.ok) {
-    const error = await response.json().catch(() => ({ message: 'An error occurred' }))
-    throw new Error(error.message || `HTTP error! status: ${response.status}`)
+    let errorBody = {};
+    try {
+      errorBody = await response.json();
+    } catch (_) {}
+
+    console.error("Backend error:", errorBody);
+
+    throw new Error(
+      errorBody.detail || "API request failed"
+    );
   }
-  return response.json()
+
+  return response.json();
 }
 
-// Helper function to get auth token from localStorage
-const getAuthToken = () => {
-  const user = localStorage.getItem('user')
-  if (user) {
-    const userData = JSON.parse(user)
-    return userData.token || null
+/**
+ * Fetch interview questions by category
+ * @param {string} category
+ */
+async function getQuestions(category) {
+  if (!category) {
+    throw new Error("Category is undefined");
   }
-  return null
+
+  const url = `${API_BASE_URL}/questions/${category}`;
+  console.log("Calling API:", url);
+
+  return get(url);
 }
 
-// Helper function to create headers with auth token
-const getHeaders = (includeAuth = false) => {
-  const headers = {
-    'Content-Type': 'application/json',
-  }
-  
-  if (includeAuth) {
-    const token = getAuthToken()
-    if (token) {
-      headers['Authorization'] = `Bearer ${token}`
-    }
-  }
-  
-  return headers
-}
-
-export const api = {
-  // ==================== Authentication ====================
-  
-  // Check if user exists
-  checkUserExists: async (email) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/auth/check-user`, {
-        method: 'POST',
-        headers: getHeaders(),
-        body: JSON.stringify({ email }),
-      })
-      return handleResponse(response)
-    } catch (error) {
-      console.error('Check user exists error:', error)
-      throw error
-    }
-  },
-
-  login: async (email, password) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/auth/login`, {
-        method: 'POST',
-        headers: getHeaders(),
-        body: JSON.stringify({ email, password }),
-      })
-      return handleResponse(response)
-    } catch (error) {
-      console.error('Login error:', error)
-      throw error
-    }
-  },
-
-  signup: async (username, email, password) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/auth/signup`, {
-        method: 'POST',
-        headers: getHeaders(),
-        body: JSON.stringify({ username, email, password }),
-      })
-      return handleResponse(response)
-    } catch (error) {
-      console.error('Signup error:', error)
-      throw error
-    }
-  },
-
-  logout: async () => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/auth/logout`, {
-        method: 'POST',
-        headers: getHeaders(true),
-      })
-      return handleResponse(response)
-    } catch (error) {
-      console.error('Logout error:', error)
-      throw error
-    }
-  },
-
-  // ==================== Questions ====================
-  
-  getQuestions: async (category) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/questions/${category}`, {
-        method: 'GET',
-        headers: getHeaders(true),
-      })
-      return handleResponse(response)
-    } catch (error) {
-      console.error('Get questions error:', error)
-      throw error
-    }
-  },
-
-  getQuestionById: async (questionId) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/questions/detail/${questionId}`, {
-        method: 'GET',
-        headers: getHeaders(true),
-      })
-      return handleResponse(response)
-    } catch (error) {
-      console.error('Get question by ID error:', error)
-      throw error
-    }
-  },
-
-  getRandomQuestion: async (category) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/questions/${category}/random`, {
-        method: 'GET',
-        headers: getHeaders(true),
-      })
-      return handleResponse(response)
-    } catch (error) {
-      console.error('Get random question error:', error)
-      throw error
-    }
-  },
-
-  // ==================== Evaluation & Recording ====================
-  
-  submitAnswer: async (audioBlob, questionId, category) => {
-    try {
-      const formData = new FormData()
-      formData.append('audio', audioBlob, 'answer.webm')
-      formData.append('question_id', questionId)
-      formData.append('category', category)
-
-      const token = getAuthToken()
-      const headers = {}
-      if (token) {
-        headers['Authorization'] = `Bearer ${token}`
-      }
-
-      const response = await fetch(`${API_BASE_URL}/evaluate`, {
-        method: 'POST',
-        headers: headers,
-        body: formData,
-      })
-      return handleResponse(response)
-    } catch (error) {
-      console.error('Submit answer error:', error)
-      throw error
-    }
-  },
-
-  transcribeAudio: async (audioBlob) => {
-    try {
-      const formData = new FormData()
-      formData.append('audio', audioBlob, 'audio.webm')
-
-      const token = getAuthToken()
-      const headers = {}
-      if (token) {
-        headers['Authorization'] = `Bearer ${token}`
-      }
-
-      const response = await fetch(`${API_BASE_URL}/transcribe`, {
-        method: 'POST',
-        headers: headers,
-        body: formData,
-      })
-      return handleResponse(response)
-    } catch (error) {
-      console.error('Transcribe audio error:', error)
-      throw error
-    }
-  },
-
-  // ==================== Progress & Statistics ====================
-  
-  getUserProgress: async (userId) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/progress/${userId}`, {
-        method: 'GET',
-        headers: getHeaders(true),
-      })
-      return handleResponse(response)
-    } catch (error) {
-      console.error('Get user progress error:', error)
-      throw error
-    }
-  },
-
-  getCategoryProgress: async (userId, category) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/progress/${userId}/${category}`, {
-        method: 'GET',
-        headers: getHeaders(true),
-      })
-      return handleResponse(response)
-    } catch (error) {
-      console.error('Get category progress error:', error)
-      throw error
-    }
-  },
-
-  getUserStatistics: async (userId) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/statistics/${userId}`, {
-        method: 'GET',
-        headers: getHeaders(true),
-      })
-      return handleResponse(response)
-    } catch (error) {
-      console.error('Get user statistics error:', error)
-      throw error
-    }
-  },
-
-  getInterviewHistory: async (userId, limit = 10) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/history/${userId}?limit=${limit}`, {
-        method: 'GET',
-        headers: getHeaders(true),
-      })
-      return handleResponse(response)
-    } catch (error) {
-      console.error('Get interview history error:', error)
-      throw error
-    }
-  },
-
-  // ==================== Profile ====================
-  
-  getProfile: async (userId) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/profile/${userId}`, {
-        method: 'GET',
-        headers: getHeaders(true),
-      })
-      return handleResponse(response)
-    } catch (error) {
-      console.error('Get profile error:', error)
-      throw error
-    }
-  },
-
-  updateProfile: async (userId, profileData) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/profile/${userId}`, {
-        method: 'PUT',
-        headers: getHeaders(true),
-        body: JSON.stringify(profileData),
-      })
-      return handleResponse(response)
-    } catch (error) {
-      console.error('Update profile error:', error)
-      throw error
-    }
-  },
-
-  updatePassword: async (userId, oldPassword, newPassword) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/profile/${userId}/password`, {
-        method: 'PUT',
-        headers: getHeaders(true),
-        body: JSON.stringify({ old_password: oldPassword, new_password: newPassword }),
-      })
-      return handleResponse(response)
-    } catch (error) {
-      console.error('Update password error:', error)
-      throw error
-    }
-  },
-
-  // ==================== Challenges ====================
-  
-  getChallenges: async (userId) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/challenges/${userId}`, {
-        method: 'GET',
-        headers: getHeaders(true),
-      })
-      return handleResponse(response)
-    } catch (error) {
-      console.error('Get challenges error:', error)
-      throw error
-    }
-  },
-
-  updateChallengeProgress: async (userId, challengeId, progress) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/challenges/${userId}/${challengeId}`, {
-        method: 'PUT',
-        headers: getHeaders(true),
-        body: JSON.stringify({ progress }),
-      })
-      return handleResponse(response)
-    } catch (error) {
-      console.error('Update challenge progress error:', error)
-      throw error
-    }
-  },
-
-  // ==================== Feedback ====================
-  
-  getFeedback: async (interviewId) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/feedback/${interviewId}`, {
-        method: 'GET',
-        headers: getHeaders(true),
-      })
-      return handleResponse(response)
-    } catch (error) {
-      console.error('Get feedback error:', error)
-      throw error
-    }
-  },
-
-  // ==================== Analytics ====================
-  
-  getPerformanceAnalytics: async (userId, timeRange = '7d') => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/analytics/${userId}?range=${timeRange}`, {
-        method: 'GET',
-        headers: getHeaders(true),
-      })
-      return handleResponse(response)
-    } catch (error) {
-      console.error('Get performance analytics error:', error)
-      throw error
-    }
-  },
-
-  getScoreTrends: async (userId, category = null) => {
-    try {
-      const url = category 
-        ? `${API_BASE_URL}/analytics/${userId}/trends?category=${category}`
-        : `${API_BASE_URL}/analytics/${userId}/trends`
-      
-      const response = await fetch(url, {
-        method: 'GET',
-        headers: getHeaders(true),
-      })
-      return handleResponse(response)
-    } catch (error) {
-      console.error('Get score trends error:', error)
-      throw error
-    }
-  },
-
-  // ==================== Health Check ====================
-  
-  healthCheck: async () => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/health`, {
-        method: 'GET',
-      })
-      return handleResponse(response)
-    } catch (error) {
-      console.error('Health check error:', error)
-      throw error
-    }
-  },
-}
-
-// Export individual functions for convenience
-export const {
-  checkUserExists,
-  login,
-  signup,
-  logout,
+const api = {
   getQuestions,
-  getQuestionById,
-  getRandomQuestion,
-  submitAnswer,
-  transcribeAudio,
-  getUserProgress,
-  getCategoryProgress,
-  getUserStatistics,
-  getInterviewHistory,
-  getProfile,
-  updateProfile,
-  updatePassword,
-  getChallenges,
-  updateChallengeProgress,
-  getFeedback,
-  getPerformanceAnalytics,
-  getScoreTrends,
-  healthCheck,
-} = api
+};
 
-export default api
+export default api;

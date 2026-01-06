@@ -13,7 +13,6 @@ function App() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // Check if user is logged in (from localStorage)
     const savedUser = localStorage.getItem('user')
     if (savedUser) {
       setUser(JSON.parse(savedUser))
@@ -42,35 +41,45 @@ function App() {
   return (
     <Router>
       <Routes>
+
         <Route 
           path="/signup" 
           element={user ? <Navigate to="/dashboard" /> : <Signup onLogin={handleLogin} />} 
         />
+
         <Route 
           path="/login" 
           element={user ? <Navigate to="/dashboard" /> : <Login onLogin={handleLogin} />} 
         />
+
         <Route 
           path="/dashboard" 
           element={user ? <Dashboard user={user} onLogout={handleLogout} /> : <Navigate to="/signup" />} 
         />
+
+        {/* 🔥 FIX IS HERE */}
         <Route 
           path="/interview/:category" 
           element={user ? <InterviewSession user={user} onLogout={handleLogout} /> : <Navigate to="/signup" />} 
         />
+
         <Route 
           path="/profile" 
           element={user ? <Profile user={user} onLogout={handleLogout} /> : <Navigate to="/signup" />} 
         />
+
         <Route 
           path="/progress" 
           element={user ? <Progress user={user} onLogout={handleLogout} /> : <Navigate to="/signup" />} 
         />
+
         <Route 
           path="/challenges" 
           element={user ? <Challenges user={user} onLogout={handleLogout} /> : <Navigate to="/signup" />} 
         />
+
         <Route path="/" element={<Navigate to={user ? "/dashboard" : "/signup"} />} />
+
       </Routes>
     </Router>
   )

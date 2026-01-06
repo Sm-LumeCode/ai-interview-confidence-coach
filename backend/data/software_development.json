@@ -1,0 +1,108 @@
+{
+  "role": "software_developer",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Explain the four pillars of Object-Oriented Programming (OOP).",
+      "keywords": ["encapsulation", "inheritance", "polymorphism", "abstraction"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "question": "What is the difference between SQL and NoSQL databases?",
+      "keywords": ["relational", "schema", "ACID", "scalability", "unstructured", "consistency"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "question": "Explain the concept of RESTful API and its main HTTP methods.",
+      "keywords": ["REST", "HTTP", "GET", "POST", "PUT", "DELETE", "stateless", "resources"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 4,
+      "question": "What is version control and why is Git important?",
+      "keywords": ["version control", "Git", "commits", "branches", "merge", "repository", "collaboration"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 5,
+      "question": "Explain the difference between synchronous and asynchronous programming.",
+      "keywords": ["synchronous", "asynchronous", "blocking", "non-blocking", "promises", "async", "await", "callbacks"],
+      "difficulty": "medium"
+    },
+
+    {
+      "id": 6,
+      "question": "What are DevOps best practices and why are they important in real-world projects?",
+      "keywords": ["DevOps best practices", "CI/CD", "automation", "monitoring", "security"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 7,
+      "question": "What is Infrastructure as Code (IaC) and what problems does it solve?",
+      "keywords": ["Infrastructure as Code", "IaC", "Terraform", "Ansible", "automation"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 8,
+      "question": "Why is version control critical in DevOps workflows?",
+      "keywords": ["version control", "Git", "collaboration", "rollback"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 9,
+      "question": "What is Continuous Integration and how does it improve software quality?",
+      "keywords": ["Continuous Integration", "CI", "automated testing", "code quality"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 10,
+      "question": "What is the difference between Continuous Delivery and Continuous Deployment?",
+      "keywords": ["Continuous Delivery", "Continuous Deployment", "CI/CD"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 11,
+      "question": "How do blue-green, rolling, and canary deployments reduce production risk?",
+      "keywords": ["blue-green deployment", "rolling deployment", "canary deployment", "zero downtime"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 12,
+      "question": "What is the role of monitoring and logging in DevOps?",
+      "keywords": ["monitoring", "logging", "observability", "Prometheus", "ELK"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 13,
+      "question": "What is DevSecOps and how is security integrated into CI/CD pipelines?",
+      "keywords": ["DevSecOps", "CI/CD security", "SAST", "dependency scanning"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 14,
+      "question": "What is GitOps and how does it change infrastructure management?",
+      "keywords": ["GitOps", "infrastructure management", "Kubernetes", "version control"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 15,
+      "question": "What is idempotency in DevOps tools and why is it important?",
+      "keywords": ["idempotency", "configuration management", "Ansible", "reliability"],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 16,
+      "question": "What is chaos engineering and how does it improve system reliability?",
+      "keywords": ["chaos engineering", "resilience", "fault tolerance", "Chaos Monkey"],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 17,
+      "question": "How do large organizations like Netflix or Amazon use DevOps practices to achieve high availability?",
+      "keywords": ["high availability", "DevOps at scale", "auto-scaling", "CI/CD"],
+      "difficulty": "difficult"
+    }
+  ]
+}
