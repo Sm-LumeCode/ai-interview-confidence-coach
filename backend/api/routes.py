@@ -4,6 +4,7 @@ from typing import List, Optional
 import json
 import os
 from services.llm_evaluator import evaluate_answer
+from services.answer_generator import generate_ideal_answer
 
 router = APIRouter()
 
@@ -14,6 +15,11 @@ DATA_DIR = os.path.join(BASE_DIR, "data")
 class EvaluationRequest(BaseModel):
     question: str
     answer: str
+    keywords: Optional[List[str]] = None
+
+# Request model for answer generation
+class AnswerGenerationRequest(BaseModel):
+    question: str
     keywords: Optional[List[str]] = None
 
 # Get questions by category
@@ -55,4 +61,28 @@ def evaluate_interview_answer(request: EvaluationRequest):
         raise HTTPException(
             status_code=500,
             detail=f"Evaluation failed: {str(e)}"
+        )
+
+# Generate ideal answer for a question
+@router.post("/generate-answer")
+def generate_answer(request: AnswerGenerationRequest):
+    try:
+        if not request.question:
+            raise HTTPException(
+                status_code=400,
+                detail="Question is required"
+            )
+        
+        # Generate ideal structured answer
+        result = generate_ideal_answer(
+            question=request.question,
+            keywords=request.keywords
+        )
+        
+        return result
+    
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Answer generation failed: {str(e)}"
         )

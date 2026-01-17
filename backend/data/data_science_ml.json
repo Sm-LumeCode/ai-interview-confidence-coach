@@ -35,7 +35,7 @@
       "expected_answer": "Random Forest builds multiple decision trees using bootstrap sampling and random feature selection, then aggregates their predictions to improve generalization and reduce overfitting.",
       "keywords": ["Random Forest", "ensemble", "decision trees", "bagging", "feature importance"],
       "difficulty": "medium"
-    }
+    },
   {
     "id": 6,
     "question": "What are autoencoders? Explain the different layers of autoencoders and mention three practical usages of them.",
@@ -107,7 +107,7 @@
     "question": "What is object detection, and how does it differ from image classification?",
     "keywords": ["object detection", "image classification", "bounding boxes", "localization"],
     "category": "easy"
-  }
+  },
      {
     "id": 18,
     "question": "What are Bias and Variance in a machine learning model, and explain the bias–variance trade-off?",
