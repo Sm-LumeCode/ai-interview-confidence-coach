@@ -1,40 +1,110 @@
-import React, { useState, useRef } from 'react'
-import { Mic, MicOff, Play, Pause, RotateCcw } from 'lucide-react'
+import React, { useState, useRef, useEffect } from 'react'
+import { Mic, MicOff, Play, Pause, RotateCcw, Send, Volume2, AlertCircle } from 'lucide-react'
 
 const Recorder = ({ onRecordingComplete }) => {
   const [isRecording, setIsRecording] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
   const [recordingTime, setRecordingTime] = useState(0)
-  const [audioBlob, setAudioBlob] = useState(null)
-  const mediaRecorderRef = useRef(null)
-  const chunksRef = useRef([])
+  const [transcribedText, setTranscribedText] = useState('')
+  const [isTranscribing, setIsTranscribing] = useState(false)
+  const [sttSupported, setSttSupported] = useState(true)
+  const [interimText, setInterimText] = useState('')
+  
+  const recognitionRef = useRef(null)
   const timerRef = useRef(null)
+  const finalTranscriptRef = useRef('')
+
+  useEffect(() => {
+    // Check if browser supports Speech Recognition
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+    
+    if (!SpeechRecognition) {
+      setSttSupported(false)
+      console.warn('Speech Recognition not supported in this browser')
+      return
+    }
+
+    // Initialize Speech Recognition with better settings
+    recognitionRef.current = new SpeechRecognition()
+    recognitionRef.current.continuous = true
+    recognitionRef.current.interimResults = true
+    recognitionRef.current.lang = 'en-US'
+    recognitionRef.current.maxAlternatives = 1
+
+    recognitionRef.current.onresult = (event) => {
+      let interim = ''
+      
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        const transcript = event.results[i][0].transcript
+        
+        if (event.results[i].isFinal) {
+          finalTranscriptRef.current += transcript + ' '
+          setTranscribedText(finalTranscriptRef.current)
+        } else {
+          interim += transcript
+        }
+      }
+      
+      setInterimText(interim)
+    }
+
+    recognitionRef.current.onerror = (event) => {
+      console.error('Speech recognition error:', event.error)
+      if (event.error === 'no-speech') {
+        console.log('No speech detected, continuing...')
+      } else if (event.error === 'aborted') {
+        console.log('Speech recognition aborted')
+      }
+    }
+
+    recognitionRef.current.onend = () => {
+      // Auto-restart if still recording
+      if (isRecording && !isPaused) {
+        try {
+          recognitionRef.current.start()
+        } catch (error) {
+          console.warn('Could not restart recognition:', error)
+        }
+      }
+    }
+
+    return () => {
+      if (recognitionRef.current) {
+        try {
+          recognitionRef.current.stop()
+        } catch (error) {
+          console.warn('Error stopping recognition:', error)
+        }
+      }
+    }
+  }, [isRecording, isPaused])
 
   const startRecording = async () => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
-      mediaRecorderRef.current = new MediaRecorder(stream)
-      chunksRef.current = []
-
-      mediaRecorderRef.current.ondataavailable = (e) => {
-        if (e.data.size > 0) {
-          chunksRef.current.push(e.data)
-        }
-      }
-
-      mediaRecorderRef.current.onstop = () => {
-        const blob = new Blob(chunksRef.current, { type: 'audio/webm' })
-        setAudioBlob(blob)
-        stream.getTracks().forEach(track => track.stop())
-      }
-
-      mediaRecorderRef.current.start()
+      // Request microphone permission
+      await navigator.mediaDevices.getUserMedia({ audio: true })
+      
       setIsRecording(true)
       setIsPaused(false)
+      setTranscribedText('')
+      setInterimText('')
+      finalTranscriptRef.current = ''
 
+      // Start timer
       timerRef.current = setInterval(() => {
         setRecordingTime(prev => prev + 1)
       }, 1000)
+
+      // Start Speech Recognition
+      if (recognitionRef.current && sttSupported) {
+        try {
+          recognitionRef.current.start()
+          setIsTranscribing(true)
+        } catch (error) {
+          console.warn('Speech recognition start error:', error)
+        }
+      }
+
     } catch (error) {
       console.error('Error accessing microphone:', error)
       alert('Could not access microphone. Please check permissions.')
@@ -42,39 +112,67 @@ const Recorder = ({ onRecordingComplete }) => {
   }
 
   const pauseRecording = () => {
-    if (mediaRecorderRef.current && isRecording) {
+    if (isRecording) {
       if (isPaused) {
-        mediaRecorderRef.current.resume()
+        // Resume
         timerRef.current = setInterval(() => {
           setRecordingTime(prev => prev + 1)
         }, 1000)
+        
+        if (recognitionRef.current && sttSupported) {
+          try {
+            recognitionRef.current.start()
+            setIsTranscribing(true)
+          } catch (error) {
+            console.warn('Recognition already started')
+          }
+        }
+        setIsPaused(false)
       } else {
-        mediaRecorderRef.current.pause()
+        // Pause
         clearInterval(timerRef.current)
+        
+        if (recognitionRef.current && sttSupported) {
+          recognitionRef.current.stop()
+          setIsTranscribing(false)
+        }
+        setIsPaused(true)
       }
-      setIsPaused(!isPaused)
     }
   }
 
   const stopRecording = () => {
-    if (mediaRecorderRef.current && isRecording) {
-      mediaRecorderRef.current.stop()
+    if (isRecording) {
       setIsRecording(false)
       setIsPaused(false)
       clearInterval(timerRef.current)
+      setInterimText('')
+
+      // Stop Speech Recognition
+      if (recognitionRef.current && sttSupported) {
+        recognitionRef.current.stop()
+        setIsTranscribing(false)
+      }
     }
   }
 
   const resetRecording = () => {
-    setAudioBlob(null)
     setRecordingTime(0)
-    chunksRef.current = []
+    setTranscribedText('')
+    setInterimText('')
+    setIsRecording(false)
+    setIsPaused(false)
+    setIsTranscribing(false)
+    finalTranscriptRef.current = ''
   }
 
-  const submitRecording = () => {
-    if (audioBlob) {
-      onRecordingComplete(audioBlob)
+  const submitAnswer = () => {
+    const finalText = transcribedText.trim()
+    if (finalText) {
+      onRecordingComplete(finalText)
       resetRecording()
+    } else {
+      alert('Please provide an answer first')
     }
   }
 
@@ -84,27 +182,38 @@ const Recorder = ({ onRecordingComplete }) => {
     return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`
   }
 
+  const displayText = transcribedText + (interimText ? ` ${interimText}` : '')
+
   return (
     <div className="card animate-slide-up">
       <h3 className="text-xl font-bold text-gray-800 mb-6">Record Your Answer</h3>
 
+      {!sttSupported && (
+        <div className="bg-yellow-100 border-l-4 border-yellow-500 p-4 mb-4 flex items-center gap-2">
+          <AlertCircle className="w-5 h-5 text-yellow-600" />
+          <p className="text-yellow-800 text-sm">
+            Speech-to-Text not supported. Please use Chrome, Edge, or Safari, or type your answer below.
+          </p>
+        </div>
+      )}
+
       <div className="flex flex-col items-center gap-6">
         {/* Timer Display */}
         <div className="text-center">
-          <div className="text-5xl font-bold gradient-text mb-2">
+          <div className="text-5xl font-bold text-beige-800 mb-2">
             {formatTime(recordingTime)}
           </div>
           <div className="text-sm text-gray-600">
             {isRecording && !isPaused && (
               <span className="flex items-center justify-center gap-2">
                 <span className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></span>
-                Recording...
+                {isTranscribing ? 'Recording & Transcribing...' : 'Recording...'}
               </span>
             )}
             {isRecording && isPaused && (
               <span className="text-yellow-600">Paused</span>
             )}
-            {!isRecording && audioBlob && (
+            {!isRecording && transcribedText && (
               <span className="text-green-600">Recording Complete</span>
             )}
           </div>
@@ -116,7 +225,7 @@ const Recorder = ({ onRecordingComplete }) => {
             {[...Array(5)].map((_, i) => (
               <div
                 key={i}
-                className="w-2 bg-gradient-to-t from-blue-500 to-purple-600 rounded-full animate-pulse"
+                className="w-2 bg-gradient-to-t from-amber-600 to-amber-700 rounded-full animate-pulse"
                 style={{
                   height: `${20 + Math.random() * 40}px`,
                   animationDelay: `${i * 0.1}s`
@@ -126,9 +235,32 @@ const Recorder = ({ onRecordingComplete }) => {
           </div>
         )}
 
+        {/* Live Transcription Display */}
+        {(sttSupported && (isRecording || displayText)) && (
+          <div className="w-full bg-gray-50 border-2 border-amber-600 rounded-lg p-4 min-h-[120px] max-h-[300px] overflow-y-auto">
+            <div className="flex items-center gap-2 mb-2">
+              <Volume2 className="w-5 h-5 text-amber-700" />
+              <h4 className="font-semibold text-gray-700">
+                {isRecording ? 'Live Transcription:' : 'Your Answer:'}
+              </h4>
+            </div>
+            {displayText ? (
+              <p className="text-gray-800 whitespace-pre-wrap">
+                {displayText}
+                {interimText && <span className="text-gray-400 italic"> {interimText}</span>}
+              </p>
+            ) : (
+              <p className="text-gray-400 italic">Start speaking... your words will appear here in real-time</p>
+            )}
+            <div className="mt-2 text-xs text-gray-500">
+              Word count: {displayText.split(/\s+/).filter(w => w).length}
+            </div>
+          </div>
+        )}
+
         {/* Control Buttons */}
-        <div className="flex gap-4">
-          {!isRecording && !audioBlob && (
+        <div className="flex gap-4 flex-wrap justify-center">
+          {!isRecording && !transcribedText && (
             <button
               onClick={startRecording}
               className="btn-primary flex items-center gap-2"
@@ -161,12 +293,12 @@ const Recorder = ({ onRecordingComplete }) => {
                 className="bg-red-500 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 flex items-center gap-2"
               >
                 <MicOff className="w-5 h-5" />
-                Stop
+                Stop Recording
               </button>
             </>
           )}
 
-          {audioBlob && !isRecording && (
+          {!isRecording && transcribedText && (
             <>
               <button
                 onClick={resetRecording}
@@ -176,23 +308,36 @@ const Recorder = ({ onRecordingComplete }) => {
                 Re-record
               </button>
               <button
-                onClick={submitRecording}
+                onClick={submitAnswer}
                 className="btn-primary flex items-center gap-2"
               >
+                <Send className="w-5 h-5" />
                 Submit Answer
               </button>
             </>
           )}
         </div>
 
-        {/* Audio Preview */}
-        {audioBlob && !isRecording && (
+        {/* Manual Text Input Fallback */}
+        {!sttSupported && (
           <div className="w-full">
-            <audio
-              controls
-              src={URL.createObjectURL(audioBlob)}
-              className="w-full"
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Type your answer:
+            </label>
+            <textarea
+              value={transcribedText}
+              onChange={(e) => setTranscribedText(e.target.value)}
+              placeholder="Type your answer here..."
+              className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-amber-600 focus:outline-none min-h-[120px]"
             />
+            <button
+              onClick={submitAnswer}
+              disabled={!transcribedText.trim()}
+              className="btn-primary mt-4 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <Send className="w-5 h-5" />
+              Submit Answer
+            </button>
           </div>
         )}
       </div>

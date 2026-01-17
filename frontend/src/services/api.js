@@ -1,52 +1,160 @@
-const API_BASE_URL = "http://127.0.0.1:8000/api";
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api'
 
-/**
- * Generic helper for GET requests
- */
-async function get(url) {
-  const response = await fetch(url, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  // Log raw response for debugging
-  console.log("API response status:", response.status);
-
+// Helper function to handle API responses
+const handleResponse = async (response) => {
   if (!response.ok) {
-    let errorBody = {};
+    const error = await response.json().catch(() => ({ message: 'An error occurred' }))
+    throw new Error(error.detail || error.message || `HTTP error! status: ${response.status}`)
+  }
+  return response.json()
+}
+
+// Helper function to get auth token from localStorage
+const getAuthToken = () => {
+  const user = localStorage.getItem('user')
+  if (user) {
+    const userData = JSON.parse(user)
+    return userData.token || null
+  }
+  return null
+}
+
+// Helper function to create headers with auth token
+const getHeaders = (includeAuth = false) => {
+  const headers = {
+    'Content-Type': 'application/json',
+  }
+  
+  if (includeAuth) {
+    const token = getAuthToken()
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`
+    }
+  }
+  
+  return headers
+}
+
+export const api = {
+  // ==================== Authentication ====================
+  
+  checkUserExists: async (email) => {
     try {
-      errorBody = await response.json();
-    } catch (_) {}
+      const response = await fetch(`${API_BASE_URL}/auth/check-user`, {
+        method: 'POST',
+        headers: getHeaders(),
+        body: JSON.stringify({ email }),
+      })
+      return handleResponse(response)
+    } catch (error) {
+      console.error('Check user exists error:', error)
+      throw error
+    }
+  },
 
-    console.error("Backend error:", errorBody);
+  login: async (email, password) => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/auth/login`, {
+        method: 'POST',
+        headers: getHeaders(),
+        body: JSON.stringify({ email, password }),
+      })
+      return handleResponse(response)
+    } catch (error) {
+      console.error('Login error:', error)
+      throw error
+    }
+  },
 
-    throw new Error(
-      errorBody.detail || "API request failed"
-    );
+  signup: async (username, email, password) => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/auth/signup`, {
+        method: 'POST',
+        headers: getHeaders(),
+        body: JSON.stringify({ username, email, password }),
+      })
+      return handleResponse(response)
+    } catch (error) {
+      console.error('Signup error:', error)
+      throw error
+    }
+  },
+
+  logout: async () => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/auth/logout`, {
+        method: 'POST',
+        headers: getHeaders(true),
+      })
+      return handleResponse(response)
+    } catch (error) {
+      console.error('Logout error:', error)
+      throw error
+    }
+  },
+
+  // ==================== Questions ====================
+  
+  getQuestions: async (category) => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/questions/${category}`, {
+        method: 'GET',
+        headers: getHeaders(),
+      })
+      return handleResponse(response)
+    } catch (error) {
+      console.error('Get questions error:', error)
+      throw error
+    }
+  },
+
+  // ==================== Evaluation ====================
+
+evaluateAnswer: async (question, answer, keywords = []) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/evaluate`, {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify({ 
+        question, 
+        answer,
+        keywords 
+      }),
+    })
+    return handleResponse(response)
+  } catch (error) {
+    console.error('Evaluate answer error:', error)
+    throw error
   }
+},
 
-  return response.json();
+  // ==================== Progress & Statistics ====================
+  
+  getUserProgress: async (userId) => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/progress/${userId}`, {
+        method: 'GET',
+        headers: getHeaders(true),
+      })
+      return handleResponse(response)
+    } catch (error) {
+      console.error('Get user progress error:', error)
+      throw error
+    }
+  },
+
+  getCategoryProgress: async (userId, category) => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/progress/${userId}/${category}`, {
+        method: 'GET',
+        headers: getHeaders(true),
+      })
+      return handleResponse(response)
+    } catch (error) {
+      console.error('Get category progress error:', error)
+      throw error
+    }
+  },
 }
 
-/**
- * Fetch interview questions by category
- * @param {string} category
- */
-async function getQuestions(category) {
-  if (!category) {
-    throw new Error("Category is undefined");
-  }
-
-  const url = `${API_BASE_URL}/questions/${category}`;
-  console.log("Calling API:", url);
-
-  return get(url);
-}
-
-const api = {
-  getQuestions,
-};
-
-export default api;
+export default api
