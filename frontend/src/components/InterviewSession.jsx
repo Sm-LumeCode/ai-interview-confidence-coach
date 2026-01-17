@@ -4,6 +4,7 @@ import Navbar from './Navbar'
 import QuestionCard from './QuestionCard'
 import Recorder from './Recorder'
 import ResultPanel from './ResultPanel'
+import IdealAnswer from './IdealAnswer'
 import { ChevronRight, Home } from 'lucide-react'
 import api from '../services/api'
 
@@ -14,8 +15,10 @@ const InterviewSession = ({ user, onLogout }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [showResults, setShowResults] = useState(false)
   const [results, setResults] = useState(null)
+  const [idealAnswer, setIdealAnswer] = useState(null)
   const [loading, setLoading] = useState(true)
   const [evaluating, setEvaluating] = useState(false)
+  const [generatingAnswer, setGeneratingAnswer] = useState(false)
   const [error, setError] = useState('')
 
   useEffect(() => {
@@ -43,12 +46,13 @@ const InterviewSession = ({ user, onLogout }) => {
     }
 
     setEvaluating(true)
+    setGeneratingAnswer(true)
     setError('')
     
     try {
       const currentQuestion = questions[currentQuestionIndex]
       
-      // Call API with question, answer, AND keywords
+      // Evaluate user's answer
       const evaluation = await api.evaluateAnswer(
         currentQuestion.question,
         answerText,
@@ -56,6 +60,14 @@ const InterviewSession = ({ user, onLogout }) => {
       )
       
       setResults(evaluation)
+      
+      // Generate ideal answer
+      const ideal = await api.generateIdealAnswer(
+        currentQuestion.question,
+        currentQuestion.keywords || []
+      )
+      
+      setIdealAnswer(ideal)
       setShowResults(true)
     } catch (err) {
       console.error('Evaluation error:', err)
@@ -63,12 +75,14 @@ const InterviewSession = ({ user, onLogout }) => {
       alert('Evaluation failed. Please check if Ollama is running on http://localhost:11434')
     } finally {
       setEvaluating(false)
+      setGeneratingAnswer(false)
     }
   }
 
   const handleNextQuestion = () => {
     setShowResults(false)
     setResults(null)
+    setIdealAnswer(null)
     
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1)
@@ -151,13 +165,26 @@ const InterviewSession = ({ user, onLogout }) => {
             <div className="card text-center py-12">
               <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-amber-700 mx-auto mb-4"></div>
               <p className="text-gray-600 text-lg">Analyzing your response with AI...</p>
-              <p className="text-gray-500 text-sm mt-2">Checking keywords, filler words, and overall quality...</p>
+              <p className="text-gray-500 text-sm mt-2">
+                Checking keywords, filler words, structure, and generating ideal answer...
+              </p>
             </div>
           )}
 
           {showResults && !evaluating && results && (
             <>
               <ResultPanel results={results} />
+              
+              {generatingAnswer && (
+                <div className="card text-center py-8">
+                  <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-green-600 mx-auto mb-4"></div>
+                  <p className="text-gray-600">Generating ideal answer...</p>
+                </div>
+              )}
+
+              {idealAnswer && !generatingAnswer && (
+                <IdealAnswer idealAnswer={idealAnswer} />
+              )}
               
               <div className="card text-center">
                 <button
