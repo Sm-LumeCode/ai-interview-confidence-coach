@@ -176,6 +176,72 @@
       "question": "Explain the difference between RANK, DENSE_RANK, and ROW_NUMBER.",
       "keywords": ["RANK", "DENSE_RANK", "ROW_NUMBER", "window functions"],
       "difficulty": "difficult"
-    }
+    },
+      {
+      "id": 30,
+      "question": "Describe a time when you had to analyze large amounts of data in order to draw meaningful conclusions.",
+      "keywords": ["data analysis", "large datasets", "insights", "patterns", "decision-making", "conclusions"],
+      "difficulty": "medium"
+    },
+    {
+  "id": 31,
+  "question": "How do you approach cleaning up messy datasets?",
+  "keywords": ["data cleaning", "missing values", "outliers", "data preprocessing", "data quality"],
+  "difficulty": "easy"
+},
+{
+  "id": 32,
+  "question": "Explain the concept of predictive analytics and how it can be used to make decisions.",
+  "keywords": ["predictive analytics", "historical data", "forecasting", "decision-making", "models"],
+  "difficulty": "medium"
+},
+{
+  "id": 33,
+  "question": "Are you familiar with machine learning algorithms and their applications?",
+  "keywords": ["machine learning", "algorithms", "classification", "regression", "real-world applications"],
+  "difficulty": "easy"
+},
+{
+  "id": 34,
+  "question": "What strategies do you use to identify patterns and trends in data?",
+  "keywords": ["pattern recognition", "trend analysis", "data visualization", "statistical analysis", "insights"],
+  "difficulty": "medium"
+},
+{
+  "id": 35,
+  "question": "How do you ensure that your data models are accurate and reliable?",
+  "keywords": ["model validation", "accuracy", "testing", "bias", "reliability"],
+  "difficulty": "hard"
+},
+{
+  "id": 36,
+  "question": "What techniques do you use to detect anomalies or outliers in data sets?",
+  "keywords": ["anomaly detection", "outliers", "statistical methods", "z-score", "iqr", "data quality"],
+  "difficulty": "medium"
+},
+{
+  "id": 37,
+  "question": "How do you handle missing values in a dataset?",
+  "keywords": ["missing data", "imputation", "data cleaning", "mean median mode", "data preprocessing"],
+  "difficulty": "easy"
+},
+{
+  "id": 38,
+  "question": "What is your experience with creating dashboards and reports for stakeholders?",
+  "keywords": ["dashboards", "data visualization", "reporting", "stakeholders", "business insights"],
+  "difficulty": "medium"
+},
+{
+  "id": 39,
+  "question": "How much do you know about A/B testing and how do you handle it?",
+  "keywords": ["A/B testing", "experimentation", "hypothesis testing", "metrics", "decision-making"],
+  "difficulty": "medium"
+},
+{
+  "id": 40,
+  "question": "Do you have any experience with A/B testing?",
+  "keywords": ["A/B testing", "experiments", "control group", "variant", "results analysis"],
+  "difficulty": "easy"
+}
   ]
 }

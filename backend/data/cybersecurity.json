@@ -173,6 +173,103 @@
       "question": "How do you reduce false positives in security tools?",
       "keywords": ["false positives", "tool tuning", "security alerts"],
       "difficulty": "medium"
-    }
+    },
+
+  {
+    "id": 29,
+    "question": "What is the difference between active and passive cyber attacks?",
+    "keywords": ["active attacks", "passive attacks", "cyber security", "data modification", "eavesdropping"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 30,
+    "question": "What are some common hashing functions?",
+    "keywords": ["hashing", "md5", "sha-1", "sha-256", "data integrity"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 31,
+    "question": "What does XSS stand for and how can it be prevented?",
+    "keywords": ["xss", "cross-site scripting", "web security", "input validation", "sanitization"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 32,
+    "question": "What do you mean by system hardening?",
+    "keywords": ["system hardening", "security configuration", "attack surface", "best practices"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 33,
+    "question": "What do you mean by perfect forward secrecy?",
+    "keywords": ["perfect forward secrecy", "encryption", "key exchange", "tls security"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 34,
+    "question": "How can ARP poisoning be avoided?",
+    "keywords": ["arp poisoning", "arp spoofing", "network security", "static arp", "packet inspection"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 35,
+    "question": "Explain what a honeypot is and its types.",
+    "keywords": ["honeypot", "cyber security", "threat detection", "low interaction", "high interaction"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 36,
+    "question": "What is the difference between HIDS and NIDS?",
+    "keywords": ["hids", "nids", "intrusion detection", "host-based security", "network security"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 37,
+    "question": "What is the difference between Vulnerability Assessment and Penetration Testing?",
+    "keywords": ["vulnerability assessment", "penetration testing", "security testing", "risk analysis"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 38,
+    "question": "What is the Blowfish algorithm?",
+    "keywords": ["blowfish", "encryption algorithm", "symmetric key", "cryptography"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 39,
+    "question": "What do you mean by forward secrecy and how does it work?",
+    "keywords": ["forward secrecy", "key exchange", "session keys", "secure communication"],
+    "difficulty": "hard"
+  },
+  {
+    "id": 40,
+    "question": "Explain how a man-in-the-middle attack can be performed on a TLS connection and what countermeasures are used to prevent it.",
+    "keywords": ["man-in-the-middle", "tls", "certificate validation", "encryption", "secure communication"],
+    "difficulty": "hard"
+  },
+  {
+    "id": 41,
+    "question": "How does the TLS handshake work in detail, and how is perfect forward secrecy achieved during the process?",
+    "keywords": ["tls handshake", "perfect forward secrecy", "diffie-hellman", "key exchange", "session keys"],
+    "difficulty": "hard"
+  },
+  {
+    "id": 42,
+    "question": "Describe how a zero-day vulnerability is discovered, exploited, and mitigated in a real-world environment.",
+    "keywords": ["zero-day vulnerability", "exploit", "threat intelligence", "patch management", "mitigation"],
+    "difficulty": "hard"
+  },
+  {
+    "id": 43,
+    "question": "Explain the complete lifecycle of a ransomware attack and the security controls that can prevent each stage.",
+    "keywords": ["ransomware", "attack lifecycle", "initial access", "lateral movement", "incident response"],
+    "difficulty": "hard"
+  },
+  {
+    "id": 44,
+    "question": "How would you design a secure authentication system for a web application handling sensitive user data?",
+    "keywords": ["secure authentication", "multi-factor authentication", "password hashing", "authorization", "web security"],
+    "difficulty": "hard"
+  }
   ]
 }
