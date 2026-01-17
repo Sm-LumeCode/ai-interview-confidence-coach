@@ -103,6 +103,80 @@
       "question": "How do large organizations like Netflix or Amazon use DevOps practices to achieve high availability?",
       "keywords": ["high availability", "DevOps at scale", "auto-scaling", "CI/CD"],
       "difficulty": "difficult"
-    }
+    },
+  {
+    "id": 18,
+    "question": "What is Node.js and why is it used?",
+    "keywords": ["Node.js", "JavaScript runtime", "V8 engine", "non-blocking I/O", "server-side"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 19,
+    "question": "Explain non-blocking I/O in Node.js.",
+    "keywords": ["non-blocking", "asynchronous I/O", "event loop", "concurrency"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 20,
+    "question": "What is the event loop in Node.js and why is it important?",
+    "keywords": ["event loop", "call stack", "task queue", "microtasks", "macrotasks"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 21,
+    "question": "Describe event-driven programming in Node.js.",
+    "keywords": ["event-driven", "EventEmitter", "listeners", "callbacks"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 22,
+    "question": "What is the difference between Node.js and traditional web servers?",
+    "keywords": ["single-threaded", "multi-threaded", "blocking vs non-blocking", "scalability"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 23,
+    "question": "How does Node.js handle concurrency without multi-threading?",
+    "keywords": ["event loop", "async programming", "callbacks", "Promises"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 24,
+    "question": "What are worker threads and how are they used in Node.js?",
+    "keywords": ["worker threads", "libuv", "thread pool", "CPU-intensive tasks"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 25,
+    "question": "What is npm and what role does it play in Node.js development?",
+    "keywords": ["npm", "package manager", "dependencies", "scripts"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 26,
+    "question": "What is package.json and why is it important?",
+    "keywords": ["package.json", "dependencies", "scripts", "project metadata"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 27,
+    "question": "What are core modules in Node.js?",
+    "keywords": ["core modules", "fs", "http", "path", "os"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 28,
+    "question": "What are streams in Node.js and why are they useful?",
+    "keywords": ["streams", "readable", "writable", "duplex", "transform"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 29,
+    "question": "What is the Buffer class in Node.js and where is it used?",
+    "keywords": ["Buffer", "binary data", "memory", "I/O operations"],
+    "difficulty": "difficult"
+  }
+
+
   ]
 }
