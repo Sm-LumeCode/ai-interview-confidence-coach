@@ -36,5 +36,385 @@
       "keywords": ["Random Forest", "ensemble", "decision trees", "bagging", "feature importance"],
       "difficulty": "medium"
     }
-  ]
+  {
+    "id": 6,
+    "question": "What are autoencoders? Explain the different layers of autoencoders and mention three practical usages of them.",
+    "keywords": ["autoencoders", "encoder", "decoder", "dimensionality reduction", "feature learning", "anomaly detection"],
+    "category": "easy"
+  },
+  {
+    "id": 7,
+    "question": "What is an activation function and why is it used in neural networks? Explain three different types of activation functions.",
+    "keywords": ["activation function", "non-linearity", "ReLU", "Sigmoid", "Tanh"],
+    "category": "easy"
+  },
+  {
+    "id": 8,
+    "question": "Why should we use Batch Normalization in deep neural networks?",
+    "keywords": ["batch normalization", "internal covariate shift", "training stability", "faster convergence"],
+    "category": "medium"
+  },
+  {
+    "id": 9,
+    "question": "What is the Vanishing Gradient Problem in artificial neural networks and how can it be fixed?",
+    "keywords": ["vanishing gradient", "backpropagation", "deep networks", "ReLU", "weight initialization"],
+    "category": "medium"
+  },
+  {
+    "id": 10,
+    "question": "Why are Sigmoid or Tanh activation functions not preferred in the hidden layers of deep neural networks?",
+    "keywords": ["sigmoid", "tanh", "gradient saturation", "vanishing gradients", "ReLU"],
+    "category": "medium"
+  },
+  {
+    "id": 11,
+    "question": "What can be done to reduce overfitting in a deep neural network?",
+    "keywords": ["overfitting", "regularization", "dropout", "data augmentation", "early stopping"],
+    "category": "easy"
+  },
+  {
+    "id": 12,
+    "question": "Describe the architecture of a typical Convolutional Neural Network (CNN).",
+    "keywords": ["CNN", "convolution layer", "pooling", "feature maps", "fully connected layer"],
+    "category": "easy"
+  },
+  {
+    "id": 13,
+    "question": "What is transfer learning, and in what situations is it recommended or not recommended to use it?",
+    "keywords": ["transfer learning", "pre-trained models", "fine-tuning", "domain similarity"],
+    "category": "medium"
+  },
+  {
+    "id": 14,
+    "question": "What is a transformer architecture, and why is it widely used in natural language processing tasks?",
+    "keywords": ["transformer", "attention mechanism", "parallelization", "NLP"],
+    "category": "medium"
+  },
+  {
+    "id": 15,
+    "question": "What is self-attention, and how does it work in transformer models?",
+    "keywords": ["self-attention", "query", "key", "value", "contextual representation"],
+    "category": "difficult"
+  },
+  {
+    "id": 16,
+    "question": "What is BERT (Bidirectional Encoder Representations from Transformers), and how does it improve language understanding tasks?",
+    "keywords": ["BERT", "bidirectional context", "pre-training", "fine-tuning", "language understanding"],
+    "category": "medium"
+  },
+  {
+    "id": 17,
+    "question": "What is object detection, and how does it differ from image classification?",
+    "keywords": ["object detection", "image classification", "bounding boxes", "localization"],
+    "category": "easy"
+  }
+     {
+    "id": 18,
+    "question": "What are Bias and Variance in a machine learning model, and explain the bias–variance trade-off?",
+    "keywords": ["bias", "variance", "underfitting", "overfitting", "trade-off"],
+    "category": "easy"
+  },
+  {
+    "id": 19,
+    "question": "What are L1 and L2 regularization? What are the differences between them?",
+    "keywords": ["L1 regularization", "L2 regularization", "lasso", "ridge", "overfitting"],
+    "category": "easy"
+  },
+  {
+    "id": 20,
+    "question": "Describe the motivation behind random forests and mention why they are better than individual decision trees.",
+    "keywords": ["random forest", "ensemble learning", "bagging", "decision trees"],
+    "category": "medium"
+  },
+  {
+    "id": 21,
+    "question": "What are the differences and similarities between gradient boosting and random forest?",
+    "keywords": ["gradient boosting", "random forest", "ensemble methods", "bias reduction", "variance reduction"],
+    "category": "difficult"
+  },
+  {
+    "id": 22,
+    "question": "Explain what information gain and entropy are in the context of decision trees.",
+    "keywords": ["entropy", "information gain", "decision trees", "feature splitting"],
+    "category": "easy"
+  },
+  {
+    "id": 23,
+    "question": "Define precision, recall, and F1-score and discuss the trade-off between them.",
+    "keywords": ["precision", "recall", "F1-score", "classification metrics"],
+    "category": "easy"
+  },
+  {
+    "id": 24,
+    "question": "What is cross-validation and why is it used in machine learning?",
+    "keywords": ["cross-validation", "model evaluation", "generalization", "overfitting"],
+    "category": "easy"
+  },
+  {
+    "id": 25,
+    "question": "You are building a binary classifier and the data is imbalanced. How would you handle this situation?",
+    "keywords": ["imbalanced data", "resampling", "SMOTE", "class weights", "evaluation metrics"],
+    "category": "medium"
+  },
+  {
+    "id": 26,
+    "question": "Explain the kernel trick in Support Vector Machines and how to choose an appropriate kernel.",
+    "keywords": ["SVM", "kernel trick", "non-linear separation", "RBF", "polynomial kernel"],
+    "category": "difficult"
+  },
+  {
+    "id": 27,
+    "question": "What is the curse of dimensionality and how can it be addressed?",
+    "keywords": ["curse of dimensionality", "high-dimensional data", "feature selection", "dimensionality reduction"],
+    "category": "medium"
+  },
+  {
+    "id": 28,
+    "question": "What is boosting in ensemble learning, and name two popular boosting algorithms?",
+    "keywords": ["boosting", "ensemble learning", "AdaBoost", "Gradient Boosting"],
+    "category": "medium"
+  },
+  {
+    "id": 29,
+    "question": "What is the ROC curve and when should it be used?",
+    "keywords": ["ROC curve", "AUC", "classification performance", "threshold analysis"],
+    "category": "easy"
+  },
+    {
+    "id": 29,
+    "question": "What is the difference between Bernoulli and Binomial distributions?",
+    "keywords": ["Bernoulli distribution", "Binomial distribution", "trials", "success probability"],
+    "category": "easy"
+  },
+  {
+    "id": 30,
+    "question": "Can you explain the difference between frequentist and Bayesian probability approaches?",
+    "keywords": ["frequentist", "Bayesian", "prior", "posterior", "inference"],
+    "category": "medium"
+  },
+  {
+    "id": 31,
+    "question": "Explain the difference between probability and likelihood.",
+    "keywords": ["probability", "likelihood", "parameters", "data"],
+    "category": "easy"
+  },
+ {
+    "id": 32,
+    "question": "What is the difference between supervised, unsupervised, and semi-supervised learning?",
+    "keywords": ["supervised learning", "unsupervised learning", "semi-supervised learning", "labels"],
+    "category": "easy"
+  },
+  {
+    "id": 33,
+    "question": "Explain the bias–variance trade-off in machine learning.",
+    "keywords": ["bias", "variance", "overfitting", "underfitting"],
+    "category": "easy"
+  },
+  {
+    "id": 34,
+    "question": "What is overfitting, and how can it be detected and prevented?",
+    "keywords": ["overfitting", "generalization", "cross-validation", "regularization"],
+    "category": "easy"
+  },
+  {
+    "id": 35,
+    "question": "What is the difference between probability and likelihood in statistics?",
+    "keywords": ["probability", "likelihood", "statistical inference"],
+    "category": "medium"
+  },
+  {
+    "id": 36,
+    "question": "Explain the Central Limit Theorem and why it is important in data science.",
+    "keywords": ["central limit theorem", "sampling distribution", "normal distribution"],
+    "category": "medium"
+  },
+  {
+    "id": 37,
+    "question": "What are precision, recall, F1-score, and accuracy? When would accuracy be misleading?",
+    "keywords": ["precision", "recall", "F1-score", "accuracy", "imbalanced data"],
+    "category": "easy"
+  },
+  {
+    "id": 38,
+    "question": "What is regularization in machine learning, and how do L1 and L2 regularization differ?",
+    "keywords": ["regularization", "L1", "L2", "lasso", "ridge"],
+    "category": "medium"
+  },
+  {
+    "id": 39,
+    "question": "Explain the difference between parametric and non-parametric models with examples.",
+    "keywords": ["parametric models", "non-parametric models", "model assumptions"],
+    "category": "medium"
+  },
+  {
+    "id": 40,
+    "question": "What is the curse of dimensionality, and how can it be addressed in practice?",
+    "keywords": ["curse of dimensionality", "high-dimensional data", "feature selection", "PCA"],
+    "category": "medium"
+  },
+  {
+    "id": 41,
+    "question": "What is Bayes’ Theorem, and how is it used in machine learning?",
+    "keywords": ["Bayes theorem", "prior", "posterior", "conditional probability"],
+    "category": "easy"
+  },
+  {
+    "id": 42,
+    "question": "What is cross-validation, and why is it preferred over a single train-test split?",
+    "keywords": ["cross-validation", "model evaluation", "generalization"],
+    "category": "easy"
+  },
+  {
+    "id": 43,
+    "question": "Explain the difference between frequentist and Bayesian approaches to probability.",
+    "keywords": ["frequentist", "Bayesian", "prior", "posterior", "inference"],
+    "category": "difficult"
+  },
+  {
+    "id": 44,
+    "question": "What are joins in SQL, and what are the different types of joins?",
+    "keywords": ["SQL joins", "inner join", "left join", "right join", "full join"],
+    "category": "easy"
+  },
+  {
+    "id": 45,
+    "question": "What are primary keys, foreign keys, and unique keys, and how do they differ?",
+    "keywords": ["primary key", "foreign key", "unique key", "constraints", "referential integrity"],
+    "category": "easy"
+  },
+  {
+    "id": 46,
+    "question": "What is the difference between the BETWEEN and IN operators in SQL?",
+    "keywords": ["BETWEEN", "IN", "SQL operators", "filtering"],
+    "category": "easy"
+  },
+  {
+    "id": 47,
+    "question": "What are the advantages and disadvantages of relational databases compared to NoSQL databases?",
+    "keywords": ["relational database", "NoSQL", "schema", "scalability", "consistency"],
+    "category": "medium"
+  },
+  {
+    "id": 48,
+    "question": "What is a self join in SQL, and when is it used?",
+    "keywords": ["self join", "hierarchical data", "recursive relationships"],
+    "category": "medium"
+  },
+  {
+    "id": 49,
+    "question": "What is the conceptual approach to identifying reactivated users in a database?",
+    "keywords": ["user activity", "reactivated users", "time-based analysis", "login history"],
+    "category": "medium"
+  },
+  {
+    "id": 50,
+    "question": "How can window functions be used to retrieve the nth record per group in SQL?",
+    "keywords": ["window functions", "ROW_NUMBER", "RANK", "partition by"],
+    "category": "medium"
+  },
+  {
+    "id": 51,
+    "question": "What is the difference between temporary tables and common table expressions (CTEs)?",
+    "keywords": ["temporary tables", "CTE", "query optimization", "scope"],
+    "category": "easy"
+  },
+  {
+    "id": 52,
+    "question": "Why would you use a RIGHT JOIN when a LEFT JOIN can often achieve similar results?",
+    "keywords": ["right join", "left join", "query readability", "join direction"],
+    "category": "medium"
+  },
+  {
+    "id": 53,
+    "question": "What is the difference between RANK, DENSE_RANK, and ROW_NUMBER functions?",
+    "keywords": ["RANK", "DENSE_RANK", "ROW_NUMBER", "window functions"],
+    "category": "medium"
+  },
+  {
+    "id": 54,
+    "question": "How can SQL be used to combine data from more than two tables conceptually?",
+    "keywords": ["multi-table joins", "foreign keys", "relational modeling"],
+    "category": "easy"
+  },
+  {
+    "id": 55,
+    "question": "Why does the RANK function skip sequence values, and when is this behavior useful?",
+    "keywords": ["RANK", "ties", "ranking behavior", "window functions"],
+    "category": "difficult"
+  },
+    {
+    "id": 56,
+    "question": "Explain the Central Limit Theorem and give real-world examples of where it can be applied.",
+    "keywords": ["central limit theorem", "sampling distribution", "normal approximation"],
+    "category": "easy"
+  },
+  {
+    "id": 57,
+    "question": "What is A/B testing and what are its practical applications? What are common pitfalls in A/B testing?",
+    "keywords": ["A/B testing", "experimentation", "control group", "bias"],
+    "category": "medium"
+  },
+  {
+    "id": 58,
+    "question": "Explain hypothesis testing and p-value in simple terms with a practical example.",
+    "keywords": ["hypothesis testing", "null hypothesis", "p-value", "decision making"],
+    "category": "easy"
+  },
+  {
+    "id": 59,
+    "question": "What is selection bias and how can it be avoided in data analysis?",
+    "keywords": ["selection bias", "sampling bias", "data collection"],
+    "category": "easy"
+  },
+  {
+    "id": 60,
+    "question": "What is a long-tailed distribution and why is it important in classification and regression problems?",
+    "keywords": ["long-tailed distribution", "power law", "outliers", "imbalance"],
+    "category": "medium"
+  },
+  {
+    "id": 61,
+    "question": "What considerations are important when testing hundreds of hypotheses simultaneously?",
+    "keywords": ["multiple hypothesis testing", "false positives", "Bonferroni correction", "FDR"],
+    "category": "difficult"
+  },
+  {
+    "id": 62,
+    "question": "What is skewness, and what are two methods used to measure it?",
+    "keywords": ["skewness", "distribution shape", "moment coefficient", "Pearson skewness"],
+    "category": "easy"
+  },
+  {
+    "id": 63,
+    "question": "Explain the difference between confidence intervals and prediction intervals.",
+    "keywords": ["confidence interval", "prediction interval", "uncertainty"],
+    "category": "medium"
+  },
+  {
+    "id": 64,
+    "question": "What is the Law of Large Numbers and how is it useful in data science?",
+    "keywords": ["law of large numbers", "convergence", "expected value"],
+    "category": "easy"
+  },
+  {
+    "id": 65,
+    "question": "What is the difference between a z-test and a t-test?",
+    "keywords": ["z-test", "t-test", "sample size", "population variance"],
+    "category": "easy"
+  },
+  {
+    "id": 66,
+    "question": "When should you use a z-test versus a t-test?",
+    "keywords": ["hypothesis testing", "sample size", "normal distribution"],
+    "category": "medium"
+  },
+  {
+    "id": 67,
+    "question": "What is the relationship between significance level and confidence level in statistics?",
+    "keywords": ["significance level", "confidence level", "alpha"],
+    "category": "easy"
+  }   
+    
+]
+
 }
