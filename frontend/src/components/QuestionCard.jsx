@@ -1,5 +1,5 @@
 import React from 'react'
-import { MessageSquare, AlertCircle } from 'lucide-react'
+import { MessageSquare } from 'lucide-react'
 
 const QuestionCard = ({ question, currentQuestion, totalQuestions }) => {
   return (
@@ -16,21 +16,11 @@ const QuestionCard = ({ question, currentQuestion, totalQuestions }) => {
         </div>
       </div>
 
-      <div className="bg-gradient-to-r from-amber-50 to-beige-50 rounded-lg p-6 mb-4">
+      <div className="bg-gradient-to-r from-amber-50 to-beige-50 rounded-lg p-6">
         <h2 className="text-2xl font-bold text-gray-800 leading-relaxed">
           {question?.question || 'Loading question...'}
         </h2>
       </div>
-
-      {question?.keywords && question.keywords.length > 0 && (
-        <div className="flex items-start gap-2 text-sm text-gray-600">
-          <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
-          <div>
-            <span className="font-semibold">Key topics to cover: </span>
-            <span>{question.keywords.join(', ')}</span>
-          </div>
-        </div>
-      )}
     </div>
   )
 }
