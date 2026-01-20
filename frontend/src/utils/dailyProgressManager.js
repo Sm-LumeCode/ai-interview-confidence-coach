@@ -80,6 +80,7 @@ export const getDailyProgressTimeline = (userId) => {
         date: dateStr,
         technicalScore: Math.round(avgTechnical),
         confidenceScore: Math.round(avgConfidence),
+        questionCount : parsed.questionCount ||0,
         didPractice: true
       })
     } else {

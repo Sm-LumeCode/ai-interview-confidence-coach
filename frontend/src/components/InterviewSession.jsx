@@ -119,8 +119,8 @@ const InterviewSession = ({ user, onLogout }) => {
 
     // Save daily progress for graphs (correct fields from llm_evaluator)
 saveDailyProgress(user.email, {
-  technicalScore: evaluation.technical_score ?? 0,
-  confidenceScore: evaluation.communication_score ?? 0
+  technicalScore: evaluation.technical_score,
+  confidenceScore: evaluation.communication_score
 })
 
 
