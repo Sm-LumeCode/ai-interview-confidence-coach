@@ -5,7 +5,7 @@ import QuestionCard from './QuestionCard'
 import Recorder from './Recorder'
 import ResultPanel from './ResultPanel'
 import IdealAnswer from './IdealAnswer'
-import { ChevronRight, Home, Timer, RotateCcw } from 'lucide-react'
+import { ChevronRight, ChevronLeft, Home, RotateCcw, Clock } from 'lucide-react'
 import api from '../services/api'
 import { saveProgress, getProgress, resetProgress } from '../utils/progressManager'
 
@@ -152,6 +152,15 @@ const InterviewSession = ({ user, onLogout }) => {
     }
   }
 
+  const handlePreviousQuestion = () => {
+    if (currentQuestionIndex > 0) {
+      setShowResults(false)
+      setResults(null)
+      setIdealAnswer(null)
+      setCurrentQuestionIndex(currentQuestionIndex - 1)
+    }
+  }
+
   const handleGoHome = () => {
     navigate('/dashboard')
   }
@@ -176,6 +185,12 @@ const InterviewSession = ({ user, onLogout }) => {
     if (timeRemaining <= 30) return 'text-red-600'
     if (timeRemaining <= 60) return 'text-orange-600'
     return 'text-green-600'
+  }
+
+  const getTimerBgColor = () => {
+    if (timeRemaining <= 30) return 'bg-red-50 border-red-300'
+    if (timeRemaining <= 60) return 'bg-orange-50 border-orange-300'
+    return 'bg-green-50 border-green-300'
   }
 
   if (loading) {
@@ -210,13 +225,15 @@ const InterviewSession = ({ user, onLogout }) => {
 
   const currentQuestion = questions[currentQuestionIndex]
   const progress = getProgress(user.email, category)
+  const isLastQuestion = currentQuestionIndex === questions.length - 1
 
   return (
     <div className="min-h-screen">
       <Navbar user={user} onLogout={onLogout} />
       
       <div className="max-w-5xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-        <div className="mb-6 flex items-center justify-between">
+        {/* Header */}
+        <div className="mb-6 flex items-start justify-between">
           <div>
             <h1 className="text-3xl font-bold text-white">
               {category.replace(/_/g, ' ').toUpperCase()} Interview
@@ -227,24 +244,65 @@ const InterviewSession = ({ user, onLogout }) => {
               </p>
             )}
           </div>
-          <div className="flex gap-2">
-            <button
-              onClick={handleResetProgress}
-              className="btn-secondary flex items-center gap-2"
-              title="Restart from beginning"
-            >
-              <RotateCcw className="w-5 h-5" />
-              Reset
-            </button>
+
+          {/* Timer and Buttons in Top Right */}
+          <div className="flex items-center gap-3">
+            {/* Stopwatch Timer */}
+            {!showResults && (
+              <div className={`inline-flex items-center gap-3 px-5 py-3 rounded-xl border-2 shadow-lg ${getTimerBgColor()}`}>
+                <Clock className={`w-6 h-6 ${getTimerColor()}`} />
+                <div className="text-center">
+                  <div className={`text-3xl font-bold ${getTimerColor()} tabular-nums leading-none`}>
+                    {formatTime(timeRemaining)}
+                  </div>
+                  <div className="flex items-center gap-2 mt-1">
+                    <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${
+                      currentQuestion?.difficulty === 'easy' ? 'bg-green-100 text-green-800' :
+                      currentQuestion?.difficulty === 'hard' ? 'bg-red-100 text-red-800' :
+                      'bg-yellow-100 text-yellow-800'
+                    }`}>
+                      {currentQuestion?.difficulty?.toUpperCase() || 'MEDIUM'}
+                    </span>
+                    <span className="text-xs text-gray-600 font-medium">
+                      {currentQuestion?.difficulty === 'easy' ? '3 min' :
+                       currentQuestion?.difficulty === 'hard' ? '8 min' :
+                       '5 min'}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Action Buttons */}
+            {isLastQuestion && (
+              <button
+                onClick={handleResetProgress}
+                className="btn-secondary flex items-center gap-2 whitespace-nowrap"
+                title="Restart from beginning"
+              >
+                <RotateCcw className="w-5 h-5" />
+                Reset
+              </button>
+            )}
             <button
               onClick={handleGoHome}
-              className="btn-secondary flex items-center gap-2"
+              className="btn-secondary flex items-center gap-2 whitespace-nowrap"
             >
               <Home className="w-5 h-5" />
               Dashboard
             </button>
           </div>
         </div>
+
+        {/* Time's Up Alert */}
+        {timerExpired && !showResults && (
+          <div className="mb-4">
+            <div className="bg-red-100 border-2 border-red-400 text-red-700 px-6 py-4 rounded-lg shadow-lg flex items-center gap-3 animate-pulse">
+              <Clock className="w-6 h-6" />
+              <span className="font-bold text-lg">⏰ Time's up! Please submit your answer.</span>
+            </div>
+          </div>
+        )}
 
         {/* Progress Bar */}
         <div className="mb-6 bg-white rounded-lg p-4 shadow-lg">
@@ -277,38 +335,6 @@ const InterviewSession = ({ user, onLogout }) => {
             totalQuestions={questions.length}
           />
 
-          {/* Timer Display */}
-          {!showResults && (
-            <div className="card text-center">
-              <div className="flex items-center justify-center gap-3 mb-2">
-                <Timer className={`w-6 h-6 ${getTimerColor()}`} />
-                <h3 className="text-lg font-semibold text-gray-700">Time Remaining</h3>
-              </div>
-              <div className={`text-5xl font-bold ${getTimerColor()} mb-2`}>
-                {formatTime(timeRemaining)}
-              </div>
-              <div className="flex items-center justify-center gap-2">
-                <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                  currentQuestion?.difficulty === 'easy' ? 'bg-green-100 text-green-800' :
-                  currentQuestion?.difficulty === 'hard' ? 'bg-red-100 text-red-800' :
-                  'bg-yellow-100 text-yellow-800'
-                }`}>
-                  {currentQuestion?.difficulty?.toUpperCase() || 'MEDIUM'}
-                </span>
-                <span className="text-sm text-gray-600">
-                  {currentQuestion?.difficulty === 'easy' ? '3 minutes' :
-                   currentQuestion?.difficulty === 'hard' ? '8 minutes' :
-                   '5 minutes'}
-                </span>
-              </div>
-              {timerExpired && (
-                <div className="mt-3 bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded-lg">
-                  ⏰ Time's up! Please submit your answer.
-                </div>
-              )}
-            </div>
-          )}
-
           {!showResults && (
             <Recorder onRecordingComplete={handleRecordingComplete} />
           )}
@@ -338,23 +364,41 @@ const InterviewSession = ({ user, onLogout }) => {
                 <IdealAnswer idealAnswer={idealAnswer} />
               )}
               
-              <div className="card text-center">
-                <button
-                  onClick={handleNextQuestion}
-                  className="btn-primary inline-flex items-center gap-2"
-                >
-                  {currentQuestionIndex < questions.length - 1 ? (
-                    <>
-                      Next Question
-                      <ChevronRight className="w-5 h-5" />
-                    </>
-                  ) : (
-                    <>
-                      Complete Interview
-                      <ChevronRight className="w-5 h-5" />
-                    </>
-                  )}
-                </button>
+              {/* Navigation Buttons */}
+              <div className="card">
+                <div className="flex items-center justify-between gap-4">
+                  {/* Previous Button */}
+                  <button
+                    onClick={handlePreviousQuestion}
+                    disabled={currentQuestionIndex === 0}
+                    className={`flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold shadow-lg transition-all duration-200 ${
+                      currentQuestionIndex === 0
+                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                        : 'bg-gradient-to-r from-gray-600 to-gray-700 text-white hover:shadow-xl transform hover:-translate-y-0.5'
+                    }`}
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                    Previous Question
+                  </button>
+
+                  {/* Next Button */}
+                  <button
+                    onClick={handleNextQuestion}
+                    className="flex-1 btn-primary inline-flex items-center justify-center gap-2"
+                  >
+                    {currentQuestionIndex < questions.length - 1 ? (
+                      <>
+                        Next Question
+                        <ChevronRight className="w-5 h-5" />
+                      </>
+                    ) : (
+                      <>
+                        Complete Interview
+                        <ChevronRight className="w-5 h-5" />
+                      </>
+                    )}
+                  </button>
+                </div>
               </div>
             </>
           )}
