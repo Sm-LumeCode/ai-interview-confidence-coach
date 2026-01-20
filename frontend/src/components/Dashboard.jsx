@@ -1,10 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Navbar from './Navbar'
 import RoleSelector from './RoleSelector'
+import { getAllProgress } from '../utils/progressManager'
 
 const Dashboard = ({ user, onLogout }) => {
   const navigate = useNavigate()
+  const [userProgress, setUserProgress] = useState({})
+
+  useEffect(() => {
+    // Load user progress
+    const progress = getAllProgress(user.email)
+    setUserProgress(progress)
+  }, [user.email])
 
   const handleSelectRole = (category) => {
     navigate(`/interview/${category}`)
@@ -24,7 +32,7 @@ const Dashboard = ({ user, onLogout }) => {
           </p>
         </div>
 
-        <RoleSelector onSelectRole={handleSelectRole} />
+        <RoleSelector onSelectRole={handleSelectRole} userProgress={userProgress} />
       </div>
     </div>
   )

@@ -5,8 +5,9 @@ import QuestionCard from './QuestionCard'
 import Recorder from './Recorder'
 import ResultPanel from './ResultPanel'
 import IdealAnswer from './IdealAnswer'
-import { ChevronRight, Home } from 'lucide-react'
+import { ChevronRight, Home, Timer, RotateCcw } from 'lucide-react'
 import api from '../services/api'
+import { saveProgress, getProgress, resetProgress } from '../utils/progressManager'
 
 const InterviewSession = ({ user, onLogout }) => {
   const { category } = useParams()
@@ -20,7 +21,13 @@ const InterviewSession = ({ user, onLogout }) => {
   const [evaluating, setEvaluating] = useState(false)
   const [generatingAnswer, setGeneratingAnswer] = useState(false)
   const [error, setError] = useState('')
+  
+  // Timer states
+  const [timeRemaining, setTimeRemaining] = useState(0)
+  const [timerActive, setTimerActive] = useState(false)
+  const [timerExpired, setTimerExpired] = useState(false)
 
+  // Load questions and restore progress
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
@@ -28,6 +35,12 @@ const InterviewSession = ({ user, onLogout }) => {
         setError('')
         const data = await api.getQuestions(category)
         setQuestions(data)
+        
+        // Check for saved progress
+        const savedProgress = getProgress(user.email, category)
+        if (savedProgress && savedProgress.currentQuestionIndex < data.length) {
+          setCurrentQuestionIndex(savedProgress.currentQuestionIndex)
+        }
       } catch (err) {
         console.error('Error fetching questions:', err)
         setError('Failed to load questions. Please try again.')
@@ -37,13 +50,55 @@ const InterviewSession = ({ user, onLogout }) => {
     }
 
     fetchQuestions()
-  }, [category])
+  }, [category, user.email])
+
+  // Start timer when question loads
+  useEffect(() => {
+    if (questions.length > 0 && !showResults) {
+      const currentQuestion = questions[currentQuestionIndex]
+      const difficulty = currentQuestion?.difficulty || 'medium'
+      
+      // Set timer based on difficulty
+      let time = 300 // default 5 minutes
+      if (difficulty === 'easy') time = 180 // 3 minutes
+      else if (difficulty === 'hard') time = 480 // 8 minutes
+      
+      setTimeRemaining(time)
+      setTimerActive(true)
+      setTimerExpired(false)
+    }
+  }, [currentQuestionIndex, questions, showResults])
+
+  // Timer countdown
+  useEffect(() => {
+    let interval = null
+    
+    if (timerActive && timeRemaining > 0) {
+      interval = setInterval(() => {
+        setTimeRemaining(prev => {
+          if (prev <= 1) {
+            setTimerActive(false)
+            setTimerExpired(true)
+            return 0
+          }
+          return prev - 1
+        })
+      }, 1000)
+    }
+    
+    return () => {
+      if (interval) clearInterval(interval)
+    }
+  }, [timerActive, timeRemaining])
 
   const handleRecordingComplete = async (answerText) => {
     if (!answerText || !questions[currentQuestionIndex]) {
       alert('Please provide an answer')
       return
     }
+
+    // Stop timer
+    setTimerActive(false)
 
     setEvaluating(true)
     setGeneratingAnswer(true)
@@ -69,6 +124,9 @@ const InterviewSession = ({ user, onLogout }) => {
       
       setIdealAnswer(ideal)
       setShowResults(true)
+      
+      // Save progress
+      saveProgress(user.email, category, currentQuestionIndex + 1, questions.length)
     } catch (err) {
       console.error('Evaluation error:', err)
       setError('Failed to evaluate answer. Make sure Ollama is running.')
@@ -88,12 +146,36 @@ const InterviewSession = ({ user, onLogout }) => {
       setCurrentQuestionIndex(currentQuestionIndex + 1)
     } else {
       alert('Interview session complete! Check your progress page for detailed analytics.')
+      // Reset progress for this category
+      resetProgress(user.email, category)
       navigate('/dashboard')
     }
   }
 
   const handleGoHome = () => {
     navigate('/dashboard')
+  }
+
+  const handleResetProgress = () => {
+    if (window.confirm('Are you sure you want to restart from the beginning? Your progress will be lost.')) {
+      resetProgress(user.email, category)
+      setCurrentQuestionIndex(0)
+      setShowResults(false)
+      setResults(null)
+      setIdealAnswer(null)
+    }
+  }
+
+  const formatTime = (seconds) => {
+    const mins = Math.floor(seconds / 60)
+    const secs = seconds % 60
+    return `${mins}:${secs.toString().padStart(2, '0')}`
+  }
+
+  const getTimerColor = () => {
+    if (timeRemaining <= 30) return 'text-red-600'
+    if (timeRemaining <= 60) return 'text-orange-600'
+    return 'text-green-600'
   }
 
   if (loading) {
@@ -126,22 +208,60 @@ const InterviewSession = ({ user, onLogout }) => {
     )
   }
 
+  const currentQuestion = questions[currentQuestionIndex]
+  const progress = getProgress(user.email, category)
+
   return (
     <div className="min-h-screen">
       <Navbar user={user} onLogout={onLogout} />
       
       <div className="max-w-5xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         <div className="mb-6 flex items-center justify-between">
-          <h1 className="text-3xl font-bold text-white">
-            {category.replace(/_/g, ' ').toUpperCase()} Interview
-          </h1>
-          <button
-            onClick={handleGoHome}
-            className="btn-secondary flex items-center gap-2"
-          >
-            <Home className="w-5 h-5" />
-            Back to Dashboard
-          </button>
+          <div>
+            <h1 className="text-3xl font-bold text-white">
+              {category.replace(/_/g, ' ').toUpperCase()} Interview
+            </h1>
+            {progress && (
+              <p className="text-white text-sm mt-1 opacity-90">
+                Progress: {currentQuestionIndex} of {questions.length} questions completed
+              </p>
+            )}
+          </div>
+          <div className="flex gap-2">
+            <button
+              onClick={handleResetProgress}
+              className="btn-secondary flex items-center gap-2"
+              title="Restart from beginning"
+            >
+              <RotateCcw className="w-5 h-5" />
+              Reset
+            </button>
+            <button
+              onClick={handleGoHome}
+              className="btn-secondary flex items-center gap-2"
+            >
+              <Home className="w-5 h-5" />
+              Dashboard
+            </button>
+          </div>
+        </div>
+
+        {/* Progress Bar */}
+        <div className="mb-6 bg-white rounded-lg p-4 shadow-lg">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-sm font-semibold text-gray-700">
+              Question {currentQuestionIndex + 1} of {questions.length}
+            </span>
+            <span className="text-sm text-gray-600">
+              {Math.round(((currentQuestionIndex) / questions.length) * 100)}% Complete
+            </span>
+          </div>
+          <div className="bg-gray-200 rounded-full h-3 overflow-hidden">
+            <div
+              className="h-full bg-gradient-to-r from-amber-500 to-amber-700 transition-all duration-500"
+              style={{ width: `${((currentQuestionIndex) / questions.length) * 100}%` }}
+            ></div>
+          </div>
         </div>
 
         {error && (
@@ -152,10 +272,42 @@ const InterviewSession = ({ user, onLogout }) => {
 
         <div className="space-y-6">
           <QuestionCard
-            question={questions[currentQuestionIndex]}
+            question={currentQuestion}
             currentQuestion={currentQuestionIndex + 1}
             totalQuestions={questions.length}
           />
+
+          {/* Timer Display */}
+          {!showResults && (
+            <div className="card text-center">
+              <div className="flex items-center justify-center gap-3 mb-2">
+                <Timer className={`w-6 h-6 ${getTimerColor()}`} />
+                <h3 className="text-lg font-semibold text-gray-700">Time Remaining</h3>
+              </div>
+              <div className={`text-5xl font-bold ${getTimerColor()} mb-2`}>
+                {formatTime(timeRemaining)}
+              </div>
+              <div className="flex items-center justify-center gap-2">
+                <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                  currentQuestion?.difficulty === 'easy' ? 'bg-green-100 text-green-800' :
+                  currentQuestion?.difficulty === 'hard' ? 'bg-red-100 text-red-800' :
+                  'bg-yellow-100 text-yellow-800'
+                }`}>
+                  {currentQuestion?.difficulty?.toUpperCase() || 'MEDIUM'}
+                </span>
+                <span className="text-sm text-gray-600">
+                  {currentQuestion?.difficulty === 'easy' ? '3 minutes' :
+                   currentQuestion?.difficulty === 'hard' ? '8 minutes' :
+                   '5 minutes'}
+                </span>
+              </div>
+              {timerExpired && (
+                <div className="mt-3 bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded-lg">
+                  ⏰ Time's up! Please submit your answer.
+                </div>
+              )}
+            </div>
+          )}
 
           {!showResults && (
             <Recorder onRecordingComplete={handleRecordingComplete} />
