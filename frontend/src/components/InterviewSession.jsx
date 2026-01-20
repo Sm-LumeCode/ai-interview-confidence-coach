@@ -9,6 +9,7 @@ import { ChevronRight, ChevronLeft, Home, RotateCcw, Clock } from 'lucide-react'
 import api from '../services/api'
 import { saveProgress, getProgress, resetProgress } from '../utils/progressManager'
 import { saveDailyProgress } from '../utils/dailyProgressManager'
+import { saveCategoryProgress } from '../utils/categoryProgressManager'
 
 const InterviewSession = ({ user, onLogout }) => {
   const { category } = useParams()
@@ -114,7 +115,12 @@ const InterviewSession = ({ user, onLogout }) => {
         answerText,
         currentQuestion.keywords || []
       )
-      
+      saveCategoryProgress(
+  user.email,
+  category,
+  evaluation.technical_score,
+  evaluation.communication_score
+)
       setResults(evaluation)
 
     // Save daily progress for graphs (correct fields from llm_evaluator)

@@ -12,19 +12,47 @@ import {
   ResponsiveContainer,
   CartesianGrid
 } from 'recharts'
-
+import { getCategoryProgress } from '../utils/categoryProgressManager'
 
 const Progress = ({ user, onLogout }) => {
   // Mock data - replace with actual API data
    
 
-  const categoryProgress = [
-    { name: 'Software Development', completed: 0, total: 0, score: 0 },
-    { name: 'Data & Analytics', completed: 0, total: 0, score: 0 },
-    { name: 'Data Science & ML', completed:0, total: 0, score: 0 },
-    { name: 'Cloud & DevOps', completed:0, total: 0, score: 0 },
-    { name: 'Cybersecurity', completed:0, total: 0, score: 0 }
-  ]
+  const categories = [
+  'Software Development',
+  'Data & Analytics',
+  'Data Science & ML',
+  'Cloud & DevOps',
+  'Cybersecurity'
+]
+
+
+
+const categoryProgress = categories.map(cat => {
+  const data = getCategoryProgress(user.email, cat)
+
+  if (!data) {
+    return {
+      name: cat,
+      completed: 0,
+      total: 20,
+      score: 0
+    }
+  }
+
+  const avgScore =
+    [...data.technicalScores, ...data.confidenceScores]
+      .reduce((a, b) => a + b, 0) /
+    (data.technicalScores.length + data.confidenceScores.length)
+
+  return {
+    name: cat,
+    completed: data.completed,
+    total: 20,
+    score: Math.round(avgScore)
+  }
+})
+
 
   const [dailyTimeline, setDailyTimeline] = useState([])
 
