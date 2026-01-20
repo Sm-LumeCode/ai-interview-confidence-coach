@@ -15,17 +15,23 @@ export const saveDailyProgress = (
   let data
 
   if (existing) {
-    data = JSON.parse(existing)
-    data.technicalScores.push(technicalScore)
-    data.confidenceScores.push(confidenceScore)
-  } else {
-    data = {
-      date: new Date().toISOString().split('T')[0],
-      technicalScores: [technicalScore],
-      confidenceScores: [confidenceScore],
-      didPractice: true
-    }
+  data = JSON.parse(existing)
+
+  data.technicalScores.push(technicalScore)
+  data.confidenceScores.push(confidenceScore)
+
+  // increment question count
+  data.questionCount = (data.questionCount || 0) + 1
+} else {
+  data = {
+    date: new Date().toISOString().split('T')[0],
+    technicalScores: [technicalScore],
+    confidenceScores: [confidenceScore],
+    questionCount: 1,
+    didPractice: true
   }
+}
+
 
   localStorage.setItem(key, JSON.stringify(data))
 }

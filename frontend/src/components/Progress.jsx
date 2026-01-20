@@ -19,11 +19,11 @@ const Progress = ({ user, onLogout }) => {
    
 
   const categoryProgress = [
-    { name: 'Software Development', completed: 15, total: 20, score: 85 },
-    { name: 'Data & Analytics', completed: 10, total: 20, score: 78 },
-    { name: 'Data Science & ML', completed: 8, total: 20, score: 80 },
-    { name: 'Cloud & DevOps', completed: 7, total: 20, score: 82 },
-    { name: 'Cybersecurity', completed: 5, total: 20, score: 79 }
+    { name: 'Software Development', completed: 0, total: 0, score: 0 },
+    { name: 'Data & Analytics', completed: 0, total: 0, score: 0 },
+    { name: 'Data Science & ML', completed:0, total: 0, score: 0 },
+    { name: 'Cloud & DevOps', completed:0, total: 0, score: 0 },
+    { name: 'Cybersecurity', completed:0, total: 0, score: 0 }
   ]
 
   const [dailyTimeline, setDailyTimeline] = useState([])
@@ -34,10 +34,14 @@ useEffect(() => {
   const timeline = getDailyProgressTimeline(user.email)
   setDailyTimeline(timeline)
 }, [user])
-const strongestCategory = categoryProgress.reduce(
-  (best, current) => (current.score > best.score ? current : best),
-  categoryProgress[0]
-).name
+const strongestCategory =
+  categoryProgress.every(cat => cat.score === 0)
+    ? 'Not enough data yet'
+    : categoryProgress.reduce(
+        (best, current) => (current.score > best.score ? current : best),
+        categoryProgress[0]
+      ).name
+
 
 const practicedDays = dailyTimeline.filter(d => d.didPractice).length
 
@@ -54,6 +58,11 @@ const avgConfidence =
 const overallAverage = Math.round((avgTechnical + avgConfidence) / 2)
 const technicalScore = Math.round(avgTechnical) || 0
 const communicationScore = Math.round(avgConfidence) || 0
+
+const totalQuestions = dailyTimeline.reduce(
+  (sum, d) => sum + (d.questionCount || 0),
+  0
+)
 
 const chartData = dailyTimeline.map(day => ({
   date: day.date.slice(5), // MM-DD
@@ -76,8 +85,8 @@ const chartData = dailyTimeline.map(day => ({
                 <Target className="w-6 h-6 text-white" />
               </div>
               <div>
-                <p className="text-gray-600 text-sm">Total Interviews</p>
-                <p className="text-2xl font-bold text-gray-800">{practicedDays}</p>
+                <p className="text-gray-600 text-sm">Questions Answered</p>
+                <p className="text-2xl font-bold text-gray-800">{totalQuestions}</p>
               </div>
             </div>
           </div>
@@ -149,7 +158,13 @@ const chartData = dailyTimeline.map(day => ({
                 <div className="bg-gray-200 rounded-full h-4 overflow-hidden">
                   <div
                     className="h-full bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-1000 ease-out"
-                    style={{ width: `${(category.completed / category.total) * 100}%` }}
+                    style={{
+  width:
+    category.total > 0
+      ? `${(category.completed / category.total) * 100}%`
+      : '0%'
+}}
+
                   ></div>
                 </div>
               </div>
