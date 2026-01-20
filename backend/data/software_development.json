@@ -175,8 +175,4823 @@
     "question": "What is the Buffer class in Node.js and where is it used?",
     "keywords": ["Buffer", "binary data", "memory", "I/O operations"],
     "difficulty": "difficult"
-  }
-
-
+  },
+    
+  {
+    "id": 30,
+    "question": "Explain the main idea behind Java and the concept of Write Once, Run Anywhere (WORA).",
+    "keywords": ["Java basics", "WORA", "Platform independence", "JVM", "Bytecode"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 31,
+    "question": "What are the main features of Java?",
+    "keywords": ["Java features", "OOP", "Platform independent", "Security", "Garbage collection"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 32,
+    "question": "Describe the difference between JDK, JRE, and JVM.",
+    "keywords": ["JDK", "JRE", "JVM", "Java architecture"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 33,
+    "question": "Is Java a pure object-oriented language? Why or why not?",
+    "keywords": ["Pure OOP", "Primitive types", "Static members", "Java design"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 34,
+    "question": "What does it mean that Java is a statically typed language?",
+    "keywords": ["Static typing", "Compile-time checking", "Type safety"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 35,
+    "question": "Explain the difference between an int and an Integer in Java.",
+    "keywords": ["Primitive vs Wrapper", "Autoboxing", "Memory", "Performance"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 36,
+    "question": "What are wrapper classes in Java and why are they used?",
+    "keywords": ["Wrapper classes", "Autoboxing", "Collections", "Nullability"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 37,
+    "question": "What is bytecode in Java and why is it important?",
+    "keywords": ["Bytecode", "JVM", "Platform independence", "Compilation"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 38,
+    "question": "What is the role of the ClassLoader in Java?",
+    "keywords": ["ClassLoader", "Dynamic loading", "JVM", "Delegation model"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 39,
+    "question": "What is the difference between path and classpath in Java?",
+    "keywords": ["Path", "Classpath", "JVM", "Environment variables"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 40,
+    "question": "How does garbage collection work in Java?",
+    "keywords": ["Garbage collection", "Memory management", "JVM", "Reference types"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 41,
+    "question": "What is the purpose and significance of the final keyword in Java?",
+    "keywords": ["final keyword", "Immutability", "Inheritance control", "Performance"],
+    "difficulty": "difficult"
+  },
+    
+  {
+    "id": 42,
+    "question": "What is Object-Oriented Programming (OOP)?",
+    "keywords": ["OOP", "objects", "classes", "methods", "data encapsulation"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 43,
+    "question": "What are the four main principles of Object-Oriented Programming?",
+    "keywords": ["encapsulation", "inheritance", "polymorphism", "abstraction"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 44,
+    "question": "What is the difference between procedural programming and object-oriented programming?",
+    "keywords": ["procedural programming", "OOP", "data abstraction", "code reusability"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 45,
+    "question": "What is encapsulation and why is it important?",
+    "keywords": ["encapsulation", "data hiding", "access modifiers", "security"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 46,
+    "question": "What is inheritance and what are its types?",
+    "keywords": ["inheritance", "single inheritance", "multiple inheritance", "hierarchical inheritance"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 47,
+    "question": "What is polymorphism in OOP?",
+    "keywords": ["polymorphism", "method overloading", "method overriding", "dynamic binding"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 48,
+    "question": "What is the difference between compile-time and runtime polymorphism?",
+    "keywords": ["compile-time polymorphism", "runtime polymorphism", "overloading", "overriding"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 49,
+    "question": "What is abstraction and how is it achieved in OOP?",
+    "keywords": ["abstraction", "abstract classes", "interfaces", "implementation hiding"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 50,
+    "question": "What is the difference between an abstract class and an interface?",
+    "keywords": ["abstract class", "interface", "multiple inheritance", "contracts"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 51,
+    "question": "What is the difference between cohesion and coupling?",
+    "keywords": ["cohesion", "coupling", "software design", "maintainability"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 52,
+    "question": "What is a constructor and what are its types?",
+    "keywords": ["constructor", "default constructor", "parameterized constructor", "object initialization"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 53,
+    "question": "Compare inheritance, composition, and mixins.",
+    "keywords": ["inheritance", "composition", "mixins", "code reuse", "design principles"],
+    "difficulty": "difficult"
+  },
+    
+  {
+    "id": 54,
+    "question": "What are the key features of Python?",
+    "keywords": ["interpreted", "dynamic typing", "cross-platform", "rich libraries", "object-oriented", "memory management"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 55,
+    "question": "How is Python executed?",
+    "keywords": ["bytecode", "Python Virtual Machine", "interpreter", "compilation", "platform independence"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 56,
+    "question": "What is PEP 8 and why is it important?",
+    "keywords": ["PEP 8", "coding standards", "readability", "code consistency", "best practices"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 57,
+    "question": "How is memory allocation and garbage collection handled in Python?",
+    "keywords": ["heap memory", "reference counting", "garbage collector", "circular references", "memory manager"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 58,
+    "question": "What are the built-in data types in Python?",
+    "keywords": ["mutable", "immutable", "list", "tuple", "set", "dictionary", "data types"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 59,
+    "question": "Explain the difference between mutable and immutable objects in Python.",
+    "keywords": ["mutability", "immutability", "memory behavior", "performance", "data safety"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 60,
+    "question": "How does exception handling work in Python?",
+    "keywords": ["try", "except", "finally", "raise", "error handling", "exception flow"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 61,
+    "question": "What is the difference between list and tuple?",
+    "keywords": ["list", "tuple", "mutability", "performance", "use cases"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 62,
+    "question": "What is the difference between == and is operator in Python?",
+    "keywords": ["value comparison", "identity comparison", "memory address", "object identity"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 63,
+    "question": "How do Python functions work internally?",
+    "keywords": ["call stack", "stack frame", "local scope", "global scope", "return value"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 64,
+    "question": "What are lambda functions and where are they used?",
+    "keywords": ["anonymous functions", "single expression", "functional programming", "map filter reduce"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 65,
+    "question": "What are decorators in Python and why are they used?",
+    "keywords": ["decorators", "function wrapping", "metaprogramming", "code reuse", "cross-cutting concerns"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 66,
+    "question": "What is Go (Golang) and why was it created?",
+    "keywords": ["Go language", "Google", "simplicity", "efficiency", "concurrency", "system programming"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 67,
+    "question": "What are the key features of Go compared to other programming languages?",
+    "keywords": ["goroutines", "channels", "static typing", "garbage collection", "fast compilation", "standard library"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 68,
+    "question": "Explain the workspace architecture in Go.",
+    "keywords": ["workspace", "src", "pkg", "bin", "GOPATH", "project structure"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 69,
+    "question": "What is the GOPATH environment variable and how is it used?",
+    "keywords": ["GOPATH", "package management", "workspace", "legacy workflow"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 70,
+    "question": "How do Go modules improve dependency management over GOPATH?",
+    "keywords": ["go modules", "go.mod", "dependency versioning", "module cache"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 71,
+    "question": "How are packages structured and managed in a Go program?",
+    "keywords": ["packages", "modules", "visibility rules", "exported identifiers"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 72,
+    "question": "What are goroutines and why are they important in Go?",
+    "keywords": ["goroutines", "lightweight threads", "concurrency", "Go runtime"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 73,
+    "question": "Explain concurrency in Go and how it differs from parallelism.",
+    "keywords": ["concurrency", "parallelism", "goroutines", "channels", "runtime scheduler"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 74,
+    "question": "How does Go handle memory management?",
+    "keywords": ["garbage collection", "automatic memory management", "runtime", "performance"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 75,
+    "question": "What are slices in Go and how do they differ from arrays?",
+    "keywords": ["slices", "arrays", "dynamic sizing", "reference semantics"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 76,
+    "question": "What is the zero value of variables in Go?",
+    "keywords": ["zero value", "default initialization", "nil", "basic types"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 77,
+    "question": "How does error handling work in Go?",
+    "keywords": ["error handling", "explicit errors", "panic", "error wrapping"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 78,
+    "question": "What is React and why is it used?",
+    "keywords": ["React", "JavaScript library", "user interfaces", "components", "virtual DOM"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 79,
+    "question": "How is React different from Angular or Vue?",
+    "keywords": ["React vs Angular", "React vs Vue", "framework vs library", "learning curve", "ecosystem"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 80,
+    "question": "What is a React component?",
+    "keywords": ["components", "reusability", "UI building blocks", "function components", "class components"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 81,
+    "question": "What is JSX and why is it used in React?",
+    "keywords": ["JSX", "HTML-like syntax", "Babel", "readability", "React.createElement"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 82,
+    "question": "Can you explain the Virtual DOM in React?",
+    "keywords": ["Virtual DOM", "reconciliation", "diffing algorithm", "performance optimization"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 83,
+    "question": "What are the differences between class components and functional components?",
+    "keywords": ["class components", "functional components", "hooks", "lifecycle methods"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 84,
+    "question": "What are state and props in React?",
+    "keywords": ["state", "props", "data flow", "immutability", "component re-rendering"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 85,
+    "question": "How do you pass data between components in React?",
+    "keywords": ["props", "callback functions", "parent-child communication", "unidirectional data flow"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 86,
+    "question": "What is lifting state up in React?",
+    "keywords": ["lifting state up", "shared state", "single source of truth", "parent component"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 87,
+    "question": "What is a stateful component?",
+    "keywords": ["stateful component", "internal state", "component re-render", "dynamic UI"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 88,
+    "question": "How does the useState hook work?",
+    "keywords": ["useState", "hooks", "state management", "functional components"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 89,
+    "question": "When should you use Redux or the Context API for state management?",
+    "keywords": ["Redux", "Context API", "global state", "state management", "scalability"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 90,
+    "question": "What is an API and what are its main purposes?",
+    "keywords": ["API", "abstraction", "decoupling", "standardization", "reusability", "security"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 91,
+    "question": "What is the difference between an API and a web service?",
+    "keywords": ["API vs Web Service", "protocols", "data exposure", "REST", "SOAP"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 92,
+    "question": "What are the principles of a RESTful API?",
+    "keywords": ["REST principles", "statelessness", "client-server", "cacheability", "uniform interface"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 93,
+    "question": "How does a SOAP API differ from a REST API?",
+    "keywords": ["SOAP", "REST", "XML", "JSON", "WSDL", "statelessness"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 94,
+    "question": "What is an API endpoint?",
+    "keywords": ["endpoint", "URI", "HTTP methods", "request", "response"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 95,
+    "question": "What HTTP methods are commonly used in REST APIs and what do they represent?",
+    "keywords": ["HTTP verbs", "GET", "POST", "PUT", "PATCH", "DELETE", "REST"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 96,
+    "question": "How do you version an API and why is versioning important?",
+    "keywords": ["API versioning", "backward compatibility", "URI versioning", "headers", "semantic versioning"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 97,
+    "question": "What is idempotence in API design and why is it important?",
+    "keywords": ["idempotence", "retry safety", "HTTP methods", "PUT", "DELETE", "reliability"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 98,
+    "question": "What is API rate limiting and why is it used?",
+    "keywords": ["rate limiting", "throttling", "API protection", "fair usage", "HTTP 429"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 99,
+    "question": "What is OAuth and how does it help in API security?",
+    "keywords": ["OAuth", "authorization", "access tokens", "resource server", "client"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 100,
+    "question": "What strategies can be used to maintain backward compatibility in APIs?",
+    "keywords": ["backward compatibility", "non-breaking changes", "versioning", "deprecation"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 111,
+    "question": "What are common HTTP response status codes and what do they signify?",
+    "keywords": ["HTTP status codes", "2xx", "4xx", "5xx", "API responses"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 112,
+    "question": "What is a Database Management System (DBMS)?",
+    "keywords": ["DBMS", "data management", "data integrity", "security", "CRUD operations"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 113,
+    "question": "What are the different types of DBMS?",
+    "keywords": ["RDBMS", "NoSQL", "NewSQL", "in-memory database", "graph database"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 114,
+    "question": "Explain the ACID properties in databases.",
+    "keywords": ["ACID", "atomicity", "consistency", "isolation", "durability"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 115,
+    "question": "What are the key differences between SQL and NoSQL databases?",
+    "keywords": ["SQL", "NoSQL", "schema", "scalability", "consistency models"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 116,
+    "question": "What is a relational database schema?",
+    "keywords": ["schema", "tables", "rows", "columns", "relationships"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 117,
+    "question": "What is a primary key and why is it important?",
+    "keywords": ["primary key", "uniqueness", "data integrity", "indexing"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 118,
+    "question": "What is a foreign key and how does it maintain referential integrity?",
+    "keywords": ["foreign key", "referential integrity", "relationships", "joins"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 119,
+    "question": "What is database normalization and why is it used?",
+    "keywords": ["normalization", "data redundancy", "1NF", "2NF", "3NF"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 120,
+    "question": "What is denormalization and when should it be used?",
+    "keywords": ["denormalization", "performance optimization", "redundancy", "read-heavy systems"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 121,
+    "question": "What are the differences between DELETE, TRUNCATE, and DROP commands?",
+    "keywords": ["DELETE", "TRUNCATE", "DROP", "transaction control", "data removal"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 122,
+    "question": "What is the N+1 query problem?",
+    "keywords": ["N+1 problem", "ORM", "performance issue", "query optimization"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 123,
+    "question": "What are indexes and how do they improve database performance?",
+    "keywords": ["indexes", "B-tree", "hash index", "query optimization", "performance"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 124,
+    "question": "What are the data types present in JavaScript?",
+    "keywords": ["primitive types", "composite types", "dynamic typing", "type coercion"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 125,
+    "question": "What is the difference between null and undefined?",
+    "keywords": ["null", "undefined", "intentional absence", "default value", "equality comparison"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 126,
+    "question": "How does JavaScript handle type coercion?",
+    "keywords": ["implicit coercion", "explicit coercion", "truthy", "falsy", "loose equality"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 127,
+    "question": "Explain the concept of hoisting in JavaScript.",
+    "keywords": ["hoisting", "compile phase", "var", "let", "const", "function declarations"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 128,
+    "question": "What is scope in JavaScript?",
+    "keywords": ["scope", "global scope", "local scope", "block scope", "variable lifetime"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 129,
+    "question": "What is the difference between == and === in JavaScript?",
+    "keywords": ["abstract equality", "strict equality", "type coercion", "type safety"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 130,
+    "question": "What is a closure in JavaScript?",
+    "keywords": ["closure", "lexical scope", "data encapsulation", "memory retention"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 131,
+    "question": "What is the 'this' keyword and how does its context change?",
+    "keywords": ["this keyword", "execution context", "call apply bind", "arrow functions"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 132,
+    "question": "What are arrow functions and how do they differ from regular functions?",
+    "keywords": ["arrow functions", "lexical this", "concise syntax", "implicit return"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 133,
+    "question": "What are template literals in JavaScript?",
+    "keywords": ["template literals", "string interpolation", "multiline strings", "ES6"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 134,
+    "question": "What is a higher-order function in JavaScript?",
+    "keywords": ["higher-order functions", "first-class functions", "functional programming"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 135,
+    "question": "How do you create private variables in JavaScript?",
+    "keywords": ["private variables", "closures", "encapsulation", "module pattern"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 136,
+    "question": "What does CSS stand for and what is its primary use?",
+    "keywords": ["CSS", "Cascading Style Sheets", "presentation", "separation of concerns", "styling"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 137,
+    "question": "How do you include CSS in an HTML document?",
+    "keywords": ["inline CSS", "embedded CSS", "external stylesheet", "imported CSS", "maintainability"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 138,
+    "question": "What is the difference between class selectors and ID selectors?",
+    "keywords": ["class selector", "ID selector", "specificity", "reusability", "unique elements"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 139,
+    "question": "What are pseudo-classes in CSS?",
+    "keywords": ["pseudo-classes", "user interaction", "state-based styling", "hover", "first-child"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 140,
+    "question": "Why is a CSS reset used and what problem does it solve?",
+    "keywords": ["CSS reset", "browser inconsistency", "default styles", "normalize.css"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 141,
+    "question": "What are attribute selectors in CSS?",
+    "keywords": ["attribute selectors", "exact match", "partial match", "case sensitivity"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 142,
+    "question": "What are pseudo-elements and where are they used?",
+    "keywords": ["pseudo-elements", "before", "after", "generated content", "styling parts of elements"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 143,
+    "question": "What is the difference between child combinator and descendant combinator?",
+    "keywords": ["child combinator", "descendant combinator", "CSS selectors", "DOM hierarchy"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 144,
+    "question": "What is the CSS Box Model?",
+    "keywords": ["box model", "content", "padding", "border", "margin"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 145,
+    "question": "Explain margin collapsing in CSS.",
+    "keywords": ["margin collapsing", "vertical margins", "layout behavior", "parent-child margins"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 146,
+    "question": "What are the different values of the box-sizing property?",
+    "keywords": ["box-sizing", "content-box", "border-box", "layout control"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 147,
+    "question": "What is the difference between block, inline, and inline-block elements?",
+    "keywords": ["block elements", "inline elements", "inline-block", "display property"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 148,
+    "question": "What is TypeScript and how does it differ from JavaScript?",
+    "keywords": ["TypeScript", "JavaScript", "static typing", "superset"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 149,
+    "question": "What does it mean that TypeScript is a superset of JavaScript?",
+    "keywords": ["superset", "JavaScript compatibility", "TypeScript"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 150,
+    "question": "What are the basic data types available in TypeScript?",
+    "keywords": ["data types", "primitive types", "TypeScript types"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 151,
+    "question": "How does type inference work in TypeScript?",
+    "keywords": ["type inference", "static typing", "compiler"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 152,
+    "question": "What are interfaces in TypeScript and why are they used?",
+    "keywords": ["interfaces", "contracts", "type safety"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 153,
+    "question": "What is an enum in TypeScript and when should it be used?",
+    "keywords": ["enum", "constants", "type safety"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 154,
+    "question": "Explain the difference between let and const in TypeScript.",
+    "keywords": ["let", "const", "variable declaration", "immutability"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 155,
+    "question": "What are classes in TypeScript and how do they enhance JavaScript classes?",
+    "keywords": ["classes", "OOP", "TypeScript features"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 156,
+    "question": "What are access modifiers in TypeScript and why are they important?",
+    "keywords": ["access modifiers", "public", "private", "protected"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 157,
+    "question": "What are abstract classes in TypeScript and when should you use them?",
+    "keywords": ["abstract classes", "inheritance", "OOP design"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 158,
+    "question": "How does inheritance work in TypeScript?",
+    "keywords": ["inheritance", "extends", "OOP"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 159,
+    "question": "How does TypeScript compilation work and why is it needed?",
+    "keywords": ["TypeScript compiler", "transpilation", "tsc"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 160,
+    "question": "What does HTML stand for and what is its purpose?",
+    "keywords": ["HTML", "markup language", "web structure", "web pages"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 161,
+    "question": "Describe the basic structure of an HTML document.",
+    "keywords": ["HTML structure", "doctype", "head", "body"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 162,
+    "question": "What do DOCTYPE and the html lang attribute do?",
+    "keywords": ["DOCTYPE", "lang attribute", "browser rendering", "accessibility"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 163,
+    "question": "What is the difference between head and body tags?",
+    "keywords": ["head tag", "body tag", "metadata", "visible content"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 164,
+    "question": "What is the purpose of meta tags in HTML?",
+    "keywords": ["meta tags", "SEO", "viewport", "metadata"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 165,
+    "question": "How do you link a CSS file to an HTML document?",
+    "keywords": ["CSS", "link tag", "stylesheet", "external CSS"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 166,
+    "question": "How do you link a JavaScript file to an HTML document?",
+    "keywords": ["JavaScript", "script tag", "external JS", "HTML integration"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 167,
+    "question": "What are data-* attributes and when should they be used?",
+    "keywords": ["data attributes", "HTML5", "dataset API", "custom data"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 168,
+    "question": "What is the difference between b and strong tags?",
+    "keywords": ["b tag", "strong tag", "semantic HTML", "text emphasis"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 169,
+    "question": "When would you use em over i, and vice versa?",
+    "keywords": ["em tag", "i tag", "semantic emphasis", "accessibility"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 170,
+    "question": "What are semantic HTML tags and why are they important?",
+    "keywords": ["semantic HTML", "accessibility", "SEO", "document structure"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 171,
+    "question": "How do you serve your page in multiple languages?",
+    "keywords": ["multilingual websites", "lang attribute", "internationalization", "SEO"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 172,
+    "question": "What is the difference between software architecture and software design?",
+    "keywords": ["software architecture", "software design", "system structure", "high-level vs low-level"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 173,
+    "question": "Explain separation of concerns in software architecture.",
+    "keywords": ["separation of concerns", "SoC", "low coupling", "high cohesion"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 174,
+    "question": "Define a system quality attribute and explain its importance.",
+    "keywords": ["quality attributes", "non-functional requirements", "scalability", "reliability"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 175,
+    "question": "What is a software architectural pattern?",
+    "keywords": ["architectural patterns", "design reuse", "system structure"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 176,
+    "question": "Explain the layered architectural pattern with its advantages and drawbacks.",
+    "keywords": ["layered architecture", "n-tier", "modularity", "scalability"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 177,
+    "question": "What are the elements of a good software architecture?",
+    "keywords": ["good architecture", "modularity", "maintainability", "performance"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 178,
+    "question": "Define modularity in software architecture.",
+    "keywords": ["modularity", "encapsulation", "reusability", "loose coupling"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 179,
+    "question": "Discuss the concepts of coupling and cohesion.",
+    "keywords": ["coupling", "cohesion", "software quality", "design principles"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 180,
+    "question": "What is the Principle of Least Knowledge (Law of Demeter)?",
+    "keywords": ["law of demeter", "least knowledge", "dependency reduction"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 181,
+    "question": "How are cross-cutting concerns addressed in software architecture?",
+    "keywords": ["cross-cutting concerns", "AOP", "logging", "security"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 182,
+    "question": "Describe the Model-View-Controller (MVC) architectural pattern.",
+    "keywords": ["MVC", "separation of concerns", "UI architecture"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 183,
+    "question": "Define Microservices architecture and contrast it with Monolithic architecture.",
+    "keywords": ["microservices", "monolithic architecture", "scalability", "distributed systems"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 184,
+    "question": "What is MongoDB and what are its main features?",
+    "keywords": ["MongoDB", "NoSQL", "document-oriented", "scalability", "high performance"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 185,
+    "question": "How does MongoDB differ from relational databases?",
+    "keywords": ["MongoDB vs RDBMS", "schema-less", "SQL vs NoSQL", "scalability"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 186,
+    "question": "Can you describe the structure of data in MongoDB?",
+    "keywords": ["documents", "collections", "BSON", "nested data"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 187,
+    "question": "What is a document in MongoDB?",
+    "keywords": ["document", "JSON-like", "_id field", "atomicity"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 188,
+    "question": "How is data stored in collections in MongoDB?",
+    "keywords": ["collections", "schema flexibility", "data modeling"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 189,
+    "question": "What is a MongoDB database?",
+    "keywords": ["database", "collections", "documents", "NoSQL architecture"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 190,
+    "question": "How does MongoDB provide high availability and disaster recovery?",
+    "keywords": ["replica sets", "failover", "disaster recovery", "replication"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 191,
+    "question": "What are indexes in MongoDB and why are they used?",
+    "keywords": ["indexes", "query optimization", "performance", "index types"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 192,
+    "question": "What is the role of the _id field in MongoDB documents?",
+    "keywords": ["_id field", "primary key", "ObjectId", "uniqueness"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 193,
+    "question": "How does MongoDB support scalability?",
+    "keywords": ["horizontal scaling", "sharding", "distributed systems"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 194,
+    "question": "What is the difference between embedded documents and referenced documents?",
+    "keywords": ["embedded documents", "referencing", "data modeling", "relationships"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 195,
+    "question": "What are the advantages and limitations of MongoDB?",
+    "keywords": ["advantages", "limitations", "performance", "schema design"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 196,
+    "question": "What is a microservice and how does it differ from a monolithic architecture?",
+    "keywords": ["microservice", "monolithic architecture", "modularity", "deployment", "scalability"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 197,
+    "question": "Can you describe the principles behind the microservices architecture?",
+    "keywords": ["microservices principles", "loose coupling", "autonomy", "resilience", "bounded context"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 198,
+    "question": "What are the main benefits of using microservices?",
+    "keywords": ["scalability", "flexibility", "technology diversity", "fault tolerance", "agile development"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 199,
+    "question": "What are some of the challenges you might face when designing a microservices architecture?",
+    "keywords": ["data management", "service communication", "security", "infrastructure", "testing"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 200,
+    "question": "How do microservices communicate with each other?",
+    "keywords": ["communication", "REST", "gRPC", "messaging", "event-driven", "API gateway"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 201,
+    "question": "What is Domain-Driven Design (DDD) and how is it related to microservices?",
+    "keywords": ["domain-driven design", "bounded context", "ubiquitous language", "microservices design"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 202,
+    "question": "How would you decompose a monolithic application into microservices?",
+    "keywords": ["monolith decomposition", "service boundaries", "DDD", "loose coupling", "API contracts"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 203,
+    "question": "What strategies can be employed to manage transactions across multiple microservices?",
+    "keywords": ["transactions", "saga pattern", "2PC", "eventual consistency", "CQRS", "event sourcing"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 204,
+    "question": "Explain the concept of 'Bounded Context' in the microservices architecture.",
+    "keywords": ["bounded context", "domain-driven design", "team autonomy", "data consistency"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 205,
+    "question": "How do you handle failure in a microservice?",
+    "keywords": ["failure handling", "circuit breaker", "bulkhead", "graceful degradation", "resilience"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 206,
+    "question": "What design patterns are commonly used in microservices architectures?",
+    "keywords": ["design patterns", "API gateway", "circuit breaker", "event sourcing", "saga", "bulkhead"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 207,
+    "question": "Can you describe the API Gateway pattern and its benefits?",
+    "keywords": ["API gateway", "request aggregation", "response aggregation", "security", "load balancing"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 208,
+    "question": "What is .NET Core and how does it differ from the .NET Framework?",
+    "keywords": [".NET Core", ".NET Framework", "cross-platform", "modularity", "deployment", "API accessibility"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 209,
+    "question": "Describe the cross-platform capabilities of .NET Core.",
+    "keywords": ["cross-platform", "runtime environment", "NuGet packages", "OS support", "JIT/AOT compilation"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 210,
+    "question": "What are the main components of the .NET Core architecture?",
+    "keywords": ["architecture", "BCL", "JIT compiler", "garbage collector", "NuGet", "execution environment", "ORM", "security"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 211,
+    "question": "Explain the .NET Core CLI and its primary functions.",
+    "keywords": ["CLI", "dotnet commands", "new", "build", "run", "publish", "test"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 212,
+    "question": "What is the purpose and use of a csproj file in a .NET Core project?",
+    "keywords": ["csproj", "project file", "dependencies", "build configuration", "target framework", "compiler settings"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 213,
+    "question": "What is the runtime and SDK in .NET Core?",
+    "keywords": ["runtime", "SDK", "compilation", "development tools", "versioning"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 214,
+    "question": "How would you manage different versions of the .NET Core SDK on the same machine?",
+    "keywords": ["SDK versions", "global.json", "version management", "multi-project solution"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 215,
+    "question": "What is the purpose of the global.json file?",
+    "keywords": ["global.json", "SDK version", "multi-project management", "CI/CD", "consistency"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 216,
+    "question": "Can you explain the directory structure of a typical .NET Core project?",
+    "keywords": ["directory structure", "src", "tests", "artifacts", "core files", "configuration files"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 217,
+    "question": "How do you add and manage NuGet packages in a .NET Core project?",
+    "keywords": ["NuGet", "package management", "dotnet CLI", "Visual Studio", "dependencies"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 218,
+    "question": "Explain the role of the NuGet package manager.",
+    "keywords": ["NuGet", "package repository", "dependency management", "version control", "project scope"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 219,
+    "question": "What is .NET Standard and how does it relate to .NET Core?",
+    "keywords": [".NET Standard", ".NET Core", "cross-platform", "API consistency", "interoperability"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 220,
+    "question": "What is Express.js, and how does it relate to Node.js?",
+    "keywords": ["Express.js", "Node.js", "web framework", "server-side", "routing", "middleware"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 221,
+    "question": "Explain the concept of middleware in Express.js.",
+    "keywords": ["middleware", "request-response cycle", "logging", "authentication", "error handling", "next()"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 222,
+    "question": "How would you set up a basic Express.js application?",
+    "keywords": ["Express.js setup", "project initialization", "npm", "server creation", "routes"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 223,
+    "question": "What is the purpose of the app.use() function?",
+    "keywords": ["app.use", "middleware registration", "global middleware", "route-specific middleware", "request handling"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 224,
+    "question": "How do you serve static files using Express.js?",
+    "keywords": ["express.static", "static files", "images", "CSS", "JavaScript", "public directory"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 225,
+    "question": "Discuss the difference between app.get() and app.post() in Express.js.",
+    "keywords": ["app.get", "app.post", "HTTP methods", "data retrieval", "data submission", "RESTful APIs"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 226,
+    "question": "How do you retrieve URL parameters and query parameters in Express.js?",
+    "keywords": ["req.params", "req.query", "URL parameters", "query strings", "route handling"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 227,
+    "question": "What are route handlers, and how would you implement them?",
+    "keywords": ["route handlers", "HTTP methods", "middleware", "request processing", "response sending"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 228,
+    "question": "How do you enable CORS in an Express.js application?",
+    "keywords": ["CORS", "cross-origin requests", "cors package", "headers", "security"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 229,
+    "question": "Explain the use of next() in Express.js middleware.",
+    "keywords": ["next()", "middleware chaining", "error handling", "request flow"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 230,
+    "question": "What is the role of the express.Router class?",
+    "keywords": ["express.Router", "modular routes", "middleware", "HTTP methods", "code organization"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 231,
+    "question": "How do you handle 404 errors in Express.js?",
+    "keywords": ["404 errors", "error handling middleware", "app.use", "request handling", "response status"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 232,
+    "question": "What is concurrency in programming and how does it differ from parallelism?",
+    "keywords": ["concurrency", "parallelism", "multi-tasking", "multi-core", "threads", "tasks"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 234,
+    "question": "Can you explain race conditions and provide an example where one might occur?",
+    "keywords": ["race condition", "shared resources", "threads", "data inconsistency", "synchronization"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 235,
+    "question": "What is a critical section in the context of concurrent programming?",
+    "keywords": ["critical section", "shared resource", "locks", "semaphores", "thread safety"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 236,
+    "question": "How does an operating system ensure mutual exclusion in concurrent processes?",
+    "keywords": ["mutual exclusion", "locks", "mutex", "semaphores", "OS synchronization"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 237,
+    "question": "Can you describe the concept of atomicity in relation to concurrency?",
+    "keywords": ["atomicity", "indivisible operations", "data consistency", "thread safety", "isolation"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 238,
+    "question": "How does a deadlock occur and what are common strategies to prevent it?",
+    "keywords": ["deadlock", "mutual exclusion", "circular wait", "resource preemption", "prevention strategies"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 239,
+    "question": "What is a livelock and how is it different from a deadlock?",
+    "keywords": ["livelock", "deadlock", "thread activity", "resource contention", "concurrency issues"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 240,
+    "question": "Can you explain the producer-consumer problem and how it can be addressed using concurrency mechanisms?",
+    "keywords": ["producer-consumer", "synchronization", "buffer", "locks", "semaphores", "condition variables"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 241,
+    "question": "What is the difference between a process and a thread?",
+    "keywords": ["process", "thread", "memory", "scheduling", "lightweight", "shared resources"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 242,
+    "question": "How are threads typically created and managed in modern operating systems?",
+    "keywords": ["threads", "thread management", "user-level threads", "kernel threads", "hybrid model"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 243,
+    "question": "What is a thread pool and why might you use one?",
+    "keywords": ["thread pool", "resource management", "task execution", "performance", "concurrency"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 244,
+    "question": "What are mutexes and semaphores and how do they differ?",
+    "keywords": ["mutex", "semaphore", "mutual exclusion", "thread synchronization", "locks", "resource management"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 245,
+    "question": "What is Docker, and how is it different from virtual machines?",
+    "keywords": ["Docker", "containerization", "virtual machines", "resource optimization", "isolation"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 246,
+    "question": "Can you explain what a Docker image is?",
+    "keywords": ["Docker image", "container template", "layers", "portability", "reproducibility"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 247,
+    "question": "How does a Docker container differ from a Docker image?",
+    "keywords": ["Docker container", "Docker image", "runtime instance", "mutable", "immutable"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 248,
+    "question": "What is the Docker Hub, and what is it used for?",
+    "keywords": ["Docker Hub", "image repository", "versioning", "collaboration", "CI/CD integration"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 249,
+    "question": "Explain the Dockerfile and its significance in Docker.",
+    "keywords": ["Dockerfile", "image build", "commands", "automation", "multi-stage builds"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 250,
+    "question": "How does Docker use layers to build images?",
+    "keywords": ["layers", "union file system", "AUFS", "OverlayFS", "read-only layers"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 251,
+    "question": "What's the difference between the COPY and ADD commands in a Dockerfile?",
+    "keywords": ["COPY", "ADD", "Dockerfile commands", "file transfer", "security", "cache management"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 252,
+    "question": "What’s the purpose of the .dockerignore file?",
+    "keywords": [".dockerignore", "build optimization", "exclude files", "image size", "efficiency"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 253,
+    "question": "How would you reduce the size of Docker images?",
+    "keywords": ["image optimization", "multi-stage builds", "base images", ".dockerignore", "layer minimization"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 254,
+    "question": "What command is used to run a Docker container from an image?",
+    "keywords": ["docker run", "container execution", "options", "port mapping", "detached mode"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 255,
+    "question": "Can Docker containers running on the same host communicate with each other by default? If so, how?",
+    "keywords": ["container communication", "bridge network", "IP address", "network namespace", "custom networks"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 256,
+    "question": "What is a Docker volume, and when would you use it?",
+    "keywords": ["Docker volume", "data persistence", "host-mounted", "named volume", "stateful containers"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 257,
+    "question": "What is Django and what are its key features?",
+    "keywords": ["Django", "Python web framework", "DRY", "MTV", "rapid development", "security", "ORM", "admin panel"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 258,
+    "question": "Explain the MTV (Model-Template-View) architecture pattern in Django.",
+    "keywords": ["MTV", "Model", "Template", "View", "request-response lifecycle", "MVC comparison"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 259,
+    "question": "What is a Django project and how is it different from a Django app?",
+    "keywords": ["Django project", "Django app", "settings.py", "urls.py", "WSGI", "ASGI", "modularity"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 260,
+    "question": "Describe the purpose of the settings.py file in a Django project.",
+    "keywords": ["settings.py", "configuration", "security", "database setup", "middleware", "environment variables"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 261,
+    "question": "What is the role of the urls.py file in a Django project?",
+    "keywords": ["urls.py", "URL routing", "path", "re_path", "URL patterns", "views mapping", "namespacing"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 262,
+    "question": "Explain the concept of Django's ORM (Object-Relational Mapping).",
+    "keywords": ["ORM", "models", "QuerySet", "Python objects", "database abstraction", "relationships", "managers"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 263,
+    "question": "What is a Django model and how is it defined?",
+    "keywords": ["model", "fields", "relationships", "Meta options", "methods", "database schema"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 264,
+    "question": "Describe the purpose of Django's admin interface.",
+    "keywords": ["admin interface", "CRUD", "rapid prototyping", "model-centric", "data validation", "internal tools"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 265,
+    "question": "What is a Django view and how is it created?",
+    "keywords": ["view", "function-based view", "class-based view", "request handling", "response generation", "urls.py"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 266,
+    "question": "Explain the concept of URL patterns in Django.",
+    "keywords": ["URL patterns", "path", "re_path", "include", "URL routing", "request mapping", "named URLs"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 267,
+    "question": "What is a database migration in Django and why is it important?",
+    "keywords": ["migration", "database schema", "makemigrations", "migrate", "version control", "data integrity"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 268,
+    "question": "Explain the difference between a ForeignKey and a ManyToManyField in Django models.",
+    "keywords": ["ForeignKey", "ManyToManyField", "model relationships", "one-to-many", "many-to-many", "through", "intermediary table"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 269,
+    "question": "What is React Native and how does it differ from React?",
+    "keywords": ["React Native", "React", "mobile development", "web development", "native components", "cross-platform"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 270,
+    "question": "Can you explain the concept of 'Learn once, write anywhere' in the context of React Native?",
+    "keywords": ["Learn once write anywhere", "code reusability", "cross-platform", "platform-specific code", "adaptation"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 271,
+    "question": "How do you create a basic React Native application?",
+    "keywords": ["React Native setup", "Expo", "CLI", "project initialization", "development environment"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 272,
+    "question": "What are components in React Native and what are their types?",
+    "keywords": ["React Native", "components", "base components", "custom components", "UI building blocks", "reusability"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 273,
+    "question": "Explain the purpose of the render() function in a React Native component.",
+    "keywords": ["render()", "JSX", "component lifecycle", "UI rendering", "state", "props"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 274,
+    "question": "What is JSX and how is it used in React Native?",
+    "keywords": ["JSX", "JavaScript syntax", "UI definition", "component structure", "React Native"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 275,
+    "question": "Can you list some of the core components in React Native?",
+    "keywords": ["core components", "View", "Text", "Image", "ScrollView", "FlatList", "TextInput", "Button"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 276,
+    "question": "How do you handle state management in React Native?",
+    "keywords": ["state management", "useState", "Context API", "Redux", "local state", "global state"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 277,
+    "question": "What are props in React Native and how are they used?",
+    "keywords": ["props", "unidirectional data flow", "reusable components", "immutability", "prop types"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 278,
+    "question": "What is the significance of the Flexbox layout in React Native?",
+    "keywords": ["Flexbox", "layout", "flexDirection", "justifyContent", "alignItems", "responsive design"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 279,
+    "question": "How do you debug a React Native application?",
+    "keywords": ["debugging", "React DevTools", "Flipper", "console logging", "simulator", "physical devices", "Redux DevTools"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 280,
+    "question": "Explain the concept of hot reloading in React Native.",
+    "keywords": ["hot reloading", "state retention", "real-time updates", "development productivity", "partial updates"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 281,
+    "question": "Explain how you would reverse an array in place.",
+    "keywords": ["array reversal", "in-place", "space optimization", "swap elements", "two pointers"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 282,
+    "question": "What is the difference between an array and a linked list?",
+    "keywords": ["array", "linked list", "memory layout", "access time", "insertion deletion", "dynamic vs static"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 283,
+    "question": "How would you check for duplicates in an array without using extra space?",
+    "keywords": ["duplicate detection", "arrays", "sorting", "brute force", "mathematical approach", "time-space tradeoff"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 284,
+    "question": "Can you explain how to perform a binary search on a sorted array?",
+    "keywords": ["binary search", "divide and conquer", "sorted array", "search algorithms", "complexity O(log n)"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 285,
+    "question": "How would you rotate a two-dimensional array by 90 degrees?",
+    "keywords": ["2D array", "matrix rotation", "transpose", "row reversal", "in-place operations"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 286,
+    "question": "Describe an algorithm to compress a string such as 'aabbccc' to 'a2b2c3'.",
+    "keywords": ["string compression", "character counting", "run-length encoding", "time-space complexity", "efficient iteration"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 287,
+    "question": "What is an array slice and how is it implemented in programming languages?",
+    "keywords": ["array slice", "subarray", "view vs copy", "Python", "Go", "Rust", "efficient memory usage"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 288,
+    "question": "Can you discuss the time complexity of array insertion and deletion?",
+    "keywords": ["array operations", "insertion", "deletion", "complexity analysis", "beginning middle end"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 289,
+    "question": "What are some ways to merge two sorted arrays into one sorted array?",
+    "keywords": ["merge sorted arrays", "two-pointer technique", "min heap", "in-place merge", "time-space complexity"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 290,
+    "question": "How do you find the kth largest element in an unsorted array?",
+    "keywords": ["kth largest element", "quickselect", "heap", "partitioning", "selection algorithm"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 291,
+    "question": "Explain how a singly linked list differs from a doubly linked list.",
+    "keywords": ["singly linked list", "doubly linked list", "memory usage", "bidirectional traversal", "node structure"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 292,
+    "question": "How would you detect a cycle in a linked list?",
+    "keywords": ["cycle detection", "linked list", "Floyd's algorithm", "tortoise and hare", "pointer technique"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 293,
+    "question": "What is Git and why is it used?",
+    "keywords": ["Git", "version control system", "decentralized", "collaboration", "code management", "commit history"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 294,
+    "question": "How does Git differ from other version control systems (VCS)?",
+    "keywords": ["Git", "VCS", "distributed model", "branching", "staging area", "data integrity", "workflow"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 295,
+    "question": "What is the difference between Git and GitHub?",
+    "keywords": ["Git", "GitHub", "version control", "remote repository", "collaboration tools", "code hosting"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 296,
+    "question": "What is a repository in Git?",
+    "keywords": ["repository", "Git", "version history", ".git directory", "working tree", "collaboration", "data storage"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 297,
+    "question": "Explain the concept of a commit in Git.",
+    "keywords": ["commit", "snapshot", "Git", "metadata", "tree object", "staging area", "history tracking"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 298,
+    "question": "What is the difference between a working directory, staging area, and repository in Git?",
+    "keywords": ["working directory", "staging area", "repository", "Git workflow", "committing changes", "HEAD"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 299,
+    "question": "Define branching in Git and its importance.",
+    "keywords": ["branching", "feature branches", "master", "merge", "code isolation", "collaboration", "risk mitigation"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 300,
+    "question": "What is a HEAD in Git?",
+    "keywords": ["HEAD", "commit reference", "current branch", "Git history", "pointer", "staging area", "working directory"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 301,
+    "question": "What does the 'clone' operation in Git do?",
+    "keywords": ["clone", "Git repository", "local copy", "remote repository", "version history", "collaboration"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 302,
+    "question": "How does Git store information?",
+    "keywords": ["Git storage", "blobs", "trees", "commits", "SHA-1 hash", "repository structure", "index", "HEAD"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 303,
+    "question": "How do you initialize a new Git repository?",
+    "keywords": ["git init", "repository creation", "staging area", "commit", "remote link", "GitHub", ".gitignore"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 304,
+    "question": "Explain the purpose of the git status command.",
+    "keywords": ["git status", "file states", "working directory", "staging area", "branch status", "untracked files"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 305,
+    "question": "What is Laravel and why is it used?",
+    "keywords": ["Laravel", "PHP framework", "MVC architecture", "web development", "Eloquent ORM", "Blade templates"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 306,
+    "question": "How does Laravel follow the MVC architecture?",
+    "keywords": ["MVC", "Model", "View", "Controller", "Eloquent ORM", "Blade", "application structure"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 307,
+    "question": "What server requirements does Laravel have?",
+    "keywords": ["PHP version", "Composer", "Apache", "Nginx", "extensions", "URL rewriting", "CRON", "HTTPS"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 308,
+    "question": "How would you install or set up a Laravel project?",
+    "keywords": ["Composer", "Laravel installation", ".env file", "php artisan", "migrations", "permissions", "frontend setup"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 309,
+    "question": "Explain routing in Laravel.",
+    "keywords": ["routes", "HTTP verbs", "URI", "controller actions", "route groups", "named routes", "dynamic parameters"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 310,
+    "question": "What are middleware in Laravel and how are they used?",
+    "keywords": ["middleware", "HTTP requests", "authentication", "authorization", "logging", "session handling", "custom middleware"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 311,
+    "question": "Can you describe the Laravel request lifecycle?",
+    "keywords": ["request lifecycle", "HTTP kernel", "routing", "middleware groups", "controller", "response"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 312,
+    "question": "What are Service Providers in Laravel?",
+    "keywords": ["service providers", "register services", "boot method", "IOC container", "modular design"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 313,
+    "question": "What is Eloquent ORM in Laravel and why use it?",
+    "keywords": ["Eloquent ORM", "models", "database relationships", "CRUD", "query builder", "readability", "scalability"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 314,
+    "question": "How does one perform validations in Laravel?",
+    "keywords": ["validation", "Request object", "validate() method", "Validator facade", "error messages", "form validation"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 315,
+    "question": "What are Laravel Contracts and why are they important?",
+    "keywords": ["contracts", "interfaces", "service abstraction", "flexibility", "unit testing", "decoupling"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 316,
+    "question": "Can you describe the directory structure of a Laravel project?",
+    "keywords": ["directory structure", "app", "bootstrap", "config", "database", "public", "resources", "routes", "storage"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 317,
+    "question": "What is the Spring Framework and what are its core features?",
+    "keywords": ["Spring Framework", "IoC", "AOP", "MVC", "ORM", "REST", "Security", "Modularity", "Testing"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 318,
+    "question": "How do you create a simple Spring application?",
+    "keywords": ["Spring Boot", "Maven", "Gradle", "Controller", "ApplicationContext", "DispatcherServlet"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 319,
+    "question": "What is Inversion of Control (IoC)? How does Spring facilitate IoC?",
+    "keywords": ["IoC", "Dependency Injection", "Bean management", "Annotations", "XML configuration", "Bean lifecycle"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 320,
+    "question": "What is the ApplicationContext in Spring?",
+    "keywords": ["ApplicationContext", "Bean lifecycle", "Bean scopes", "Dependency Injection", "ClassPathXmlApplicationContext", "AnnotationConfigApplicationContext"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 321,
+    "question": "Explain Dependency Injection and its types in the Spring context.",
+    "keywords": ["Dependency Injection", "Constructor Injection", "Setter Injection", "Field Injection", "Method Injection", "Decoupling"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 322,
+    "question": "What are Bean Scopes in Spring? Name them.",
+    "keywords": ["Bean Scopes", "Singleton", "Prototype", "Request", "Session", "Global Session", "WebSocket"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 323,
+    "question": "How do you configure a bean in Spring?",
+    "keywords": ["Bean configuration", "Annotation-based", "XML-based", "Java configuration", "@Component", "@Service", "@Bean"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 324,
+    "question": "Describe the role of the Spring Core container.",
+    "keywords": ["Core container", "IoC", "BeanFactory", "ApplicationContext", "Lifecycle management", "Dependency Injection"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 325,
+    "question": "What is a Spring configuration file?",
+    "keywords": ["Spring configuration", "XML", "Beans", "Module configuration", "Dependency Injection", "External configuration"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 326,
+    "question": "How do you create an ApplicationContext in a Spring application?",
+    "keywords": ["ApplicationContext", "ClassPathXmlApplicationContext", "FileSystemXmlApplicationContext", "AnnotationConfigApplicationContext", "GenericApplicationContext"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 327,
+    "question": "What is Aspect-Oriented Programming (AOP)?",
+    "keywords": ["AOP", "Cross-cutting concerns", "Aspect", "Join Point", "Pointcut", "Advice", "Weaving"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 328,
+    "question": "How does Spring support AOP?",
+    "keywords": ["Spring AOP", "Proxy", "Aspect", "Advice", "Pointcut", "Weaving", "Dynamic Proxy", "CGLIB"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 329,
+    "question": "What is ASP.NET Web API and what is it used for?",
+    "keywords": ["ASP.NET Web API", "RESTful services", "HTTP services", "web applications", "mobile apps", "SPAs"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 330,
+    "question": "How does ASP.NET Web API differ from WCF and ASP.NET MVC?",
+    "keywords": ["ASP.NET Web API", "WCF", "ASP.NET MVC", "HTTP services", "RESTful", "protocols", "view state"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 331,
+    "question": "Explain RESTful services and how they relate to ASP.NET Web API.",
+    "keywords": ["RESTful services", "HTTP methods", "stateless", "resources", "CRUD operations", "JSON", "XML"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 332,
+    "question": "What are HTTP verbs and how are they used in Web API?",
+    "keywords": ["HTTP verbs", "GET", "POST", "PUT", "PATCH", "DELETE", "CRUD operations", "Web API"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 333,
+    "question": "How do you create a basic Web API controller?",
+    "keywords": ["Web API controller", "ApiController", "HTTP methods mapping", "CRUD operations", "controller actions"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 334,
+    "question": "Describe routing in ASP.NET Web API.",
+    "keywords": ["routing", "attribute routing", "conventional routing", "RoutePrefix", "WebApiConfig", "HTTP verbs", "URI templates"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 335,
+    "question": "How are requests mapped to actions in Web API?",
+    "keywords": ["request mapping", "action selection", "HTTP verb", "URL routing", "attribute routing", "conventional routing"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 336,
+    "question": "What is content negotiation in the context of Web API?",
+    "keywords": ["content negotiation", "media types", "JSON", "XML", "Accept headers", "response formatting"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 337,
+    "question": "What data formats does Web API support by default for response data?",
+    "keywords": ["data formats", "JSON", "XML", "serialization", "response types", "Web API"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 338,
+    "question": "How do you secure a Web API?",
+    "keywords": ["security", "authentication", "authorization", "JWT", "token-based authentication", "HTTPS", "RBAC"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 339,
+    "question": "How can you host an ASP.NET Web API application?",
+    "keywords": ["hosting", "IIS", "self-hosting", "cloud platforms", "deployment", "scalability", "availability"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 340,
+    "question": "What is OWIN and how does it relate to Web API?",
+    "keywords": ["OWIN", "Katana", "middleware", "request pipeline", "Web API integration", "modularity"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 401,
+    "question": "What is Amazon Web Services (AWS) and what are its key features?",
+    "keywords": ["AWS", "cloud computing", "scalability", "global reach", "pay-as-you-go", "security", "AI/ML", "IoT"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 402,
+    "question": "Explain the concept of Regions and Availability Zones in AWS.",
+    "keywords": ["Regions", "Availability Zones", "high availability", "fault tolerance", "latency", "data replication"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 403,
+    "question": "What is an Amazon Machine Image (AMI) and how is it used?",
+    "keywords": ["AMI", "EC2", "template", "virtual server", "provisioning", "customization", "root volume"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 404,
+    "question": "Describe the difference between Elastic IP and Public IP in AWS.",
+    "keywords": ["Elastic IP", "Public IP", "static IP", "dynamic IP", "EC2", "cost", "internet access"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 405,
+    "question": "What is the role of the AWS Management Console?",
+    "keywords": ["AWS Management Console", "GUI", "resource management", "monitoring", "automation", "IAM"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 406,
+    "question": "Explain the concept of Elastic Computing in AWS.",
+    "keywords": ["Elastic Computing", "EC2", "scalability", "auto-scaling", "load balancing", "fault tolerance"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 407,
+    "question": "What is AWS Identity and Access Management (IAM) and why is it important?",
+    "keywords": ["IAM", "users", "groups", "roles", "authentication", "authorization", "security", "compliance"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 408,
+    "question": "Describe the AWS Shared Responsibility Model.",
+    "keywords": ["Shared Responsibility Model", "security of the cloud", "security in the cloud", "encryption", "IAM", "compliance"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 409,
+    "question": "What is the difference between Vertical Scaling and Horizontal Scaling in AWS?",
+    "keywords": ["vertical scaling", "horizontal scaling", "CPU", "RAM", "EC2 instances", "workload distribution"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 410,
+    "question": "Explain the concept of High Availability in AWS.",
+    "keywords": ["High Availability", "fault tolerance", "Availability Zones", "Auto Scaling", "Elastic Load Balancing", "CloudWatch"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 411,
+    "question": "What is Amazon Elastic Compute Cloud (EC2) and what are its key features?",
+    "keywords": ["EC2", "virtual machines", "instance types", "scalability", "security", "custom AMIs", "storage", "networking"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 412,
+    "question": "Describe the different EC2 instance types and their use cases.",
+    "keywords": ["EC2 instance types", "general purpose", "compute optimized", "memory optimized", "storage optimized", "accelerated computing", "use cases"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 413,
+    "question": "What is GraphQL and how does it differ from REST?",
+    "keywords": ["GraphQL", "REST", "API", "data fetching", "efficiency", "versioning", "flexibility"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 414,
+    "question": "Explain the main components of the GraphQL architecture.",
+    "keywords": ["GraphQL architecture", "client", "server", "schema", "resolvers", "data sources", "operations"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 415,
+    "question": "Can you describe the structure of a GraphQL query?",
+    "keywords": ["GraphQL query", "fields", "arguments", "aliases", "fragments", "directives", "operation types"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 416,
+    "question": "What are the core features of GraphQL?",
+    "keywords": ["declarative data fetching", "hierarchical structure", "strongly-typed schema", "single endpoint", "introspection", "real-time data"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 417,
+    "question": "What is a GraphQL schema and why is it important?",
+    "keywords": ["schema", "object types", "scalar types", "queries", "mutations", "interfaces", "unions", "directives"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 418,
+    "question": "Explain the concept of fields in GraphQL.",
+    "keywords": ["fields", "data retrieval", "self-referential", "hierarchy", "queries", "nested objects"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 419,
+    "question": "How does GraphQL handle data types?",
+    "keywords": ["GraphQL types", "scalars", "objects", "lists", "enums", "unions", "interfaces", "input types"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 420,
+    "question": "In GraphQL, what are queries and mutations?",
+    "keywords": ["queries", "mutations", "read data", "write data", "HTTP verbs", "immutability", "client-server communication"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 421,
+    "question": "Describe how you would fetch data with a GraphQL query.",
+    "keywords": ["data fetching", "query execution", "response handling", "client-server", "GraphQL endpoint"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 422,
+    "question": "What are scalar types in GraphQL?",
+    "keywords": ["scalar types", "Int", "Float", "String", "Boolean", "ID", "custom scalars"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 423,
+    "question": "Explain the role of resolvers in GraphQL.",
+    "keywords": ["resolvers", "data fetching", "data transformation", "data source", "root resolver", "nested resolver"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 424,
+    "question": "What are the advantages of using GraphQL over other API query languages?",
+    "keywords": ["advantages", "GraphQL", "REST", "efficient data retrieval", "real-time updates", "client-specific data", "tooling"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 425,
+    "question": "What is Kotlin and how does it interoperate with Java?",
+    "keywords": ["Kotlin", "Java", "JVM", "interoperability", "JetBrains", "Android", "libraries", "null safety", "coroutines"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 426,
+    "question": "How does Kotlin improve upon Java for Android development?",
+    "keywords": ["Kotlin", "Android", "developer experience", "null safety", "coroutines", "extension functions", "data classes", "type inference"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 427,
+    "question": "What are the basic types in Kotlin?",
+    "keywords": ["Kotlin", "basic types", "primitive types", "object types", "Any", "Array", "Function", "String", "Boolean"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 428,
+    "question": "Explain the difference between val and var in Kotlin.",
+    "keywords": ["val", "var", "mutable", "immutable", "variables", "Kotlin", "immutability", "state change"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 429,
+    "question": "How do you create a singleton in Kotlin?",
+    "keywords": ["singleton", "object keyword", "companion object", "Kotlin", "thread safety", "lazy initialization", "design patterns"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 430,
+    "question": "What are the Kotlin type inference rules?",
+    "keywords": ["type inference", "Kotlin", "compiler", "lambdas", "generics", "static types", "run", "let"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 431,
+    "question": "Can Kotlin code be executed without a main function?",
+    "keywords": ["Kotlin", "main function", "script mode", "kts", "Kotlin scripting", "direct execution", "IntelliJ IDEA"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 432,
+    "question": "What is the purpose of the Unit type in Kotlin?",
+    "keywords": ["Unit", "void alternative", "Kotlin", "functions", "return type", "singleton", "immutability", "functional programming"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 433,
+    "question": "How do you perform string interpolation in Kotlin?",
+    "keywords": ["string interpolation", "Kotlin", "$ symbol", "variables in strings", "expressions", "raw strings", "trimMargin"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 434,
+    "question": "What are extension functions in Kotlin?",
+    "keywords": ["extension functions", "Kotlin", "existing classes", "nullable types", "modular code", "import", "utility functions"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 435,
+    "question": "How are if expressions used in Kotlin as compared to Java?",
+    "keywords": ["if expressions", "Kotlin", "Java", "ternary operator alternative", "immutable assignment", "conditional evaluation"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 436,
+    "question": "Explain when expressions in Kotlin.",
+    "keywords": ["when expressions", "Kotlin", "switch alternative", "branching", "pattern matching", "sealed classes", "conditional evaluation"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 437,
+    "question": "What is DevOps and how does it enhance software delivery?",
+    "keywords": ["DevOps", "CI/CD", "collaboration", "automation", "continuous monitoring", "feedback", "software delivery"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 438,
+    "question": "Can you describe the key principles of DevOps?",
+    "keywords": ["DevOps principles", "customer-centricity", "agility", "continuous improvement", "collaboration", "security as code", "automation"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 439,
+    "question": "How do continuous integration and continuous deployment (CI/CD) relate to DevOps?",
+    "keywords": ["CI/CD", "automation", "continuous integration", "continuous deployment", "DevOps", "pipeline", "feedback"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 440,
+    "question": "What are the benefits of DevOps in software development and operations?",
+    "keywords": ["DevOps benefits", "agility", "reliability", "continuous delivery", "collaboration", "security", "efficiency"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 441,
+    "question": "Can you explain the concept of Infrastructure as Code (IaC)?",
+    "keywords": ["Infrastructure as Code", "IaC", "automation", "Terraform", "Ansible", "CloudFormation", "consistency", "version control"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 442,
+    "question": "What is meant by 'Shift Left' in DevOps?",
+    "keywords": ["Shift Left", "early testing", "TDD", "CI", "automated deployment", "quality assurance", "cost efficiency"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 443,
+    "question": "How does version control support DevOps practices?",
+    "keywords": ["version control", "Git", "collaboration", "change tracking", "CI/CD", "branching strategies", "code quality"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 444,
+    "question": "What role does automation play in DevOps?",
+    "keywords": ["automation", "CI/CD", "testing", "deployment", "configuration management", "container orchestration", "efficiency"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 445,
+    "question": "What are the common metrics used to measure DevOps success?",
+    "keywords": ["DevOps metrics", "deployment frequency", "lead time", "change failure rate", "MTTR", "automation coverage", "customer success"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 446,
+    "question": "How does DevOps differ from the Agile methodology?",
+    "keywords": ["DevOps", "Agile", "automation", "collaboration", "continuous deployment", "role integration", "iteration"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 447,
+    "question": "What are some popular tools used in the DevOps ecosystem for version control?",
+    "keywords": ["version control tools", "Git", "GitHub", "GitLab", "Bitbucket", "collaboration", "release management"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 448,
+    "question": "Can you list some CI/CD tools commonly used in DevOps?",
+    "keywords": ["CI/CD tools", "Jenkins", "GitLab CI", "Travis CI", "CircleCI", "Azure DevOps", "automation", "continuous integration"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 449,
+    "question": "What is ASP.NET and how does it differ from classic ASP?",
+    "keywords": ["ASP.NET", "Classic ASP", "web framework", "server-side scripting", "CLR", "performance", "security", "object-oriented", "data handling"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 450,
+    "question": "Describe the ASP.NET page life cycle.",
+    "keywords": ["Page Life Cycle", "ASP.NET", "Init", "Load", "PostBack", "Render", "Unload", "PreInit", "ViewState", "events"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 451,
+    "question": "What are the different types of state management in ASP.NET?",
+    "keywords": ["State Management", "ViewState", "Session", "Cookies", "Query String", "Local Storage", "HttpContext", "server-side", "client-side"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 452,
+    "question": "Explain the difference between server-side and client-side code.",
+    "keywords": ["Server-side code", "Client-side code", "ASP.NET", "HTML", "JavaScript", "security", "performance", "processing", "UI rendering"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 453,
+    "question": "What is a PostBack in ASP.NET?",
+    "keywords": ["PostBack", "ASP.NET", "ViewState", "IsPostBack", "form submission", "client-server communication", "state management"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 454,
+    "question": "What are WebForms in ASP.NET?",
+    "keywords": ["WebForms", "ASP.NET", "UI", "event-driven", "state management", "code-behind", "master pages", "user controls"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 455,
+    "question": "What is MVC in ASP.NET and how does it work?",
+    "keywords": ["MVC", "ASP.NET", "Model", "View", "Controller", "routing", "separation of concerns", "testability", "data flow"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 456,
+    "question": "Describe the role of a master page in ASP.NET WebForms.",
+    "keywords": ["Master Page", "ASP.NET", "WebForms", "layout", "template", "consistent design", "content pages", "ViewState"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 457,
+    "question": "What is a web.config file and what are its uses?",
+    "keywords": ["web.config", "ASP.NET", "configuration", "AppSettings", "ConnectionStrings", "security", "debug", "IIS", "performance"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 458,
+    "question": "Explain the concept of ViewState in ASP.NET.",
+    "keywords": ["ViewState", "ASP.NET", "state management", "postback", "page data persistence", "hidden field", "client-side"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 459,
+    "question": "What is a server control in ASP.NET?",
+    "keywords": ["Server Control", "ASP.NET", "HTML Server Control", "Web Control", "User Control", "state management", "event handling", "data binding"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 460,
+    "question": "What are user controls and custom controls?",
+    "keywords": ["User Control", "Custom Control", "ASP.NET", "reusability", "modularity", "Composite Control", "control hierarchy", "code-behind", "visual elements"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 461,
+    "question": "What does PHP stand for and what is its main purpose?",
+    "keywords": ["PHP", "server-side scripting", "dynamic web content", "HTML integration", "form handling", "database access", "session management"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 462,
+    "question": "How do you execute a PHP script from the command line?",
+    "keywords": ["PHP CLI", "php command", "scripts execution", "environment variables", "input/output redirection", "php.ini", "shebang"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 463,
+    "question": "Can you describe the differences between PHP 5 and PHP 7/8?",
+    "keywords": ["PHP 5", "PHP 7", "PHP 8", "performance", "type declarations", "null coalescing", "match expression", "union types", "anonymous classes"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 464,
+    "question": "What are the common ways to embed PHP into HTML?",
+    "keywords": ["embedding PHP", "PHP tags", "<?php ?>", "short tags", "ASP-style tags", "script tags", "HTML integration"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 465,
+    "question": "How would you create a PHP variable and how are they scoped (global, local, static)?",
+    "keywords": ["PHP variables", "scope", "global", "local", "static", "superglobals", "function scope", "session variables"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 466,
+    "question": "Explain the data types that are supported in PHP.",
+    "keywords": ["PHP data types", "integer", "float", "string", "boolean", "array", "object", "resource", "null", "callable", "iterable"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 467,
+    "question": "How does PHP handle error reporting?",
+    "keywords": ["PHP error handling", "error_reporting", "E_NOTICE", "E_WARNING", "E_ERROR", "E_DEPRECATED", "ini_set", "php.ini", "logging"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 468,
+    "question": "What is the purpose of php.ini file?",
+    "keywords": ["php.ini", "configuration", "memory limits", "error reporting", "session settings", "runtime configuration", "security settings"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 469,
+    "question": "How do you define a constant in PHP?",
+    "keywords": ["PHP constants", "define()", "global scope", "value types", "case-sensitivity", "best practices"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 470,
+    "question": "Can you describe the lifecycle of a PHP request?",
+    "keywords": ["PHP request lifecycle", "bootstrap", "pre-processing", "Zend Engine", "execution", "output buffering", "response", "web server"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 471,
+    "question": "Explain the use of sessions in PHP.",
+    "keywords": ["sessions", "session_start()", "data persistence", "cookies", "security", "lifetime", "CSRF protection", "user authentication"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 472,
+    "question": "How does PHP support cookies?",
+    "keywords": ["cookies", "setcookie()", "$_COOKIE", "expiration", "path", "domain", "secure", "HttpOnly", "session management"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 473,
+    "question": "Define caching in the context of computer programming.",
+    "keywords": ["caching", "performance", "latency reduction", "resource management", "write-through", "write-back", "distributed cache", "local cache"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 474,
+    "question": "What are the main purposes of using a cache in a software application?",
+    "keywords": ["performance enhancement", "latency reduction", "throughput", "resource conservation", "fault tolerance", "data consistency"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 475,
+    "question": "Explain the concept of cache hit and cache miss.",
+    "keywords": ["cache hit", "cache miss", "compulsory miss", "capacity miss", "conflict miss", "coherence miss", "pre-fetch miss"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 476,
+    "question": "Describe the impact of cache size on performance.",
+    "keywords": ["cache size", "hit rate", "latency", "energy consumption", "cache coherence", "CPU performance", "resource management"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 477,
+    "question": "How does a cache improve data retrieval times?",
+    "keywords": ["data retrieval", "latency reduction", "in-memory cache", "distributed cache", "browser cache", "load reduction"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 478,
+    "question": "What is the difference between local caching and distributed caching?",
+    "keywords": ["local caching", "distributed caching", "data scope", "network overhead", "consistency", "scalability", "fault tolerance"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 479,
+    "question": "Explain the concept of cache eviction and mention common strategies.",
+    "keywords": ["cache eviction", "LRU", "LFU", "FIFO", "MRU", "TTL", "replacement policies"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 480,
+    "question": "What is a cache key and how is it used?",
+    "keywords": ["cache key", "unique identifier", "key-value store", "consistency", "hashing", "composite keys"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 481,
+    "question": "Explain the importance of cache expiration and how it is managed.",
+    "keywords": ["cache expiration", "data freshness", "time-to-live", "resource management", "staleness", "on-demand update"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 482,
+    "question": "How does cache invalidation work and why is it necessary?",
+    "keywords": ["cache invalidation", "data consistency", "time-based invalidation", "event-based invalidation", "distributed cache", "write-through", "write-behind"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 483,
+    "question": "Describe the steps involved in implementing a basic cache system.",
+    "keywords": ["cache implementation", "data store", "key-value format", "eviction policy", "synchronization", "LRU", "MRU", "LFU"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 484,
+    "question": "Explain the use of hash maps in cache implementation.",
+    "keywords": ["hash map", "cache lookup", "O(1) access", "collision handling", "bucket indexing", "quick retrieval"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 485,
+    "question": "What is Flutter and why is it used?",
+    "keywords": ["Flutter", "Google", "UI toolkit", "cross-platform", "native compilation", "single codebase", "multi-platform development"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 486,
+    "question": "Which programming language is used by Flutter for app development?",
+    "keywords": ["Dart", "JIT compilation", "AOT compilation", "UI and logic", "hot reload", "shared language", "asynchronous support"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 487,
+    "question": "What is a widget in Flutter and what are its types?",
+    "keywords": ["widget", "StatelessWidget", "StatefulWidget", "UI components", "composition", "widget tree", "render objects"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 488,
+    "question": "Explain the Flutter architecture.",
+    "keywords": ["Flutter architecture", "widget tree", "rendering engine", "Dart.main()", "MaterialApp", "platform channels", "AOT and JIT"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 489,
+    "question": "What is the difference between StatefulWidget and StatelessWidget?",
+    "keywords": ["StatefulWidget", "StatelessWidget", "state management", "build method", "dynamic UI", "static UI", "performance"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 490,
+    "question": "How do you create a scrollable list in Flutter?",
+    "keywords": ["ListView", "GridView", "scrollable", "lazy loading", "builder pattern", "separated list", "performance optimization"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 491,
+    "question": "What is the significance of the BuildContext class in Flutter?",
+    "keywords": ["BuildContext", "widget tree", "state management", "inherited widget", "navigator", "lifecycle", "efficient rebuilding"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 492,
+    "question": "Explain the Flutter app lifecycle.",
+    "keywords": ["Flutter lifecycle", "initState", "dispose", "resumed", "paused", "inactive", "platform integration"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 493,
+    "question": "How do you debug a Flutter application?",
+    "keywords": ["debugging", "Flutter DevTools", "widget inspector", "hot reload", "logging", "emulator testing", "performance monitoring"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 494,
+    "question": "How is layout structured in Flutter?",
+    "keywords": ["layout", "widgets", "RenderObjects", "constraints", "Flex layout", "slivers", "responsive UI"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 495,
+    "question": "What is a pubspec.yaml file and what is its purpose?",
+    "keywords": ["pubspec.yaml", "dependencies", "dev_dependencies", "metadata", "assets", "SDK constraints", "package management"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 496,
+    "question": "What is the purpose of the main.dart file in Flutter?",
+    "keywords": ["main.dart", "entry point", "runApp()", "root widget", "MaterialApp", "widget tree initialization", "Flutter engine"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 497,
+    "question": "What is Kubernetes, and why is it used for container orchestration?",
+    "keywords": ["Kubernetes", "container orchestration", "scaling", "deployment", "service discovery", "rolling updates", "automation"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 498,
+    "question": "Describe the roles of master and worker nodes in the Kubernetes architecture.",
+    "keywords": ["master node", "worker node", "control plane", "API server", "scheduler", "kubelet", "etcd", "cluster management"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 499,
+    "question": "How do Pods facilitate the management of containers in Kubernetes?",
+    "keywords": ["Pods", "containers", "atomicity", "shared resources", "network namespace", "volumes", "lifecycle management"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 500,
+    "question": "What types of Services exist in Kubernetes, and how do they facilitate pod communication?",
+    "keywords": ["Services", "ClusterIP", "NodePort", "LoadBalancer", "ExternalName", "Headless", "selectors", "endpoints", "pod communication"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 501,
+    "question": "Explain the functionality of Namespaces in Kubernetes.",
+    "keywords": ["Namespaces", "resource isolation", "network isolation", "multi-tenancy", "resource quotas", "limit ranges", "IP management"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 502,
+    "question": "Differentiate between Deployments, StatefulSets, and DaemonSets.",
+    "keywords": ["Deployments", "StatefulSets", "DaemonSets", "stateless", "stateful", "node-level workloads", "pod management"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 503,
+    "question": "How do ReplicaSets ensure pod availability?",
+    "keywords": ["ReplicaSets", "pod availability", "controller-reconciler loop", "scaling", "self-healing", "desired state", "pod template"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 504,
+    "question": "What are Jobs in Kubernetes, and when is it suitable to use them?",
+    "keywords": ["Jobs", "batch processing", "parallelism", "serial jobs", "CronJobs", "pod lifecycle", "resource management"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 505,
+    "question": "How do Labels and Selectors work together in Kubernetes?",
+    "keywords": ["Labels", "Selectors", "resource grouping", "filtering", "services", "ReplicaSets", "Deployments", "resource management"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 506,
+    "question": "What would you consider when performing a rolling update in Kubernetes?",
+    "keywords": ["rolling update", "replica set", "maxUnavailable", "maxSurge", "readiness probe", "liveness probe", "deployment strategy"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 507,
+    "question": "Describe the purpose of Ingress and its key components.",
+    "keywords": ["Ingress", "Ingress controller", "load balancer", "HTTP routing", "rules", "services", "external traffic management"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 508,
+    "question": "How do you implement Network Policies, and what are their benefits?",
+    "keywords": ["Network Policies", "traffic control", "security", "ingress", "egress", "policy enforcement", "Cilium", "Calico"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 509,
+    "question": "What is Next.js and what are its main features?",
+    "keywords": ["Next.js", "SSR", "SSG", "hybrid rendering", "routing", "code splitting", "API routes", "image optimization", "Vercel deployment", "CSS support"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 510,
+    "question": "How does Next.js differ from Create React App?",
+    "keywords": ["Next.js", "Create React App", "SSR", "SSG", "CSR", "routing", "API handling", "code splitting", "SEO", "deployment"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 511,
+    "question": "What command is used to create a new Next.js app?",
+    "keywords": ["create-next-app", "npx", "npm", "Next.js setup", "project initialization", "Node.js"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 512,
+    "question": "How does Next.js handle server-side rendering (SSR)?",
+    "keywords": ["SSR", "server-side rendering", "getServerSideProps", "initial request", "data fetching", "SEO", "immediate content display"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 513,
+    "question": "What is the purpose of the pages directory in a Next.js project?",
+    "keywords": ["pages directory", "automatic routing", "dynamic routes", "file-based routing", "_app.js", "_document.js", "404 page"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 514,
+    "question": "In Next.js, how do you create a page that is rendered on the server for every request?",
+    "keywords": ["server-side rendering", "SSR", "getServerSideProps", "dynamic content", "real-time data", "props"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 515,
+    "question": "What file extensions does Next.js support for pages?",
+    "keywords": [".js", ".jsx", ".ts", ".tsx", ".mdx", ".css", ".module.css", ".scss", "custom error pages", "fetch.js"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 516,
+    "question": "How do environment variables work in Next.js?",
+    "keywords": ["environment variables", ".env.local", "server-side", "client-side", "build-time", "process.env", "secure storage", "Vercel"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 517,
+    "question": "What is Automatic Static Optimization in Next.js?",
+    "keywords": ["automatic static optimization", "static pages", "prerendering", "build-time HTML", "SSG", "ISR", "performance", "data freshness"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 518,
+    "question": "How does file-based routing work in Next.js?",
+    "keywords": ["file-based routing", "pages directory", "modularity", "nested directories", "route mapping", "isomorphic code", "limitations"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 519,
+    "question": "How do you create dynamic routes in Next.js?",
+    "keywords": ["dynamic routes", "[param].js", "[[...slug]].js", "useRouter", "query parameters", "user dashboards", "product pages", "SEO"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 520,
+    "question": "Describe the functionality of the Link component in Next.js.",
+    "keywords": ["Link component", "client-side navigation", "prefetching", "code splitting", "intelligent routing", "user experience", "accessibility"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 521,
+    "question": "What is Redis and what do you use it for?",
+    "keywords": ["Redis", "in-memory data store", "caching", "high performance", "key-value store", "session store", "real-time analytics", "queues", "Pub/Sub", "clustering"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 522,
+    "question": "How does Redis store data?",
+    "keywords": ["Redis storage", "in-memory", "data structures", "strings", "lists", "sets", "sorted sets", "hashes", "HyperLogLog", "streams", "bitmaps"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 523,
+    "question": "What data types can you store in Redis?",
+    "keywords": ["Redis data types", "strings", "lists", "sets", "sorted sets", "hashes", "HyperLogLog", "bitmaps", "geospatial indexing", "streams", "modules"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 524,
+    "question": "What is a Redis key and how should you structure it for best performance?",
+    "keywords": ["Redis key", "naming conventions", "key segmentation", "prefixing", "direct encoding", "memory optimization", "cleanup", "versioning"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 525,
+    "question": "How do you set an expiration on Redis keys?",
+    "keywords": ["Redis expiration", "TTL", "EXPIRE", "SETEX", "PSETEX", "PERSIST", "key lifecycle", "mass expiration", "Lua scripting"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 526,
+    "question": "What do the commands SET and GET do in Redis?",
+    "keywords": ["SET", "GET", "key-value operations", "atomicity", "MSET", "MGET", "expiration", "NX", "XX", "memory efficiency"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 527,
+    "question": "How does Redis handle data persistence?",
+    "keywords": ["Redis persistence", "RDB snapshots", "AOF logs", "data durability", "disk storage", "recovery", "performance trade-offs"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 528,
+    "question": "Explain the difference between RDB and AOF persistence strategies in Redis.",
+    "keywords": ["RDB", "AOF", "point-in-time snapshots", "command logging", "durability", "recovery time", "performance impact", "data safety"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 529,
+    "question": "How would you implement a simple counter in Redis?",
+    "keywords": ["Redis counter", "INCR", "HINCRBY", "atomic operations", "hashmap counters", "value increment", "standalone counter", "performance"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 530,
+    "question": "What are hashes in Redis and how do you use them?",
+    "keywords": ["Redis hashes", "HSET", "HGET", "HGETALL", "HDEL", "HEXISTS", "user profiles", "field-specific operations", "memory efficiency"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 531,
+    "question": "How do you handle atomic operations in Redis?",
+    "keywords": ["atomic operations", "MULTI", "EXEC", "WATCH", "transactional commands", "concurrency control", "data integrity", "race conditions"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 532,
+    "question": "Can you describe the Pub/Sub model and how it's implemented in Redis?",
+    "keywords": ["Pub/Sub", "publisher", "subscriber", "channels", "message broadcasting", "subscription registry", "message ordering", "real-time communication"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 533,
+    "question": "What is Android, and how is it different from other mobile operating systems?",
+    "keywords": ["Android", "mobile OS", "open-source", "customizable", "Google services", "iOS comparison", "Linux kernel"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 534,
+    "question": "What programming languages can you use to develop Android applications?",
+    "keywords": ["Java", "Kotlin", "C++", "C#", "Python", "Dart", "Go", "Rust", "Lua", "Minsky"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 535,
+    "question": "Explain the Android application architecture.",
+    "keywords": ["MVC", "MVP", "MVVM", "ViewModel", "LiveData", "DataBinding", "Room", "Jetpack", "Activity", "Service"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 536,
+    "question": "Describe the Android application lifecycle.",
+    "keywords": ["activity lifecycle", "service lifecycle", "broadcast receiver lifecycle", "content provider lifecycle", "states", "transitions"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 537,
+    "question": "What is an Activity in Android, and what is its lifecycle?",
+    "keywords": ["Activity", "UI screen", "onCreate", "onStart", "onResume", "onPause", "onStop", "onRestart", "onDestroy"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 538,
+    "question": "What are Intents, and how are they used in Android?",
+    "keywords": ["Intent", "explicit intent", "implicit intent", "activity communication", "service communication", "broadcast", "action", "data"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 539,
+    "question": "Explain the concept of Services in Android.",
+    "keywords": ["Service", "foreground service", "background service", "bound service", "threading", "resource management", "task execution"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 540,
+    "question": "Define a Broadcast Receiver and its use in Android apps.",
+    "keywords": ["Broadcast Receiver", "intent filter", "system events", "app events", "onReceive", "registration", "security"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 541,
+    "question": "What are Content Providers, and when should you use them?",
+    "keywords": ["Content Provider", "data sharing", "URI", "Cursor", "data access", "permissions", "contacts", "security"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 542,
+    "question": "Where is the AndroidManifest.xml file located in an Android project?",
+    "keywords": ["AndroidManifest.xml", "root directory", "app configuration", "permissions", "activities", "services", "providers"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 543,
+    "question": "How does the view system work in Android?",
+    "keywords": ["View system", "View hierarchy", "ViewGroup", "Activity lifecycle", "event handling", "onDraw", "invalidate", "UI update"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 544,
+    "question": "What is the Dalvik Virtual Machine and how does it relate to ART?",
+    "keywords": ["Dalvik VM", "ART", "DEX", "JIT compilation", "AOT compilation", "performance", "Android runtime"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 545,
+    "question": "What are the different types of NoSQL databases, with an example of each?",
+    "keywords": ["NoSQL types", "Key-Value Store", "Wide-Column Store", "Document Store", "Graph Database", "examples", "data models"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 546,
+    "question": "Explain eventual consistency and its role in NoSQL databases.",
+    "keywords": ["eventual consistency", "NoSQL", "data replication", "conflict resolution", "availability", "CAP theorem"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 547,
+    "question": "How is data modeling in NoSQL databases distinct from relational databases?",
+    "keywords": ["NoSQL vs RDBMS", "schema flexibility", "ACID vs BASE", "scaling", "data structures", "document vs row"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 548,
+    "question": "What advantages do NoSQL databases offer for managing large volumes of data?",
+    "keywords": ["NoSQL advantages", "horizontal scalability", "sharding", "performance", "schema flexibility", "distributed storage"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 549,
+    "question": "When would you choose a NoSQL database over a relational database?",
+    "keywords": ["NoSQL use cases", "dynamic schema", "horizontal scaling", "high throughput", "application needs", "relational alternatives"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 550,
+    "question": "Describe the various consistency models in NoSQL databases and how they handle transactions and conflict resolution.",
+    "keywords": ["NoSQL consistency", "eventual consistency", "causal consistency", "read-your-writes", "session consistency", "conflict resolution"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 551,
+    "question": "List some NoSQL databases and the primary use cases they address.",
+    "keywords": ["NoSQL databases", "MongoDB", "Cassandra", "Redis", "Neo4j", "Couchbase", "use cases"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 552,
+    "question": "How does a key-value store operate, and can you give a use-case example?",
+    "keywords": ["key-value store", "data model", "performance", "session management", "examples", "Redis", "DynamoDB"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 553,
+    "question": "What strategies can be used to scale key-value stores for high demand or large data volumes?",
+    "keywords": ["key-value scaling", "sharding", "replication", "in-memory", "indexing", "load balancing", "auto-partitioning"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 554,
+    "question": "What are some drawbacks of key-value stores compared to other NoSQL types?",
+    "keywords": ["key-value drawbacks", "query limitations", "indexing", "relationships", "aggregation", "complex data"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 555,
+    "question": "Name a scenario where a key-value store might not be the best fit.",
+    "keywords": ["key-value limitations", "transaction needs", "data integrity", "complex queries", "relational requirements", "use cases"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 556,
+    "question": "What makes a document in a NoSQL database different from a row in a relational database?",
+    "keywords": ["document vs row", "NoSQL document", "RDBMS row", "data structure", "transactions", "hierarchical vs tabular"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 557,
+    "question": "What is C# and what are its key features?",
+    "keywords": ["C#", "object-oriented", "multi-paradigm", ".NET", "type safety", "memory management", "asynchronous programming", "LINQ", "cross-platform", "IDE support"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 558,
+    "question": "Explain the basic structure of a C# program.",
+    "keywords": ["C# program structure", "namespace", "class", "method", "Main method", "variables", "control statements", "comments", "directives", "console I/O"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 559,
+    "question": "What are the different types of data types available in C#?",
+    "keywords": ["C# data types", "value types", "reference types", "integral types", "floating-point types", "decimal", "bool", "char", "string", "object"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 560,
+    "question": "What is the difference between value types and reference types?",
+    "keywords": ["value types", "reference types", "stack vs heap", "memory management", "assignment behavior", "nullability", "performance", "struct", "class"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 561,
+    "question": "What are nullable types in C# and how are they used?",
+    "keywords": ["nullable types", "int?", "null-conditional operators", "HasValue", "Value property", "optional data", "database fields", "user input"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 562,
+    "question": "Can you describe what namespaces are and how they are used in C#?",
+    "keywords": ["namespaces", "code organization", "prevent naming conflicts", "accessibility control", "using directives", "nested namespaces", "System namespace", "best practices"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 563,
+    "question": "Explain the concept of boxing and unboxing in C#.",
+    "keywords": ["boxing", "unboxing", "value types", "reference types", "memory allocation", "type casting", "performance overhead", "heap vs stack", "CLR"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 564,
+    "question": "What is Type Casting and what are its types in C#?",
+    "keywords": ["type casting", "implicit casting", "explicit casting", "as operator", "is operator", "data conversion", "InvalidCastException"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 565,
+    "question": "What are operators in C# and can you provide examples?",
+    "keywords": ["operators", "arithmetic operators", "comparison operators", "logical operators", "ternary operator", "null coalescing", "bitwise operators", "assignment operators"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 566,
+    "question": "What is the difference between == operator and .Equals() method?",
+    "keywords": ["== operator", ".Equals()", "reference equality", "value equality", "overriding", "value types", "reference types", "custom classes"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 567,
+    "question": "What is the purpose of the var keyword in C#?",
+    "keywords": ["var keyword", "type inference", "code conciseness", "anonymous types", "LINQ", "for-each loops", "complex types", "code readability"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 568,
+    "question": "What are the differences between const and readonly keywords?",
+    "keywords": ["const", "readonly", "immutable fields", "initialization", "compile-time", "run-time", "primitive types", "class instances", "C# keywords"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 569,
+    "question": "What is Big-O Notation and why is it important in algorithm analysis?",
+    "keywords": ["Big-O", "time complexity", "space complexity", "algorithm analysis", "scalability", "dominant term", "asymptotic analysis", "worst-case"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 570,
+    "question": "Explain the difference between Big-O, Big-Theta, and Big-Omega notations.",
+    "keywords": ["Big-O", "Big-Theta", "Big-Omega", "upper bound", "tight bound", "lower bound", "complexity analysis", "algorithm efficiency"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 571,
+    "question": "Describe the role of constants and lower-order terms in Big-O analysis.",
+    "keywords": ["constants", "lower-order terms", "dominant term", "asymptotic notation", "practical complexity", "Big-O simplification"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 572,
+    "question": "Give examples of how amortized analysis can provide a more balanced complexity measure.",
+    "keywords": ["amortized analysis", "dynamic array", "binary search", "fibonacci caching", "average case complexity", "algorithm efficiency"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 573,
+    "question": "How do coefficients of higher-order terms affect Big-O Notation in practical scenarios?",
+    "keywords": ["coefficients", "higher-order terms", "linear vs quadratic", "practical performance", "algorithm comparison", "asymptotic analysis"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 574,
+    "question": "Explain how probabilistic algorithms can have a different Big-O Notation compared to deterministic ones.",
+    "keywords": ["probabilistic algorithms", "deterministic algorithms", "expected complexity", "graph connectivity", "randomized algorithms", "time complexity"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 575,
+    "question": "Analyze the Big-O time complexity of array operations like access, search, insert, and delete.",
+    "keywords": ["arrays", "time complexity", "access", "search", "insert", "delete", "linear search", "binary search", "amortized insertion"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 576,
+    "question": "Discuss the Big-O space complexity of using linked lists.",
+    "keywords": ["linked lists", "space complexity", "singly linked list", "doubly linked list", "node pointer overhead", "memory usage"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 577,
+    "question": "Compare the Big-O complexities of various sorting algorithms.",
+    "keywords": ["sorting algorithms", "bubble sort", "insertion sort", "selection sort", "merge sort", "quick sort", "heap sort", "radix sort", "time complexity"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 578,
+    "question": "Evaluate the Big-O time complexity of binary search.",
+    "keywords": ["binary search", "divide and conquer", "sorted arrays", "time complexity", "logarithmic complexity", "search efficiency"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 579,
+    "question": "Determine the Big-O time and space complexities of hash table operations.",
+    "keywords": ["hash table", "search", "insert", "delete", "collision resolution", "rehashing", "amortized complexity", "space complexity"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 580,
+    "question": "Discuss the Big-O complexities of tree operations, including binary search trees and AVL trees.",
+    "keywords": ["BST", "AVL tree", "search", "insert", "rotations", "balanced tree", "time complexity", "space complexity"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 581,
+    "question": "What is Vue.js and why would you use it?",
+    "keywords": ["Vue.js", "JavaScript framework", "user interfaces", "single-page applications", "virtual DOM", "data binding", "progressive framework"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 582,
+    "question": "How do you set up a project with Vue.js?",
+    "keywords": ["Vue CLI", "npm", "yarn", "project initialization", "webpack", "Babel", "project structure", "development server"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 583,
+    "question": "Can you explain the Vue.js lifecycle hooks?",
+    "keywords": ["lifecycle hooks", "beforeCreate", "created", "beforeMount", "mounted", "beforeUpdate", "updated", "beforeDestroy", "destroyed"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 584,
+    "question": "What are Vue.js components and how do you use them?",
+    "keywords": ["components", "template", "script", "style", "reusable elements", "registration", "modular development", "component hierarchy"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 585,
+    "question": "How do you bind data to the view in Vue.js?",
+    "keywords": ["data binding", "one-way binding", "two-way binding", "v-model", "v-bind", "v-on", "v-for", "v-if", "reactivity"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 586,
+    "question": "What is a Vue instance and its purpose?",
+    "keywords": ["Vue instance", "data management", "methods", "computed properties", "watchers", "lifecycle hooks", "component orchestration"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 587,
+    "question": "Explain the virtual DOM in Vue.js.",
+    "keywords": ["virtual DOM", "performance", "efficient rendering", "DOM updates", "re-rendering", "reactivity", "batching"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 588,
+    "question": "What are directives in Vue.js? Can you give examples?",
+    "keywords": ["directives", "v-bind", "v-model", "v-on", "v-if", "v-show", "v-for", "data-driven DOM manipulation"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 589,
+    "question": "How do you handle user inputs and form submissions in Vue.js?",
+    "keywords": ["forms", "user input", "v-model", "v-on:submit", "event handling", "async operations", "input validation", "reactivity"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 590,
+    "question": "Discuss the methods property in a Vue component.",
+    "keywords": ["methods", "component functions", "event handling", "data manipulation", "reusability", "scope", "component logic"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 591,
+    "question": "Explain the difference between v-bind and v-model.",
+    "keywords": ["v-bind", "v-model", "data binding", "one-way binding", "two-way binding", "form elements", "HTML attributes"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 592,
+    "question": "What are computed properties and how are they used?",
+    "keywords": ["computed properties", "derived data", "caching", "dependencies", "performance", "reactivity", "Vue templates"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 593,
+    "question": "What is Redux and how is it used in web development?",
+    "keywords": ["Redux", "state management", "global store", "actions", "reducers", "predictable state", "UI synchronization"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 594,
+    "question": "Can you describe the three principles that Redux is based upon?",
+    "keywords": ["single source of truth", "state is read-only", "pure functions", "predictability", "state management"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 595,
+    "question": "What is an action in Redux?",
+    "keywords": ["Redux", "action", "payload", "type", "state change", "dispatch"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 596,
+    "question": "How are actions used to change the state in a Redux application?",
+    "keywords": ["actions", "dispatch", "reducers", "state updates", "unidirectional data flow", "middleware"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 597,
+    "question": "What is a reducer in Redux and what role does it play?",
+    "keywords": ["reducer", "pure function", "state update", "immutable state", "combineReducers", "modularity"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 598,
+    "question": "How does Redux differ from local component state in React?",
+    "keywords": ["Redux", "local state", "global state", "prop drilling", "predictable updates", "shared data"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 599,
+    "question": "Define “store” in the context of Redux.",
+    "keywords": ["store", "Redux", "state container", "getState", "dispatch", "subscribe", "replaceReducer"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 600,
+    "question": "Can you describe the concept of 'single source of truth' in Redux?",
+    "keywords": ["single source of truth", "centralized state", "predictability", "debugging", "data consistency"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 601,
+    "question": "What is meant by 'immutable state,' and why is it important in Redux?",
+    "keywords": ["immutable state", "state management", "predictability", "performance optimization", "debugging", "thread safety"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 602,
+    "question": "Explain the significance of the combineReducers function.",
+    "keywords": ["combineReducers", "Redux", "modularity", "state slices", "code organization", "performance"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 603,
+    "question": "What are pure functions and side effects in the context of Redux?",
+    "keywords": ["pure functions", "side effects", "reducers", "predictability", "redux-thunk", "redux-saga"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 604,
+    "question": "How do you handle asynchronous actions in Redux?",
+    "keywords": ["asynchronous actions", "redux-thunk", "middleware", "dispatch", "async flow", "API calls"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 605,
+    "question": "What is cryptography, and what are its main goals?",
+    "keywords": ["encryption", "decryption", "key management", "integrity", "authentication", "non-repudiation", "data security"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 606,
+    "question": "Explain the difference between symmetric and asymmetric cryptography.",
+    "keywords": ["symmetric encryption", "asymmetric encryption", "key exchange", "AES", "RSA", "DES", "ECC"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 607,
+    "question": "What is a cryptographic hash function, and what properties must it have?",
+    "keywords": ["hash function", "pre-image resistance", "collision resistance", "deterministic", "password protection", "integrity"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 608,
+    "question": "Describe the concept of public key infrastructure (PKI).",
+    "keywords": ["PKI", "digital certificates", "certificate authority", "key pair", "authentication", "non-repudiation", "secure communication"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 609,
+    "question": "What is a digital signature, and how does it work?",
+    "keywords": ["digital signature", "public key", "private key", "signing algorithm", "verification", "authenticity", "integrity"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 610,
+    "question": "Can you explain what a nonce is and how it's used in cryptography?",
+    "keywords": ["nonce", "random value", "replay attack prevention", "session security", "TLS", "SSL", "unique values"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 611,
+    "question": "What does it mean for a cryptographic algorithm to be 'computationally secure'?",
+    "keywords": ["computational security", "RSA", "RSA key length", "factorization problem", "efficiency", "practical security"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 612,
+    "question": "Describe the concept of perfect secrecy and name an encryption system that achieves it.",
+    "keywords": ["perfect secrecy", "unconditional security", "one-time pad", "information-theoretic security", "key length", "random key"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 613,
+    "question": "What are substitution and permutation in the context of encryption algorithms?",
+    "keywords": ["substitution", "permutation", "cipher", "plaintext", "ciphertext", "classical encryption", "data scrambling"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 614,
+    "question": "Explain the basic principle behind the AES encryption algorithm.",
+    "keywords": ["AES", "block cipher", "substitution-permutation network", "rounds", "key expansion", "encryption", "state array"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 615,
+    "question": "What is the Data Encryption Standard (DES), and why is it considered insecure today?",
+    "keywords": ["DES", "symmetric key", "56-bit key", "brute force", "cryptanalysis", "3DES", "AES"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 616,
+    "question": "Describe the differences between RSA and ECC (Elliptic Curve Cryptography).",
+    "keywords": ["RSA", "ECC", "key size", "speed", "encryption", "signature", "public key cryptography"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 617,
+    "question": "What is software testing, and why is it important?",
+    "keywords": ["software testing", "quality assurance", "error detection", "risk mitigation", "customer satisfaction", "process improvement"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 618,
+    "question": "Define the difference between verification and validation in software testing.",
+    "keywords": ["verification", "validation", "requirements adherence", "user needs", "QA process", "testing types"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 619,
+    "question": "Explain the software development life cycle and the role testing plays in each phase.",
+    "keywords": ["SDLC", "requirement analysis", "design", "implementation", "deployment", "unit testing", "system testing", "acceptance testing"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 620,
+    "question": "What are the different levels of software testing?",
+    "keywords": ["unit testing", "integration testing", "system testing", "acceptance testing", "alpha testing", "beta testing", "component testing"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 621,
+    "question": "Describe the difference between static and dynamic testing.",
+    "keywords": ["static testing", "dynamic testing", "code review", "execution", "bug detection", "coverage", "test objectives"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 622,
+    "question": "What is a test case, and what elements should it contain?",
+    "keywords": ["test case", "ID", "title", "description", "steps to reproduce", "expected outcome", "actual outcome", "assigned tester"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 623,
+    "question": "Explain the concept of coverage in testing and the main types of coverage.",
+    "keywords": ["coverage", "line coverage", "branch coverage", "path coverage", "statement coverage", "code execution"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 624,
+    "question": "What is the difference between white-box, black-box, and grey-box testing?",
+    "keywords": ["white-box testing", "black-box testing", "grey-box testing", "internal structure", "functional testing", "test design"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 625,
+    "question": "What is regression testing, and why is it performed?",
+    "keywords": ["regression testing", "code changes", "stability assurance", "selective testing", "unit-test-driven regression", "automation"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 626,
+    "question": "Explain unit testing and which tools you might use for it.",
+    "keywords": ["unit testing", "component testing", "JUnit", "NUnit", "PyTest", "Google Test", "Mocha", "repeatability", "isolation"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 627,
+    "question": "What is integration testing and what are its types?",
+    "keywords": ["integration testing", "top-down", "bottom-up", "sandwich testing", "component interactions", "drivers", "stubs"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 628,
+    "question": "Define acceptance testing and describe its types.",
+    "keywords": ["acceptance testing", "alpha testing", "beta testing", "user acceptance testing", "contract acceptance", "regulation acceptance", "operational testing"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 629,
+    "question": "What is a Hash Table?",
+    "keyword": "Hash Table",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 630,
+    "question": "What is Hashing?",
+    "keyword": "Hashing",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 631,
+    "question": "Explain the difference between Hashing and Hash Tables.",
+    "keyword": "Hashing vs Hash Table",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 632,
+    "question": "Provide a simple example of a Hash Function.",
+    "keyword": "Hash Function",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 633,
+    "question": "How do hash tables work under the hood in languages like Java, Python, and C++?",
+    "keyword": "Implementation Details",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 634,
+    "question": "What are Hash Collisions?",
+    "keyword": "Collision",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 635,
+    "question": "Name some Collision Handling Techniques.",
+    "keyword": "Collision Handling",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 636,
+    "question": "Describe the characteristics of a good hash function.",
+    "keyword": "Good Hash Function",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 637,
+    "question": "What is Separate Chaining, and how does it handle collisions?",
+    "keyword": "Separate Chaining",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 638,
+    "question": "Explain Open Addressing and its different probing techniques.",
+    "keyword": "Open Addressing",
+    "difficulty": "Difficult"
+  },
+  {
+    "id": 639,
+    "question": "Explain the Time and Space Complexity of a Hash Table.",
+    "keyword": "Complexity Analysis",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 640,
+    "question": "What is a Load Factor in the context of Hash Tables?",
+    "keyword": "Load Factor",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 641,
+    "question": "What is Ruby, and why is it popular for web development?",
+    "keyword": ["Ruby", "Web Development", "Ruby on Rails"],
+    "difficulty": "Easy"
+  },
+  {
+    "id": 642,
+    "question": "What are the basic data types in Ruby?",
+    "keyword": ["Data Types", "Primitive Types", "Collections"],
+    "difficulty": "Easy"
+  },
+  {
+    "id": 643,
+    "question": "Explain the difference between symbols and strings in Ruby.",
+    "keyword": ["Symbols", "Strings", "Memory Management"],
+    "difficulty": "Easy"
+  },
+  {
+    "id": 644,
+    "question": "How are constants declared and what is their scope in Ruby?",
+    "keyword": ["Constants", "Scope", "Modules", "Classes"],
+    "difficulty": "Medium"
+  },
+  {
+    "id": 645,
+    "question": "Explain the difference between require and include in Ruby.",
+    "keyword": ["require", "include", "Modules", "Dependencies"],
+    "difficulty": "Medium"
+  },
+  {
+    "id": 646,
+    "question": "What are Ruby iterators and why are they important?",
+    "keyword": ["Iterators", "Enumerable", "Blocks"],
+    "difficulty": "Medium"
+  },
+  {
+    "id": 647,
+    "question": "How does error handling work in Ruby?",
+    "keyword": ["Exception Handling", "rescue", "ensure"],
+    "difficulty": "Medium"
+  },
+  {
+    "id": 648,
+    "question": "Describe the difference between local, instance, and class variables in Ruby.",
+    "keyword": ["Variable Scope", "Local Variables", "Instance Variables", "Class Variables"],
+    "difficulty": "Medium"
+  },
+  {
+    "id": 649,
+    "question": "How does garbage collection work in Ruby?",
+    "keyword": ["Garbage Collection", "Memory Management", "Mark and Sweep"],
+    "difficulty": "Difficult"
+  },
+  {
+    "id": 650,
+    "question": "What is the role of self in Ruby?",
+    "keyword": ["self", "Context", "Object Model"],
+    "difficulty": "Difficult"
+  },
+  {
+    "id": 651,
+    "question": "Explain the principle of Convention over Configuration in Ruby.",
+    "keyword": ["Convention over Configuration", "Ruby on Rails", "Framework Design"],
+    "difficulty": "Difficult"
+  },
+  {
+    "id": 652,
+    "question": "How does Ruby support metaprogramming?",
+    "keyword": ["Metaprogramming", "Dynamic Methods", "Open Classes"],
+    "difficulty": "Difficult"
+  },
+  {
+    "id": 653,
+    "question": "What is load balancing in the context of modern web services?",
+    "keywords": ["load balancing", "traffic distribution", "web services", "scalability", "availability"],
+    "difficulty": "Easy"
+  },
+  {
+    "id": 654,
+    "question": "What are the primary objectives of implementing load balancing?",
+    "keywords": ["resource utilization", "reliability", "performance", "high availability"],
+    "difficulty": "Easy"
+  },
+  {
+    "id": 655,
+    "question": "Explain the difference between hardware and software load balancers.",
+    "keywords": ["hardware load balancer", "software load balancer", "scalability", "cost", "performance"],
+    "difficulty": "Medium"
+  },
+  {
+    "id": 656,
+    "question": "What are the most commonly used load balancing algorithms?",
+    "keywords": ["round robin", "least connections", "IP hash", "weighted algorithms"],
+    "difficulty": "Easy"
+  },
+  {
+    "id": 657,
+    "question": "What is a sticky session and why is it used?",
+    "keywords": ["sticky session", "session persistence", "stateful applications"],
+    "difficulty": "Medium"
+  },
+  {
+    "id": 658,
+    "question": "How does load balancing improve application reliability?",
+    "keywords": ["fault tolerance", "redundancy", "health checks", "high availability"],
+    "difficulty": "Medium"
+  },
+  {
+    "id": 659,
+    "question": "How do load balancers perform health checks on backend servers?",
+    "keywords": ["health checks", "active monitoring", "passive monitoring", "server availability"],
+    "difficulty": "Medium"
+  },
+  {
+    "id": 660,
+    "question": "What are the advantages and disadvantages of round-robin load balancing?",
+    "keywords": ["round robin", "simplicity", "performance trade-offs"],
+    "difficulty": "Easy"
+  },
+  {
+    "id": 661,
+    "question": "Why is the least connections method significant in load balancing?",
+    "keywords": ["least connections", "resource efficiency", "dynamic traffic distribution"],
+    "difficulty": "Medium"
+  },
+  {
+    "id": 662,
+    "question": "How does a load balancer handle server failures?",
+    "keywords": ["failover", "health monitoring", "fault tolerance", "redundancy"],
+    "difficulty": "Difficult"
+  },
+  {
+    "id": 663,
+    "question": "How does traffic distribution differ in stateless versus stateful applications?",
+    "keywords": ["stateless architecture", "stateful architecture", "session management"],
+    "difficulty": "Difficult"
+  },
+  {
+    "id": 664,
+    "question": "What is session persistence and when should it be avoided?",
+    "keywords": ["session persistence", "scalability", "server affinity", "load imbalance"],
+    "difficulty": "Difficult"
+  },
+  {
+    "id": 665,
+    "question": "What is a Greedy Algorithm?",
+    "keywords": ["greedy algorithm", "local optimum", "optimization", "algorithm design"],
+    "difficulty": "Easy"
+  },
+  {
+    "id": 666,
+    "question": "What types of problems are best suited for greedy algorithms?",
+    "keywords": ["problem suitability", "optimization problems", "incremental decisions"],
+    "difficulty": "Easy"
+  },
+  {
+    "id": 667,
+    "question": "What characteristics indicate that a problem can be solved using a greedy approach?",
+    "keywords": ["greedy choice property", "optimal substructure", "irreversibility"],
+    "difficulty": "Medium"
+  },
+  {
+    "id": 668,
+    "question": "What is the difference between greedy algorithms and heuristic algorithms?",
+    "keywords": ["greedy vs heuristic", "local decisions", "approximation"],
+    "difficulty": "Medium"
+  },
+  {
+    "id": 669,
+    "question": "Compare Greedy, Divide and Conquer, and Dynamic Programming approaches.",
+    "keywords": ["greedy", "divide and conquer", "dynamic programming", "algorithm comparison"],
+    "difficulty": "Medium"
+  },
+  {
+    "id": 670,
+    "question": "Is Dijkstra’s algorithm greedy or dynamic programming, and why?",
+    "keywords": ["Dijkstra", "greedy approach", "dynamic programming", "shortest path"],
+    "difficulty": "Difficult"
+  },
+  {
+    "id": 671,
+    "question": "What is the Greedy Choice Property and why is it important?",
+    "keywords": ["greedy choice property", "local optimality", "global optimality"],
+    "difficulty": "Medium"
+  },
+  {
+    "id": 672,
+    "question": "How can the correctness of a greedy algorithm be proven?",
+    "keywords": ["proof of correctness", "exchange argument", "monotonicity"],
+    "difficulty": "Difficult"
+  },
+  {
+    "id": 673,
+    "question": "What role does sorting play in many greedy algorithms?",
+    "keywords": ["sorting", "decision ordering", "greedy efficiency"],
+    "difficulty": "Medium"
+  },
+  {
+    "id": 674,
+    "question": "Can greedy algorithms always guarantee an optimal solution? Explain.",
+    "keywords": ["optimality", "limitations", "counterexamples"],
+    "difficulty": "Difficult"
+  },
+  {
+    "id": 675,
+    "question": "What is the WebSocket protocol and how does it differ from HTTP?",
+    "keyword": "WebSocket vs HTTP",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 676,
+    "question": "What are the key features of WebSocket communication?",
+    "keyword": "WebSocket Features",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 677,
+    "question": "What are common real-time use cases where WebSockets are preferred?",
+    "keyword": "WebSocket Use Cases",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 678,
+    "question": "How does the WebSocket handshake process work?",
+    "keyword": "WebSocket Handshake",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 679,
+    "question": "What are the advantages of WebSockets over polling and long polling?",
+    "keyword": "WebSocket Advantages",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 680,
+    "question": "What limitations or drawbacks should be considered when using WebSockets?",
+    "keyword": "WebSocket Limitations",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 681,
+    "question": "How do WebSockets handle communication through proxies and firewalls?",
+    "keyword": "WebSocket and Firewalls",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 682,
+    "question": "What security risks are associated with WebSockets and how can they be mitigated?",
+    "keyword": "WebSocket Security",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 683,
+    "question": "How do WebSockets detect and manage broken or inactive connections?",
+    "keyword": "Connection Management",
+    "difficulty": "Difficult"
+  },
+  {
+    "id": 684,
+    "question": "What is the role of ping and pong frames in WebSocket communication?",
+    "keyword": "Ping Pong Frames",
+    "difficulty": "Difficult"
+  },
+  {
+    "id": 685,
+    "question": "How do WebSockets ensure message ordering and reliable delivery?",
+    "keyword": "Message Reliability",
+    "difficulty": "Difficult"
+  },
+  {
+    "id": 686,
+    "question": "What is the difference between WebSockets, Server-Sent Events (SSE), and HTTP polling?",
+    "keyword": "WebSocket vs SSE vs Polling",
+    "difficulty": "Difficult"
+  },
+  {
+    "id": 687,
+    "question": "What is a Linked List and how does it differ from an array?",
+    "keyword": "Linked List Basics",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 688,
+    "question": "What are the different types of Linked Lists?",
+    "keyword": "Types of Linked Lists",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 689,
+    "question": "What are the advantages and disadvantages of Linked Lists compared to arrays?",
+    "keyword": "Linked List Pros and Cons",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 690,
+    "question": "How does memory allocation in a Linked List differ from an array?",
+    "keyword": "Memory Allocation",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 691,
+    "question": "What are the basic operations performed on a Linked List?",
+    "keyword": "Linked List Operations",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 692,
+    "question": "When is a Doubly Linked List more efficient than a Singly Linked List?",
+    "keyword": "Singly vs Doubly Linked List",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 693,
+    "question": "What are real-world applications of Linked Lists?",
+    "keyword": "Linked List Use Cases",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 694,
+    "question": "When is a Circular Linked List preferred over a linear Linked List?",
+    "keyword": "Circular Linked List",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 695,
+    "question": "In what scenarios is a Linked List more suitable than a Dynamic Array?",
+    "keyword": "Linked List vs Dynamic Array",
+    "difficulty": "Difficult"
+  },
+  {
+    "id": 696,
+    "question": "How do Linked Lists compare with Trees in terms of performance and use cases?",
+    "keyword": "Linked List vs Tree",
+    "difficulty": "Difficult"
+  },
+  {
+    "id": 697,
+    "question": "When would you choose a Linked List over a Hash Table?",
+    "keyword": "Linked List vs Hash Table",
+    "difficulty": "Difficult"
+  },
+  {
+    "id": 698,
+    "question": "Why is binary search inefficient on Linked Lists and how do Skip Lists address this limitation?",
+    "keyword": "Binary Search Limitation",
+    "difficulty": "Difficult"
+  },
+  {
+    "id": 699,
+    "question": "What is ASP.NET MVC and how does it differ from WebForms?",
+    "keyword": "ASP.NET MVC vs WebForms",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 700,
+    "question": "Explain the MVC architectural pattern.",
+    "keyword": "MVC Architecture",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 701,
+    "question": "What are the main components of ASP.NET MVC?",
+    "keyword": "MVC Components",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 702,
+    "question": "How does routing work in ASP.NET MVC?",
+    "keyword": "MVC Routing",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 703,
+    "question": "What is the role of the Controller in ASP.NET MVC?",
+    "keyword": "Controller Responsibilities",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 704,
+    "question": "Describe the lifecycle of an ASP.NET MVC request.",
+    "keyword": "MVC Request Lifecycle",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 705,
+    "question": "What is Razor View Engine and why is it used?",
+    "keyword": "Razor View Engine",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 706,
+    "question": "What are the different ways to pass data from a Controller to a View?",
+    "keyword": "Controller to View Data Transfer",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 707,
+    "question": "What are the different session management techniques in ASP.NET MVC?",
+    "keyword": "Session Management",
+    "difficulty": "Difficult"
+  },
+  {
+    "id": 708,
+    "question": "Explain the differences between ViewData, ViewBag, and TempData.",
+    "keyword": "ViewData ViewBag TempData",
+    "difficulty": "Difficult"
+  },
+  {
+    "id": 709,
+    "question": "How does Model Binding work in ASP.NET MVC?",
+    "keyword": "Model Binding",
+    "difficulty": "Difficult"
+  },
+  {
+    "id": 710,
+    "question": "What is the difference between Partial Views and View Components?",
+    "keyword": "Partial View vs View Component",
+    "difficulty": "Difficult"
+  },
+  {
+    "id": 711,
+    "question": "What is a graph data structure and what are its core components?",
+    "keyword": "Graph Basics",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 712,
+    "question": "What are the different ways to represent a graph in memory?",
+    "keyword": "Graph Representation",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 713,
+    "question": "What are the common types and categories of graphs?",
+    "keyword": "Types of Graphs",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 714,
+    "question": "What is the difference between a tree and a graph?",
+    "keyword": "Tree vs Graph",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 715,
+    "question": "How do adjacency lists and adjacency matrices differ in terms of space and performance?",
+    "keyword": "Adjacency List vs Matrix",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 716,
+    "question": "What is an incidence matrix and when is it preferred over other graph representations?",
+    "keyword": "Incidence Matrix",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 717,
+    "question": "What is an edge list representation and where is it commonly used?",
+    "keyword": "Edge List Representation",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 718,
+    "question": "What is Breadth-First Search (BFS) and what are its typical use cases?",
+    "keyword": "Breadth-First Search",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 719,
+    "question": "What is Depth-First Search (DFS) and how does it conceptually differ from BFS?",
+    "keyword": "Depth-First Search",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 720,
+    "question": "What are the key conceptual differences between BFS and DFS?",
+    "keyword": "BFS vs DFS",
+    "difficulty": "Difficult"
+  },
+  {
+    "id": 721,
+    "question": "What is an Euler Path and an Euler Circuit, and what conditions must a graph satisfy to have them?",
+    "keyword": "Euler Path and Circuit",
+    "difficulty": "Difficult"
+  },
+  {
+    "id": 722,
+    "question": "What is a bipartite graph and how can it be identified conceptually?",
+    "keyword": "Bipartite Graph",
+    "difficulty": "Difficult"
+  },
+  {
+    "id": 723,
+    "question": "What is a heap data structure and what are its key characteristics?",
+    "keyword": "Heap Basics",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 724,
+    "question": "What is the difference between a Min Heap and a Max Heap?",
+    "keyword": "Min Heap vs Max Heap",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 725,
+    "question": "What is a priority queue and why are heaps commonly used to implement it?",
+    "keyword": "Priority Queue",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 726,
+    "question": "How does a binary heap differ from a general binary tree?",
+    "keyword": "Binary Heap Structure",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 727,
+    "question": "How is the heap property maintained after insertion and deletion operations?",
+    "keyword": "Heap Property Maintenance",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 728,
+    "question": "How do heap-based priority queues compare with array-based implementations?",
+    "keyword": "Heap vs Array Priority Queue",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 729,
+    "question": "What is heapify and why is it important in heap operations?",
+    "keyword": "Heapify",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 730,
+    "question": "What are the different ways to implement a priority queue and how do they differ conceptually?",
+    "keyword": "Priority Queue Implementations",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 731,
+    "question": "What is lazy deletion in heaps and what problem does it solve?",
+    "keyword": "Lazy Deletion",
+    "difficulty": "Difficult"
+  },
+  {
+    "id": 732,
+    "question": "What is Heap Sort and what are its key properties?",
+    "keyword": "Heap Sort",
+    "difficulty": "Difficult"
+  },
+  {
+    "id": 733,
+    "question": "How does Heap Sort compare with Quick Sort in terms of performance and memory usage?",
+    "keyword": "Heap Sort vs Quick Sort",
+    "difficulty": "Difficult"
+  },
+  {
+    "id": 734,
+    "question": "What are the practical real-world applications of heaps in computer science?",
+    "keyword": "Applications of Heaps",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 735,
+    "question": "What is a Stack and what principle does it follow?",
+    "keyword": ["stack", "LIFO", "data structure basics"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 736,
+    "question": "What are the primary operations performed on a Stack?",
+    "keyword": ["push", "pop", "peek", "stack operations"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 737,
+    "question": "Why is a Stack called a Last In First Out (LIFO) data structure?",
+    "keyword": ["LIFO principle", "stack behavior"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 738,
+    "question": "What are the advantages and limitations of using a Stack?",
+    "keyword": ["advantages", "limitations", "stack"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 739,
+    "question": "How are stacks used in function call management?",
+    "keyword": ["call stack", "function execution", "memory"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 740,
+    "question": "What are infix, prefix, and postfix expressions and how are stacks related to them?",
+    "keyword": ["expression notation", "infix", "postfix", "prefix"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 741,
+    "question": "Where are stacks used in real-world applications?",
+    "keyword": ["undo redo", "backtracking", "DFS"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 742,
+    "question": "Compare array-based and linked-list-based stack implementations.",
+    "keyword": ["array stack", "linked list stack", "comparison"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 743,
+    "question": "What is stack overflow and stack underflow?",
+    "keyword": ["stack overflow", "stack underflow", "errors"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 744,
+    "question": "How can a stack be used to reverse data?",
+    "keyword": ["data reversal", "stack application"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 745,
+    "question": "How can a stack support retrieving the minimum element in constant time?",
+    "keyword": ["min stack", "auxiliary stack", "O(1)"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 746,
+    "question": "How can stacks be designed for concurrent or multi-threaded environments?",
+    "keyword": ["thread-safe stack", "concurrency", "synchronization"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 747,
+    "question": "What is an Array and what are its key characteristics?",
+    "keyword": ["array", "contiguous memory", "fixed size", "indexing"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 748,
+    "question": "What are the advantages and disadvantages of using arrays?",
+    "keyword": ["advantages", "disadvantages", "arrays"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 749,
+    "question": "What is the difference between static arrays and dynamic arrays?",
+    "keyword": ["static array", "dynamic array", "resizing"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 750,
+    "question": "What is meant by array dimensionality?",
+    "keyword": ["array dimensions", "1D", "2D", "multi-dimensional arrays"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 751,
+    "question": "How does indexing work in arrays and why is array access O(1)?",
+    "keyword": ["indexing", "random access", "memory address"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 752,
+    "question": "What is a sparse array and how does it differ from a dense array?",
+    "keyword": ["sparse array", "dense array", "memory optimization"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 753,
+    "question": "What are sorted arrays and when should they be used?",
+    "keyword": ["sorted array", "binary search", "search optimization"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 754,
+    "question": "Why are insertion and deletion operations costly in arrays?",
+    "keyword": ["insertion", "deletion", "element shifting"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 755,
+    "question": "What is array rotation and where is it practically used?",
+    "keyword": ["array rotation", "circular shift", "applications"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 756,
+    "question": "How do dynamic arrays achieve amortized constant-time insertion?",
+    "keyword": ["dynamic array", "amortized analysis", "resizing"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 757,
+    "question": "Why are heaps preferred over sorted arrays in dynamic scenarios?",
+    "keyword": ["heap vs sorted array", "priority queue", "time complexity"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 758,
+    "question": "What factors should be considered when choosing arrays over other data structures?",
+    "keyword": ["data structure selection", "arrays", "performance trade-offs"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 759,
+    "question": "What is the Fibonacci sequence and how is it mathematically defined?",
+    "keyword": ["fibonacci sequence", "recurrence relation", "base cases"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 760,
+    "question": "Why does the Fibonacci sequence frequently appear in nature and real-world patterns?",
+    "keyword": ["nature patterns", "golden ratio", "growth patterns"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 761,
+    "question": "What is the time and space complexity of the naive recursive Fibonacci algorithm?",
+    "keyword": ["time complexity", "recursive fibonacci", "exponential growth"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 762,
+    "question": "How does memoization improve the efficiency of Fibonacci sequence computation?",
+    "keyword": ["memoization", "dynamic programming", "optimization"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 763,
+    "question": "What is the difference between recursive, iterative, and dynamic programming approaches to Fibonacci?",
+    "keyword": ["recursive vs iterative", "dynamic programming", "performance comparison"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 764,
+    "question": "Why is the iterative Fibonacci approach preferred over recursion in production systems?",
+    "keyword": ["iterative approach", "stack overflow", "space efficiency"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 765,
+    "question": "How does matrix exponentiation reduce the time complexity of Fibonacci computation?",
+    "keyword": ["matrix exponentiation", "logarithmic time", "fast doubling"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 766,
+    "question": "What is the relationship between the Fibonacci sequence and the Golden Ratio?",
+    "keyword": ["golden ratio", "limit", "convergence"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 767,
+    "question": "What are the limitations of using Binet’s formula for computing Fibonacci numbers?",
+    "keyword": ["binet formula", "floating point errors", "precision"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 768,
+    "question": "How can Fibonacci numbers be efficiently handled for multiple queries?",
+    "keyword": ["precomputation", "lookup table", "multiple queries"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 769,
+    "question": "How is the Fibonacci sequence applied to classic dynamic programming problems like tiling?",
+    "keyword": ["tiling problem", "dynamic programming", "recurrence"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 770,
+    "question": "What strategies are used to compute very large Fibonacci numbers without integer overflow?",
+    "keyword": ["integer overflow", "arbitrary precision", "big integers"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 771,
+    "question": "What is a graph and what are its main types?",
+    "keyword": ["graph", "directed", "undirected", "weighted", "unweighted"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 772,
+    "question": "What are the differences between adjacency matrix and adjacency list representations of a graph?",
+    "keyword": ["adjacency matrix", "adjacency list", "graph representation", "space complexity"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 773,
+    "question": "Explain the concept of a connected graph and strongly connected components.",
+    "keyword": ["connected graph", "strongly connected components", "graph connectivity"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 774,
+    "question": "What is Depth-First Search (DFS) and how does it traverse a graph?",
+    "keyword": ["DFS", "graph traversal", "recursion", "stack"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 775,
+    "question": "What is Breadth-First Search (BFS) and how does it differ from DFS?",
+    "keyword": ["BFS", "graph traversal", "queue", "level order"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 776,
+    "question": "Explain the time and space complexity of DFS and BFS.",
+    "keyword": ["DFS complexity", "BFS complexity", "graph size", "edges"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 777,
+    "question": "What are common applications of DFS and BFS in real-world problems?",
+    "keyword": ["DFS applications", "BFS applications", "pathfinding", "connected components"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 778,
+    "question": "How does DFS help in detecting cycles in a graph?",
+    "keyword": ["DFS", "cycle detection", "back edges", "directed graph"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 779,
+    "question": "Explain topological sorting and its relationship with DFS.",
+    "keyword": ["topological sort", "DFS", "directed acyclic graph", "ordering"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 780,
+    "question": "What is the concept of graph coloring and how is it applied in backtracking algorithms?",
+    "keyword": ["graph coloring", "backtracking", "constraint satisfaction"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 781,
+    "question": "How can BFS be used to find the shortest path in an unweighted graph?",
+    "keyword": ["BFS", "shortest path", "unweighted graph", "level order traversal"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 782,
+    "question": "Explain strongly connected components and Kosaraju's algorithm.",
+    "keyword": ["strongly connected components", "Kosaraju", "DFS", "graph traversal"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 783,
+    "question": "What is an ORM and how does Entity Framework function as one?",
+    "keyword": ["ORM", "Entity Framework", "object-relational mapping", "CRUD operations"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 784,
+    "question": "Can you explain the architecture of Entity Framework?",
+    "keyword": ["EF architecture", "DbContext", "entity", "storage model", "mapping"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 785,
+    "question": "What are the main differences between Entity Framework and LINQ to SQL?",
+    "keyword": ["Entity Framework", "LINQ to SQL", "ORM differences", "schema evolution", "performance"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 786,
+    "question": "What is DbContext and how is it used in EF?",
+    "keyword": ["DbContext", "entity tracking", "change management", "CRUD operations"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 787,
+    "question": "What is the purpose of DbSet in Entity Framework?",
+    "keyword": ["DbSet", "entity set", "LINQ queries", "CRUD operations", "data binding"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 788,
+    "question": "Can you describe the concept of migrations in EF?",
+    "keyword": ["migrations", "schema evolution", "database versioning", "model snapshot"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 789,
+    "question": "How does EF implement code-first, database-first, and model-first approaches?",
+    "keyword": ["Code-First", "Database-First", "Model-First", "EF approaches", "schema generation"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 790,
+    "question": "What is the role of the EdmGen tool in EF?",
+    "keyword": ["EdmGen", "EDM generation", "csdl", "ssdl", "msl files", "model mapping"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 791,
+    "question": "Can you describe the Entity Data Model (EDM) in EF?",
+    "keyword": ["EDM", "entity type", "complex type", "associations", "navigation properties"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 792,
+    "question": "How does lazy loading work in EF?",
+    "keyword": ["lazy loading", "proxy generation", "navigation properties", "performance considerations"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 793,
+    "question": "How do you switch between different databases using EF?",
+    "keyword": ["database switching", "runtime configuration", "DbContext", "connection strings"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 794,
+    "question": "Can you configure the pluralization and singularization conventions in EF?",
+    "keyword": ["pluralization", "singularization", "naming conventions", "PluralizationService"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 795,
+    "question": "What is LINQ and why is it useful?",
+    "keyword": ["LINQ", "Language-Integrated Query", "data querying", "C#"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 796,
+    "question": "What are the three main components of LINQ?",
+    "keyword": ["LINQ", "LINQ to Objects", "LINQ to SQL", "LINQ to XML"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 797,
+    "question": "Can you explain the difference between LINQ to Objects, LINQ to SQL, and LINQ to XML?",
+    "keyword": ["LINQ to Objects", "LINQ to SQL", "LINQ to XML", "use cases", "data sources"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 798,
+    "question": "What is a Lambda Expression in LINQ?",
+    "keyword": ["Lambda Expression", "LINQ", "inline functions", "C#"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 799,
+    "question": "How do LINQ queries differ from traditional loop and conditional statements?",
+    "keyword": ["LINQ", "traditional loops", "query vs procedural", "deferred execution"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 800,
+    "question": "What is the purpose of the IEnumerable interface in LINQ?",
+    "keyword": ["IEnumerable", "LINQ", "deferred execution", "data source abstraction"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 801,
+    "question": "How does LINQ use deferred execution?",
+    "keyword": ["LINQ", "deferred execution", "IEnumerable", "query optimization"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 802,
+    "question": "What is the difference between IEnumerable and IQueryable?",
+    "keyword": ["IEnumerable", "IQueryable", "LINQ", "query execution", "performance"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 803,
+    "question": "Explain the role of Extension Methods in LINQ.",
+    "keyword": ["Extension Methods", "LINQ", "IEnumerable", "static methods"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 804,
+    "question": "What are the benefits of using LINQ to Objects?",
+    "keyword": ["LINQ to Objects", "advantages", "type safety", "deferred execution", "code clarity"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 805,
+    "question": "Can you show how to filter a list of items using the Where operator?",
+    "keyword": ["Where operator", "LINQ", "filtering", "predicate"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 806,
+    "question": "What is the purpose of the Select clause in LINQ?",
+    "keyword": ["Select clause", "LINQ", "projection", "data transformation"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 807,
+    "question": "What is a bit and why is it important in computing?",
+    "keyword": ["bit", "binary digit", "information unit", "computing basics"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 808,
+    "question": "What is a byte and how is it related to bits?",
+    "keyword": ["byte", "bits", "data unit", "memory representation"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 809,
+    "question": "Explain bitwise operations and their advantages over arithmetic operations.",
+    "keyword": ["bitwise operations", "AND", "OR", "XOR", "NOT", "efficiency"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 810,
+    "question": "How can bitwise AND be used to check if a number is odd or even?",
+    "keyword": ["bitwise AND", "odd/even check", "least significant bit"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 811,
+    "question": "Explain the difference between bitwise OR and XOR operations and their applications.",
+    "keyword": ["bitwise OR", "XOR", "bit manipulation", "practical applications"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 812,
+    "question": "How do you set, clear, and toggle a specific bit in a number?",
+    "keyword": ["set bit", "clear bit", "toggle bit", "bitwise manipulation"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 813,
+    "question": "What is bit masking and how can it be used to isolate specific bits?",
+    "keyword": ["bit masking", "isolate bit", "bitwise AND", "mask creation"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 814,
+    "question": "Explain how left and right shift operators work and their effect on numbers.",
+    "keyword": ["left shift", "right shift", "bit manipulation", "multiply/divide"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 815,
+    "question": "What is the difference between signed right shift and unsigned right shift operators?",
+    "keyword": [">>", ">>>", "bit shift", "signed vs unsigned"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 816,
+    "question": "How can you determine if a number is a power of two using bit manipulation?",
+    "keyword": ["power of two", "bitwise AND", "optimization"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 817,
+    "question": "Explain how bitwise operations are used in real-world applications like data compression and cryptography.",
+    "keyword": ["data compression", "cryptography", "bit manipulation", "real-world applications"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 818,
+    "question": "What is the significance of counting set bits in a number and common methods to do it?",
+    "keyword": ["count set bits", "1s in binary", "bit manipulation techniques"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 819,
+    "question": "What is a Trie and what are its key features?",
+    "keyword": ["Trie", "prefix tree", "string operations", "fast search", "memory usage"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 820,
+    "question": "What are the advantages of Tries over Hash Tables?",
+    "keyword": ["Trie", "Hash Table", "prefix search", "ordered iteration", "insertion speed"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 821,
+    "question": "What are the main advantages and disadvantages of using a Trie?",
+    "keyword": ["Trie", "pros", "cons", "memory usage", "prefix matching", "implementation complexity"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 822,
+    "question": "How do you handle case sensitivity in Tries?",
+    "keyword": ["Trie", "case sensitivity", "uppercase", "lowercase", "memory optimization"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 823,
+    "question": "What are some practical applications of a Trie?",
+    "keyword": ["Trie", "autocomplete", "spell checking", "text filtering", "contact lookup"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 824,
+    "question": "How can a Trie be used for implementing autocomplete functionality?",
+    "keyword": ["Trie", "autocomplete", "prefix search", "dynamic suggestions", "DFS traversal"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 825,
+    "question": "Explain the use of a Trie in IP routing to match IP prefixes.",
+    "keyword": ["Trie", "IP routing", "prefix matching", "binary trie", "longest prefix match"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 826,
+    "question": "How is a Trie used in text spell-checking and correction systems?",
+    "keyword": ["Trie", "spell checking", "edit distance", "typo correction", "Levenshtein distance"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 827,
+    "question": "What are some Trie implementation strategies?",
+    "keyword": ["Trie", "array-based", "linked list", "bitmap", "hybrid techniques"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 828,
+    "question": "Compare a Trie with a Binary Search Tree for string storage.",
+    "keyword": ["Trie", "BST", "time complexity", "space complexity", "prefix operations"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 829,
+    "question": "How do you choose between a Hash Table and a Trie?",
+    "keyword": ["Trie", "Hash Table", "text operations", "prefix matching", "ordered retrieval"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 830,
+    "question": "What is a Suffix Trie and how does it differ from a standard Trie?",
+    "keyword": ["Suffix Trie", "Trie", "suffixes", "pattern matching", "text algorithms"],
+    "difficulty": "difficult"
+  },
+        [
+  {
+    "id": 831,
+    "question": "What is Dynamic Programming and how does it differ from recursion?",
+    "keyword": ["Dynamic Programming", "DP vs Recursion", "memoization", "tabulation", "overlapping subproblems"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 832,
+    "question": "Can you explain the concept of overlapping subproblems?",
+    "keyword": ["overlapping subproblems", "subproblem reuse", "efficiency", "DP principle"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 833,
+    "question": "Define memoization and how it improves performance in Dynamic Programming.",
+    "keyword": ["memoization", "caching", "top-down approach", "performance optimization"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 834,
+    "question": "What is the difference between top-down and bottom-up approaches in Dynamic Programming?",
+    "keyword": ["top-down", "bottom-up", "tabulation", "memoization", "DP strategies"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 835,
+    "question": "Explain the importance of state definition in Dynamic Programming solutions.",
+    "keyword": ["state definition", "subproblem identification", "state transitions", "memory efficiency", "DP design"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 836,
+    "question": "How do you determine the time complexity of a Dynamic Programming algorithm?",
+    "keyword": ["DP time complexity", "state space", "top-down analysis", "bottom-up analysis", "optimization"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 837,
+    "question": "Describe techniques to optimize space complexity in Dynamic Programming problems.",
+    "keyword": ["space optimization", "DP", "state compression", "memory-efficient DP", "rolling array"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 838,
+    "question": "What is state transition, and how do you derive state transition relations?",
+    "keyword": ["state transition", "DP relation", "recurrence relation", "subproblem dependencies"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 839,
+    "question": "What are the trade-offs between memoization and tabulation in Dynamic Programming?",
+    "keyword": ["memoization", "tabulation", "top-down", "bottom-up", "efficiency trade-offs"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 840,
+    "question": "Explain the concept of optimal substructure in Dynamic Programming.",
+    "keyword": ["optimal substructure", "DP", "problem decomposition", "solution reuse", "subproblem combination"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 841,
+    "question": "What are common types of Dynamic Programming problems encountered in interviews?",
+    "keyword": ["DP problem types", "optimization", "counting", "decision-making", "interview topics"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 842,
+    "question": "Why is Dynamic Programming preferred over plain recursion for some problems?",
+    "keyword": ["DP vs recursion", "efficiency", "overlapping subproblems", "time complexity reduction"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 843,
+    "question": "What are the core principles of Service-Oriented Architecture (SOA)?",
+    "keyword": ["SOA principles", "loose coupling", "reusability", "autonomy", "service discovery"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 844,
+    "question": "Can you describe the difference between SOA and a microservices architecture?",
+    "keyword": ["SOA vs Microservices", "granularity", "deployment", "data management", "autonomy"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 845,
+    "question": "Explain the concept of a service contract in SOA.",
+    "keyword": ["service contract", "compatibility", "API design", "schema definition", "interoperability"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 846,
+    "question": "How does SOA facilitate service reusability?",
+    "keyword": ["SOA", "service reusability", "modularity", "standardization", "loose coupling"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 847,
+    "question": "What is loose coupling in SOA and why is it important?",
+    "keyword": ["loose coupling", "independence", "resilience", "maintainability", "service discovery"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 848,
+    "question": "What do you understand by service orchestration and service choreography in the context of SOA?",
+    "keyword": ["orchestration", "choreography", "central coordinator", "decentralized interaction", "workflow management"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 849,
+    "question": "How does SOA differ from traditional monolithic application architectures?",
+    "keyword": ["SOA vs Monolithic", "modularity", "scalability", "data consistency", "communication"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 850,
+    "question": "What role does a service registry play in SOA?",
+    "keyword": ["service registry", "discovery", "dynamic lookup", "location transparency", "loose coupling"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 851,
+    "question": "What factors do you consider when designing a service interface in SOA?",
+    "keyword": ["service interface", "granularity", "autonomy", "reusability", "security", "versioning"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 852,
+    "question": "Explain how versioning of services is handled in a SOA environment.",
+    "keyword": ["service versioning", "URL-based versioning", "header versioning", "backward compatibility", "API management"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 853,
+    "question": "Describe a scenario in which you might opt for synchronous communication over asynchronous in SOA.",
+    "keyword": ["synchronous communication", "real-time feedback", "workflow control", "error handling"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 854,
+    "question": "What are some of the common data formats used for service communication in SOA?",
+    "keyword": ["data formats", "XML", "JSON", "SOAP", "REST", "interoperability"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 855,
+    "question": "What is the difference between availability and reliability in a software system?",
+    "keyword": ["availability", "reliability", "system uptime", "operational consistency", "metrics"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 856,
+    "question": "How do you define system availability and what are the key components to measure it?",
+    "keyword": ["system availability", "MTBF", "MTTR", "downtime", "uptime percentage"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 857,
+    "question": "Can you explain the concept of 'Five Nines' and how it relates to system availability?",
+    "keyword": ["five nines", "99.999% availability", "downtime", "system dependability"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 858,
+    "question": "How does redundancy contribute to the reliability of a system?",
+    "keyword": ["redundancy", "failover", "component backup", "data replication", "system reliability"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 859,
+    "question": "What is a single point of failure (SPOF), and how can it be mitigated?",
+    "keyword": ["single point of failure", "SPOF", "redundancy", "high availability", "system design"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 860,
+    "question": "Discuss the significance of Mean Time Between Failures (MTBF) in reliability engineering.",
+    "keyword": ["MTBF", "mean time between failures", "reliability metric", "system uptime"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 861,
+    "question": "What is the role of Mean Time to Repair (MTTR) in maintaining system availability?",
+    "keyword": ["MTTR", "mean time to repair", "system availability", "downtime reduction"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 862,
+    "question": "Can you differentiate between high availability (HA) and fault tolerance (FT)?",
+    "keyword": ["high availability", "HA", "fault tolerance", "FT", "system resilience"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 863,
+    "question": "How would you architect a system for high availability?",
+    "keyword": ["system architecture", "high availability", "redundancy", "failover", "scalability"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 864,
+    "question": "What design patterns are commonly used to improve system availability?",
+    "keyword": ["design patterns", "singleton", "object pool", "system reliability", "high availability"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 865,
+    "question": "How can load balancing improve system availability, and what are some of its potential pitfalls?",
+    "keyword": ["load balancing", "traffic distribution", "high availability", "performance", "pitfalls"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 866,
+    "question": "Explain the role of health checks in maintaining an available system.",
+    "keyword": ["health checks", "monitoring", "system availability", "fault detection", "preemptive recovery"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 867,
+    "question": "What is Dependency Injection and why is it used in modern software development?",
+    "keyword": ["Dependency Injection", "DI", "modularity", "flexibility", "testability", "Inversion of Control"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 868,
+    "question": "Explain the concept of Inversion of Control (IoC) and how it relates to Dependency Injection.",
+    "keyword": ["Inversion of Control", "IoC", "DI", "abstraction", "modularity", "flexibility"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 869,
+    "question": "What are the main advantages of using Dependency Injection in a software project?",
+    "keyword": ["DI advantages", "modular code", "unit testing", "decoupling", "interface usage", "lifecycle management"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 870,
+    "question": "Describe the impact of Dependency Injection on the maintainability of code.",
+    "keyword": ["DI", "maintainability", "modular design", "decoupling", "interfaces", "testing"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 871,
+    "question": "Can you explain the Dependency Inversion Principle and how it differs from Dependency Injection?",
+    "keyword": ["Dependency Inversion Principle", "DIP", "DI", "abstraction", "high-level modules", "low-level modules"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 872,
+    "question": "Compare and contrast constructor injection versus setter injection.",
+    "keyword": ["constructor injection", "setter injection", "DI types", "mandatory dependencies", "optional dependencies", "immutability"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 873,
+    "question": "When would you use method injection instead of constructor injection?",
+    "keyword": ["method injection", "constructor injection", "DI", "optional dependencies", "performance", "flexibility"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 874,
+    "question": "Can mixing different types of injection in the same class lead to issues? If so, what kind?",
+    "keyword": ["DI", "constructor injection", "setter injection", "method injection", "mixing patterns", "complexity"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 875,
+    "question": "Is there a preferred type of dependency injection when working with immutable objects? Please explain.",
+    "keyword": ["immutable objects", "constructor injection", "DI", "initialization", "safety", "state management"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 876,
+    "question": "How does each type of dependency injection affect the ease of unit testing?",
+    "keyword": ["unit testing", "DI types", "constructor injection", "setter injection", "interface injection", "mocking"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 877,
+    "question": "What is a Dependency Injection container and what are its responsibilities?",
+    "keyword": ["DI container", "IoC", "service provider", "dependency management", "object lifecycle", "configuration"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 878,
+    "question": "Can you list some popular Dependency Injection frameworks and their distinctive features?",
+    "keyword": ["DI frameworks", "Spring", "Guice", "Dagger", "PicoContainer", "HK2", "framework features"],
+    "difficulty": "medium"
+  },
+        [
+  {
+    "id": 879,
+    "question": "How is Dynamic Programming different from Recursion and Memoization?",
+    "keyword": ["Dynamic Programming", "Recursion", "Memoization", "efficiency", "subproblem", "time complexity"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 880,
+    "question": "What are some common examples of Recursion in computer science?",
+    "keyword": ["Recursion", "binary tree traversal", "factorial", "palindrome check", "merge sort", "towers of hanoi"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 881,
+    "question": "What is the difference between Backtracking and Recursion?",
+    "keyword": ["Backtracking", "Recursion", "decision-making", "puzzle solving", "tree traversal", "combinatorial problems"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 882,
+    "question": "Define Base Case in the context of recursive functions and its importance.",
+    "keyword": ["Base Case", "Recursion", "termination condition", "infinite recursion", "simplest problem"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 883,
+    "question": "Explain the concept of Recursion Depth and its implications on algorithm complexity.",
+    "keyword": ["Recursion Depth", "Call Stack", "stack overflow", "time complexity", "space complexity"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 884,
+    "question": "How does the Call Stack operate in recursive function calls?",
+    "keyword": ["Call Stack", "Recursion", "stack frames", "function calls", "backtracking"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 885,
+    "question": "Are there any safety considerations when determining the Recursion Depth? Give examples.",
+    "keyword": ["Recursion Depth", "stack overflow", "resource exhaustion", "security", "DoS vulnerability"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 886,
+    "question": "Explain the Depth-First Search (DFS) algorithm and its connection to recursion.",
+    "keyword": ["DFS", "graph traversal", "recursion", "stack", "visited nodes"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 887,
+    "question": "What is Tail Recursion and how does it differ from Head Recursion?",
+    "keyword": ["Tail Recursion", "Head Recursion", "optimization", "call stack", "base case"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 888,
+    "question": "Discuss how Tail Recursion can be optimized by compilers and its benefits.",
+    "keyword": ["Tail Recursion", "Tail Call Optimization", "compiler", "stack memory", "efficient recursion"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 889,
+    "question": "Explain the process of performing a recursive In-order Tree Traversal.",
+    "keyword": ["In-order Traversal", "Recursion", "binary tree", "left-root-right", "tree nodes"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 890,
+    "question": "What are the advantages of using recursion in algorithm design, and when should it be avoided?",
+    "keyword": ["Recursion", "advantages", "divide-and-conquer", "simplicity", "stack overflow", "efficiency"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 891,
+    "question": "What is UX design and what are its key components?",
+    "keyword": ["UX design", "Information Architecture", "Interaction Design", "Visual Design", "Usability", "user satisfaction"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 892,
+    "question": "Can you explain the difference between UX and UI design?",
+    "keyword": ["UX design", "UI design", "user journey", "visual design", "interaction design", "user experience"],
+    "difficulty": "easy"
+  },
+  {
+    "id": 893,
+    "question": "How do you define a good user experience?",
+    "keyword": ["good UX", "usefulness", "accessibility", "desirability", "credibility", "value", "usability"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 894,
+    "question": "What is the significance of user-centered design?",
+    "keyword": ["user-centered design", "user involvement", "holistic design", "empirical iteration", "accessibility", "cognitive load"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 895,
+    "question": "How does psychological and behavioral science relate to UX?",
+    "keyword": ["behavioral science", "cognitive psychology", "mental models", "cognitive biases", "operant conditioning", "emotional design"],
+    "difficulty": "difficult"
+  },
+  {
+    "id": 896,
+    "question": "What core principles guide your approach to UX design?",
+    "keyword": ["affordances", "signifiers", "feedback", "mapping", "constraints", "visibility", "progressive disclosure", "consistency"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 897,
+    "question": "Can you describe the UX design process from beginning to end?",
+    "keyword": ["UX design process", "user research", "market analysis", "personas", "information architecture", "wireframing", "prototyping", "testing"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 898,
+    "question": "How do you gather user requirements for a new design project?",
+    "keyword": ["user requirements", "interviews", "surveys", "focus groups", "task analysis", "user stories", "card sorting", "empathy maps"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 899,
+    "question": "What methods do you use to conduct user research?",
+    "keyword": ["user research", "surveys", "interviews", "focus groups", "observation", "data analytics", "prototyping", "A/B testing"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 900,
+    "question": "How important is accessibility in UX design?",
+    "keyword": ["accessibility", "inclusive design", "visual impairment", "hearing impairment", "mobility impairment", "ethical responsibility", "legal compliance"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 901,
+    "question": "What is usability testing and how do you conduct it?",
+    "keyword": ["usability testing", "user tasks", "observation", "think aloud", "qualitative data", "quantitative data", "iterative design"],
+    "difficulty": "medium"
+  },
+  {
+    "id": 902,
+    "question": "Can you explain the concept of User Personas?",
+    "keyword": ["user personas", "demographics", "goals", "motivations", "needs", "frustrations", "user-centered design"],
+    "difficulty": "easy"
+  },
   ]
 }
