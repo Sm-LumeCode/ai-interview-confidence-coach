@@ -31,3 +31,11 @@ export const getCategoryProgress = (userId, category) => {
   const data = localStorage.getItem(key)
   return data ? JSON.parse(data) : null
 }
+export const CATEGORY_TOTALS = {
+  'Software Development': 60,
+  'Data & Analytics': 50,
+  'Data Science & ML': 45,
+  'Cloud & DevOps': 40,
+  'Cybersecurity': 55,
+  'HR Round': 30
+}

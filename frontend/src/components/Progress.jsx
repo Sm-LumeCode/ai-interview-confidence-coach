@@ -13,6 +13,7 @@ import {
   CartesianGrid
 } from 'recharts'
 import { getCategoryProgress } from '../utils/categoryProgressManager'
+import { CATEGORY_TOTALS } from '../utils/categoryProgressManager'
 
 const Progress = ({ user, onLogout }) => {
   // Mock data - replace with actual API data
@@ -23,7 +24,8 @@ const Progress = ({ user, onLogout }) => {
   'Data & Analytics',
   'Data Science & ML',
   'Cloud & DevOps',
-  'Cybersecurity'
+  'Cybersecurity',
+  'HR Round'
 ]
 
 
@@ -48,7 +50,7 @@ const categoryProgress = categories.map(cat => {
   return {
     name: cat,
     completed: data.completed,
-    total: 20,
+    total: CATEGORY_TOTALS[cat]||0,
     score: Math.round(avgScore)
   }
 })

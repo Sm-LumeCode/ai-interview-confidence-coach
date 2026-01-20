@@ -115,9 +115,13 @@ const InterviewSession = ({ user, onLogout }) => {
         answerText,
         currentQuestion.keywords || []
       )
+      const normalizedCategory = category
+  .replace(/_/g, ' ')
+  .replace(/\b\w/g, c => c.toUpperCase())
+
       saveCategoryProgress(
   user.email,
-  category,
+  normalizedCategory,
   evaluation.technical_score,
   evaluation.communication_score
 )
