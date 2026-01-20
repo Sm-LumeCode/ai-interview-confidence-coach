@@ -154,17 +154,36 @@ const chartData = dailyTimeline.map(day => ({
                 </div>
               </div>
             ))}
+            <div className="mt-12 mb-8 text-center">
+  <h2 className="text-3xl font-bold text-purple-700">
+    Daily Performance Insights
+  </h2>
+  <p className="mt-2 text-sm text-gray-600">
+    Track how your skills improve every day
+  </p>
+</div>
+
+
+
             {/* Daily Progress Graphs */}
+        <div className="mt-12 rounded-2xl bg-purple-400 p-8">
+
+
 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
   
   {/* Technical Score Graph */}
-  <div className="card animate-fade-in">
-    <h2 className="text-xl font-bold gradient-text mb-4">
+  <div className="bg-white rounded-xl p-6 shadow-md">
+    <h2 className="text-xl font-bold text-blue-900 mb-4">
       Technical Progress (Day-wise)
     </h2>
+    <div className="rounded-xl p-4 bg-white-100 border border-black-200 shadow-md">
 
     <ResponsiveContainer width="100%" height={300}>
-      <LineChart data={chartData}>
+      <LineChart
+  data={chartData}
+  margin={{ top: 20, right: 20, left: 0, bottom: 0 }}
+>
+
         <CartesianGrid strokeDasharray="3 3" opacity={0.5} />
 
         <XAxis dataKey="date" tick={{ fontSize: 12 }} />
@@ -177,28 +196,35 @@ const chartData = dailyTimeline.map(day => ({
   }}
 />
         <Line
-          type="monotone"
-          dataKey="technical"
-          stroke="#3b82f6"
-          strokeWidth={3}
-          dot={false}
-          activeDot={{ r: 6 }}
-          isAnimationActive={true}
-          animationDuration={1200}
+  type="monotone"
+  dataKey="technical"
+  stroke="#3b82f6"
+  strokeWidth={3}
+  dot={false}
+  activeDot={{ r: 6 }}
+  isAnimationActive
+  animationDuration={1200}
+/>
 
-        />
       </LineChart>
     </ResponsiveContainer>
-  </div>
+    </div>
+     </div>
 
   {/* Communication Score Graph */}
-  <div className="card animate-fade-in">
-    <h2 className="text-xl font-bold gradient-text mb-4">
+  <div className="bg-white rounded-xl p-6 shadow-md">
+
+
+    <h2 className="text-xl font-bold text-blue-900 mb-4">
       Communication Progress (Day-wise)
     </h2>
-
+<div className="rounded-xl p-4 bg-white-100 border border-black-200 shadow-md">
     <ResponsiveContainer width="100%" height={300}>
-      <LineChart data={chartData}>
+      <LineChart
+  data={chartData}
+  margin={{ top: 20, right: 20, left: 0, bottom: 0 }}
+>
+
         <CartesianGrid strokeDasharray="3 3" opacity={0.5} />
 
         <XAxis dataKey="date" tick={{ fontSize: 12 }} />
@@ -212,24 +238,26 @@ const chartData = dailyTimeline.map(day => ({
 />
 
         <Line
-          type="monotone"
-          dataKey="communication"
-          stroke="#22c55e"
-          strokeWidth={3}
-          dot={false}
-          activeDot={{ r: 6 }}
-        isAnimationActive={true}
-        animationDuration={1200}
+  type="monotone"
+  dataKey="communication"
+  stroke="#22c55e"
+  strokeWidth={3}
+  dot={false}
+  activeDot={{ r: 6 }}
+  isAnimationActive
+  animationDuration={1200}
+/>
 
-        />
       </LineChart>
     </ResponsiveContainer>
+    </div>
   </div>
 
 </div>
 
           </div>
         </div>
+      </div>
       </div>
     </div>
   )

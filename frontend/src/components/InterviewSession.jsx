@@ -8,6 +8,7 @@ import IdealAnswer from './IdealAnswer'
 import { ChevronRight, ChevronLeft, Home, RotateCcw, Clock } from 'lucide-react'
 import api from '../services/api'
 import { saveProgress, getProgress, resetProgress } from '../utils/progressManager'
+import { saveDailyProgress } from '../utils/dailyProgressManager'
 
 const InterviewSession = ({ user, onLogout }) => {
   const { category } = useParams()
@@ -115,7 +116,14 @@ const InterviewSession = ({ user, onLogout }) => {
       )
       
       setResults(evaluation)
-      
+
+    // Save daily progress for graphs (correct fields from llm_evaluator)
+saveDailyProgress(user.email, {
+  technicalScore: evaluation.technical_score ?? 0,
+  confidenceScore: evaluation.communication_score ?? 0
+})
+
+
       // Generate ideal answer
       const ideal = await api.generateIdealAnswer(
         currentQuestion.question,
