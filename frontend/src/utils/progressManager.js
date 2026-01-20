@@ -28,7 +28,14 @@ export const resetProgress = (userId, category) => {
 // Get all progress for a user
 export const getAllProgress = (userId) => {
   const allProgress = {}
-  const categories = ['software_development', 'data_analytics', 'data_science_ml', 'cloud_devops', 'cybersecurity']
+  const categories = [
+    'software_development', 
+    'data_analytics', 
+    'data_science_ml', 
+    'cloud_devops', 
+    'cybersecurity',
+    'hr_round'
+  ]
   
   categories.forEach(category => {
     const progress = getProgress(userId, category)

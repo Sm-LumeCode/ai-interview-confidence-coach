@@ -1,5 +1,5 @@
 import React from 'react'
-import { Code, Database, Brain, Cloud, Shield } from 'lucide-react'
+import { Code, Database, Brain, Cloud, Shield, Users } from 'lucide-react'
 
 const categories = [
   {
@@ -36,6 +36,13 @@ const categories = [
     icon: Shield,
     color: 'from-indigo-500 to-purple-500',
     description: 'Secure your cybersecurity interview'
+  },
+  {
+    id: 'hr_round',
+    name: 'HR Round',
+    icon: Users,
+    color: 'from-pink-500 to-rose-500',
+    description: 'Prepare for behavioral and HR interviews'
   }
 ]
 
