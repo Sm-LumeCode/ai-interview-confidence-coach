@@ -4559,7 +4559,6 @@
     "keyword": ["Suffix Trie", "Trie", "suffixes", "pattern matching", "text algorithms"],
     "difficulty": "difficult"
   },
-        [
   {
     "id": 831,
     "question": "What is Dynamic Programming and how does it differ from recursion?",
@@ -4848,7 +4847,6 @@
     "keyword": ["DI frameworks", "Spring", "Guice", "Dagger", "PicoContainer", "HK2", "framework features"],
     "difficulty": "medium"
   },
-        [
   {
     "id": 879,
     "question": "How is Dynamic Programming different from Recursion and Memoization?",
@@ -4992,6 +4990,6 @@
     "question": "Can you explain the concept of User Personas?",
     "keyword": ["user personas", "demographics", "goals", "motivations", "needs", "frustrations", "user-centered design"],
     "difficulty": "easy"
-  },
-  ]
+  }
+ ]
 }

@@ -1,0 +1,35 @@
+{
+  "role": "hr",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Tell me about yourself.",
+      "keywords": ["background", "experience", "skills", "career goals", "achievements"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "question": "What are your greatest strengths and weaknesses?",
+      "keywords": ["self-awareness", "strengths", "weaknesses", "improvement", "examples"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 3,
+      "question": "Why do you want to work for our company?",
+      "keywords": ["company research", "values alignment", "motivation", "culture fit", "goals"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "question": "Describe a challenging situation you faced and how you handled it.",
+      "keywords": ["STAR method", "problem solving", "conflict resolution", "leadership", "outcome"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 5,
+      "question": "Where do you see yourself in 5 years?",
+      "keywords": ["career goals", "growth", "ambition", "company alignment", "realistic"],
+      "difficulty": "easy"
+    }
+  ]
+}
