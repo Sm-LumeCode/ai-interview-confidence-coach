@@ -242,6 +242,3611 @@
   "question": "Do you have any experience with A/B testing?",
   "keywords": ["A/B testing", "experiments", "control group", "variant", "results analysis"],
   "difficulty": "easy"
-}
+},
+  {
+      "id": 41,
+      "question": "What is a primary key in a database?",
+      "keywords": [
+        "primary key",
+        "unique identifier",
+        "database",
+        "constraints",
+        "table"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 42,
+      "question": "What is a foreign key and how does it relate to primary keys?",
+      "keywords": [
+        "foreign key",
+        "primary key",
+        "relationships",
+        "referential integrity",
+        "tables"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 43,
+      "question": "Explain what a data warehouse is.",
+      "keywords": [
+        "data warehouse",
+        "OLAP",
+        "business intelligence",
+        "historical data",
+        "reporting"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 44,
+      "question": "What is ETL in data analytics?",
+      "keywords": [
+        "ETL",
+        "extract",
+        "transform",
+        "load",
+        "data pipeline",
+        "integration"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 45,
+      "question": "What is the difference between a fact table and a dimension table?",
+      "keywords": [
+        "fact table",
+        "dimension table",
+        "star schema",
+        "data modeling",
+        "measures"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 46,
+      "question": "What is data profiling?",
+      "keywords": [
+        "data profiling",
+        "data quality",
+        "metadata",
+        "patterns",
+        "assessment"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 47,
+      "question": "Explain what a star schema is.",
+      "keywords": [
+        "star schema",
+        "data warehouse",
+        "fact table",
+        "dimension tables",
+        "modeling"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 48,
+      "question": "What is a snowflake schema?",
+      "keywords": [
+        "snowflake schema",
+        "normalized",
+        "dimension tables",
+        "data warehouse",
+        "modeling"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 49,
+      "question": "What is the difference between structured and unstructured data?",
+      "keywords": [
+        "structured data",
+        "unstructured data",
+        "data types",
+        "organization",
+        "formats"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 50,
+      "question": "What is data visualization and why is it important?",
+      "keywords": [
+        "data visualization",
+        "charts",
+        "communication",
+        "insights",
+        "stakeholders"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 51,
+      "question": "What is a KPI (Key Performance Indicator)?",
+      "keywords": [
+        "KPI",
+        "metrics",
+        "performance",
+        "business objectives",
+        "measurement"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 52,
+      "question": "What is the purpose of data normalization?",
+      "keywords": [
+        "normalization",
+        "database design",
+        "redundancy",
+        "consistency",
+        "efficiency"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 53,
+      "question": "What is denormalization and when is it used?",
+      "keywords": [
+        "denormalization",
+        "performance",
+        "redundancy",
+        "data warehouse",
+        "queries"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 54,
+      "question": "What is a NULL value in SQL?",
+      "keywords": [
+        "NULL",
+        "missing data",
+        "SQL",
+        "unknown value",
+        "data quality"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 55,
+      "question": "What is the difference between COUNT(*) and COUNT(column_name)?",
+      "keywords": [
+        "COUNT",
+        "SQL aggregation",
+        "NULL values",
+        "row counting",
+        "queries"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 56,
+      "question": "What is a composite key?",
+      "keywords": [
+        "composite key",
+        "multiple columns",
+        "unique identifier",
+        "database design",
+        "constraints"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 57,
+      "question": "What is a view in SQL?",
+      "keywords": [
+        "view",
+        "virtual table",
+        "SQL",
+        "query simplification",
+        "security"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 58,
+      "question": "What is the difference between clustered and non-clustered indexes?",
+      "keywords": [
+        "clustered index",
+        "non-clustered index",
+        "indexing",
+        "performance",
+        "database"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 59,
+      "question": "What is correlation in statistics?",
+      "keywords": [
+        "correlation",
+        "relationship",
+        "variables",
+        "statistical analysis",
+        "measurement"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 60,
+      "question": "What is the difference between correlation and causation?",
+      "keywords": [
+        "correlation",
+        "causation",
+        "statistical analysis",
+        "relationships",
+        "inference"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 61,
+      "question": "What are the different chart types used in data visualization?",
+      "keywords": [
+        "charts",
+        "bar chart",
+        "line chart",
+        "pie chart",
+        "visualization types"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 62,
+      "question": "What is a histogram?",
+      "keywords": [
+        "histogram",
+        "distribution",
+        "frequency",
+        "continuous data",
+        "visualization"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 63,
+      "question": "What is a scatter plot used for?",
+      "keywords": [
+        "scatter plot",
+        "relationship",
+        "two variables",
+        "correlation",
+        "visualization"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 64,
+      "question": "What is data mining?",
+      "keywords": [
+        "data mining",
+        "patterns",
+        "knowledge discovery",
+        "large datasets",
+        "techniques"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 65,
+      "question": "What is the difference between data mining and data profiling?",
+      "keywords": [
+        "data mining",
+        "data profiling",
+        "patterns",
+        "data quality",
+        "discovery"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 66,
+      "question": "What is a dashboard in business intelligence?",
+      "keywords": [
+        "dashboard",
+        "visualization",
+        "KPIs",
+        "business intelligence",
+        "monitoring"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 67,
+      "question": "What is data governance?",
+      "keywords": [
+        "data governance",
+        "policies",
+        "data quality",
+        "compliance",
+        "management"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 68,
+      "question": "What is metadata?",
+      "keywords": [
+        "metadata",
+        "data about data",
+        "documentation",
+        "data catalog",
+        "description"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 69,
+      "question": "What is a data dictionary?",
+      "keywords": [
+        "data dictionary",
+        "metadata",
+        "definitions",
+        "data catalog",
+        "documentation"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 70,
+      "question": "What is sampling in data analysis?",
+      "keywords": [
+        "sampling",
+        "subset",
+        "population",
+        "statistical analysis",
+        "representative"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 71,
+      "question": "What is the difference between a sample and a population?",
+      "keywords": [
+        "sample",
+        "population",
+        "statistics",
+        "inference",
+        "data collection"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 72,
+      "question": "What is descriptive statistics?",
+      "keywords": [
+        "descriptive statistics",
+        "summarize",
+        "mean",
+        "median",
+        "measures"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 73,
+      "question": "What is inferential statistics?",
+      "keywords": [
+        "inferential statistics",
+        "predictions",
+        "population",
+        "hypothesis testing",
+        "sampling"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 74,
+      "question": "What is the mean, median, and mode?",
+      "keywords": [
+        "mean",
+        "median",
+        "mode",
+        "central tendency",
+        "statistics"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 75,
+      "question": "What is standard deviation?",
+      "keywords": [
+        "standard deviation",
+        "variability",
+        "dispersion",
+        "statistics",
+        "distribution"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 76,
+      "question": "What is variance?",
+      "keywords": [
+        "variance",
+        "variability",
+        "dispersion",
+        "statistics",
+        "squared deviation"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 77,
+      "question": "What is a percentile?",
+      "keywords": [
+        "percentile",
+        "rank",
+        "distribution",
+        "statistics",
+        "position"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 78,
+      "question": "What is a quartile?",
+      "keywords": [
+        "quartile",
+        "distribution",
+        "25th percentile",
+        "statistics",
+        "spread"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 79,
+      "question": "What is the interquartile range (IQR)?",
+      "keywords": [
+        "IQR",
+        "interquartile range",
+        "outliers",
+        "spread",
+        "statistics"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 80,
+      "question": "What is a box plot?",
+      "keywords": [
+        "box plot",
+        "quartiles",
+        "outliers",
+        "distribution",
+        "visualization"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 81,
+      "question": "What is data aggregation?",
+      "keywords": [
+        "aggregation",
+        "summarization",
+        "grouping",
+        "metrics",
+        "analysis"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 82,
+      "question": "What is data transformation?",
+      "keywords": [
+        "data transformation",
+        "preprocessing",
+        "normalization",
+        "encoding",
+        "preparation"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 83,
+      "question": "What is feature engineering?",
+      "keywords": [
+        "feature engineering",
+        "variables",
+        "model performance",
+        "data preparation",
+        "creation"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 84,
+      "question": "What is a calculated field?",
+      "keywords": [
+        "calculated field",
+        "derived data",
+        "formula",
+        "analytics",
+        "transformation"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 85,
+      "question": "What is the difference between a measure and a dimension?",
+      "keywords": [
+        "measure",
+        "dimension",
+        "metrics",
+        "attributes",
+        "data modeling"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 86,
+      "question": "What is cardinality in databases?",
+      "keywords": [
+        "cardinality",
+        "uniqueness",
+        "relationships",
+        "database design",
+        "rows"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 87,
+      "question": "What is a surrogate key?",
+      "keywords": [
+        "surrogate key",
+        "artificial key",
+        "unique identifier",
+        "data warehouse",
+        "dimension"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 88,
+      "question": "What is slowly changing dimension (SCD)?",
+      "keywords": [
+        "SCD",
+        "slowly changing dimension",
+        "historical data",
+        "data warehouse",
+        "tracking changes"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 89,
+      "question": "What is data lineage?",
+      "keywords": [
+        "data lineage",
+        "data flow",
+        "traceability",
+        "source to destination",
+        "documentation"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 90,
+      "question": "What is a pivot table?",
+      "keywords": [
+        "pivot table",
+        "Excel",
+        "summarization",
+        "cross-tabulation",
+        "analysis"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 91,
+      "question": "What is cross-tabulation?",
+      "keywords": [
+        "cross-tabulation",
+        "contingency table",
+        "categorical data",
+        "frequency",
+        "analysis"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 92,
+      "question": "What is data quality and why is it important?",
+      "keywords": [
+        "data quality",
+        "accuracy",
+        "completeness",
+        "consistency",
+        "reliability"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 93,
+      "question": "What are data quality dimensions?",
+      "keywords": [
+        "data quality",
+        "accuracy",
+        "completeness",
+        "timeliness",
+        "consistency",
+        "validity"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 94,
+      "question": "What is a data lake?",
+      "keywords": [
+        "data lake",
+        "raw data",
+        "storage",
+        "unstructured",
+        "big data"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 95,
+      "question": "What is the difference between a data lake and a data warehouse?",
+      "keywords": [
+        "data lake",
+        "data warehouse",
+        "structured",
+        "unstructured",
+        "processing"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 96,
+      "question": "What is a data mart?",
+      "keywords": [
+        "data mart",
+        "subset",
+        "data warehouse",
+        "department",
+        "specific"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 97,
+      "question": "What is OLTP?",
+      "keywords": [
+        "OLTP",
+        "online transaction processing",
+        "transactions",
+        "operational",
+        "real-time"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 98,
+      "question": "What is OLAP?",
+      "keywords": [
+        "OLAP",
+        "online analytical processing",
+        "analysis",
+        "multidimensional",
+        "data warehouse"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 99,
+      "question": "What is a cube in OLAP?",
+      "keywords": [
+        "OLAP cube",
+        "multidimensional",
+        "analysis",
+        "dimensions",
+        "measures"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 100,
+      "question": "What is drill-down in data analysis?",
+      "keywords": [
+        "drill-down",
+        "detail level",
+        "hierarchy",
+        "granularity",
+        "analysis"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 101,
+      "question": "What is roll-up in data analysis?",
+      "keywords": [
+        "roll-up",
+        "summarization",
+        "hierarchy",
+        "aggregation",
+        "analysis"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 102,
+      "question": "What is slice and dice in OLAP?",
+      "keywords": [
+        "slice",
+        "dice",
+        "OLAP",
+        "filtering",
+        "multidimensional analysis"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 103,
+      "question": "What is a calculated column versus a calculated measure?",
+      "keywords": [
+        "calculated column",
+        "calculated measure",
+        "DAX",
+        "storage",
+        "computation"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 104,
+      "question": "What is a relationship in data modeling?",
+      "keywords": [
+        "relationship",
+        "tables",
+        "foreign key",
+        "data modeling",
+        "connections"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 105,
+      "question": "What is referential integrity?",
+      "keywords": [
+        "referential integrity",
+        "foreign key",
+        "data consistency",
+        "constraints",
+        "relationships"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 106,
+      "question": "What is data redundancy?",
+      "keywords": [
+        "data redundancy",
+        "duplication",
+        "storage",
+        "inconsistency",
+        "normalization"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 107,
+      "question": "What is an entity-relationship diagram (ERD)?",
+      "keywords": [
+        "ERD",
+        "entity-relationship",
+        "database design",
+        "visual model",
+        "tables"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 108,
+      "question": "What is granularity in data?",
+      "keywords": [
+        "granularity",
+        "detail level",
+        "aggregation",
+        "data modeling",
+        "precision"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 109,
+      "question": "What is a benchmark in analytics?",
+      "keywords": [
+        "benchmark",
+        "comparison",
+        "standard",
+        "performance",
+        "metrics"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 110,
+      "question": "What is attribution analysis?",
+      "keywords": [
+        "attribution",
+        "credit assignment",
+        "marketing",
+        "conversion",
+        "analysis"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 111,
+      "question": "What is the difference between a database and a data warehouse?",
+      "keywords": [
+        "database",
+        "data warehouse",
+        "OLTP",
+        "OLAP",
+        "differences"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 112,
+      "question": "What is a join predicate in SQL?",
+      "keywords": [
+        "join predicate",
+        "join condition",
+        "SQL",
+        "matching criteria",
+        "relationships"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 113,
+      "question": "What is data integrity?",
+      "keywords": [
+        "data integrity",
+        "accuracy",
+        "consistency",
+        "validity",
+        "reliability"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 114,
+      "question": "What is the difference between first normal form and second normal form?",
+      "keywords": [
+        "1NF",
+        "2NF",
+        "normalization",
+        "database design",
+        "forms"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 115,
+      "question": "What is a candidate key?",
+      "keywords": [
+        "candidate key",
+        "unique identifier",
+        "minimal key",
+        "database",
+        "constraint"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 116,
+      "question": "What is an alternate key?",
+      "keywords": [
+        "alternate key",
+        "candidate key",
+        "not primary",
+        "unique",
+        "database"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 117,
+      "question": "What is a super key?",
+      "keywords": [
+        "super key",
+        "unique identification",
+        "attributes",
+        "database",
+        "keys"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 118,
+      "question": "What is data deduplication?",
+      "keywords": [
+        "deduplication",
+        "duplicate removal",
+        "data quality",
+        "cleaning",
+        "efficiency"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 119,
+      "question": "What is the purpose of GROUP BY in SQL?",
+      "keywords": [
+        "GROUP BY",
+        "aggregation",
+        "grouping",
+        "SQL",
+        "summarization"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 120,
+      "question": "What is the ORDER BY clause used for?",
+      "keywords": [
+        "ORDER BY",
+        "sorting",
+        "SQL",
+        "ascending",
+        "descending"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 121,
+      "question": "What is the DISTINCT keyword in SQL?",
+      "keywords": [
+        "DISTINCT",
+        "unique values",
+        "SQL",
+        "duplicate removal",
+        "query"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 122,
+      "question": "What is the LIMIT clause in SQL?",
+      "keywords": [
+        "LIMIT",
+        "row restriction",
+        "SQL",
+        "top N",
+        "query"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 123,
+      "question": "What is a primary metric in analytics?",
+      "keywords": [
+        "primary metric",
+        "KPI",
+        "key measure",
+        "business objective",
+        "tracking"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 124,
+      "question": "What is a secondary metric?",
+      "keywords": [
+        "secondary metric",
+        "supporting measure",
+        "guardrail",
+        "complementary",
+        "monitoring"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 125,
+      "question": "What is data freshness?",
+      "keywords": [
+        "data freshness",
+        "recency",
+        "timeliness",
+        "latency",
+        "updates"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 126,
+      "question": "What is a data source?",
+      "keywords": [
+        "data source",
+        "origin",
+        "system of record",
+        "input",
+        "collection"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 127,
+      "question": "What is a data sink?",
+      "keywords": [
+        "data sink",
+        "destination",
+        "target system",
+        "output",
+        "storage"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 128,
+      "question": "What is a data pipeline?",
+      "keywords": [
+        "data pipeline",
+        "workflow",
+        "ETL",
+        "data flow",
+        "automation"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 129,
+      "question": "What is batch size in data processing?",
+      "keywords": [
+        "batch size",
+        "processing volume",
+        "chunks",
+        "performance",
+        "optimization"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 130,
+      "question": "What is data latency?",
+      "keywords": [
+        "data latency",
+        "delay",
+        "freshness",
+        "real-time",
+        "timeliness"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 131,
+      "question": "What is a business metric?",
+      "keywords": [
+        "business metric",
+        "KPI",
+        "performance indicator",
+        "measurement",
+        "objective"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 132,
+      "question": "What is a vanity metric?",
+      "keywords": [
+        "vanity metric",
+        "misleading",
+        "actionable",
+        "surface-level",
+        "caution"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 133,
+      "question": "What is cohort in analytics?",
+      "keywords": [
+        "cohort",
+        "user group",
+        "shared characteristic",
+        "time-based",
+        "segmentation"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 134,
+      "question": "What is retention rate?",
+      "keywords": [
+        "retention rate",
+        "customer retention",
+        "churn",
+        "loyalty",
+        "metric"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 135,
+      "question": "What is conversion rate?",
+      "keywords": [
+        "conversion rate",
+        "goal completion",
+        "percentage",
+        "funnel",
+        "metric"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 136,
+      "question": "What is bounce rate?",
+      "keywords": [
+        "bounce rate",
+        "single page visit",
+        "engagement",
+        "web analytics",
+        "metric"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 137,
+      "question": "What is session in web analytics?",
+      "keywords": [
+        "session",
+        "visit",
+        "user interaction",
+        "time period",
+        "analytics"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 138,
+      "question": "What is a pageview?",
+      "keywords": [
+        "pageview",
+        "page load",
+        "web analytics",
+        "traffic",
+        "metric"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 139,
+      "question": "What is unique visitor?",
+      "keywords": [
+        "unique visitor",
+        "distinct user",
+        "web analytics",
+        "traffic",
+        "deduplicated"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 140,
+      "question": "What is the difference between Type I and Type II errors in hypothesis testing?",
+      "keywords": [
+        "Type I error",
+        "Type II error",
+        "hypothesis testing",
+        "false positive",
+        "false negative"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 141,
+      "question": "What is a p-value and how is it interpreted?",
+      "keywords": [
+        "p-value",
+        "statistical significance",
+        "hypothesis testing",
+        "probability",
+        "interpretation"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 142,
+      "question": "What is a confidence interval?",
+      "keywords": [
+        "confidence interval",
+        "statistics",
+        "estimation",
+        "uncertainty",
+        "range"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 143,
+      "question": "What is statistical significance?",
+      "keywords": [
+        "statistical significance",
+        "p-value",
+        "hypothesis testing",
+        "results",
+        "interpretation"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 144,
+      "question": "What is the Central Limit Theorem?",
+      "keywords": [
+        "central limit theorem",
+        "sampling distribution",
+        "normal distribution",
+        "statistics",
+        "theorem"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 145,
+      "question": "What is the law of large numbers?",
+      "keywords": [
+        "law of large numbers",
+        "probability",
+        "sample size",
+        "convergence",
+        "statistics"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 146,
+      "question": "What is data skewness?",
+      "keywords": [
+        "skewness",
+        "distribution",
+        "asymmetry",
+        "positive skew",
+        "negative skew"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 147,
+      "question": "What is kurtosis?",
+      "keywords": [
+        "kurtosis",
+        "distribution",
+        "tails",
+        "outliers",
+        "shape"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 148,
+      "question": "What is regression analysis?",
+      "keywords": [
+        "regression",
+        "predictive modeling",
+        "relationship",
+        "variables",
+        "analysis"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 149,
+      "question": "What is the difference between linear and logistic regression?",
+      "keywords": [
+        "linear regression",
+        "logistic regression",
+        "continuous",
+        "categorical",
+        "prediction"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 150,
+      "question": "What is multicollinearity?",
+      "keywords": [
+        "multicollinearity",
+        "correlated predictors",
+        "regression",
+        "variance inflation",
+        "model"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 151,
+      "question": "What is heteroscedasticity?",
+      "keywords": [
+        "heteroscedasticity",
+        "variance",
+        "residuals",
+        "regression",
+        "assumption"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 152,
+      "question": "What is time series forecasting?",
+      "keywords": [
+        "time series",
+        "forecasting",
+        "temporal data",
+        "trends",
+        "prediction"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 153,
+      "question": "What are seasonality and trend in time series?",
+      "keywords": [
+        "seasonality",
+        "trend",
+        "time series",
+        "patterns",
+        "components"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 154,
+      "question": "What is autocorrelation?",
+      "keywords": [
+        "autocorrelation",
+        "time series",
+        "lagged values",
+        "correlation",
+        "temporal"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 155,
+      "question": "What is a moving average?",
+      "keywords": [
+        "moving average",
+        "time series",
+        "smoothing",
+        "trend",
+        "calculation"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 156,
+      "question": "What is exponential smoothing?",
+      "keywords": [
+        "exponential smoothing",
+        "forecasting",
+        "weighted average",
+        "time series",
+        "prediction"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 157,
+      "question": "What is cohort analysis?",
+      "keywords": [
+        "cohort analysis",
+        "user groups",
+        "retention",
+        "behavior",
+        "time-based"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 158,
+      "question": "What is funnel analysis?",
+      "keywords": [
+        "funnel analysis",
+        "conversion",
+        "stages",
+        "drop-off",
+        "customer journey"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 159,
+      "question": "What is RFM analysis?",
+      "keywords": [
+        "RFM",
+        "recency",
+        "frequency",
+        "monetary",
+        "customer segmentation"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 160,
+      "question": "What is customer segmentation?",
+      "keywords": [
+        "segmentation",
+        "clustering",
+        "customer groups",
+        "targeting",
+        "analysis"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 161,
+      "question": "What is churn analysis?",
+      "keywords": [
+        "churn",
+        "retention",
+        "customer loss",
+        "predictive",
+        "analysis"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 162,
+      "question": "What is customer lifetime value (CLV)?",
+      "keywords": [
+        "CLV",
+        "customer lifetime value",
+        "revenue",
+        "retention",
+        "prediction"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 163,
+      "question": "What is the difference between supervised and unsupervised learning?",
+      "keywords": [
+        "supervised learning",
+        "unsupervised learning",
+        "machine learning",
+        "labels",
+        "clustering"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 164,
+      "question": "What is classification in machine learning?",
+      "keywords": [
+        "classification",
+        "categorical output",
+        "machine learning",
+        "prediction",
+        "algorithms"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 165,
+      "question": "What is clustering?",
+      "keywords": [
+        "clustering",
+        "grouping",
+        "unsupervised learning",
+        "similarity",
+        "segmentation"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 166,
+      "question": "What is the difference between k-means and hierarchical clustering?",
+      "keywords": [
+        "k-means",
+        "hierarchical clustering",
+        "algorithms",
+        "clustering",
+        "methods"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 167,
+      "question": "What is Principal Component Analysis (PCA)?",
+      "keywords": [
+        "PCA",
+        "dimensionality reduction",
+        "variance",
+        "components",
+        "analysis"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 168,
+      "question": "What is dimensionality reduction?",
+      "keywords": [
+        "dimensionality reduction",
+        "feature reduction",
+        "PCA",
+        "data compression",
+        "analysis"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 169,
+      "question": "What is cross-validation in machine learning?",
+      "keywords": [
+        "cross-validation",
+        "model evaluation",
+        "training",
+        "testing",
+        "validation"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 170,
+      "question": "What is overfitting and underfitting?",
+      "keywords": [
+        "overfitting",
+        "underfitting",
+        "model performance",
+        "bias-variance",
+        "machine learning"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 171,
+      "question": "What is bias-variance tradeoff?",
+      "keywords": [
+        "bias",
+        "variance",
+        "tradeoff",
+        "model complexity",
+        "machine learning"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 172,
+      "question": "What is a confusion matrix?",
+      "keywords": [
+        "confusion matrix",
+        "classification",
+        "true positive",
+        "false positive",
+        "evaluation"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 173,
+      "question": "What are precision and recall?",
+      "keywords": [
+        "precision",
+        "recall",
+        "classification metrics",
+        "evaluation",
+        "performance"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 174,
+      "question": "What is the F1 score?",
+      "keywords": [
+        "F1 score",
+        "harmonic mean",
+        "precision",
+        "recall",
+        "evaluation"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 175,
+      "question": "What is ROC curve and AUC?",
+      "keywords": [
+        "ROC curve",
+        "AUC",
+        "classification",
+        "true positive rate",
+        "evaluation"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 176,
+      "question": "What is the difference between bagging and boosting?",
+      "keywords": [
+        "bagging",
+        "boosting",
+        "ensemble methods",
+        "machine learning",
+        "algorithms"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 177,
+      "question": "What is ensemble learning?",
+      "keywords": [
+        "ensemble learning",
+        "multiple models",
+        "combining predictions",
+        "accuracy",
+        "methods"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 178,
+      "question": "What is feature selection?",
+      "keywords": [
+        "feature selection",
+        "relevant features",
+        "model performance",
+        "dimensionality",
+        "techniques"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 179,
+      "question": "What is data imputation?",
+      "keywords": [
+        "imputation",
+        "missing data",
+        "filling values",
+        "techniques",
+        "data cleaning"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 180,
+      "question": "What is the difference between mean, median, and mode imputation?",
+      "keywords": [
+        "mean imputation",
+        "median imputation",
+        "mode imputation",
+        "missing values",
+        "methods"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 181,
+      "question": "What is one-hot encoding?",
+      "keywords": [
+        "one-hot encoding",
+        "categorical variables",
+        "binary vectors",
+        "preprocessing",
+        "transformation"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 182,
+      "question": "What is label encoding?",
+      "keywords": [
+        "label encoding",
+        "categorical variables",
+        "numeric conversion",
+        "preprocessing",
+        "transformation"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 183,
+      "question": "What is standardization versus normalization?",
+      "keywords": [
+        "standardization",
+        "normalization",
+        "scaling",
+        "feature engineering",
+        "preprocessing"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 184,
+      "question": "What is the difference between batch processing and real-time processing?",
+      "keywords": [
+        "batch processing",
+        "real-time processing",
+        "data pipeline",
+        "latency",
+        "methods"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 185,
+      "question": "What is data partitioning?",
+      "keywords": [
+        "data partitioning",
+        "splitting data",
+        "performance",
+        "scalability",
+        "storage"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 186,
+      "question": "What is sharding in databases?",
+      "keywords": [
+        "sharding",
+        "horizontal partitioning",
+        "distributed database",
+        "scalability",
+        "performance"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 187,
+      "question": "What is indexing and how does it improve query performance?",
+      "keywords": [
+        "indexing",
+        "query optimization",
+        "performance",
+        "database",
+        "search"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 188,
+      "question": "What is query optimization?",
+      "keywords": [
+        "query optimization",
+        "performance",
+        "execution plan",
+        "SQL",
+        "efficiency"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 189,
+      "question": "What is the execution plan in SQL?",
+      "keywords": [
+        "execution plan",
+        "query optimization",
+        "SQL",
+        "performance",
+        "analysis"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 190,
+      "question": "What is a subquery versus a CTE (Common Table Expression)?",
+      "keywords": [
+        "subquery",
+        "CTE",
+        "common table expression",
+        "SQL",
+        "readability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 191,
+      "question": "What is the difference between UNION and UNION ALL?",
+      "keywords": [
+        "UNION",
+        "UNION ALL",
+        "SQL",
+        "combine results",
+        "duplicates"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 192,
+      "question": "What is a self-join?",
+      "keywords": [
+        "self-join",
+        "SQL",
+        "same table",
+        "relationships",
+        "query"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 193,
+      "question": "What is a cross join?",
+      "keywords": [
+        "cross join",
+        "cartesian product",
+        "SQL",
+        "all combinations",
+        "join"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 194,
+      "question": "What is the CASE statement in SQL?",
+      "keywords": [
+        "CASE statement",
+        "conditional logic",
+        "SQL",
+        "if-then-else",
+        "query"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 195,
+      "question": "What are aggregate functions in SQL?",
+      "keywords": [
+        "aggregate functions",
+        "SUM",
+        "AVG",
+        "COUNT",
+        "MIN",
+        "MAX",
+        "SQL"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 196,
+      "question": "What is the PARTITION BY clause in window functions?",
+      "keywords": [
+        "PARTITION BY",
+        "window functions",
+        "grouping",
+        "SQL",
+        "analytics"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 197,
+      "question": "What is the OVER clause in SQL?",
+      "keywords": [
+        "OVER clause",
+        "window functions",
+        "SQL",
+        "analytics",
+        "partitioning"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 198,
+      "question": "What is the difference between LAG and LEAD functions?",
+      "keywords": [
+        "LAG",
+        "LEAD",
+        "window functions",
+        "previous value",
+        "next value",
+        "SQL"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 199,
+      "question": "What is a running total?",
+      "keywords": [
+        "running total",
+        "cumulative sum",
+        "window functions",
+        "SQL",
+        "analytics"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 200,
+      "question": "What is a percentile rank?",
+      "keywords": [
+        "percentile rank",
+        "ranking",
+        "distribution",
+        "window functions",
+        "SQL"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 201,
+      "question": "What is data binning?",
+      "keywords": [
+        "binning",
+        "discretization",
+        "continuous to categorical",
+        "grouping",
+        "preprocessing"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 202,
+      "question": "What is the difference between filtering and slicing data?",
+      "keywords": [
+        "filtering",
+        "slicing",
+        "data selection",
+        "rows",
+        "columns"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 203,
+      "question": "What is data pivoting?",
+      "keywords": [
+        "pivoting",
+        "reshaping data",
+        "rows to columns",
+        "transformation",
+        "analysis"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 204,
+      "question": "What is unpivoting data?",
+      "keywords": [
+        "unpivoting",
+        "columns to rows",
+        "reshaping",
+        "transformation",
+        "normalization"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 205,
+      "question": "What is a data catalog?",
+      "keywords": [
+        "data catalog",
+        "metadata management",
+        "discovery",
+        "governance",
+        "inventory"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 206,
+      "question": "What is data masking?",
+      "keywords": [
+        "data masking",
+        "privacy",
+        "security",
+        "sensitive data",
+        "protection"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 207,
+      "question": "What is incremental data loading?",
+      "keywords": [
+        "incremental loading",
+        "ETL",
+        "delta load",
+        "efficiency",
+        "data pipeline"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 208,
+      "question": "What is full data refresh versus incremental refresh?",
+      "keywords": [
+        "full refresh",
+        "incremental refresh",
+        "data loading",
+        "performance",
+        "efficiency"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 209,
+      "question": "What is a surrogate vs natural key?",
+      "keywords": [
+        "surrogate key",
+        "natural key",
+        "unique identifier",
+        "data warehouse",
+        "design"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 210,
+      "question": "What is the difference between star and snowflake schema?",
+      "keywords": [
+        "star schema",
+        "snowflake schema",
+        "normalization",
+        "data warehouse",
+        "design"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 211,
+      "question": "What is a bridge table?",
+      "keywords": [
+        "bridge table",
+        "many-to-many",
+        "relationships",
+        "data modeling",
+        "junction table"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 212,
+      "question": "What is data replication?",
+      "keywords": [
+        "data replication",
+        "copying data",
+        "synchronization",
+        "availability",
+        "backup"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 213,
+      "question": "What is data partitioning strategy in warehouses?",
+      "keywords": [
+        "partitioning",
+        "data warehouse",
+        "performance",
+        "query optimization",
+        "strategy"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 214,
+      "question": "What is columnar storage?",
+      "keywords": [
+        "columnar storage",
+        "column-oriented",
+        "performance",
+        "analytics",
+        "compression"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 215,
+      "question": "What is row-based versus column-based storage?",
+      "keywords": [
+        "row-based",
+        "column-based",
+        "storage format",
+        "performance",
+        "use cases"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 216,
+      "question": "What is data compression?",
+      "keywords": [
+        "compression",
+        "storage optimization",
+        "encoding",
+        "performance",
+        "techniques"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 217,
+      "question": "What is change data capture (CDC)?",
+      "keywords": [
+        "CDC",
+        "change data capture",
+        "incremental updates",
+        "real-time",
+        "data integration"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 218,
+      "question": "What is a conformed dimension?",
+      "keywords": [
+        "conformed dimension",
+        "shared dimension",
+        "data warehouse",
+        "consistency",
+        "integration"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 219,
+      "question": "What is a fact constellation schema?",
+      "keywords": [
+        "fact constellation",
+        "galaxy schema",
+        "multiple fact tables",
+        "data warehouse",
+        "design"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 220,
+      "question": "What is the difference between ROLAP and MOLAP?",
+      "keywords": [
+        "ROLAP",
+        "MOLAP",
+        "OLAP",
+        "storage",
+        "performance"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 221,
+      "question": "What is a calculated table in Power BI?",
+      "keywords": [
+        "calculated table",
+        "Power BI",
+        "DAX",
+        "in-memory",
+        "data modeling"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 222,
+      "question": "What is a bookmark in Power BI?",
+      "keywords": [
+        "bookmark",
+        "Power BI",
+        "state capture",
+        "navigation",
+        "interactivity"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 223,
+      "question": "What is a parameter in analytics tools?",
+      "keywords": [
+        "parameter",
+        "dynamic values",
+        "user input",
+        "interactivity",
+        "flexibility"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 224,
+      "question": "What is row-level security (RLS)?",
+      "keywords": [
+        "row-level security",
+        "RLS",
+        "data security",
+        "access control",
+        "filtering"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 225,
+      "question": "What is the difference between import and DirectQuery?",
+      "keywords": [
+        "import mode",
+        "DirectQuery",
+        "data connectivity",
+        "performance",
+        "refresh"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 226,
+      "question": "What is a data gateway?",
+      "keywords": [
+        "data gateway",
+        "on-premises",
+        "cloud connectivity",
+        "bridge",
+        "security"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 227,
+      "question": "What is refresh scheduling?",
+      "keywords": [
+        "refresh scheduling",
+        "data updates",
+        "automation",
+        "frequency",
+        "maintenance"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 228,
+      "question": "What is the difference between a report and a dashboard?",
+      "keywords": [
+        "report",
+        "dashboard",
+        "detailed analysis",
+        "summary view",
+        "purpose"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 229,
+      "question": "How does data sampling affect statistical analysis?",
+      "keywords": [
+        "sampling",
+        "bias",
+        "representativeness",
+        "sample size",
+        "statistical power"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 230,
+      "question": "What is the difference between stratified and random sampling?",
+      "keywords": [
+        "stratified sampling",
+        "random sampling",
+        "methods",
+        "bias reduction",
+        "representation"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 231,
+      "question": "What is systematic sampling?",
+      "keywords": [
+        "systematic sampling",
+        "interval selection",
+        "sampling method",
+        "pattern",
+        "technique"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 232,
+      "question": "What is cluster sampling?",
+      "keywords": [
+        "cluster sampling",
+        "grouped sampling",
+        "method",
+        "efficiency",
+        "technique"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 233,
+      "question": "What is the difference between point estimate and interval estimate?",
+      "keywords": [
+        "point estimate",
+        "interval estimate",
+        "confidence interval",
+        "precision",
+        "statistics"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 234,
+      "question": "What is margin of error?",
+      "keywords": [
+        "margin of error",
+        "confidence interval",
+        "precision",
+        "sample size",
+        "statistics"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 235,
+      "question": "What is hypothesis testing workflow?",
+      "keywords": [
+        "hypothesis testing",
+        "null hypothesis",
+        "alternative hypothesis",
+        "procedure",
+        "steps"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 236,
+      "question": "What is the null hypothesis?",
+      "keywords": [
+        "null hypothesis",
+        "default assumption",
+        "no effect",
+        "testing",
+        "statistics"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 237,
+      "question": "What is the alternative hypothesis?",
+      "keywords": [
+        "alternative hypothesis",
+        "research hypothesis",
+        "effect exists",
+        "testing",
+        "statistics"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 238,
+      "question": "What is a one-tailed versus two-tailed test?",
+      "keywords": [
+        "one-tailed test",
+        "two-tailed test",
+        "directional",
+        "hypothesis testing",
+        "statistics"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 239,
+      "question": "What is alpha level in hypothesis testing?",
+      "keywords": [
+        "alpha level",
+        "significance level",
+        "Type I error",
+        "threshold",
+        "statistics"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 240,
+      "question": "What is beta in hypothesis testing?",
+      "keywords": [
+        "beta",
+        "Type II error",
+        "statistical power",
+        "hypothesis testing",
+        "probability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 241,
+      "question": "What is statistical power?",
+      "keywords": [
+        "statistical power",
+        "detecting effect",
+        "sample size",
+        "sensitivity",
+        "analysis"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 242,
+      "question": "What is effect size?",
+      "keywords": [
+        "effect size",
+        "magnitude",
+        "practical significance",
+        "measurement",
+        "interpretation"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 243,
+      "question": "What is the z-test?",
+      "keywords": [
+        "z-test",
+        "hypothesis testing",
+        "known variance",
+        "normal distribution",
+        "statistics"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 244,
+      "question": "What is the t-test?",
+      "keywords": [
+        "t-test",
+        "hypothesis testing",
+        "small sample",
+        "unknown variance",
+        "statistics"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 245,
+      "question": "What is ANOVA?",
+      "keywords": [
+        "ANOVA",
+        "analysis of variance",
+        "multiple groups",
+        "comparison",
+        "statistics"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 246,
+      "question": "What is the chi-square test?",
+      "keywords": [
+        "chi-square test",
+        "categorical data",
+        "independence",
+        "goodness of fit",
+        "statistics"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 247,
+      "question": "What is correlation coefficient?",
+      "keywords": [
+        "correlation coefficient",
+        "strength",
+        "direction",
+        "relationship",
+        "measurement"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 248,
+      "question": "What is Pearson correlation?",
+      "keywords": [
+        "Pearson correlation",
+        "linear relationship",
+        "continuous variables",
+        "coefficient",
+        "statistics"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 249,
+      "question": "What is Spearman correlation?",
+      "keywords": [
+        "Spearman correlation",
+        "rank correlation",
+        "non-parametric",
+        "monotonic relationship",
+        "statistics"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 250,
+      "question": "What is covariance?",
+      "keywords": [
+        "covariance",
+        "joint variability",
+        "relationship",
+        "scale-dependent",
+        "statistics"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 251,
+      "question": "What is R-squared in regression?",
+      "keywords": [
+        "R-squared",
+        "coefficient of determination",
+        "goodness of fit",
+        "variance explained",
+        "regression"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 252,
+      "question": "What is adjusted R-squared?",
+      "keywords": [
+        "adjusted R-squared",
+        "penalized R-squared",
+        "model comparison",
+        "predictors",
+        "regression"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 253,
+      "question": "What is a residual in regression?",
+      "keywords": [
+        "residual",
+        "prediction error",
+        "actual minus predicted",
+        "regression",
+        "analysis"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 254,
+      "question": "What is residual analysis?",
+      "keywords": [
+        "residual analysis",
+        "model diagnostics",
+        "assumptions",
+        "patterns",
+        "validation"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 255,
+      "question": "What is the difference between simple and multiple regression?",
+      "keywords": [
+        "simple regression",
+        "multiple regression",
+        "one predictor",
+        "multiple predictors",
+        "comparison"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 256,
+      "question": "What is polynomial regression?",
+      "keywords": [
+        "polynomial regression",
+        "non-linear",
+        "curved relationship",
+        "higher-order terms",
+        "modeling"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 257,
+      "question": "What is regularization in regression?",
+      "keywords": [
+        "regularization",
+        "overfitting prevention",
+        "penalty term",
+        "Lasso",
+        "Ridge"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 258,
+      "question": "What is feature scaling and why is it important?",
+      "keywords": [
+        "feature scaling",
+        "normalization",
+        "standardization",
+        "model performance",
+        "preprocessing"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 259,
+      "question": "What is the curse of dimensionality?",
+      "keywords": [
+        "curse of dimensionality",
+        "high dimensions",
+        "sparsity",
+        "model performance",
+        "challenge"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 260,
+      "question": "What is a decision tree in analytics?",
+      "keywords": [
+        "decision tree",
+        "branching logic",
+        "classification",
+        "interpretable",
+        "model"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 261,
+      "question": "What is entropy in decision trees?",
+      "keywords": [
+        "entropy",
+        "impurity",
+        "information gain",
+        "decision tree",
+        "measurement"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 262,
+      "question": "What is information gain?",
+      "keywords": [
+        "information gain",
+        "split quality",
+        "entropy reduction",
+        "decision tree",
+        "criterion"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 263,
+      "question": "What is Gini impurity?",
+      "keywords": [
+        "Gini impurity",
+        "split criterion",
+        "decision tree",
+        "classification",
+        "measurement"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 264,
+      "question": "What is pruning in decision trees?",
+      "keywords": [
+        "pruning",
+        "overfitting reduction",
+        "simplification",
+        "decision tree",
+        "optimization"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 265,
+      "question": "What is a random forest?",
+      "keywords": [
+        "random forest",
+        "ensemble",
+        "multiple trees",
+        "bagging",
+        "algorithm"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 266,
+      "question": "What is gradient boosting?",
+      "keywords": [
+        "gradient boosting",
+        "sequential learning",
+        "ensemble",
+        "error correction",
+        "algorithm"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 267,
+      "question": "What is the difference between classification and regression?",
+      "keywords": [
+        "classification",
+        "regression",
+        "categorical output",
+        "continuous output",
+        "prediction types"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 268,
+      "question": "What is a binary classification problem?",
+      "keywords": [
+        "binary classification",
+        "two classes",
+        "yes/no",
+        "prediction",
+        "problem type"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 269,
+      "question": "What is multi-class classification?",
+      "keywords": [
+        "multi-class classification",
+        "multiple categories",
+        "prediction",
+        "classification",
+        "problem type"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 270,
+      "question": "What is class imbalance?",
+      "keywords": [
+        "class imbalance",
+        "unequal distribution",
+        "minority class",
+        "bias",
+        "challenge"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 271,
+      "question": "What is SMOTE?",
+      "keywords": [
+        "SMOTE",
+        "synthetic minority oversampling",
+        "imbalanced data",
+        "technique",
+        "preprocessing"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 272,
+      "question": "What is stratified cross-validation?",
+      "keywords": [
+        "stratified cross-validation",
+        "balanced folds",
+        "class distribution",
+        "validation",
+        "technique"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 273,
+      "question": "What is k-fold cross-validation?",
+      "keywords": [
+        "k-fold",
+        "cross-validation",
+        "training",
+        "testing",
+        "evaluation method"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 274,
+      "question": "What is leave-one-out cross-validation?",
+      "keywords": [
+        "LOOCV",
+        "leave-one-out",
+        "cross-validation",
+        "small datasets",
+        "method"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 275,
+      "question": "What is the training, validation, and test split?",
+      "keywords": [
+        "training set",
+        "validation set",
+        "test set",
+        "data splitting",
+        "model development"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 276,
+      "question": "What is data leakage in machine learning?",
+      "keywords": [
+        "data leakage",
+        "information leak",
+        "overfitting",
+        "model validity",
+        "problem"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 277,
+      "question": "What is feature importance?",
+      "keywords": [
+        "feature importance",
+        "variable contribution",
+        "model interpretation",
+        "ranking",
+        "analysis"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 278,
+      "question": "What is permutation importance?",
+      "keywords": [
+        "permutation importance",
+        "feature shuffling",
+        "performance drop",
+        "interpretation",
+        "technique"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 279,
+      "question": "What is SHAP values?",
+      "keywords": [
+        "SHAP",
+        "Shapley values",
+        "model interpretation",
+        "feature contribution",
+        "explainability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 280,
+      "question": "What is model interpretability?",
+      "keywords": [
+        "interpretability",
+        "explainability",
+        "transparency",
+        "understanding",
+        "trust"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 281,
+      "question": "What is the difference between accuracy and precision?",
+      "keywords": [
+        "accuracy",
+        "precision",
+        "correct predictions",
+        "positive predictions",
+        "metrics"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 282,
+      "question": "What is specificity in classification?",
+      "keywords": [
+        "specificity",
+        "true negative rate",
+        "classification",
+        "evaluation",
+        "metric"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 283,
+      "question": "Explain how you would design a data warehouse from scratch.",
+      "keywords": [
+        "data warehouse design",
+        "architecture",
+        "dimensional modeling",
+        "ETL",
+        "requirements"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 284,
+      "question": "How would you optimize a slow-performing dashboard?",
+      "keywords": [
+        "performance optimization",
+        "dashboard",
+        "query tuning",
+        "data modeling",
+        "best practices"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 285,
+      "question": "Explain the concept of Type 2 slowly changing dimensions and when to use them.",
+      "keywords": [
+        "Type 2 SCD",
+        "historical tracking",
+        "versioning",
+        "data warehouse",
+        "dimension"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 286,
+      "question": "How would you handle data quality issues in a production pipeline?",
+      "keywords": [
+        "data quality",
+        "validation",
+        "monitoring",
+        "production",
+        "error handling"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 287,
+      "question": "Explain the difference between star schema and snowflake schema and which would you choose when?",
+      "keywords": [
+        "star schema",
+        "snowflake schema",
+        "trade-offs",
+        "performance",
+        "design decision"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 288,
+      "question": "How would you design an incremental ETL process?",
+      "keywords": [
+        "incremental ETL",
+        "delta detection",
+        "watermark",
+        "efficiency",
+        "design"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 289,
+      "question": "Explain how you would implement real-time analytics.",
+      "keywords": [
+        "real-time analytics",
+        "streaming",
+        "architecture",
+        "latency",
+        "implementation"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 290,
+      "question": "How do you ensure data consistency across multiple data sources?",
+      "keywords": [
+        "data consistency",
+        "integration",
+        "validation",
+        "reconciliation",
+        "quality"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 291,
+      "question": "Explain the concept of data lineage and how you would implement it.",
+      "keywords": [
+        "data lineage",
+        "traceability",
+        "metadata",
+        "documentation",
+        "implementation"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 292,
+      "question": "How would you design a data governance framework?",
+      "keywords": [
+        "data governance",
+        "policies",
+        "stewardship",
+        "framework",
+        "implementation"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 293,
+      "question": "Explain how to implement slowly changing dimensions Type 1, 2, and 3.",
+      "keywords": [
+        "SCD types",
+        "historical data",
+        "tracking changes",
+        "implementation",
+        "scenarios"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 294,
+      "question": "How would you handle late-arriving facts in a data warehouse?",
+      "keywords": [
+        "late-arriving facts",
+        "data warehouse",
+        "temporal data",
+        "handling",
+        "design"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 295,
+      "question": "Explain the difference between additive, semi-additive, and non-additive measures.",
+      "keywords": [
+        "additive",
+        "semi-additive",
+        "non-additive",
+        "measures",
+        "aggregation"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 296,
+      "question": "How would you implement a master data management strategy?",
+      "keywords": [
+        "MDM",
+        "master data management",
+        "data quality",
+        "governance",
+        "strategy"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 297,
+      "question": "Explain how you would design a multi-tenant data architecture.",
+      "keywords": [
+        "multi-tenant",
+        "data isolation",
+        "scalability",
+        "architecture",
+        "security"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 298,
+      "question": "How do you handle data versioning in analytics systems?",
+      "keywords": [
+        "data versioning",
+        "temporal data",
+        "history tracking",
+        "implementation",
+        "design"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 299,
+      "question": "Explain the concept of bridge tables and when they are necessary.",
+      "keywords": [
+        "bridge table",
+        "many-to-many",
+        "factless fact table",
+        "modeling",
+        "use cases"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 300,
+      "question": "How would you implement data virtualization?",
+      "keywords": [
+        "data virtualization",
+        "abstraction layer",
+        "real-time access",
+        "implementation",
+        "architecture"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 301,
+      "question": "Explain how to design and implement a lambda architecture.",
+      "keywords": [
+        "lambda architecture",
+        "batch layer",
+        "speed layer",
+        "real-time",
+        "big data"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 302,
+      "question": "How would you handle schema evolution in a data lake?",
+      "keywords": [
+        "schema evolution",
+        "data lake",
+        "flexibility",
+        "versioning",
+        "management"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 303,
+      "question": "Explain the concept of data mesh and its benefits.",
+      "keywords": [
+        "data mesh",
+        "domain-oriented",
+        "decentralized",
+        "architecture",
+        "principles"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 304,
+      "question": "How would you implement anomaly detection in business metrics?",
+      "keywords": [
+        "anomaly detection",
+        "statistical methods",
+        "monitoring",
+        "alerts",
+        "implementation"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 305,
+      "question": "Explain how to design a self-service analytics platform.",
+      "keywords": [
+        "self-service",
+        "democratization",
+        "governance",
+        "platform design",
+        "enablement"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 306,
+      "question": "How would you implement data quality monitoring and alerting?",
+      "keywords": [
+        "data quality",
+        "monitoring",
+        "alerting",
+        "validation rules",
+        "automation"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 307,
+      "question": "Explain the trade-offs between normalized and denormalized data models.",
+      "keywords": [
+        "normalization",
+        "denormalization",
+        "trade-offs",
+        "performance",
+        "design decisions"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 308,
+      "question": "How would you design a solution for analyzing clickstream data?",
+      "keywords": [
+        "clickstream analysis",
+        "user behavior",
+        "event tracking",
+        "architecture",
+        "implementation"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 309,
+      "question": "Explain how to implement attribution modeling for marketing analytics.",
+      "keywords": [
+        "attribution modeling",
+        "multi-touch",
+        "conversion",
+        "marketing analytics",
+        "methodology"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 310,
+      "question": "How would you handle data privacy compliance (GDPR, CCPA) in analytics?",
+      "keywords": [
+        "data privacy",
+        "GDPR",
+        "CCPA",
+        "compliance",
+        "implementation"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 311,
+      "question": "Explain the concept of data observability and how to implement it.",
+      "keywords": [
+        "data observability",
+        "monitoring",
+        "data health",
+        "implementation",
+        "metrics"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 312,
+      "question": "How would you design a recommendation system using analytical approaches?",
+      "keywords": [
+        "recommendation system",
+        "collaborative filtering",
+        "analytics",
+        "design",
+        "implementation"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 313,
+      "question": "Explain how to implement slowly changing hierarchies.",
+      "keywords": [
+        "hierarchies",
+        "changing structures",
+        "organizational changes",
+        "modeling",
+        "implementation"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 314,
+      "question": "How would you design a data architecture for IoT analytics?",
+      "keywords": [
+        "IoT analytics",
+        "streaming data",
+        "time series",
+        "architecture",
+        "scale"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 315,
+      "question": "Explain the concept of data fabric and its implementation.",
+      "keywords": [
+        "data fabric",
+        "unified architecture",
+        "integration",
+        "metadata",
+        "implementation"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 316,
+      "question": "How would you implement causal inference in business analytics?",
+      "keywords": [
+        "causal inference",
+        "experimentation",
+        "statistical methods",
+        "business impact",
+        "methodology"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 317,
+      "question": "Explain how to design a scalable metrics computation system.",
+      "keywords": [
+        "metrics computation",
+        "scalability",
+        "aggregation",
+        "architecture",
+        "performance"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 318,
+      "question": "How would you handle data reconciliation across systems?",
+      "keywords": [
+        "data reconciliation",
+        "consistency",
+        "validation",
+        "cross-system",
+        "methodology"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 319,
+      "question": "Explain the implementation of a feature store for analytics.",
+      "keywords": [
+        "feature store",
+        "reusability",
+        "consistency",
+        "ML features",
+        "implementation"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 320,
+      "question": "How would you design a system for behavioral cohort analysis at scale?",
+      "keywords": [
+        "behavioral cohorts",
+        "user segmentation",
+        "scalability",
+        "analysis",
+        "architecture"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 321,
+      "question": "Explain how to implement event-driven analytics architecture.",
+      "keywords": [
+        "event-driven",
+        "real-time",
+        "streaming",
+        "architecture",
+        "implementation"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 322,
+      "question": "How would you design a solution for predictive maintenance analytics?",
+      "keywords": [
+        "predictive maintenance",
+        "forecasting",
+        "sensor data",
+        "analytics",
+        "implementation"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 323,
+      "question": "How would you design an experimentation platform for A/B testing at scale?",
+      "keywords": [
+        "A/B testing",
+        "experimentation platform",
+        "scalability",
+        "design",
+        "architecture"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 324,
+      "question": "Explain how you would detect and handle data drift in production models.",
+      "keywords": [
+        "data drift",
+        "model monitoring",
+        "detection",
+        "handling",
+        "production"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 325,
+      "question": "How would you implement causal impact analysis for business decisions?",
+      "keywords": [
+        "causal impact",
+        "causal inference",
+        "business decisions",
+        "methodology",
+        "implementation"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 326,
+      "question": "Explain the trade-offs between batch and streaming analytics architectures.",
+      "keywords": [
+        "batch processing",
+        "streaming",
+        "trade-offs",
+        "architecture",
+        "design decisions"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 327,
+      "question": "How would you design a metrics tree for a product?",
+      "keywords": [
+        "metrics tree",
+        "KPI hierarchy",
+        "product analytics",
+        "framework",
+        "design"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 328,
+      "question": "Explain how to implement bayesian A/B testing.",
+      "keywords": [
+        "bayesian",
+        "A/B testing",
+        "probabilistic",
+        "methodology",
+        "implementation"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 329,
+      "question": "How would you handle Simpson's paradox in data analysis?",
+      "keywords": [
+        "Simpson's paradox",
+        "confounding",
+        "aggregation bias",
+        "analysis",
+        "interpretation"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 330,
+      "question": "Explain the concept of propensity score matching and its applications.",
+      "keywords": [
+        "propensity score",
+        "matching",
+        "causal inference",
+        "observational data",
+        "methodology"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 331,
+      "question": "How would you design a system for real-time anomaly detection in metrics?",
+      "keywords": [
+        "real-time",
+        "anomaly detection",
+        "metrics monitoring",
+        "system design",
+        "implementation"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 332,
+      "question": "Explain how to implement incrementality testing in marketing.",
+      "keywords": [
+        "incrementality",
+        "lift testing",
+        "marketing effectiveness",
+        "methodology",
+        "causal"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 333,
+      "question": "How would you approach multi-armed bandit problems in experimentation?",
+      "keywords": [
+        "multi-armed bandit",
+        "optimization",
+        "exploration-exploitation",
+        "experimentation",
+        "algorithm"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 334,
+      "question": "Explain the concept of survivorship bias and how to avoid it.",
+      "keywords": [
+        "survivorship bias",
+        "selection bias",
+        "data analysis",
+        "pitfall",
+        "methodology"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 335,
+      "question": "How would you design a data quality scorecard?",
+      "keywords": [
+        "data quality",
+        "scorecard",
+        "metrics",
+        "monitoring",
+        "framework"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 336,
+      "question": "Explain how to implement dynamic pricing analytics.",
+      "keywords": [
+        "dynamic pricing",
+        "price optimization",
+        "analytics",
+        "algorithm",
+        "implementation"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 337,
+      "question": "How would you measure network effects in a platform business?",
+      "keywords": [
+        "network effects",
+        "platform metrics",
+        "measurement",
+        "analysis",
+        "methodology"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 338,
+      "question": "Explain the difference between quasi-experimental and experimental designs.",
+      "keywords": [
+        "quasi-experimental",
+        "experimental design",
+        "causal inference",
+        "comparison",
+        "methodology"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 339,
+      "question": "How would you implement synthetic control methods for causal analysis?",
+      "keywords": [
+        "synthetic control",
+        "causal inference",
+        "comparison group",
+        "methodology",
+        "implementation"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 340,
+      "question": "Explain how to design and analyze factorial experiments.",
+      "keywords": [
+        "factorial design",
+        "interaction effects",
+        "experimentation",
+        "analysis",
+        "methodology"
+      ],
+      "difficulty": "difficult"
+    }
   ]
 }
