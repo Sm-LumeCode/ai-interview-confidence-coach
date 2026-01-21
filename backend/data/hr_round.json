@@ -1,3 +1,4 @@
+,
 {
   "role": "hr",
   "questions": [
@@ -30,6 +31,1206 @@
       "question": "Where do you see yourself in 5 years?",
       "keywords": ["career goals", "growth", "ambition", "company alignment", "realistic"],
       "difficulty": "easy"
+    },
+    {
+      "id": 6,
+      "question": "How do you handle stress and pressure during tight deadlines?",
+      "keywords": ["stress management", "time management", "prioritization", "coping strategies", "examples"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 7,
+      "question": "What motivates you to do your best at work?",
+      "keywords": ["motivation", "work ethic", "intrinsic motivation", "goals", "values"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 8,
+      "question": "Describe a time when you worked in a team and things did not go as planned.",
+      "keywords": ["teamwork", "conflict", "adaptability", "problem solving", "lessons learned"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 9,
+      "question": "How do you prioritize your tasks when you have multiple deadlines?",
+      "keywords": ["prioritization", "time management", "planning", "organization", "decision making"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 10,
+      "question": "What do you know about our company and its culture?",
+      "keywords": ["company research", "culture", "values", "products", "vision"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 11,
+      "question": "Can you describe a situation where you disagreed with your manager and how you handled it?",
+      "keywords": ["conflict resolution", "professionalism", "communication", "respect", "problem solving"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 12,
+      "question": "How do you handle feedback or criticism from your seniors?",
+      "keywords": ["feedback", "openness", "improvement", "professionalism", "growth mindset"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 13,
+      "question": "Describe a time when you showed initiative beyond your assigned responsibilities.",
+      "keywords": ["initiative", "ownership", "proactiveness", "responsibility", "impact"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 14,
+      "question": "What does work-life balance mean to you?",
+      "keywords": ["work-life balance", "well-being", "boundaries", "productivity", "sustainability"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 15,
+      "question": "How would your friends or colleagues describe you?",
+      "keywords": ["self-awareness", "personality", "team perception", "strengths", "traits"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 16,
+      "question": "Tell me about a time when you had to work with a difficult team member.",
+      "keywords": ["teamwork", "conflict", "empathy", "communication", "resolution"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 17,
+      "question": "What steps do you take when you are assigned a task you have never done before?",
+      "keywords": ["learning", "problem solving", "resourcefulness", "adaptability", "planning"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 18,
+      "question": "What kind of work environment helps you perform at your best?",
+      "keywords": ["work environment", "culture", "collaboration", "focus", "values"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 19,
+      "question": "Describe a situation where you had to meet a very tight deadline. How did you manage it?",
+      "keywords": ["time management", "pressure", "planning", "prioritization", "results"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 20,
+      "question": "How do you ensure that you stay organized in your daily tasks?",
+      "keywords": ["organization", "planning", "tools", "productivity", "time management"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 21,
+      "question": "Have you ever failed at something important? What did you learn from that experience?",
+      "keywords": ["failure", "learning", "reflection", "resilience", "growth"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 22,
+      "question": "What are your salary expectations for this role?",
+      "keywords": ["salary expectations", "market research", "negotiation", "flexibility", "compensation"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 23,
+      "question": "How do you deal with repetitive or monotonous tasks?",
+      "keywords": ["motivation", "discipline", "focus", "strategies", "productivity"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 24,
+      "question": "What do you consider your biggest professional achievement so far?",
+      "keywords": ["achievement", "impact", "results", "responsibility", "success"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 25,
+      "question": "What kind of management style do you prefer to work under?",
+      "keywords": ["management style", "expectations", "communication", "autonomy", "feedback"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 26,
+      "question": "Describe a time when you had to quickly adapt to a major change at work or in your studies.",
+      "keywords": ["adaptability", "change", "flexibility", "problem solving", "resilience"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 27,
+      "question": "How do you handle situations where you are not given clear instructions?",
+      "keywords": ["ambiguity", "clarification", "initiative", "communication", "ownership"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 28,
+      "question": "What are your expectations from your team leader or manager?",
+      "keywords": ["leadership expectations", "support", "feedback", "communication", "growth"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 29,
+      "question": "Can you give an example of a time when you had to make a difficult decision?",
+      "keywords": ["decision making", "responsibility", "analysis", "ethics", "outcome"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 30,
+      "question": "How do you ensure that you keep learning and updating your skills?",
+      "keywords": ["continuous learning", "self-improvement", "courses", "curiosity", "growth mindset"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 31,
+      "question": "Describe a time when you went above and beyond what was expected of you.",
+      "keywords": ["initiative", "ownership", "effort", "responsibility", "achievement"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 32,
+      "question": "How do you handle working with people who have different working styles or opinions?",
+      "keywords": ["teamwork", "collaboration", "empathy", "flexibility", "respect"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 33,
+      "question": "What does professional ethics mean to you?",
+      "keywords": ["ethics", "integrity", "honesty", "responsibility", "values"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 34,
+      "question": "Why should we hire you over other candidates?",
+      "keywords": ["unique value", "strengths", "fit", "differentiation", "confidence"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 35,
+      "question": "Describe a situation where you had to handle a conflict within a team.",
+      "keywords": ["conflict resolution", "communication", "mediation", "teamwork", "outcome"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 36,
+      "question": "What do you do if you realize you made a mistake at work?",
+      "keywords": ["accountability", "honesty", "correction", "communication", "learning"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 37,
+      "question": "How do you react when your ideas are rejected?",
+      "keywords": ["feedback", "humility", "resilience", "open-mindedness", "improvement"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 38,
+      "question": "Tell me about a time when you had to take responsibility for a team’s failure.",
+      "keywords": ["accountability", "leadership", "ownership", "learning", "reflection"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 39,
+      "question": "What kind of tasks or work do you enjoy the most?",
+      "keywords": ["preferences", "strengths", "motivation", "interests", "fit"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 40,
+      "question": "What kind of tasks or work do you find most challenging?",
+      "keywords": ["challenges", "weaknesses", "growth", "learning", "self-awareness"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 41,
+      "question": "Have you ever had to deal with an uncooperative colleague? What did you do?",
+      "keywords": ["teamwork", "conflict", "communication", "patience", "solution"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 42,
+      "question": "How do you ensure effective communication when working in a team?",
+      "keywords": ["communication", "clarity", "collaboration", "feedback", "listening"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 43,
+      "question": "Describe a situation where you had to lead a team without having formal authority.",
+      "keywords": ["leadership", "influence", "initiative", "teamwork", "ownership"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 44,
+      "question": "What do you do when you feel demotivated or low in energy?",
+      "keywords": ["motivation", "self-management", "resilience", "strategies", "mindset"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 45,
+      "question": "What qualities do you think are most important for success in this role?",
+      "keywords": ["role fit", "skills", "qualities", "expectations", "understanding"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 46,
+      "question": "Tell me about a time when you had to explain a complex idea to someone with less knowledge.",
+      "keywords": ["communication", "simplification", "patience", "teaching", "clarity"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 47,
+      "question": "How do you handle working under a strict or demanding manager?",
+      "keywords": ["adaptability", "professionalism", "communication", "boundaries", "expectations"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 48,
+      "question": "What do you do to prepare yourself before starting a new project or assignment?",
+      "keywords": ["planning", "research", "goal setting", "organization", "clarity"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 49,
+      "question": "Describe a time when you had to learn something completely new in a short time.",
+      "keywords": ["learning", "time pressure", "adaptability", "strategy", "outcome"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 50,
+      "question": "How do you manage your time when balancing multiple commitments like work, studies, or personal life?",
+      "keywords": ["time management", "prioritization", "planning", "balance", "discipline"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 51,
+      "question": "What are the three most important values you look for in a company?",
+      "keywords": ["values", "culture", "ethics", "alignment", "motivation"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 52,
+      "question": "Have you ever had to give feedback to a peer or junior? How did you approach it?",
+      "keywords": ["feedback", "communication", "empathy", "constructive criticism", "support"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 53,
+      "question": "Tell me about a time when you managed a conflict between two team members.",
+      "keywords": ["conflict management", "mediation", "neutrality", "communication", "resolution"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 54,
+      "question": "What does teamwork mean to you?",
+      "keywords": ["teamwork", "collaboration", "shared goals", "support", "communication"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 55,
+      "question": "How would you handle a situation where you are given unrealistic expectations or deadlines?",
+      "keywords": ["expectation management", "communication", "negotiation", "prioritization", "professionalism"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 56,
+      "question": "Describe a time when you had to handle confidential information.",
+      "keywords": ["confidentiality", "trust", "ethics", "responsibility", "professionalism"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 57,
+      "question": "What role do you usually take in a team: leader, contributor, or supporter?",
+      "keywords": ["self-awareness", "team role", "leadership", "collaboration", "flexibility"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 58,
+      "question": "How do you react if you are suddenly assigned additional responsibilities?",
+      "keywords": ["adaptability", "ownership", "workload management", "attitude", "initiative"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 59,
+      "question": "Tell me about a time you had to deliver bad news or a negative update to someone.",
+      "keywords": ["communication", "empathy", "honesty", "professionalism", "tact"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 60,
+      "question": "What do you think are the most important soft skills for this role?",
+      "keywords": ["soft skills", "communication", "teamwork", "adaptability", "problem solving"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 61,
+      "question": "How do you plan your day to ensure productivity?",
+      "keywords": ["planning", "scheduling", "priorities", "time blocking", "productivity"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 62,
+      "question": "Describe a situation in which you had to handle multiple stakeholders with different expectations.",
+      "keywords": ["stakeholders", "communication", "expectation management", "negotiation", "prioritization"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 63,
+      "question": "Have you ever taken a leadership role in a college project or extracurricular activity?",
+      "keywords": ["leadership", "initiative", "responsibility", "teamwork", "planning"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 64,
+      "question": "How do you handle situations where you feel you are being micromanaged?",
+      "keywords": ["professionalism", "communication", "trust", "adaptability", "feedback"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 65,
+      "question": "Tell me about a situation where you had to manage your emotions in a professional setting.",
+      "keywords": ["emotional control", "professionalism", "self-awareness", "conflict", "maturity"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 66,
+      "question": "What is your approach to building relationships with new colleagues?",
+      "keywords": ["relationship building", "communication", "team integration", "trust", "collaboration"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 67,
+      "question": "Describe a time when you had to say ‘no’ to someone at work or in college.",
+      "keywords": ["assertiveness", "boundaries", "communication", "priorities", "respect"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 68,
+      "question": "How do you handle working with someone whose values or behaviors you don't agree with?",
+      "keywords": ["professionalism", "respect", "boundaries", "conflict management", "tolerance"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 69,
+      "question": "What are your non-negotiables in a workplace?",
+      "keywords": ["values", "boundaries", "ethics", "culture", "expectations"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 70,
+      "question": "Tell me about a time when you handled a last-minute change in requirements.",
+      "keywords": ["adaptability", "flexibility", "problem solving", "planning", "response"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 71,
+      "question": "What do you usually do if you do not understand an instruction or requirement?",
+      "keywords": ["clarification", "communication", "initiative", "responsibility", "ownership"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 72,
+      "question": "Describe an instance where you demonstrated creativity in solving a problem.",
+      "keywords": ["creativity", "innovation", "problem solving", "initiative", "impact"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 73,
+      "question": "How do you handle situations where you feel overwhelmed by your workload?",
+      "keywords": ["stress management", "prioritization", "delegation", "communication", "self-care"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 74,
+      "question": "What do you expect from your first 90 days in this role?",
+      "keywords": ["onboarding", "learning", "contribution", "expectations", "goals"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 75,
+      "question": "Have you ever mentored or guided someone? What was your approach?",
+      "keywords": ["mentoring", "guidance", "support", "communication", "patience"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 76,
+      "question": "How do you handle working with someone much more experienced than you?",
+      "keywords": ["respect", "learning", "humility", "collaboration", "communication"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 77,
+      "question": "How do you respond when you are asked to step outside your comfort zone?",
+      "keywords": ["growth", "adaptability", "courage", "learning", "attitude"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 78,
+      "question": "What do you think makes a good team player?",
+      "keywords": ["teamwork", "support", "responsibility", "communication", "cooperation"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 79,
+      "question": "Describe a time when you had to balance quality and speed in your work.",
+      "keywords": ["trade-offs", "quality", "deadline", "decision making", "prioritization"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 80,
+      "question": "What role do feedback and self-reflection play in your personal growth?",
+      "keywords": ["feedback", "reflection", "growth mindset", "improvement", "learning"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 81,
+      "question": "Tell me about a time you volunteered for responsibility without being asked.",
+      "keywords": ["initiative", "ownership", "proactiveness", "leadership", "motivation"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 82,
+      "question": "How do you deal with boring or repetitive tasks while maintaining accuracy?",
+      "keywords": ["discipline", "focus", "motivation", "quality", "consistency"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 83,
+      "question": "What kind of feedback has surprised you the most in the past?",
+      "keywords": ["self-awareness", "feedback", "perception", "learning", "growth"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 84,
+      "question": "Have you ever worked with someone from a very different background or culture?",
+      "keywords": ["diversity", "inclusion", "respect", "adaptability", "communication"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 85,
+      "question": "What does taking ownership of your work mean to you?",
+      "keywords": ["ownership", "responsibility", "accountability", "initiative", "commitment"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 86,
+      "question": "Describe a time when you had to handle ambiguity or unclear expectations.",
+      "keywords": ["ambiguity", "problem solving", "clarification", "initiative", "adaptability"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 87,
+      "question": "How do you set your personal and professional goals?",
+      "keywords": ["goal setting", "planning", "self-improvement", "vision", "priority"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 88,
+      "question": "Tell me about a time you had to compromise to achieve a team objective.",
+      "keywords": ["compromise", "teamwork", "negotiation", "flexibility", "shared goals"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 89,
+      "question": "What do you think is more important: results or process? Why?",
+      "keywords": ["results", "process", "perspective", "balance", "reasoning"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 90,
+      "question": "Describe a time when you had to present your ideas to a group.",
+      "keywords": ["presentation", "communication", "confidence", "clarity", "preparation"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 91,
+      "question": "Have you ever disagreed with a team decision? How did you respond?",
+      "keywords": ["teamwork", "disagreement", "respect", "compromise", "communication"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 92,
+      "question": "What steps do you take to understand a new role or domain quickly?",
+      "keywords": ["learning", "research", "curiosity", "planning", "adaptation"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 93,
+      "question": "How do you define success for yourself?",
+      "keywords": ["success", "values", "goals", "achievement", "self-awareness"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 94,
+      "question": "Tell me about a time when you had to handle multiple priorities from different people.",
+      "keywords": ["prioritization", "stakeholders", "communication", "negotiation", "time management"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 95,
+      "question": "How do you react when you receive instructions that you don't agree with, but must follow?",
+      "keywords": ["professionalism", "compliance", "communication", "respect", "attitude"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 96,
+      "question": "What is your approach to working in a remote or hybrid environment?",
+      "keywords": ["remote work", "discipline", "communication", "tools", "collaboration"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 97,
+      "question": "What is the most important lesson you have learned from a failure?",
+      "keywords": ["failure", "learning", "reflection", "growth", "self-awareness"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 98,
+      "question": "How do you manage distractions when you need to focus on important work?",
+      "keywords": ["focus", "distractions", "productivity", "environment", "self-control"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 99,
+      "question": "Have you ever had to adjust your communication style for different audiences?",
+      "keywords": ["communication", "adaptability", "audience", "clarity", "empathy"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 100,
+      "question": "Describe a time when you improved a process or way of working.",
+      "keywords": ["process improvement", "initiative", "efficiency", "innovation", "result"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 101,
+      "question": "What do you think about taking calculated risks in your career?",
+      "keywords": ["risk-taking", "career", "decision making", "growth", "comfort zone"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 102,
+      "question": "Tell me about a time when you had to complete a task with very limited resources.",
+      "keywords": ["resourcefulness", "creativity", "constraints", "prioritization", "execution"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 103,
+      "question": "How do you keep yourself calm in high-pressure situations?",
+      "keywords": ["stress management", "calmness", "strategies", "emotional control", "coping"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 104,
+      "question": "What is one habit you are currently trying to build or improve?",
+      "keywords": ["self-improvement", "habits", "discipline", "goals", "growth"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 105,
+      "question": "Describe a time when you had to meet expectations that you initially felt were too high.",
+      "keywords": ["expectations", "challenge", "effort", "adaptability", "result"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 106,
+      "question": "How do you ensure that you respect deadlines while maintaining quality?",
+      "keywords": ["time management", "quality", "planning", "prioritization", "discipline"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 107,
+      "question": "What kind of projects excite you the most?",
+      "keywords": ["interests", "motivation", "engagement", "fit", "passion"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 108,
+      "question": "How do you approach learning from people who are junior to you?",
+      "keywords": ["humility", "learning", "open-mindedness", "respect", "collaboration"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 109,
+      "question": "What do you think is the most challenging part of working in a team?",
+      "keywords": ["team challenges", "conflict", "communication", "alignment", "coordination"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 110,
+      "question": "Describe a situation where you had to build trust with someone over time.",
+      "keywords": ["trust", "relationships", "consistency", "reliability", "communication"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 111,
+      "question": "How do you handle repeated feedback on the same area of improvement?",
+      "keywords": ["feedback", "persistence", "self-awareness", "change", "growth"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 112,
+      "question": "What do you usually do after completing a big task or project?",
+      "keywords": ["reflection", "celebration", "learning", "closure", "planning"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 113,
+      "question": "Tell me about a time when you had to motivate others.",
+      "keywords": ["motivation", "leadership", "support", "communication", "inspiration"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 114,
+      "question": "How do you handle situations where you are being interrupted frequently while working?",
+      "keywords": ["focus", "boundaries", "communication", "time management", "priorities"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 115,
+      "question": "What is the toughest feedback you have ever received, and what did you do about it?",
+      "keywords": ["feedback", "self-awareness", "change", "growth", "reflection"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 116,
+      "question": "How do you maintain professionalism when you strongly disagree with someone?",
+      "keywords": ["professionalism", "respect", "emotional control", "communication", "conflict"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 117,
+      "question": "What have you done in the last year to improve yourself professionally?",
+      "keywords": ["self-improvement", "learning", "courses", "skills", "growth"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 118,
+      "question": "Describe a time when you contributed to a positive team culture.",
+      "keywords": ["team culture", "support", "initiative", "positivity", "collaboration"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 119,
+      "question": "How do you handle it when you feel your efforts are not recognized?",
+      "keywords": ["motivation", "recognition", "self-worth", "communication", "resilience"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 120,
+      "question": "What is your strategy for dealing with unfamiliar tools or technologies?",
+      "keywords": ["learning", "adaptability", "resourcefulness", "curiosity", "problem solving"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 121,
+      "question": "Tell me about a time you had to follow a process you did not agree with.",
+      "keywords": ["compliance", "professionalism", "feedback", "adaptability", "ethics"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 122,
+      "question": "How do you keep track of your commitments and promises made to others?",
+      "keywords": ["responsibility", "tracking", "organization", "reliability", "tools"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 123,
+      "question": "Have you ever had to unlearn a habit or way of working? What was that like?",
+      "keywords": ["unlearning", "change", "reflection", "flexibility", "growth"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 124,
+      "question": "What is your approach to asking for help when you are stuck?",
+      "keywords": ["humility", "initiative", "problem solving", "collaboration", "communication"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 125,
+      "question": "Describe a time when you had to coordinate with people from different functions or departments.",
+      "keywords": ["cross-functional", "communication", "coordination", "teamwork", "stakeholders"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 126,
+      "question": "How do you respond when someone challenges your ideas in a meeting?",
+      "keywords": ["open-mindedness", "confidence", "listening", "adaptability", "communication"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 127,
+      "question": "What do you think are the signs of a healthy work culture?",
+      "keywords": ["culture", "respect", "growth", "transparency", "collaboration"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 128,
+      "question": "Tell me about a situation where you had to build rapport quickly.",
+      "keywords": ["rapport", "communication", "empathy", "relationship building", "trust"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 129,
+      "question": "How do you handle confidential feedback given to you about someone else?",
+      "keywords": ["confidentiality", "ethics", "professionalism", "discretion", "responsibility"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 130,
+      "question": "What do you do when you realize you’re falling behind schedule?",
+      "keywords": ["time management", "prioritization", "communication", "re-planning", "responsibility"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 131,
+      "question": "Have you ever had to change your communication style based on feedback?",
+      "keywords": ["feedback", "adaptability", "communication", "self-awareness", "improvement"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 132,
+      "question": "What kind of challenges are you looking for in this role?",
+      "keywords": ["challenges", "growth", "motivation", "goals", "fit"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 133,
+      "question": "Describe a time when you had to handle miscommunication within a team.",
+      "keywords": ["miscommunication", "clarity", "conflict resolution", "listening", "coordination"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 134,
+      "question": "How do you maintain boundaries between your professional and personal life?",
+      "keywords": ["boundaries", "work-life balance", "well-being", "discipline", "priorities"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 135,
+      "question": "What role does empathy play in how you work with others?",
+      "keywords": ["empathy", "teamwork", "communication", "support", "understanding"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 136,
+      "question": "Tell me about a time you had to defend your idea or decision.",
+      "keywords": ["assertiveness", "confidence", "reasoning", "communication", "persuasion"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 137,
+      "question": "How do you handle delays or obstacles that are outside your control?",
+      "keywords": ["resilience", "adaptability", "problem solving", "attitude", "ownership"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 138,
+      "question": "What do you do to make sure you truly listen to others during discussions?",
+      "keywords": ["active listening", "communication", "respect", "focus", "empathy"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 139,
+      "question": "Describe a situation where you had to work with minimal supervision.",
+      "keywords": ["ownership", "initiative", "self-discipline", "accountability", "independence"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 140,
+      "question": "What is your approach when starting to work with a completely new team?",
+      "keywords": ["onboarding", "relationship building", "communication", "trust", "adaptation"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 141,
+      "question": "How do you handle it if you notice unethical behavior at work?",
+      "keywords": ["ethics", "whistleblowing", "professionalism", "integrity", "responsibility"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 142,
+      "question": "What strategies do you use to remember and follow up on action items?",
+      "keywords": ["organization", "tracking", "tools", "accountability", "planning"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 143,
+      "question": "Tell me about a time when you had to motivate yourself without external pressure.",
+      "keywords": ["self-motivation", "discipline", "goals", "ownership", "focus"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 144,
+      "question": "How do you handle sudden changes in priorities from management?",
+      "keywords": ["adaptability", "flexibility", "communication", "re-prioritization", "professionalism"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 145,
+      "question": "Describe a time when you had to apologize for something at work or in college.",
+      "keywords": ["accountability", "humility", "communication", "repair", "trust"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 146,
+      "question": "What is your approach to dealing with gossip or negativity in the workplace?",
+      "keywords": ["professionalism", "ethics", "boundaries", "culture", "communication"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 147,
+      "question": "How do you evaluate if you had a productive day?",
+      "keywords": ["reflection", "metrics", "priorities", "results", "self-assessment"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 148,
+      "question": "Tell me about a time when your communication style created a misunderstanding.",
+      "keywords": ["communication", "misunderstanding", "reflection", "correction", "learning"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 149,
+      "question": "What practices help you maintain a positive mindset at work?",
+      "keywords": ["positivity", "resilience", "habits", "mindset", "well-being"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 150,
+      "question": "Describe a time when you had to challenge the status quo.",
+      "keywords": ["initiative", "innovation", "courage", "change", "impact"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 151,
+      "question": "How do you ensure clarity when assigning or delegating tasks?",
+      "keywords": ["delegation", "clarity", "instructions", "responsibility", "follow-up"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 152,
+      "question": "What does being accountable mean to you in a team setting?",
+      "keywords": ["accountability", "ownership", "responsibility", "trust", "reliability"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 153,
+      "question": "Tell me about a time when you had to give up control and trust someone else’s approach.",
+      "keywords": ["trust", "delegation", "teamwork", "flexibility", "collaboration"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 154,
+      "question": "How do you prepare for important meetings or discussions?",
+      "keywords": ["preparation", "planning", "research", "clarity", "confidence"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 155,
+      "question": "Describe a situation where you had to make a decision with incomplete information.",
+      "keywords": ["decision making", "ambiguity", "risk", "judgment", "responsibility"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 156,
+      "question": "What is your approach to managing conflicts between your personal priorities and work demands?",
+      "keywords": ["work-life balance", "boundaries", "communication", "prioritization", "negotiation"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 157,
+      "question": "How do you make sure you stay aligned with your long-term career goals?",
+      "keywords": ["career planning", "goals", "reflection", "adjustment", "discipline"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 158,
+      "question": "Tell me about a time when you had to deal with an unfair situation.",
+      "keywords": ["fairness", "ethics", "emotional control", "response", "maturity"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 159,
+      "question": "What do you do to build trust with your manager?",
+      "keywords": ["trust", "reliability", "communication", "ownership", "consistency"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 160,
+      "question": "How do you handle criticism that you feel is not fully justified?",
+      "keywords": ["maturity", "feedback", "emotional control", "listening", "response"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 161,
+      "question": "What steps do you take when you are assigned a task that conflicts with your personal values?",
+      "keywords": ["ethics", "values", "communication", "boundaries", "professionalism"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 162,
+      "question": "How do you handle situations where someone else takes credit for your work?",
+      "keywords": ["professionalism", "assertiveness", "communication", "recognition", "ethics"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 163,
+      "question": "Describe a time when you made a decision that was unpopular but necessary.",
+      "keywords": ["decision making", "leadership", "courage", "responsibility", "impact"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 164,
+      "question": "What is your approach to handling team members who are consistently underperforming?",
+      "keywords": ["performance", "support", "feedback", "empathy", "accountability"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 165,
+      "question": "How do you handle a situation where your team misses a deadline?",
+      "keywords": ["accountability", "analysis", "learning", "communication", "planning"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 166,
+      "question": "What do you believe is your most underrated strength?",
+      "keywords": ["self-awareness", "strengths", "reflection", "personality", "value"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 167,
+      "question": "How do you ensure inclusivity when working with diverse team members?",
+      "keywords": ["inclusion", "diversity", "respect", "communication", "collaboration"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 168,
+      "question": "Describe a time when you had to completely change your approach to solve a problem.",
+      "keywords": ["adaptability", "problem solving", "flexibility", "learning", "result"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 169,
+      "question": "What do you think is the best way to handle disagreements in a professional setting?",
+      "keywords": ["conflict resolution", "communication", "respect", "listening", "compromise"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 170,
+      "question": "How do you respond when your work is compared to someone else’s?",
+      "keywords": ["comparison", "confidence", "learning", "feedback", "attitude"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 171,
+      "question": "Tell me about a time when you failed to meet someone’s expectations.",
+      "keywords": ["failure", "expectations", "accountability", "learning", "communication"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 172,
+      "question": "What do you do to stay emotionally resilient in demanding situations?",
+      "keywords": ["resilience", "coping strategies", "mindset", "self-care", "attitude"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 173,
+      "question": "Describe a scenario where you proactively prevented a problem from escalating.",
+      "keywords": ["proactiveness", "risk management", "initiative", "problem solving", "awareness"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 174,
+      "question": "How do you ensure that you remain open to new ideas and perspectives?",
+      "keywords": ["open-mindedness", "learning", "humility", "listening", "adaptability"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 175,
+      "question": "What are some ways you contribute to a positive and collaborative work environment?",
+      "keywords": ["team culture", "support", "communication", "positivity", "collaboration"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 176,
+      "question": "How have you handled situations where you had to work with limited guidance?",
+      "keywords": ["independence", "initiative", "problem solving", "learning", "ownership"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 177,
+      "question": "Tell me about a time when you had to adapt to a completely different working style.",
+      "keywords": ["adaptability", "flexibility", "collaboration", "conflict prevention", "communication"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 178,
+      "question": "What is your approach to handling peer pressure in a work environment?",
+      "keywords": ["values", "ethics", "assertiveness", "decision making", "boundaries"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 179,
+      "question": "Describe a time when your persistence helped you achieve a goal.",
+      "keywords": ["persistence", "determination", "goal achievement", "effort", "resilience"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 180,
+      "question": "How do you react if your manager changes the direction of a project midway?",
+      "keywords": ["adaptability", "flexibility", "communication", "attitude", "re-planning"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 181,
+      "question": "What does collaboration mean to you beyond just working together?",
+      "keywords": ["collaboration", "shared ownership", "trust", "support", "communication"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 182,
+      "question": "Tell me about a time you chose to support a team decision even though you initially disagreed.",
+      "keywords": ["teamwork", "alignment", "maturity", "respect", "compromise"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 183,
+      "question": "How do you deal with your own biases when working with people?",
+      "keywords": ["self-awareness", "bias", "inclusion", "reflection", "behavior"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 184,
+      "question": "What are the signs that you are getting burned out, and what do you do then?",
+      "keywords": ["burnout", "self-awareness", "well-being", "boundaries", "coping"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 185,
+      "question": "Describe a time when you consciously stepped out of your comfort zone.",
+      "keywords": ["comfort zone", "growth", "courage", "learning", "experience"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 186,
+      "question": "How do you respond if you feel you are being treated unfairly compared to others?",
+      "keywords": ["fairness", "communication", "assertiveness", "professionalism", "ethics"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 187,
+      "question": "What do you think is the difference between being busy and being productive?",
+      "keywords": ["productivity", "priorities", "value", "focus", "self-awareness"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 188,
+      "question": "Tell me about a time when you needed to quickly understand someone else’s perspective.",
+      "keywords": ["empathy", "listening", "perspective-taking", "communication", "relationship"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 189,
+      "question": "How do you make sure your personal goals align with the company’s goals?",
+      "keywords": ["alignment", "values", "career goals", "company goals", "reflection"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 190,
+      "question": "What are some things you have done to improve your communication skills?",
+      "keywords": ["communication", "learning", "practice", "feedback", "improvement"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 191,
+      "question": "Describe a time when you were appreciated for your behavior rather than just your results.",
+      "keywords": ["behavior", "values", "teamwork", "attitude", "recognition"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 192,
+      "question": "How do you ensure that you remain approachable to your peers and juniors?",
+      "keywords": ["approachability", "communication", "support", "empathy", "attitude"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 193,
+      "question": "What do you do when you feel you are not learning enough in your current role?",
+      "keywords": ["learning", "initiative", "growth", "communication", "self-driven"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 194,
+      "question": "Tell me about a situation where you had to rebuild trust after a misunderstanding.",
+      "keywords": ["trust", "recovery", "communication", "accountability", "relationships"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 195,
+      "question": "How do you manage your emotions when dealing with difficult conversations?",
+      "keywords": ["emotional intelligence", "self-control", "communication", "conflict", "maturity"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 196,
+      "question": "What do you think distinguishes a good professional from an average one?",
+      "keywords": ["professionalism", "attitude", "ownership", "ethics", "consistency"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 197,
+      "question": "Describe a time when you had to manage your own expectations about a role or project.",
+      "keywords": ["expectations", "reality", "adaptation", "maturity", "reflection"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 198,
+      "question": "When working in a team, how do you make sure quieter members are heard?",
+      "keywords": ["inclusion", "participation", "facilitation", "empathy", "communication"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 199,
+      "question": "What are some personal rules or principles you follow at work?",
+      "keywords": ["principles", "ethics", "discipline", "values", "behavior"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 200,
+      "question": "Tell me about a time you had to handle competing expectations from two seniors.",
+      "keywords": ["stakeholder management", "prioritization", "communication", "conflict", "decision"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 201,
+      "question": "How do you prepare yourself mentally for an important presentation or discussion?",
+      "keywords": ["preparation", "mindset", "confidence", "practice", "calmness"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 202,
+      "question": "What does taking initiative look like in your day-to-day behavior?",
+      "keywords": ["initiative", "proactiveness", "ownership", "examples", "attitude"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 203,
+      "question": "Describe a time when you had to be very patient in a professional context.",
+      "keywords": ["patience", "self-control", "respect", "stress", "professionalism"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 204,
+      "question": "How do you ensure that you don’t jump to conclusions about people or situations?",
+      "keywords": ["judgment", "bias", "reflection", "listening", "open-mindedness"],
+      "difficulty": "hard"
+    },
+    {
+      "id": 205,
+      "question": "What is one behavior you are consciously trying to improve to become a better professional?",
+      "keywords": ["self-improvement", "self-awareness", "behavior", "growth", "reflection"],
+      "difficulty": "medium"
     }
   ]
 }
