@@ -1,5 +1,5 @@
 {
-  "role": "cybersecurity",
+  "role": "cloud devops",
   "questions": [
   { "id": 1, "question": "What is automation in DevOps and why is it important?", "keywords": ["automation", "DevOps", "efficiency", "CI/CD"], "difficulty": "easy" },
   { "id": 2, "question": "What are the key benefits of scripting in DevOps?", "keywords": ["scripting", "automation", "consistency", "error reduction"], "difficulty": "easy" },
@@ -56,6 +56,369 @@
   { "id": 48, "question": "What is Git and how does it differ from other version control systems?", "keywords": ["Git", "VCS", "Comparison"], "difficulty": "easy" },
   { "id": 49, "question": "What is the difference between Git pull, fetch, and clone?", "keywords": ["Git Commands", "Fetch", "Pull", "Clone"], "difficulty": "medium" },
   { "id": 50, "question": "What is Git stash and when should it be used?", "keywords": ["Git stash", "Workflow"], "difficulty": "medium" },
-  { "id": 51, "question": "How do you resolve merge conflicts in Git?", "keywords": ["Merge conflicts", "Git"], "difficulty": "difficult" }
+  { "id": 51, "question": "How do you resolve merge conflicts in Git?", "keywords": ["Merge conflicts", "Git"], "difficulty": "difficult" },
+  {
+    "id": 52,
+    "question": "What is DevOps?",
+    "keywords": ["DevOps", "development", "operations", "automation"],
+    "category": "easy"
+  },
+  {
+    "id": 53,
+    "question": "What is CI/CD and why is it important in DevOps?",
+    "keywords": ["CI/CD", "continuous integration", "continuous delivery", "automation"],
+    "category": "easy"
+  },
+  {
+    "id": 54,
+    "question": "What are the core benefits of Google Cloud for DevOps?",
+    "keywords": ["Google Cloud", "scalability", "automation", "DevOps"],
+    "category": "easy"
+  },
+  {
+    "id": 55,
+    "question": "What role does Google Kubernetes Engine (GKE) play in DevOps?",
+    "keywords": ["GKE", "Kubernetes", "container orchestration", "DevOps"],
+    "category": "medium"
+  },
+  {
+    "id": 56,
+    "question": "How do Cloud Source Repositories help DevOps teams?",
+    "keywords": ["Cloud Source Repositories", "Git", "version control"],
+    "category": "easy"
+  },
+  {
+    "id": 57,
+    "question": "What is the function of Cloud Build in DevOps?",
+    "keywords": ["Cloud Build", "CI/CD", "build automation"],
+    "category": "easy"
+  },
+  {
+    "id": 58,
+    "question": "How does Google Cloud Operations Suite support DevOps?",
+    "keywords": ["monitoring", "logging", "observability", "DevOps"],
+    "category": "medium"
+  },
+  {
+    "id": 59,
+    "question": "What is Infrastructure as Code (IaC) and why is it important?",
+    "keywords": ["IaC", "automation", "configuration management"],
+    "category": "easy"
+  },
+  {
+    "id": 60,
+    "question": "What are security best practices for DevOps on Google Cloud?",
+    "keywords": ["DevSecOps", "least privilege", "security scanning"],
+    "category": "medium"
+  },
+  {
+    "id": 61,
+    "question": "What is the role of Container Registry in a DevOps workflow?",
+    "keywords": ["Container Registry", "Docker images", "CI/CD"],
+    "category": "easy"
+  },
+  {
+    "id": 62,
+    "question": "What is Google Cloud Deployment Manager?",
+    "keywords": ["Deployment Manager", "IaC", "resource provisioning"],
+    "category": "medium"
+  },
+  {
+    "id": 63,
+    "question": "How do Google Cloud Functions support DevOps strategies?",
+    "keywords": ["Cloud Functions", "serverless", "event-driven"],
+    "category": "easy"
+  },
+  {
+    "id": 64,
+    "question": "How is Terraform used in Google Cloud DevOps?",
+    "keywords": ["Terraform", "IaC", "automation"],
+    "category": "medium"
+  },
+  {
+    "id": 65,
+    "question": "What role does Google Cloud Pub/Sub play in DevOps?",
+    "keywords": ["Pub/Sub", "event-driven", "microservices"],
+    "category": "medium"
+  },
+  {
+    "id": 66,
+    "question": "How does Artifact Registry differ from Container Registry?",
+    "keywords": ["Artifact Registry", "Container Registry", "CI/CD"],
+    "category": "easy"
+  },
+  {
+    "id": 67,
+    "question": "How does Google Cloud Build enhance DevOps automation?",
+    "keywords": ["Cloud Build", "automation", "CI/CD pipelines"],
+    "category": "medium"
+  },
+  {
+    "id": 68,
+    "question": "What is Anthos and how does it support multi-cloud DevOps?",
+    "keywords": ["Anthos", "multi-cloud", "hybrid cloud"],
+    "category": "difficult"
+  },
+  {
+    "id": 69,
+    "question": "Why is GKE suitable for microservices architectures?",
+    "keywords": ["GKE", "microservices", "scalability"],
+    "category": "medium"
+  },
+  {
+    "id": 70,
+    "question": "What are best practices for managing stateful applications in Kubernetes?",
+    "keywords": ["stateful applications", "StatefulSets", "persistent storage"],
+    "category": "difficult"
+  },
+  {
+    "id": 71,
+    "question": "What are Kubernetes network policies and why are they important?",
+    "keywords": ["network policies", "Kubernetes security", "isolation"],
+    "category": "medium"
+  },
+  {
+    "id": 72,
+    "question": "How does Google Cloud Armor enhance application security in DevOps?",
+    "keywords": ["Cloud Armor", "DDoS protection", "security"],
+    "category": "medium"
+  },
+  {
+    "id": 73,
+    "question": "What is Spinnaker and how is it used for continuous delivery?",
+    "keywords": ["Spinnaker", "continuous delivery", "deployment strategies"],
+    "category": "difficult"
+  },
+  {
+    "id": 74,
+    "question": "How can IAM roles be optimized for secure DevOps operations?",
+    "keywords": ["IAM", "least privilege", "security"],
+    "category": "medium"
+  },
+  {
+    "id": 75,
+    "question": "How do Cloud Functions enable event-driven DevOps automation?",
+    "keywords": ["Cloud Functions", "event-driven", "automation"],
+    "category": "medium"
+  },
+  {
+    "id": 76,
+    "question": "What is telemetry and why is it important in DevOps?",
+    "keywords": ["telemetry", "monitoring", "observability"],
+    "category": "easy"
+  },
+  {
+    "id": 77,
+    "question": "How does Google Cloud Pub/Sub improve operational efficiency?",
+    "keywords": ["Pub/Sub", "asynchronous messaging", "DevOps"],
+    "category": "medium"
+  },
+  {
+    "id": 78,
+    "question": "What should be considered when implementing disaster recovery in Google Cloud?",
+    "keywords": ["disaster recovery", "RTO", "RPO"],
+    "category": "difficult"
+  },
+  {
+    "id": 79,
+    "question": "How can Google Cloud integrate with third-party DevOps tools?",
+    "keywords": ["third-party tools", "CI/CD integration", "DevOps ecosystem"],
+    "category": "medium"
+  },
+  {
+    "id": 80,
+    "question": "How can machine learning optimize DevOps processes?",
+    "keywords": ["machine learning", "DevOps optimization", "automation"],
+    "category": "difficult"
+  },
+  {
+    "id": 81,
+    "question": "How does Identity-Aware Proxy (IAP) improve DevOps security?",
+    "keywords": ["IAP", "access control", "DevOps security"],
+    "category": "medium"
+  },
+  {
+    "id": 82,
+    "question": "What are the key differences between DevOps and Agile?",
+    "keywords": ["DevOps", "Agile", "collaboration", "delivery"],
+    "category": "easy"
+  },
+  {
+    "id": 83,
+    "question": "Why is DevOps needed in modern software development?",
+    "keywords": ["DevOps need", "faster delivery", "collaboration"],
+    "category": "easy"
+  },
+  {
+    "id": 84,
+    "question": "What is Continuous Integration and Continuous Deployment (CI/CD)?",
+    "keywords": ["CI/CD", "automation", "continuous integration"],
+    "category": "easy"
+  },
+  {
+    "id": 85,
+    "question": "What does CAMS stand for in DevOps?",
+    "keywords": ["CAMS", "culture", "automation", "measurement", "sharing"],
+    "category": "easy"
+  },
+  {
+    "id": 86,
+    "question": "What are the different phases in the DevOps lifecycle?",
+    "keywords": ["DevOps lifecycle", "CI/CD", "monitoring"],
+    "category": "easy"
+  },
+  {
+    "id": 87,
+    "question": "Explain a real-world industry use case of DevOps.",
+    "keywords": ["DevOps use case", "industry", "automation"],
+    "category": "medium"
+  },
+  {
+    "id": 88,
+    "question": "What is SSH and why is it used in DevOps?",
+    "keywords": ["SSH", "secure shell", "remote access"],
+    "category": "easy"
+  },
+  {
+    "id": 89,
+    "question": "What is Continuous Testing in DevOps?",
+    "keywords": ["continuous testing", "automation", "CI/CD"],
+    "category": "medium"
+  },
+  {
+    "id": 90,
+    "question": "What are the differences between Ansible, Chef, and Puppet?",
+    "keywords": ["Ansible", "Chef", "Puppet", "configuration management"],
+    "category": "medium"
+  },
+  {
+    "id": 91,
+    "question": "What are the key DevOps KPIs?",
+    "keywords": ["DevOps KPIs", "deployment frequency", "MTTR"],
+    "category": "easy"
+  },
+  {
+    "id": 92,
+    "question": "What is Infrastructure as Code (IaC) in configuration management?",
+    "keywords": ["IaC", "configuration management", "automation"],
+    "category": "easy"
+  },
+  {
+    "id": 93,
+    "question": "What are Azure Boards and how are they used?",
+    "keywords": ["Azure Boards", "project management", "DevOps tools"],
+    "category": "easy"
+  },
+  {
+    "id": 94,
+    "question": "What is the difference between Continuous Delivery and Continuous Deployment?",
+    "keywords": ["continuous delivery", "continuous deployment", "CI/CD"],
+    "category": "medium"
+  },
+  {
+    "id": 95,
+    "question": "What is version control?",
+    "keywords": ["version control", "Git", "source code management"],
+    "category": "easy"
+  },
+  {
+    "id": 96,
+    "question": "What are the benefits of using version control systems?",
+    "keywords": ["VCS benefits", "collaboration", "change tracking"],
+    "category": "easy"
+  },
+  {
+    "id": 97,
+    "question": "What is the difference between Azure DevOps Services and Azure DevOps Server?",
+    "keywords": ["Azure DevOps Services", "Azure DevOps Server", "cloud vs on-prem"],
+    "category": "medium"
+  },
+  {
+    "id": 98,
+    "question": "What are containers in DevOps and why are they important?",
+    "keywords": ["containers", "Docker", "Kubernetes"],
+    "category": "easy"
+  },
+  {
+    "id": 99,
+    "question": "What are Microsoft-hosted agents in Azure Pipelines?",
+    "keywords": ["Microsoft-hosted agents", "Azure Pipelines", "CI/CD"],
+    "category": "easy"
+  },
+  {
+    "id": 100,
+    "question": "What is a self-hosted agent in Azure Pipelines?",
+    "keywords": ["self-hosted agents", "Azure Pipelines", "build agents"],
+    "category": "easy"
+  },
+  {
+    "id": 101,
+    "question": "What is Blue-Green Deployment?",
+    "keywords": ["blue-green deployment", "zero downtime", "release strategy"],
+    "category": "medium"
+  },
+  {
+    "id": 102,
+    "question": "How can Puppet be enhanced using open-source tools?",
+    "keywords": ["Puppet", "open-source tools", "DevOps automation"],
+    "category": "medium"
+  },
+  {
+    "id": 103,
+    "question": "What is the difference between Azure DevOps and VSTS Online?",
+    "keywords": ["Azure DevOps", "VSTS", "ALM"],
+    "category": "easy"
+  },
+  {
+    "id": 104,
+    "question": "How can notifications be configured in Azure DevOps?",
+    "keywords": ["Azure DevOps notifications", "alerts", "collaboration"],
+    "category": "medium"
+  },
+  {
+    "id": 105,
+    "question": "What are Azure Test Plans?",
+    "keywords": ["Azure Test Plans", "manual testing", "exploratory testing"],
+    "category": "easy"
+  },
+  {
+    "id": 106,
+    "question": "Explain an industry case study where DevOps was successfully implemented.",
+    "keywords": ["DevOps case study", "industry adoption", "automation"],
+    "category": "medium"
+  },
+  {
+    "id": 107,
+    "question": "Why would you prefer self-hosted agents over Microsoft-hosted agents?",
+    "keywords": ["self-hosted agents", "build performance", "customization"],
+    "category": "medium"
+  },
+  {
+    "id": 108,
+    "question": "How can Jenkins be secured in a DevOps environment?",
+    "keywords": ["Jenkins security", "CI/CD security", "DevOps"],
+    "category": "medium"
+  },
+  {
+    "id": 109,
+    "question": "How can a NuGet package be shared securely with external users?",
+    "keywords": ["NuGet", "Azure Artifacts", "package management"],
+    "category": "medium"
+  },
+  {
+    "id": 110,
+    "question": "What are the components required to integrate Azure DevOps with Bitbucket?",
+    "keywords": ["Azure DevOps", "Bitbucket", "integration"],
+    "category": "medium"
+  },
+  {
+    "id": 111,
+    "question": "Why is collaboration considered a core principle of DevOps?",
+    "keywords": ["DevOps culture", "collaboration", "shared responsibility"],
+    "category": "easy"
+  },
+
+
+
 ]
 }
