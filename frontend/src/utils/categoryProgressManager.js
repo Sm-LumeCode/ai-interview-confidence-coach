@@ -1,10 +1,13 @@
+const normalizeCategory = (category) =>
+  category.replace(/&/g, '').replace(/\s+/g, '_').toLowerCase()
+
 export const saveCategoryProgress = (
   userId,
   category,
   technicalScore,
   confidenceScore
 ) => {
-  const key = `category_progress_${userId}_${category}`
+  const key = `category_progress_${userId}_${normalizeCategory(category)}`
 
   const existing = localStorage.getItem(key)
 
@@ -27,7 +30,7 @@ export const saveCategoryProgress = (
 }
 
 export const getCategoryProgress = (userId, category) => {
-  const key = `category_progress_${userId}_${category}`
+  const key = `category_progress_${userId}_${normalizeCategory(category)}`
   const data = localStorage.getItem(key)
   return data ? JSON.parse(data) : null
 }
