@@ -413,7 +413,7 @@
     "question": "What is the relationship between significance level and confidence level in statistics?",
     "keywords": ["significance level", "confidence level", "alpha"],
     "category": "easy"
-  }   
+  },  
 
   {
     "id": 68,
@@ -486,7 +486,7 @@
     "question": "What is hyperparameter tuning and what are common strategies used to perform it?",
     "keywords": ["hyperparameter tuning", "grid search", "random search", "bayesian optimization"],
     "category": "difficult"
-  }
+  },
 
   {
     "id": 80,

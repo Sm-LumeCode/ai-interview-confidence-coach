@@ -1,3 +1,13 @@
+"""
+Real-Time AI Structured Feedback Generator
+==========================================
+- Generates detailed, personalized feedback using LLM
+- Called AFTER scores are displayed (non-blocking)
+- Uses rich context from answer and scores
+- Different feedback for different answers
+- Uses gemma:2b model
+"""
+
 import requests
 import json
 import re
@@ -5,245 +15,310 @@ import re
 OLLAMA_URL = "http://localhost:11434/api/generate"
 MODEL = "gemma:2b"
 
-# Filler words list
-FILLER_WORDS = [
-    "um", "uh", "umm", "uhh", "like", "you know", "sort of", "kind of",
-    "basically", "actually", "literally", "so", "well", "right", "okay",
-    "i mean", "you see", "somehow", "anyway"
-]
+FEEDBACK_PROMPT_TEMPLATE = """You are an expert technical interview coach providing personalized, actionable feedback.
 
-def count_filler_words(text: str) -> dict:
-    """Count filler words in the answer"""
-    text_lower = text.lower()
-    filler_count = {}
-    total_fillers = 0
-    
-    for filler in FILLER_WORDS:
-        pattern = r'\b' + re.escape(filler) + r'\b'
-        count = len(re.findall(pattern, text_lower))
-        if count > 0:
-            filler_count[filler] = count
-            total_fillers += count
-    
-    return {
-        "total_count": total_fillers,
-        "filler_details": filler_count
-    }
+**INTERVIEW QUESTION:**
+{question}
 
-def check_keywords_coverage(keywords: list, answer: str) -> dict:
-    """Check how many required keywords are covered in the answer"""
-    if not keywords:
-        return {
-            "covered": [],
-            "missing": [],
-            "coverage_percentage": 100
-        }
+**CANDIDATE'S ANSWER:**
+{answer}
+
+**PERFORMANCE ANALYSIS:**
+- Technical Score: {technical_score}% (Context: {context_validation}, Keyword Coverage: {keyword_coverage}%)
+- Communication Score: {communication_score}%
+- Confidence Score: {confidence_score}%
+
+**REQUIRED KEYWORDS:**
+Expected: {keywords_expected}
+Covered: {keywords_covered}
+Missing: {keywords_missing}
+
+**DETAILED OBSERVATIONS:**
+{observations}
+
+---
+
+**YOUR TASK:**
+Provide SPECIFIC, PERSONALIZED feedback based on the actual content of this answer. 
+
+**CRITICAL RULES:**
+1. Reference SPECIFIC things the candidate said (quote phrases if helpful)
+2. Be CONCRETE about what's missing - don't just list keywords, explain what concepts/explanations are absent
+3. Suggestions must be ACTIONABLE - tell them exactly what to add or change
+4. Different answers must get DIFFERENT feedback - be specific to THIS answer
+5. Output ONLY valid JSON, no markdown, no extra text
+
+**OUTPUT FORMAT (JSON ONLY):**
+{{
+  "what_you_covered": [
+    "Specific point 1 from their answer (quote relevant phrase)",
+    "Specific point 2 that was well explained",
+    "Concrete aspect 3 they mentioned"
+  ],
+  "what_you_missed": [
+    "Missing concept 1 with brief explanation of what it is",
+    "Missing concept 2 and why it matters for this question",
+    "Gap in explanation 3"
+  ],
+  "how_to_improve": [
+    "Specific actionable tip 1 based on their answer",
+    "Concrete suggestion 2 for better structure",
+    "Practical advice 3 for technical depth"
+  ],
+  "suggested_additions": [
+    "Add: [specific concept] - explain [what aspect]",
+    "Include: [specific example] to demonstrate [what]",
+    "Elaborate on: [their weak point] by discussing [what]"
+  ]
+}}
+
+Generate personalized feedback NOW:"""
+
+def generate_structured_feedback(
+    question: str,
+    answer: str,
+    keywords: list = None,
+    scores: dict = None
+) -> dict:
+    """
+    Generate real-time, personalized AI feedback.
     
-    answer_lower = answer.lower()
-    covered_keywords = []
-    missing_keywords = []
+    Args:
+        question: The interview question
+        answer: Candidate's actual answer
+        keywords: Required keywords
+        scores: Evaluation scores with detailed breakdown
     
-    for keyword in keywords:
-        keyword_lower = keyword.lower()
-        if keyword_lower in answer_lower:
-            covered_keywords.append(keyword)
+    Returns:
+        Dictionary with structured feedback
+    """
+    
+    keywords = keywords or []
+    scores = scores or {}
+    
+    # Build rich context from scores
+    observations = []
+    
+    # Technical observations
+    if scores.get('technical_details'):
+        tech = scores['technical_details']
+        
+        if tech.get('context_validation') == 'YES':
+            observations.append("✓ Answer is contextually relevant to the question")
+        elif tech.get('context_validation') == 'PARTIAL':
+            observations.append("⚠ Answer partially addresses the question but lacks completeness")
         else:
-            missing_keywords.append(keyword)
+            observations.append("✗ Answer does not adequately address the question")
+        
+        if tech.get('explanation_count', 0) > 3:
+            observations.append(f"✓ Good use of explanatory phrases ({tech['explanation_count']} found)")
+        else:
+            observations.append(f"⚠ Limited explanatory depth ({tech.get('explanation_count', 0)} explanation phrases)")
     
-    coverage_percentage = (len(covered_keywords) / len(keywords) * 100) if keywords else 100
+    # Communication observations
+    if scores.get('communication_details'):
+        comm = scores['communication_details']
+        
+        if comm['correct_sentences'] == comm['total_sentences']:
+            observations.append("✓ All sentences are grammatically correct")
+        else:
+            issues = comm.get('issues', [])
+            if issues:
+                observations.append(f"⚠ Grammar issues detected: {issues[0]}")
     
-    return {
-        "covered": covered_keywords,
-        "missing": missing_keywords,
-        "coverage_percentage": round(coverage_percentage, 2)
+    # Confidence observations
+    if scores.get('confidence_details'):
+        conf = scores['confidence_details']
+        
+        if conf['filler_count'] > 5:
+            top_fillers = sorted(conf['filler_found'].items(), key=lambda x: x[1], reverse=True)[:3]
+            filler_list = ', '.join(f"{word}({count})" for word, count in top_fillers)
+            observations.append(f"⚠ High filler word usage: {filler_list}")
+        elif conf['filler_count'] > 0:
+            observations.append(f"⚠ Some filler words detected ({conf['filler_count']} total)")
+        else:
+            observations.append("✓ No filler words - confident delivery")
+    
+    # Prepare context
+    kw_coverage = scores.get('keyword_coverage', {})
+    
+    context = {
+        'question': question,
+        'answer': answer[:1000],  # Limit length for LLM
+        'technical_score': scores.get('technical_score', 0),
+        'communication_score': scores.get('communication_score', 0),
+        'confidence_score': scores.get('confidence_score', 0),
+        'context_validation': scores.get('llm_context_validation', scores.get('technical_details', {}).get('context_validation', 'UNKNOWN')),
+        'keyword_coverage': kw_coverage.get('coverage_percentage', 0),
+        'keywords_expected': ', '.join(keywords) if keywords else 'None specified',
+        'keywords_covered': ', '.join(kw_coverage.get('covered', [])) if kw_coverage.get('covered') else 'None',
+        'keywords_missing': ', '.join(kw_coverage.get('missing', [])) if kw_coverage.get('missing') else 'None',
+        'observations': '\n'.join(observations)
     }
-
-def analyze_answer_structure(answer: str) -> dict:
-    """Analyze if the answer follows the DPMA structure"""
-    answer_lower = answer.lower()
     
-    structure_indicators = {
-        "definition": [
-            "is defined as", "refers to", "means", "is a", "is the",
-            "definition", "essentially", "in essence", "fundamentally"
-        ],
-        "process": [
-            "process", "steps", "procedure", "how it works", "workflow",
-            "first", "then", "next", "after", "finally", "stage", "phase"
-        ],
-        "method": [
-            "method", "approach", "technique", "strategy", "implementation",
-            "using", "by applying", "through", "via", "algorithm"
-        ],
-        "application": [
-            "used for", "applied in", "example", "real-world", "use case",
-            "application", "in practice", "such as", "for instance", "like"
-        ]
+    # Generate prompt
+    full_prompt = FEEDBACK_PROMPT_TEMPLATE.format(**context)
+    
+    payload = {
+        "model": MODEL,
+        "prompt": full_prompt,
+        "stream": False,
+        "temperature": 0.4,  # Slightly creative but consistent
+        "num_predict": 600,  # Enough for detailed feedback
+        "top_p": 0.9
     }
     
-    structure_found = {
-        "definition": False,
-        "process": False,
-        "method": False,
-        "application": False
-    }
-    
-    for component, indicators in structure_indicators.items():
-        for indicator in indicators:
-            if indicator in answer_lower:
-                structure_found[component] = True
-                break
-    
-    components_present = sum(structure_found.values())
-    structure_score = (components_present / 4) * 100
-    
-    return {
-        "structure_found": structure_found,
-        "components_present": components_present,
-        "structure_score": round(structure_score, 2),
-        "missing_components": [k for k, v in structure_found.items() if not v]
-    }
-
-def generate_rule_based_evaluation(question, answer, keyword_analysis, structure_analysis, filler_analysis):
-    """Generate evaluation based on rules when LLM fails or is too slow"""
-    
-    print("⚡ Using fast rule-based evaluation...")
-    
-    # Calculate scores
-    structure_score = structure_analysis['structure_score']
-    
-    # Technical score based on keywords
-    if keyword_analysis:
-        tech_score = max(40, min(95, keyword_analysis['coverage_percentage']))
-    else:
-        tech_score = 60
-    
-    # Communication score based on answer length and filler words
-    word_count = len(answer.split())
-    if word_count < 50:
-        comm_score = 40
-    elif word_count < 100:
-        comm_score = 60
-    elif word_count < 200:
-        comm_score = 80
-    else:
-        comm_score = 90
-    
-    # Reduce for filler words
-    comm_score = max(30, comm_score - (filler_analysis['total_count'] * 3))
-    
-    # Confidence score
-    conf_score = max(40, 90 - (filler_analysis['total_count'] * 5))
-    
-    # Overall score
-    overall = (tech_score * 0.35 + structure_score * 0.30 + 
-               comm_score * 0.20 + conf_score * 0.15)
-    
-    # Generate feedback
-    missing = structure_analysis['missing_components']
-    improvements = []
-    
-    if 'definition' in missing:
-        improvements.append("Start with a clear definition of the concept")
-    if 'process' in missing:
-        improvements.append("Explain the step-by-step process")
-    if 'method' in missing:
-        improvements.append("Describe specific implementation methods")
-    if 'application' in missing:
-        improvements.append("Provide real-world examples")
-    if filler_analysis['total_count'] > 5:
-        improvements.append(f"Reduce filler words (found {filler_analysis['total_count']})")
-    if keyword_analysis and len(keyword_analysis['missing']) > 0:
-        improvements.append(f"Cover missing keywords: {', '.join(keyword_analysis['missing'][:2])}")
-    
-    strengths = []
-    if structure_analysis['components_present'] >= 3:
-        strengths.append("Good answer structure")
-    if filler_analysis['total_count'] <= 3:
-        strengths.append("Confident delivery")
-    if word_count >= 100:
-        strengths.append("Comprehensive explanation")
-    if keyword_analysis and keyword_analysis['coverage_percentage'] >= 70:
-        strengths.append("Good keyword coverage")
-    
-    return {
-        "technical_score": round(tech_score),
-        "structure_score": round(structure_score),
-        "communication_score": round(comm_score),
-        "confidence_score": round(conf_score),
-        "overall_score": round(overall),
-        "structure_analysis": {
-            "definition_present": structure_analysis['structure_found']['definition'],
-            "process_present": structure_analysis['structure_found']['process'],
-            "method_present": structure_analysis['structure_found']['method'],
-            "application_present": structure_analysis['structure_found']['application'],
-            "structure_feedback": f"Found {structure_analysis['components_present']}/4 DPMA components"
-        },
-        "brief_feedback": f"Overall score: {round(overall)}%. Follow DPMA structure for better results.",
-        "strengths": strengths[:3],
-        "improvements": improvements[:3],
-        "filler_words_analysis": filler_analysis,
-        "structure_detection": structure_analysis,
-        "keyword_coverage": keyword_analysis,
-        "evaluation_method": "rule_based"
-    }
-
-def evaluate_answer(question: str, answer: str, keywords: list = None):
-    """
-    Evaluate answer - tries LLM first, falls back to rule-based if fails
-    """
-    
-    print("="*60)
-    print(f"📝 Evaluating answer...")
-    print(f"Question: {question[:60]}...")
-    print(f"Answer length: {len(answer)} chars")
-    print("="*60)
-    
-    # Quick analysis
-    filler_analysis = count_filler_words(answer)
-    keyword_analysis = check_keywords_coverage(keywords or [], answer)
-    structure_analysis = analyze_answer_structure(answer)
-    
-    print(f"✅ Pre-analysis complete:")
-    print(f"   - Filler words: {filler_analysis['total_count']}")
-    print(f"   - Keywords: {keyword_analysis['coverage_percentage']}%")
-    print(f"   - Structure: {structure_analysis['components_present']}/4 components")
-    
-    # Try rule-based evaluation (fast and reliable)
     try:
-        result = generate_rule_based_evaluation(
-            question, answer, keyword_analysis, structure_analysis, filler_analysis
-        )
+        print(f"🤖 Generating personalized AI feedback for answer ({len(answer)} chars)...")
         
-        print("="*60)
-        print(f"✅ Evaluation complete!")
-        print(f"Overall Score: {result['overall_score']}%")
-        print("="*60)
+        response = requests.post(OLLAMA_URL, json=payload, timeout=15)
         
-        return result
+        if response.status_code != 200:
+            raise Exception(f"Ollama returned status {response.status_code}")
         
+        raw_output = response.json()["response"]
+        
+        print(f"📝 Raw LLM output length: {len(raw_output)} chars")
+        
+        # Extract JSON from response
+        try:
+            # Try to find JSON in the response
+            json_match = re.search(r'\{[\s\S]*\}', raw_output)
+            if json_match:
+                json_str = json_match.group(0)
+                feedback = json.loads(json_str)
+            else:
+                # Try parsing entire response
+                feedback = json.loads(raw_output)
+            
+            # Validate structure
+            required_keys = ['what_you_covered', 'what_you_missed', 'how_to_improve', 'suggested_additions']
+            for key in required_keys:
+                if key not in feedback:
+                    feedback[key] = []
+                elif not isinstance(feedback[key], list):
+                    feedback[key] = [str(feedback[key])]
+            
+            print(f"✅ Successfully parsed AI feedback")
+            print(f"   - Covered: {len(feedback['what_you_covered'])} points")
+            print(f"   - Missed: {len(feedback['what_you_missed'])} points")
+            print(f"   - Improvements: {len(feedback['how_to_improve'])} points")
+            print(f"   - Additions: {len(feedback['suggested_additions'])} points")
+            
+            return {
+                'success': True,
+                'feedback': feedback,
+                'method': 'llm_generated'
+            }
+            
+        except (json.JSONDecodeError, ValueError) as e:
+            print(f"⚠️ Failed to parse LLM output as JSON: {str(e)}")
+            print(f"Raw output: {raw_output[:200]}...")
+            # Return fallback feedback
+            return generate_fallback_feedback(question, answer, keywords, scores)
+    
+    except requests.exceptions.Timeout:
+        print(f"⚠️ LLM request timeout after 15s")
+        return generate_fallback_feedback(question, answer, keywords, scores)
+    except requests.exceptions.RequestException as e:
+        print(f"⚠️ LLM request failed: {str(e)}")
+        return generate_fallback_feedback(question, answer, keywords, scores)
     except Exception as e:
-        print(f"❌ Evaluation error: {e}")
-        
-        # Absolute fallback
-        return {
-            "technical_score": 50,
-            "structure_score": 25,
-            "communication_score": 50,
-            "confidence_score": 50,
-            "overall_score": 45,
-            "structure_analysis": {
-                "definition_present": False,
-                "process_present": False,
-                "method_present": False,
-                "application_present": False,
-                "structure_feedback": "Unable to evaluate structure"
-            },
-            "brief_feedback": "Basic evaluation completed. Try to follow DPMA structure.",
-            "strengths": ["Answered the question"],
-            "improvements": ["Follow DPMA: Definition, Process, Method, Application"],
-            "filler_words_analysis": filler_analysis,
-            "structure_detection": structure_analysis,
-            "keyword_coverage": keyword_analysis,
-            "evaluation_method": "fallback"
-        }
+        print(f"⚠️ Unexpected error in LLM feedback: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        return generate_fallback_feedback(question, answer, keywords, scores)
+
+
+def generate_fallback_feedback(
+    question: str,
+    answer: str,
+    keywords: list = None,
+    scores: dict = None
+) -> dict:
+    """
+    Generate fallback feedback when LLM fails.
+    Still tries to be specific based on answer content.
+    """
+    keywords = keywords or []
+    scores = scores or {}
+    
+    kw_covered = scores.get('keyword_coverage', {}).get('covered', [])
+    kw_missing = scores.get('keyword_coverage', {}).get('missing', [])
+    
+    # Try to extract specific phrases from answer
+    sentences = re.split(r'[.!?]+', answer)
+    sentences = [s.strip() for s in sentences if len(s.strip()) > 10]
+    
+    what_covered = []
+    if kw_covered:
+        what_covered.append(f"You mentioned {', '.join(kw_covered[:3])}")
+    if sentences:
+        # Quote first substantial sentence
+        first_sentence = sentences[0][:80]
+        what_covered.append(f"You started with: \"{first_sentence}...\"")
+    if not what_covered:
+        what_covered.append("You attempted to answer the question")
+    
+    what_missed = []
+    if kw_missing:
+        for kw in kw_missing[:3]:
+            what_missed.append(f"No explanation of '{kw}' - this is a key concept for this question")
+    
+    # Technical depth check
+    tech_score = scores.get('technical_score', 0)
+    if tech_score < 50:
+        what_missed.append("Limited technical depth - answer needs more detailed explanations")
+    
+    # Context validation check
+    context_val = scores.get('llm_context_validation', scores.get('technical_details', {}).get('context_validation'))
+    if context_val == 'NO':
+        what_missed.append("Answer doesn't adequately address the specific question asked")
+    elif context_val == 'PARTIAL':
+        what_missed.append("Answer partially addresses the question but lacks completeness")
+    
+    if not what_missed:
+        what_missed.append("Could provide more comprehensive coverage of the topic")
+    
+    how_to_improve = []
+    
+    # Grammar issues
+    comm_details = scores.get('communication_details', {})
+    if comm_details.get('issues'):
+        how_to_improve.append(f"Fix grammar: {comm_details['issues'][0]}")
+    
+    # Structure
+    if comm_details.get('correct_sentences', 0) < 3:
+        how_to_improve.append("Use more complete, well-structured sentences")
+    
+    # Filler words
+    conf_details = scores.get('confidence_details', {})
+    if conf_details.get('filler_count', 0) > 5:
+        top_filler = max(conf_details.get('filler_found', {}).items(), key=lambda x: x[1])[0] if conf_details.get('filler_found') else 'filler words'
+        how_to_improve.append(f"Reduce use of '{top_filler}' and other filler words")
+    
+    # General structure
+    how_to_improve.append("Structure answer with: Definition → Process → Method → Application")
+    
+    if not how_to_improve:
+        how_to_improve.append("Practice explaining concepts in your own words")
+    
+    suggested_additions = []
+    if kw_missing:
+        for kw in kw_missing[:2]:
+            suggested_additions.append(f"Add detailed explanation of {kw} and its relevance")
+    suggested_additions.append("Include real-world examples or use cases")
+    suggested_additions.append("Explain why this concept matters in practice")
+    
+    print("⚠️ Using fallback feedback (LLM unavailable)")
+    
+    return {
+        'success': False,
+        'feedback': {
+            'what_you_covered': what_covered[:3],
+            'what_you_missed': what_missed[:4],
+            'how_to_improve': how_to_improve[:4],
+            'suggested_additions': suggested_additions[:4]
+        },
+        'method': 'fallback_generated'
+    }
