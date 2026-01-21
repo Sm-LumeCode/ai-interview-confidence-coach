@@ -270,6 +270,3594 @@
     "question": "How would you design a secure authentication system for a web application handling sensitive user data?",
     "keywords": ["secure authentication", "multi-factor authentication", "password hashing", "authorization", "web security"],
     "difficulty": "hard"
-  }
+  },
+    {
+      "id": 45,
+      "question": "What is the difference between a virus and a worm?",
+      "keywords": [
+        "virus",
+        "worm",
+        "malware",
+        "self-replication",
+        "infection"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 46,
+      "question": "What is two-factor authentication (2FA)?",
+      "keywords": [
+        "2FA",
+        "multi-factor authentication",
+        "security",
+        "authentication",
+        "verification"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 47,
+      "question": "What is a VPN and how does it work?",
+      "keywords": [
+        "VPN",
+        "virtual private network",
+        "encryption",
+        "tunneling",
+        "privacy"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 48,
+      "question": "What is the difference between IDS and IPS?",
+      "keywords": [
+        "IDS",
+        "IPS",
+        "intrusion detection",
+        "intrusion prevention",
+        "security monitoring"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 49,
+      "question": "What is phishing?",
+      "keywords": [
+        "phishing",
+        "social engineering",
+        "email security",
+        "cyber attack",
+        "credential theft"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 50,
+      "question": "What is malware?",
+      "keywords": [
+        "malware",
+        "malicious software",
+        "virus",
+        "trojan",
+        "ransomware"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 51,
+      "question": "What is the difference between black hat and white hat hackers?",
+      "keywords": [
+        "black hat",
+        "white hat",
+        "ethical hacking",
+        "cybersecurity",
+        "security professional"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 52,
+      "question": "What is a DMZ in network security?",
+      "keywords": [
+        "DMZ",
+        "demilitarized zone",
+        "network segmentation",
+        "perimeter security",
+        "firewall"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 53,
+      "question": "What is the difference between threat, vulnerability, and risk?",
+      "keywords": [
+        "threat",
+        "vulnerability",
+        "risk",
+        "security assessment",
+        "risk management"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 54,
+      "question": "What is a security policy?",
+      "keywords": [
+        "security policy",
+        "governance",
+        "compliance",
+        "guidelines",
+        "procedures"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 55,
+      "question": "What is the principle of least privilege?",
+      "keywords": [
+        "least privilege",
+        "access control",
+        "security principle",
+        "authorization",
+        "permissions"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 56,
+      "question": "What is defense in depth?",
+      "keywords": [
+        "defense in depth",
+        "layered security",
+        "multiple controls",
+        "security strategy",
+        "protection"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 57,
+      "question": "What is a trojan horse?",
+      "keywords": [
+        "trojan",
+        "malware",
+        "backdoor",
+        "disguised malware",
+        "security threat"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 58,
+      "question": "What is spyware?",
+      "keywords": [
+        "spyware",
+        "surveillance software",
+        "privacy threat",
+        "data collection",
+        "monitoring"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 59,
+      "question": "What is adware?",
+      "keywords": [
+        "adware",
+        "advertising software",
+        "unwanted software",
+        "pop-ups",
+        "malware"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 60,
+      "question": "What is a rootkit?",
+      "keywords": [
+        "rootkit",
+        "privileged access",
+        "stealth malware",
+        "system compromise",
+        "detection"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 61,
+      "question": "What is a botnet?",
+      "keywords": [
+        "botnet",
+        "zombie network",
+        "DDoS",
+        "compromised systems",
+        "command and control"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 62,
+      "question": "What is social engineering?",
+      "keywords": [
+        "social engineering",
+        "manipulation",
+        "human factor",
+        "security awareness",
+        "deception"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 63,
+      "question": "What is a security breach?",
+      "keywords": [
+        "security breach",
+        "data breach",
+        "unauthorized access",
+        "incident",
+        "compromise"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 64,
+      "question": "What is incident response?",
+      "keywords": [
+        "incident response",
+        "security incident",
+        "containment",
+        "recovery",
+        "investigation"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 65,
+      "question": "What is a security audit?",
+      "keywords": [
+        "security audit",
+        "compliance",
+        "assessment",
+        "review",
+        "evaluation"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 66,
+      "question": "What is access control?",
+      "keywords": [
+        "access control",
+        "authorization",
+        "authentication",
+        "permissions",
+        "security"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 67,
+      "question": "What is multi-factor authentication?",
+      "keywords": [
+        "MFA",
+        "multi-factor",
+        "authentication",
+        "security layers",
+        "verification"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 68,
+      "question": "What is biometric authentication?",
+      "keywords": [
+        "biometric",
+        "fingerprint",
+        "facial recognition",
+        "authentication",
+        "biological"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 69,
+      "question": "What is a digital certificate?",
+      "keywords": [
+        "digital certificate",
+        "PKI",
+        "certificate authority",
+        "authentication",
+        "trust"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 70,
+      "question": "What is a Certificate Authority (CA)?",
+      "keywords": [
+        "certificate authority",
+        "CA",
+        "PKI",
+        "trust chain",
+        "digital certificates"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 71,
+      "question": "What is HTTPS and how does it differ from HTTP?",
+      "keywords": [
+        "HTTPS",
+        "HTTP",
+        "SSL",
+        "TLS",
+        "secure communication"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 72,
+      "question": "What is a MAC address?",
+      "keywords": [
+        "MAC address",
+        "physical address",
+        "network interface",
+        "hardware address",
+        "layer 2"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 73,
+      "question": "What is spoofing?",
+      "keywords": [
+        "spoofing",
+        "impersonation",
+        "fake identity",
+        "network attack",
+        "deception"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 74,
+      "question": "What is a backdoor?",
+      "keywords": [
+        "backdoor",
+        "unauthorized access",
+        "hidden entry",
+        "malware",
+        "security bypass"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 75,
+      "question": "What is data encryption?",
+      "keywords": [
+        "encryption",
+        "data protection",
+        "confidentiality",
+        "cryptography",
+        "secure data"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 76,
+      "question": "What is decryption?",
+      "keywords": [
+        "decryption",
+        "decrypt",
+        "plaintext",
+        "cryptographic key",
+        "reverse encryption"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 77,
+      "question": "What is a cryptographic key?",
+      "keywords": [
+        "cryptographic key",
+        "encryption key",
+        "secret key",
+        "cipher",
+        "security"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 78,
+      "question": "What is key management?",
+      "keywords": [
+        "key management",
+        "cryptographic keys",
+        "key storage",
+        "key rotation",
+        "lifecycle"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 79,
+      "question": "What is data loss prevention (DLP)?",
+      "keywords": [
+        "DLP",
+        "data loss prevention",
+        "data protection",
+        "leakage prevention",
+        "monitoring"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 80,
+      "question": "What is endpoint security?",
+      "keywords": [
+        "endpoint security",
+        "device protection",
+        "antivirus",
+        "EDR",
+        "workstation security"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 81,
+      "question": "What is network segmentation?",
+      "keywords": [
+        "network segmentation",
+        "isolation",
+        "subnetting",
+        "security zones",
+        "access control"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 82,
+      "question": "What is a security token?",
+      "keywords": [
+        "security token",
+        "authentication token",
+        "access token",
+        "session token",
+        "credentials"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 83,
+      "question": "What is session hijacking?",
+      "keywords": [
+        "session hijacking",
+        "session theft",
+        "cookie theft",
+        "web security",
+        "attack"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 84,
+      "question": "What is a security baseline?",
+      "keywords": [
+        "security baseline",
+        "configuration standard",
+        "hardening",
+        "minimum security",
+        "compliance"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 85,
+      "question": "What is patch management?",
+      "keywords": [
+        "patch management",
+        "software updates",
+        "vulnerability remediation",
+        "maintenance",
+        "security"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 86,
+      "question": "What is vulnerability scanning?",
+      "keywords": [
+        "vulnerability scanning",
+        "security assessment",
+        "weakness identification",
+        "automated scanning",
+        "tools"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 87,
+      "question": "What is security awareness training?",
+      "keywords": [
+        "security awareness",
+        "training",
+        "education",
+        "human factor",
+        "best practices"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 88,
+      "question": "What is an exploit?",
+      "keywords": [
+        "exploit",
+        "vulnerability exploitation",
+        "attack technique",
+        "security flaw",
+        "compromise"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 89,
+      "question": "What is a zero-day vulnerability?",
+      "keywords": [
+        "zero-day",
+        "unknown vulnerability",
+        "unpatched flaw",
+        "no fix available",
+        "threat"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 90,
+      "question": "What is whitelisting?",
+      "keywords": [
+        "whitelisting",
+        "allow list",
+        "approved applications",
+        "security control",
+        "access control"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 91,
+      "question": "What is blacklisting?",
+      "keywords": [
+        "blacklisting",
+        "deny list",
+        "blocked items",
+        "security control",
+        "prevention"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 92,
+      "question": "What is application whitelisting?",
+      "keywords": [
+        "application whitelisting",
+        "approved software",
+        "executable control",
+        "security policy",
+        "prevention"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 93,
+      "question": "What is network monitoring?",
+      "keywords": [
+        "network monitoring",
+        "traffic analysis",
+        "security monitoring",
+        "anomaly detection",
+        "visibility"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 94,
+      "question": "What is log management?",
+      "keywords": [
+        "log management",
+        "logging",
+        "audit trails",
+        "security logs",
+        "centralized logging"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 95,
+      "question": "What is SIEM?",
+      "keywords": [
+        "SIEM",
+        "security information and event management",
+        "log correlation",
+        "threat detection",
+        "monitoring"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 96,
+      "question": "What is the difference between authentication and authorization?",
+      "keywords": [
+        "authentication",
+        "authorization",
+        "identity verification",
+        "access control",
+        "security"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 97,
+      "question": "What is single sign-on (SSO)?",
+      "keywords": [
+        "SSO",
+        "single sign-on",
+        "authentication",
+        "convenience",
+        "centralized login"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 98,
+      "question": "What is federated identity?",
+      "keywords": [
+        "federated identity",
+        "identity federation",
+        "SSO",
+        "trust relationship",
+        "cross-domain"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 99,
+      "question": "What is LDAP?",
+      "keywords": [
+        "LDAP",
+        "lightweight directory access protocol",
+        "directory service",
+        "authentication",
+        "user management"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 100,
+      "question": "What is Active Directory?",
+      "keywords": [
+        "Active Directory",
+        "AD",
+        "directory service",
+        "Microsoft",
+        "user management"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 101,
+      "question": "What is Kerberos?",
+      "keywords": [
+        "Kerberos",
+        "authentication protocol",
+        "ticket-based",
+        "network security",
+        "SSO"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 102,
+      "question": "What is OAuth?",
+      "keywords": [
+        "OAuth",
+        "authorization framework",
+        "delegated access",
+        "API security",
+        "tokens"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 103,
+      "question": "What is SAML?",
+      "keywords": [
+        "SAML",
+        "security assertion markup language",
+        "SSO",
+        "federated identity",
+        "XML-based"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 104,
+      "question": "What is role-based access control (RBAC)?",
+      "keywords": [
+        "RBAC",
+        "role-based",
+        "access control",
+        "permissions",
+        "authorization"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 105,
+      "question": "What is mandatory access control (MAC)?",
+      "keywords": [
+        "MAC",
+        "mandatory access control",
+        "security labels",
+        "classification",
+        "policy-based"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 106,
+      "question": "What is discretionary access control (DAC)?",
+      "keywords": [
+        "DAC",
+        "discretionary access control",
+        "owner-based",
+        "permissions",
+        "flexibility"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 107,
+      "question": "What is a security group?",
+      "keywords": [
+        "security group",
+        "firewall rules",
+        "access control",
+        "cloud security",
+        "virtual firewall"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 108,
+      "question": "What is network ACL?",
+      "keywords": [
+        "network ACL",
+        "access control list",
+        "stateless firewall",
+        "packet filtering",
+        "rules"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 109,
+      "question": "What is port scanning?",
+      "keywords": [
+        "port scanning",
+        "reconnaissance",
+        "open ports",
+        "network discovery",
+        "security assessment"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 110,
+      "question": "What is a security vulnerability?",
+      "keywords": [
+        "vulnerability",
+        "security weakness",
+        "flaw",
+        "exploitable",
+        "risk"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 111,
+      "question": "What is a security control?",
+      "keywords": [
+        "security control",
+        "safeguard",
+        "countermeasure",
+        "protection mechanism",
+        "mitigation"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 112,
+      "question": "What is preventive control?",
+      "keywords": [
+        "preventive control",
+        "proactive security",
+        "prevention",
+        "blocking",
+        "safeguard"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 113,
+      "question": "What is detective control?",
+      "keywords": [
+        "detective control",
+        "monitoring",
+        "detection",
+        "alerting",
+        "identification"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 114,
+      "question": "What is corrective control?",
+      "keywords": [
+        "corrective control",
+        "remediation",
+        "recovery",
+        "fix",
+        "response"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 115,
+      "question": "What is a security incident?",
+      "keywords": [
+        "security incident",
+        "breach",
+        "attack",
+        "unauthorized activity",
+        "compromise"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 116,
+      "question": "What is digital forensics?",
+      "keywords": [
+        "digital forensics",
+        "investigation",
+        "evidence collection",
+        "incident analysis",
+        "cybercrime"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 117,
+      "question": "What is chain of custody?",
+      "keywords": [
+        "chain of custody",
+        "evidence handling",
+        "forensics",
+        "legal process",
+        "documentation"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 118,
+      "question": "What is data integrity?",
+      "keywords": [
+        "data integrity",
+        "accuracy",
+        "completeness",
+        "consistency",
+        "reliability"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 119,
+      "question": "What is non-repudiation?",
+      "keywords": [
+        "non-repudiation",
+        "accountability",
+        "proof",
+        "digital signature",
+        "authentication"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 120,
+      "question": "What is a digital signature?",
+      "keywords": [
+        "digital signature",
+        "authentication",
+        "integrity",
+        "non-repudiation",
+        "cryptography"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 121,
+      "question": "What is PKI?",
+      "keywords": [
+        "PKI",
+        "public key infrastructure",
+        "certificates",
+        "encryption",
+        "trust"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 122,
+      "question": "What is a man-in-the-middle attack?",
+      "keywords": [
+        "man-in-the-middle",
+        "MITM",
+        "interception",
+        "eavesdropping",
+        "attack"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 123,
+      "question": "What is DNS?",
+      "keywords": [
+        "DNS",
+        "domain name system",
+        "name resolution",
+        "internet infrastructure",
+        "translation"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 124,
+      "question": "What is DNS spoofing?",
+      "keywords": [
+        "DNS spoofing",
+        "DNS poisoning",
+        "cache poisoning",
+        "redirection",
+        "attack"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 125,
+      "question": "What is ARP?",
+      "keywords": [
+        "ARP",
+        "address resolution protocol",
+        "MAC address",
+        "IP address",
+        "network protocol"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 126,
+      "question": "What is NAT?",
+      "keywords": [
+        "NAT",
+        "network address translation",
+        "IP translation",
+        "private to public",
+        "gateway"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 127,
+      "question": "What is a proxy server?",
+      "keywords": [
+        "proxy server",
+        "intermediary",
+        "gateway",
+        "filtering",
+        "anonymity"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 128,
+      "question": "What is a reverse proxy?",
+      "keywords": [
+        "reverse proxy",
+        "load balancing",
+        "web security",
+        "backend protection",
+        "gateway"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 129,
+      "question": "What is sandboxing?",
+      "keywords": [
+        "sandboxing",
+        "isolated environment",
+        "malware analysis",
+        "testing",
+        "containment"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 130,
+      "question": "What is air gapping?",
+      "keywords": [
+        "air gapping",
+        "physical isolation",
+        "network separation",
+        "critical systems",
+        "security"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 131,
+      "question": "What is disaster recovery?",
+      "keywords": [
+        "disaster recovery",
+        "DR",
+        "business continuity",
+        "backup",
+        "restoration"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 132,
+      "question": "What is business continuity planning?",
+      "keywords": [
+        "business continuity",
+        "BCP",
+        "resilience",
+        "disaster recovery",
+        "operations"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 133,
+      "question": "What is a security framework?",
+      "keywords": [
+        "security framework",
+        "best practices",
+        "standards",
+        "guidelines",
+        "compliance"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 134,
+      "question": "What is ISO 27001?",
+      "keywords": [
+        "ISO 27001",
+        "information security",
+        "standard",
+        "ISMS",
+        "compliance"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 135,
+      "question": "What is NIST?",
+      "keywords": [
+        "NIST",
+        "national institute of standards",
+        "cybersecurity framework",
+        "guidelines",
+        "standards"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 136,
+      "question": "What is PCI DSS?",
+      "keywords": [
+        "PCI DSS",
+        "payment card industry",
+        "data security standard",
+        "compliance",
+        "credit cards"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 137,
+      "question": "What is GDPR?",
+      "keywords": [
+        "GDPR",
+        "general data protection regulation",
+        "privacy",
+        "EU",
+        "compliance"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 138,
+      "question": "What is HIPAA?",
+      "keywords": [
+        "HIPAA",
+        "health insurance portability",
+        "healthcare data",
+        "privacy",
+        "compliance"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 139,
+      "question": "What is security governance?",
+      "keywords": [
+        "security governance",
+        "oversight",
+        "policies",
+        "risk management",
+        "compliance"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 140,
+      "question": "What is risk assessment?",
+      "keywords": [
+        "risk assessment",
+        "risk analysis",
+        "threat evaluation",
+        "vulnerability assessment",
+        "security"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 141,
+      "question": "What is risk mitigation?",
+      "keywords": [
+        "risk mitigation",
+        "risk reduction",
+        "controls",
+        "countermeasures",
+        "management"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 142,
+      "question": "What is security posture?",
+      "keywords": [
+        "security posture",
+        "security status",
+        "overall security",
+        "defense capability",
+        "assessment"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": 143,
+      "question": "How would you detect a compromised system in your network?",
+      "keywords": [
+        "compromised system",
+        "indicators of compromise",
+        "threat detection",
+        "forensics",
+        "investigation"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 144,
+      "question": "Explain the OWASP Top 10 vulnerabilities.",
+      "keywords": [
+        "OWASP",
+        "top 10",
+        "web security",
+        "vulnerabilities",
+        "application security"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 145,
+      "question": "What is the difference between encoding, encryption, and hashing?",
+      "keywords": [
+        "encoding",
+        "encryption",
+        "hashing",
+        "data protection",
+        "cryptography"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 146,
+      "question": "How does DNSSEC improve DNS security?",
+      "keywords": [
+        "DNSSEC",
+        "DNS security",
+        "authentication",
+        "integrity",
+        "cryptographic signatures"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 147,
+      "question": "What is the difference between stateful and stateless firewalls?",
+      "keywords": [
+        "stateful firewall",
+        "stateless firewall",
+        "packet filtering",
+        "connection tracking",
+        "network security"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 148,
+      "question": "Explain how a DDoS attack works and mitigation strategies.",
+      "keywords": [
+        "DDoS",
+        "distributed denial of service",
+        "traffic flooding",
+        "mitigation",
+        "availability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 149,
+      "question": "What is the difference between WAF and firewall?",
+      "keywords": [
+        "WAF",
+        "web application firewall",
+        "firewall",
+        "layer 7",
+        "application protection"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 150,
+      "question": "How does certificate pinning enhance security?",
+      "keywords": [
+        "certificate pinning",
+        "SSL pinning",
+        "MITM prevention",
+        "mobile security",
+        "trust"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 151,
+      "question": "What is threat intelligence and how is it used?",
+      "keywords": [
+        "threat intelligence",
+        "IOC",
+        "threat feeds",
+        "security research",
+        "proactive defense"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 152,
+      "question": "Explain the concept of security orchestration and automation (SOAR).",
+      "keywords": [
+        "SOAR",
+        "orchestration",
+        "automation",
+        "incident response",
+        "playbooks"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 153,
+      "question": "What is lateral movement in a cyber attack?",
+      "keywords": [
+        "lateral movement",
+        "privilege escalation",
+        "network traversal",
+        "persistence",
+        "attack chain"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 154,
+      "question": "How do you secure APIs?",
+      "keywords": [
+        "API security",
+        "authentication",
+        "rate limiting",
+        "input validation",
+        "OAuth"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 155,
+      "question": "What is the difference between vulnerability assessment and penetration testing?",
+      "keywords": [
+        "vulnerability assessment",
+        "penetration testing",
+        "security testing",
+        "risk identification",
+        "exploitation"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 156,
+      "question": "Explain the concept of privilege escalation.",
+      "keywords": [
+        "privilege escalation",
+        "elevated access",
+        "exploitation",
+        "vertical horizontal",
+        "security"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 157,
+      "question": "What is command and control (C2) in cybersecurity?",
+      "keywords": [
+        "C2",
+        "command and control",
+        "botnet",
+        "malware communication",
+        "attack infrastructure"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 158,
+      "question": "How does behavioral analysis help in threat detection?",
+      "keywords": [
+        "behavioral analysis",
+        "anomaly detection",
+        "baseline",
+        "user behavior",
+        "UEBA"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 159,
+      "question": "What is the kill chain methodology?",
+      "keywords": [
+        "kill chain",
+        "cyber attack lifecycle",
+        "reconnaissance",
+        "exploitation",
+        "defense"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 160,
+      "question": "Explain the MITRE ATT&CK framework.",
+      "keywords": [
+        "MITRE ATT&CK",
+        "tactics",
+        "techniques",
+        "procedures",
+        "threat modeling"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 161,
+      "question": "What is data exfiltration and how can it be detected?",
+      "keywords": [
+        "data exfiltration",
+        "data theft",
+        "DLP",
+        "network monitoring",
+        "detection"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 162,
+      "question": "How do you secure a wireless network?",
+      "keywords": [
+        "wireless security",
+        "WPA3",
+        "encryption",
+        "authentication",
+        "rogue AP"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 163,
+      "question": "What is the difference between IDS signatures and anomaly-based detection?",
+      "keywords": [
+        "signature-based",
+        "anomaly-based",
+        "detection methods",
+        "IDS",
+        "false positives"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 164,
+      "question": "Explain the concept of defense evasion techniques.",
+      "keywords": [
+        "defense evasion",
+        "obfuscation",
+        "anti-forensics",
+        "stealth",
+        "APT"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 165,
+      "question": "What is ransomware and how can organizations protect against it?",
+      "keywords": [
+        "ransomware",
+        "encryption malware",
+        "backup",
+        "prevention",
+        "recovery"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 166,
+      "question": "How does threat hunting differ from traditional security monitoring?",
+      "keywords": [
+        "threat hunting",
+        "proactive search",
+        "hypothesis-driven",
+        "IOC",
+        "detection"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 167,
+      "question": "What is credential stuffing?",
+      "keywords": [
+        "credential stuffing",
+        "password reuse",
+        "automated attack",
+        "breach data",
+        "authentication"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 168,
+      "question": "Explain the concept of supply chain attacks.",
+      "keywords": [
+        "supply chain attack",
+        "third-party risk",
+        "software supply chain",
+        "compromise",
+        "trusted relationship"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 169,
+      "question": "What is a web shell?",
+      "keywords": [
+        "web shell",
+        "backdoor",
+        "remote access",
+        "web server compromise",
+        "persistence"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 170,
+      "question": "How do you perform secure code review?",
+      "keywords": [
+        "secure code review",
+        "code analysis",
+        "vulnerability identification",
+        "SAST",
+        "best practices"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 171,
+      "question": "What is the difference between SAST and DAST?",
+      "keywords": [
+        "SAST",
+        "DAST",
+        "static analysis",
+        "dynamic analysis",
+        "application security"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 172,
+      "question": "Explain the concept of container security.",
+      "keywords": [
+        "container security",
+        "Docker",
+        "Kubernetes",
+        "image scanning",
+        "runtime protection"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 173,
+      "question": "What is serverless security?",
+      "keywords": [
+        "serverless security",
+        "function security",
+        "Lambda",
+        "FaaS",
+        "cloud native"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 174,
+      "question": "How do you secure microservices architecture?",
+      "keywords": [
+        "microservices security",
+        "API gateway",
+        "service mesh",
+        "mutual TLS",
+        "zero trust"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 175,
+      "question": "What is security testing in CI/CD pipelines?",
+      "keywords": [
+        "CI/CD security",
+        "DevSecOps",
+        "automated testing",
+        "SAST",
+        "DAST"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 176,
+      "question": "Explain the concept of secrets management.",
+      "keywords": [
+        "secrets management",
+        "credentials",
+        "API keys",
+        "vault",
+        "rotation"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 177,
+      "question": "What is identity and access management (IAM)?",
+      "keywords": [
+        "IAM",
+        "identity management",
+        "access control",
+        "authentication",
+        "authorization"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 178,
+      "question": "How does RBAC differ from ABAC?",
+      "keywords": [
+        "RBAC",
+        "ABAC",
+        "role-based",
+        "attribute-based",
+        "access control"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 179,
+      "question": "What is privileged access management (PAM)?",
+      "keywords": [
+        "PAM",
+        "privileged accounts",
+        "admin access",
+        "session monitoring",
+        "vault"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 180,
+      "question": "Explain the concept of just-in-time access.",
+      "keywords": [
+        "just-in-time access",
+        "JIT",
+        "temporary permissions",
+        "time-limited",
+        "privilege management"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 181,
+      "question": "What is security information sharing?",
+      "keywords": [
+        "information sharing",
+        "threat intelligence",
+        "collaboration",
+        "ISAC",
+        "community"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 182,
+      "question": "How do you measure security effectiveness?",
+      "keywords": [
+        "security metrics",
+        "KPI",
+        "measurement",
+        "effectiveness",
+        "assessment"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 183,
+      "question": "What is security debt?",
+      "keywords": [
+        "security debt",
+        "technical debt",
+        "vulnerabilities",
+        "risk accumulation",
+        "remediation"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 184,
+      "question": "Explain the concept of threat modeling.",
+      "keywords": [
+        "threat modeling",
+        "STRIDE",
+        "attack trees",
+        "risk analysis",
+        "design"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 185,
+      "question": "What is the difference between red team and blue team?",
+      "keywords": [
+        "red team",
+        "blue team",
+        "offensive",
+        "defensive",
+        "security exercises"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 186,
+      "question": "What is purple teaming?",
+      "keywords": [
+        "purple teaming",
+        "collaboration",
+        "red and blue",
+        "knowledge sharing",
+        "improvement"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 187,
+      "question": "How do you prioritize security vulnerabilities?",
+      "keywords": [
+        "vulnerability prioritization",
+        "risk scoring",
+        "CVSS",
+        "business impact",
+        "remediation"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 188,
+      "question": "What is CVE and CVSS?",
+      "keywords": [
+        "CVE",
+        "CVSS",
+        "common vulnerabilities",
+        "scoring system",
+        "severity"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 189,
+      "question": "Explain the concept of security by design.",
+      "keywords": [
+        "security by design",
+        "secure development",
+        "built-in security",
+        "proactive",
+        "SDL"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 190,
+      "question": "What is shift-left security?",
+      "keywords": [
+        "shift-left",
+        "early security",
+        "development lifecycle",
+        "proactive",
+        "DevSecOps"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 191,
+      "question": "How do you handle security in agile development?",
+      "keywords": [
+        "agile security",
+        "iterative",
+        "security stories",
+        "continuous",
+        "integration"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 192,
+      "question": "What is the principle of separation of duties?",
+      "keywords": [
+        "separation of duties",
+        "SoD",
+        "fraud prevention",
+        "dual control",
+        "governance"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 193,
+      "question": "Explain the concept of need-to-know access.",
+      "keywords": [
+        "need-to-know",
+        "data classification",
+        "access control",
+        "least privilege",
+        "confidentiality"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 194,
+      "question": "What is data classification?",
+      "keywords": [
+        "data classification",
+        "sensitivity levels",
+        "confidential",
+        "labeling",
+        "protection"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 195,
+      "question": "How do you secure data at rest?",
+      "keywords": [
+        "data at rest",
+        "encryption",
+        "storage security",
+        "key management",
+        "protection"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 196,
+      "question": "How do you secure data in transit?",
+      "keywords": [
+        "data in transit",
+        "TLS",
+        "VPN",
+        "encryption",
+        "network security"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 197,
+      "question": "What is tokenization?",
+      "keywords": [
+        "tokenization",
+        "data protection",
+        "PCI DSS",
+        "sensitive data",
+        "substitution"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 198,
+      "question": "Explain the concept of data masking.",
+      "keywords": [
+        "data masking",
+        "obfuscation",
+        "privacy",
+        "non-production",
+        "protection"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 199,
+      "question": "What is a security operations center (SOC)?",
+      "keywords": [
+        "SOC",
+        "security operations",
+        "monitoring",
+        "incident response",
+        "team"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 200,
+      "question": "How do you build an effective incident response plan?",
+      "keywords": [
+        "incident response plan",
+        "IRP",
+        "preparation",
+        "procedures",
+        "recovery"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 201,
+      "question": "What are indicators of compromise (IOCs)?",
+      "keywords": [
+        "IOC",
+        "indicators of compromise",
+        "threat detection",
+        "forensics",
+        "artifacts"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 202,
+      "question": "Explain the concept of threat actor profiling.",
+      "keywords": [
+        "threat actor",
+        "adversary",
+        "attribution",
+        "TTPs",
+        "motivation"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 203,
+      "question": "What is advanced persistent threat (APT)?",
+      "keywords": [
+        "APT",
+        "advanced persistent threat",
+        "targeted attack",
+        "sophisticated",
+        "long-term"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 204,
+      "question": "How do you detect insider threats?",
+      "keywords": [
+        "insider threat",
+        "user monitoring",
+        "anomaly detection",
+        "behavioral analysis",
+        "prevention"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 205,
+      "question": "What is user and entity behavior analytics (UEBA)?",
+      "keywords": [
+        "UEBA",
+        "behavior analytics",
+        "anomaly detection",
+        "machine learning",
+        "insider threat"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 206,
+      "question": "Explain the concept of deception technology.",
+      "keywords": [
+        "deception technology",
+        "honeypot",
+        "honeytokens",
+        "trap",
+        "early warning"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 207,
+      "question": "What is threat emulation?",
+      "keywords": [
+        "threat emulation",
+        "adversary simulation",
+        "testing",
+        "validation",
+        "purple team"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 208,
+      "question": "How do you conduct security assessments?",
+      "keywords": [
+        "security assessment",
+        "audit",
+        "review",
+        "testing",
+        "evaluation"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 209,
+      "question": "What is compliance management?",
+      "keywords": [
+        "compliance management",
+        "regulatory",
+        "standards",
+        "audit",
+        "governance"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 210,
+      "question": "Explain the concept of security metrics and KPIs.",
+      "keywords": [
+        "security metrics",
+        "KPI",
+        "measurement",
+        "reporting",
+        "effectiveness"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 211,
+      "question": "What is risk tolerance?",
+      "keywords": [
+        "risk tolerance",
+        "acceptable risk",
+        "risk appetite",
+        "business decision",
+        "threshold"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 212,
+      "question": "How do you perform risk quantification?",
+      "keywords": [
+        "risk quantification",
+        "ALE",
+        "SLE",
+        "ARO",
+        "financial impact"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 213,
+      "question": "What is a security control assessment?",
+      "keywords": [
+        "control assessment",
+        "testing",
+        "effectiveness",
+        "validation",
+        "audit"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 214,
+      "question": "Explain the concept of continuous monitoring.",
+      "keywords": [
+        "continuous monitoring",
+        "real-time",
+        "security posture",
+        "ongoing assessment",
+        "automation"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 215,
+      "question": "What is security configuration management?",
+      "keywords": [
+        "configuration management",
+        "baseline",
+        "hardening",
+        "drift detection",
+        "compliance"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 216,
+      "question": "How do you manage third-party security risks?",
+      "keywords": [
+        "third-party risk",
+        "vendor management",
+        "assessment",
+        "due diligence",
+        "contracts"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 217,
+      "question": "What is a security questionnaire?",
+      "keywords": [
+        "security questionnaire",
+        "vendor assessment",
+        "due diligence",
+        "risk evaluation",
+        "compliance"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 218,
+      "question": "Explain the concept of security scorecards.",
+      "keywords": [
+        "security scorecard",
+        "risk rating",
+        "vendor assessment",
+        "continuous monitoring",
+        "third-party"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 219,
+      "question": "What is cyber insurance?",
+      "keywords": [
+        "cyber insurance",
+        "risk transfer",
+        "coverage",
+        "incident response",
+        "financial protection"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 220,
+      "question": "How do you calculate return on security investment (ROSI)?",
+      "keywords": [
+        "ROSI",
+        "ROI",
+        "cost-benefit",
+        "justification",
+        "metrics"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 221,
+      "question": "What is security awareness and why is it important?",
+      "keywords": [
+        "security awareness",
+        "training",
+        "human factor",
+        "culture",
+        "behavior change"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 222,
+      "question": "How do you measure security awareness effectiveness?",
+      "keywords": [
+        "awareness effectiveness",
+        "phishing simulation",
+        "metrics",
+        "training",
+        "assessment"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 223,
+      "question": "What is security culture?",
+      "keywords": [
+        "security culture",
+        "organizational behavior",
+        "mindset",
+        "values",
+        "practices"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 224,
+      "question": "Explain the concept of cloud security posture management (CSPM).",
+      "keywords": [
+        "CSPM",
+        "cloud security",
+        "misconfiguration",
+        "compliance",
+        "automation"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 225,
+      "question": "What is cloud access security broker (CASB)?",
+      "keywords": [
+        "CASB",
+        "cloud security",
+        "visibility",
+        "control",
+        "SaaS security"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 226,
+      "question": "How do you secure multi-cloud environments?",
+      "keywords": [
+        "multi-cloud",
+        "hybrid cloud",
+        "consistency",
+        "governance",
+        "security"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 227,
+      "question": "What is infrastructure as code (IaC) security?",
+      "keywords": [
+        "IaC security",
+        "terraform",
+        "configuration",
+        "scanning",
+        "automation"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 228,
+      "question": "Explain the concept of immutable infrastructure.",
+      "keywords": [
+        "immutable infrastructure",
+        "no changes",
+        "replace not modify",
+        "security",
+        "consistency"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 229,
+      "question": "What is cloud-native security?",
+      "keywords": [
+        "cloud-native",
+        "containers",
+        "serverless",
+        "microservices",
+        "security"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 230,
+      "question": "How do you implement zero trust in cloud environments?",
+      "keywords": [
+        "zero trust",
+        "cloud security",
+        "identity-centric",
+        "micro-segmentation",
+        "verification"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 231,
+      "question": "What is shared responsibility model in cloud security?",
+      "keywords": [
+        "shared responsibility",
+        "cloud provider",
+        "customer",
+        "security boundaries",
+        "accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 232,
+      "question": "Explain the concept of security zones in network architecture.",
+      "keywords": [
+        "security zones",
+        "segmentation",
+        "trust boundaries",
+        "firewall",
+        "isolation"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 233,
+      "question": "What is east-west traffic?",
+      "keywords": [
+        "east-west traffic",
+        "lateral movement",
+        "internal traffic",
+        "micro-segmentation",
+        "zero trust"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 234,
+      "question": "How do you secure north-south traffic?",
+      "keywords": [
+        "north-south traffic",
+        "perimeter security",
+        "ingress egress",
+        "firewall",
+        "gateway"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 235,
+      "question": "What is software-defined perimeter (SDP)?",
+      "keywords": [
+        "SDP",
+        "software-defined perimeter",
+        "zero trust",
+        "network hiding",
+        "identity-based"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 236,
+      "question": "Explain the concept of secure access service edge (SASE).",
+      "keywords": [
+        "SASE",
+        "secure access",
+        "cloud-delivered",
+        "network security",
+        "convergence"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 237,
+      "question": "What is network access control (NAC)?",
+      "keywords": [
+        "NAC",
+        "network access control",
+        "device authentication",
+        "policy enforcement",
+        "compliance"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 238,
+      "question": "How do you implement microsegmentation?",
+      "keywords": [
+        "microsegmentation",
+        "granular control",
+        "workload isolation",
+        "zero trust",
+        "policy"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 239,
+      "question": "What is application security testing?",
+      "keywords": [
+        "application security testing",
+        "AST",
+        "SAST",
+        "DAST",
+        "IAST"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 240,
+      "question": "Explain the concept of runtime application self-protection (RASP).",
+      "keywords": [
+        "RASP",
+        "runtime protection",
+        "application security",
+        "real-time",
+        "self-defense"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 241,
+      "question": "What is interactive application security testing (IAST)?",
+      "keywords": [
+        "IAST",
+        "interactive testing",
+        "runtime analysis",
+        "application security",
+        "hybrid"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 242,
+      "question": "How do you secure mobile applications?",
+      "keywords": [
+        "mobile security",
+        "app security",
+        "secure coding",
+        "encryption",
+        "authentication"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 243,
+      "question": "What is mobile device management (MDM)?",
+      "keywords": [
+        "MDM",
+        "mobile device management",
+        "endpoint security",
+        "policy enforcement",
+        "BYOD"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 244,
+      "question": "Explain the concept of bring your own device (BYOD) security.",
+      "keywords": [
+        "BYOD",
+        "personal devices",
+        "security policy",
+        "data separation",
+        "risk"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 245,
+      "question": "What is endpoint detection and response (EDR)?",
+      "keywords": [
+        "EDR",
+        "endpoint detection",
+        "threat hunting",
+        "forensics",
+        "response"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 246,
+      "question": "How does EDR differ from traditional antivirus?",
+      "keywords": [
+        "EDR",
+        "antivirus",
+        "behavior-based",
+        "signature-based",
+        "advanced threats"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 247,
+      "question": "What is extended detection and response (XDR)?",
+      "keywords": [
+        "XDR",
+        "extended detection",
+        "unified security",
+        "correlation",
+        "response"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 248,
+      "question": "Explain the concept of managed detection and response (MDR).",
+      "keywords": [
+        "MDR",
+        "managed service",
+        "threat detection",
+        "24/7 monitoring",
+        "outsourced"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 249,
+      "question": "What is security baseline configuration?",
+      "keywords": [
+        "security baseline",
+        "hardening",
+        "CIS benchmarks",
+        "configuration",
+        "standards"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 250,
+      "question": "How do you implement secure remote access?",
+      "keywords": [
+        "remote access",
+        "VPN",
+        "zero trust",
+        "authentication",
+        "secure access"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 251,
+      "question": "What is browser isolation?",
+      "keywords": [
+        "browser isolation",
+        "remote browsing",
+        "web security",
+        "zero trust",
+        "containment"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 252,
+      "question": "Explain the concept of email security gateway.",
+      "keywords": [
+        "email security",
+        "spam filtering",
+        "phishing protection",
+        "malware scanning",
+        "gateway"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 253,
+      "question": "What is secure email gateway (SEG)?",
+      "keywords": [
+        "SEG",
+        "email security",
+        "threat protection",
+        "filtering",
+        "gateway"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 254,
+      "question": "How do you prevent email spoofing?",
+      "keywords": [
+        "email spoofing",
+        "SPF",
+        "DKIM",
+        "DMARC",
+        "authentication"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 255,
+      "question": "What is SPF, DKIM, and DMARC?",
+      "keywords": [
+        "SPF",
+        "DKIM",
+        "DMARC",
+        "email authentication",
+        "anti-spoofing"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 256,
+      "question": "Explain the concept of business email compromise (BEC).",
+      "keywords": [
+        "BEC",
+        "business email compromise",
+        "impersonation",
+        "fraud",
+        "social engineering"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 257,
+      "question": "What is domain name system security?",
+      "keywords": [
+        "DNS security",
+        "DNSSEC",
+        "DNS filtering",
+        "protection",
+        "resolution"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 258,
+      "question": "How do you detect and prevent DNS tunneling?",
+      "keywords": [
+        "DNS tunneling",
+        "data exfiltration",
+        "covert channel",
+        "detection",
+        "prevention"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 259,
+      "question": "What is network traffic analysis?",
+      "keywords": [
+        "traffic analysis",
+        "network monitoring",
+        "flow analysis",
+        "anomaly detection",
+        "visibility"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 260,
+      "question": "Explain the concept of network forensics.",
+      "keywords": [
+        "network forensics",
+        "packet capture",
+        "investigation",
+        "evidence",
+        "analysis"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 261,
+      "question": "What is packet capture and analysis?",
+      "keywords": [
+        "packet capture",
+        "PCAP",
+        "Wireshark",
+        "network analysis",
+        "forensics"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 262,
+      "question": "How do you detect encrypted malware traffic?",
+      "keywords": [
+        "encrypted traffic",
+        "malware detection",
+        "SSL inspection",
+        "behavioral analysis",
+        "TLS"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 263,
+      "question": "What is SSL/TLS inspection?",
+      "keywords": [
+        "SSL inspection",
+        "TLS decryption",
+        "man-in-the-middle",
+        "visibility",
+        "privacy concerns"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 264,
+      "question": "Explain the concept of security information management.",
+      "keywords": [
+        "security information",
+        "log management",
+        "correlation",
+        "compliance",
+        "retention"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 265,
+      "question": "What is log correlation?",
+      "keywords": [
+        "log correlation",
+        "event correlation",
+        "SIEM",
+        "pattern detection",
+        "analysis"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 266,
+      "question": "How do you implement effective logging strategies?",
+      "keywords": [
+        "logging strategy",
+        "audit trails",
+        "retention",
+        "monitoring",
+        "compliance"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 267,
+      "question": "What is security automation?",
+      "keywords": [
+        "security automation",
+        "SOAR",
+        "orchestration",
+        "efficiency",
+        "response"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 268,
+      "question": "Explain the concept of security playbooks.",
+      "keywords": [
+        "security playbooks",
+        "runbooks",
+        "procedures",
+        "automation",
+        "incident response"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 269,
+      "question": "What is threat intelligence platform (TIP)?",
+      "keywords": [
+        "TIP",
+        "threat intelligence",
+        "IOC management",
+        "integration",
+        "automation"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 270,
+      "question": "How do you integrate threat intelligence into security operations?",
+      "keywords": [
+        "threat intelligence integration",
+        "IOC",
+        "feeds",
+        "SIEM",
+        "actionable"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 271,
+      "question": "What is security orchestration?",
+      "keywords": [
+        "security orchestration",
+        "workflow automation",
+        "integration",
+        "coordination",
+        "SOAR"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 272,
+      "question": "Explain the concept of security as code.",
+      "keywords": [
+        "security as code",
+        "automation",
+        "IaC",
+        "policy as code",
+        "DevSecOps"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 273,
+      "question": "What is policy as code?",
+      "keywords": [
+        "policy as code",
+        "automated governance",
+        "compliance",
+        "infrastructure",
+        "validation"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 274,
+      "question": "How do you implement security guardrails?",
+      "keywords": [
+        "security guardrails",
+        "preventive controls",
+        "automation",
+        "self-service",
+        "boundaries"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 275,
+      "question": "What is chaos engineering for security?",
+      "keywords": [
+        "chaos engineering",
+        "resilience testing",
+        "security testing",
+        "failure injection",
+        "validation"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": 276,
+      "question": "How would you design a comprehensive security architecture for a financial services organization?",
+      "keywords": [
+        "security architecture",
+        "financial services",
+        "defense in depth",
+        "compliance",
+        "design"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 277,
+      "question": "Explain how to implement a zero trust architecture across hybrid cloud environments.",
+      "keywords": [
+        "zero trust",
+        "implementation",
+        "hybrid cloud",
+        "identity-centric",
+        "micro-segmentation"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 278,
+      "question": "How would you respond to a sophisticated ransomware attack affecting critical systems?",
+      "keywords": [
+        "ransomware response",
+        "incident response",
+        "business continuity",
+        "recovery",
+        "containment"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 279,
+      "question": "Describe a strategy for detecting and preventing advanced persistent threats (APTs).",
+      "keywords": [
+        "APT detection",
+        "threat hunting",
+        "behavioral analysis",
+        "intelligence",
+        "prevention"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 280,
+      "question": "How would you design a secure software development lifecycle for DevOps environments?",
+      "keywords": [
+        "secure SDLC",
+        "DevSecOps",
+        "automation",
+        "continuous security",
+        "integration"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 281,
+      "question": "Explain the security implications of quantum computing and post-quantum cryptography.",
+      "keywords": [
+        "quantum computing",
+        "post-quantum cryptography",
+        "encryption",
+        "future threats",
+        "preparation"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 282,
+      "question": "How would you architect a security monitoring system for a large enterprise?",
+      "keywords": [
+        "security monitoring",
+        "SIEM architecture",
+        "scalability",
+        "correlation",
+        "enterprise"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 283,
+      "question": "Describe how to implement effective threat hunting in a complex environment.",
+      "keywords": [
+        "threat hunting",
+        "hypothesis-driven",
+        "IOC",
+        "proactive",
+        "methodology"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 284,
+      "question": "How would you secure a Kubernetes cluster in production?",
+      "keywords": [
+        "Kubernetes security",
+        "container orchestration",
+        "pod security",
+        "RBAC",
+        "network policies"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 285,
+      "question": "Explain how to conduct a comprehensive security risk assessment for cloud migration.",
+      "keywords": [
+        "cloud migration",
+        "risk assessment",
+        "due diligence",
+        "security gaps",
+        "strategy"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 286,
+      "question": "How would you design an insider threat detection and prevention program?",
+      "keywords": [
+        "insider threat program",
+        "detection",
+        "prevention",
+        "monitoring",
+        "culture"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 287,
+      "question": "Describe strategies for securing IoT devices at scale.",
+      "keywords": [
+        "IoT security",
+        "device management",
+        "firmware security",
+        "network segmentation",
+        "scale"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 288,
+      "question": "How would you implement security for a multi-tenant SaaS application?",
+      "keywords": [
+        "multi-tenant security",
+        "SaaS",
+        "data isolation",
+        "authentication",
+        "architecture"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 289,
+      "question": "Explain how to build a mature vulnerability management program.",
+      "keywords": [
+        "vulnerability management",
+        "program maturity",
+        "prioritization",
+        "remediation",
+        "metrics"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 290,
+      "question": "How would you architect secure authentication for microservices?",
+      "keywords": [
+        "microservices authentication",
+        "service mesh",
+        "mutual TLS",
+        "JWT",
+        "zero trust"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 291,
+      "question": "Describe the process of building a red team capability from scratch.",
+      "keywords": [
+        "red team",
+        "offensive security",
+        "capability building",
+        "adversary simulation",
+        "program"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 292,
+      "question": "How would you implement security for serverless architectures?",
+      "keywords": [
+        "serverless security",
+        "function security",
+        "IAM",
+        "secrets management",
+        "cloud native"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 293,
+      "question": "Explain how to conduct a comprehensive third-party security assessment.",
+      "keywords": [
+        "third-party assessment",
+        "vendor risk",
+        "due diligence",
+        "continuous monitoring",
+        "evaluation"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 294,
+      "question": "How would you design a security awareness program that actually changes behavior?",
+      "keywords": [
+        "security awareness",
+        "behavior change",
+        "training program",
+        "culture",
+        "measurement"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 295,
+      "question": "Describe strategies for detecting fileless malware and memory-based attacks.",
+      "keywords": [
+        "fileless malware",
+        "memory attacks",
+        "detection",
+        "behavioral analysis",
+        "advanced threats"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 296,
+      "question": "How would you implement security for a blockchain-based application?",
+      "keywords": [
+        "blockchain security",
+        "smart contracts",
+        "distributed ledger",
+        "cryptography",
+        "validation"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 297,
+      "question": "Explain how to architect secure CI/CD pipelines with automated security gates.",
+      "keywords": [
+        "secure CI/CD",
+        "security gates",
+        "automation",
+        "shift-left",
+        "DevSecOps"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 298,
+      "question": "How would you respond to a supply chain attack targeting your organization?",
+      "keywords": [
+        "supply chain attack",
+        "incident response",
+        "investigation",
+        "containment",
+        "recovery"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 299,
+      "question": "Describe how to implement effective security metrics and reporting for executives.",
+      "keywords": [
+        "security metrics",
+        "executive reporting",
+        "KPI",
+        "risk communication",
+        "dashboard"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 300,
+      "question": "How would you design a comprehensive data loss prevention strategy?",
+      "keywords": [
+        "DLP strategy",
+        "data protection",
+        "classification",
+        "monitoring",
+        "prevention"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 301,
+      "question": "Explain how to conduct security architecture reviews for complex systems.",
+      "keywords": [
+        "architecture review",
+        "threat modeling",
+        "security assessment",
+        "design flaws",
+        "methodology"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 302,
+      "question": "How would you implement security controls for artificial intelligence and machine learning systems?",
+      "keywords": [
+        "AI security",
+        "ML security",
+        "model protection",
+        "adversarial attacks",
+        "controls"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 303,
+      "question": "Describe strategies for securing operational technology (OT) environments.",
+      "keywords": [
+        "OT security",
+        "SCADA",
+        "ICS",
+        "air gapping",
+        "critical infrastructure"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 304,
+      "question": "How would you design a comprehensive identity governance program?",
+      "keywords": [
+        "identity governance",
+        "IGA",
+        "access reviews",
+        "provisioning",
+        "lifecycle management"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 305,
+      "question": "Explain how to implement effective security for edge computing environments.",
+      "keywords": [
+        "edge computing security",
+        "distributed systems",
+        "IoT",
+        "local processing",
+        "protection"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 306,
+      "question": "How would you architect a security solution for a zero-downtime migration?",
+      "keywords": [
+        "zero-downtime migration",
+        "security continuity",
+        "dual-run",
+        "cutover",
+        "risk management"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 307,
+      "question": "Describe the process of building a threat intelligence capability.",
+      "keywords": [
+        "threat intelligence",
+        "capability building",
+        "sources",
+        "analysis",
+        "operationalization"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 308,
+      "question": "How would you implement cryptographic key management at enterprise scale?",
+      "keywords": [
+        "key management",
+        "HSM",
+        "key lifecycle",
+        "rotation",
+        "enterprise scale"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 309,
+      "question": "Explain how to conduct effective security tabletop exercises.",
+      "keywords": [
+        "tabletop exercise",
+        "incident simulation",
+        "preparedness",
+        "response testing",
+        "improvement"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 310,
+      "question": "How would you design security controls for a global organization with diverse regulatory requirements?",
+      "keywords": [
+        "global security",
+        "regulatory compliance",
+        "multi-jurisdictional",
+        "data residency",
+        "governance"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 311,
+      "question": "Describe strategies for securing 5G network infrastructure.",
+      "keywords": [
+        "5G security",
+        "network slicing",
+        "edge computing",
+        "telecommunications",
+        "infrastructure"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 312,
+      "question": "How would you implement security for industrial control systems (ICS)?",
+      "keywords": [
+        "ICS security",
+        "SCADA",
+        "operational technology",
+        "segmentation",
+        "monitoring"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 313,
+      "question": "Explain how to architect security for a service mesh.",
+      "keywords": [
+        "service mesh security",
+        "Istio",
+        "mutual TLS",
+        "policy enforcement",
+        "microservices"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 314,
+      "question": "How would you design a security operations center from the ground up?",
+      "keywords": [
+        "SOC design",
+        "operations center",
+        "people process technology",
+        "architecture",
+        "capability"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 315,
+      "question": "Describe the process of implementing security chaos engineering.",
+      "keywords": [
+        "security chaos engineering",
+        "resilience",
+        "failure injection",
+        "testing",
+        "validation"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 316,
+      "question": "How would you architect secure multi-party computation systems?",
+      "keywords": [
+        "secure multi-party computation",
+        "privacy-preserving",
+        "cryptography",
+        "collaboration",
+        "trust"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 317,
+      "question": "Explain how to implement effective application security for APIs at scale.",
+      "keywords": [
+        "API security",
+        "authentication",
+        "rate limiting",
+        "gateway",
+        "microservices"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 318,
+      "question": "How would you design security for a decentralized application (dApp)?",
+      "keywords": [
+        "dApp security",
+        "decentralized",
+        "smart contracts",
+        "blockchain",
+        "web3"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 319,
+      "question": "Describe strategies for detecting and responding to nation-state attacks.",
+      "keywords": [
+        "nation-state attacks",
+        "APT",
+        "attribution",
+        "sophisticated threats",
+        "defense"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 320,
+      "question": "How would you implement security controls for confidential computing?",
+      "keywords": [
+        "confidential computing",
+        "trusted execution environment",
+        "TEE",
+        "encryption in use",
+        "hardware security"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 321,
+      "question": "Explain how to architect security for event-driven architectures.",
+      "keywords": [
+        "event-driven security",
+        "message queues",
+        "streaming",
+        "authentication",
+        "authorization"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 322,
+      "question": "How would you design a comprehensive security testing program?",
+      "keywords": [
+        "security testing program",
+        "SAST",
+        "DAST",
+        "penetration testing",
+        "continuous"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 323,
+      "question": "Describe the process of implementing behavioral biometrics for fraud detection.",
+      "keywords": [
+        "behavioral biometrics",
+        "continuous authentication",
+        "fraud detection",
+        "user behavior",
+        "risk-based"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 324,
+      "question": "How would you architect security for a data mesh architecture?",
+      "keywords": [
+        "data mesh security",
+        "domain-oriented",
+        "federated governance",
+        "self-service",
+        "compliance"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 325,
+      "question": "Explain how to implement security for homomorphic encryption systems.",
+      "keywords": [
+        "homomorphic encryption",
+        "computation on encrypted data",
+        "privacy",
+        "cryptography",
+        "use cases"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 326,
+      "question": "How would you design security controls for synthetic data generation?",
+      "keywords": [
+        "synthetic data",
+        "privacy",
+        "testing",
+        "ML training",
+        "risk management"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 327,
+      "question": "Describe strategies for securing software supply chain from end to end.",
+      "keywords": [
+        "supply chain security",
+        "SBOM",
+        "dependency management",
+        "verification",
+        "provenance"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 328,
+      "question": "How would you implement security for federated learning systems?",
+      "keywords": [
+        "federated learning",
+        "distributed ML",
+        "privacy",
+        "model security",
+        "aggregation"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 329,
+      "question": "Explain how to architect security for WebAssembly applications.",
+      "keywords": [
+        "WebAssembly security",
+        "Wasm",
+        "sandboxing",
+        "browser security",
+        "validation"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 330,
+      "question": "How would you design a comprehensive privileged access management strategy?",
+      "keywords": [
+        "PAM strategy",
+        "privileged accounts",
+        "session monitoring",
+        "vaulting",
+        "governance"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 331,
+      "question": "Describe the process of implementing security for serverless event processing.",
+      "keywords": [
+        "serverless events",
+        "function security",
+        "triggers",
+        "IAM",
+        "monitoring"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 332,
+      "question": "How would you architect security for a distributed ledger system?",
+      "keywords": [
+        "distributed ledger",
+        "consensus",
+        "node security",
+        "cryptography",
+        "blockchain"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 333,
+      "question": "Explain how to implement effective security for GraphQL APIs.",
+      "keywords": [
+        "GraphQL security",
+        "query complexity",
+        "authentication",
+        "authorization",
+        "rate limiting"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 334,
+      "question": "How would you design security controls for privacy-enhancing technologies?",
+      "keywords": [
+        "privacy-enhancing",
+        "PET",
+        "anonymization",
+        "differential privacy",
+        "secure computation"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 335,
+      "question": "Describe strategies for securing quantum key distribution systems.",
+      "keywords": [
+        "quantum key distribution",
+        "QKD",
+        "quantum cryptography",
+        "key exchange",
+        "security"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 336,
+      "question": "How would you implement security for ambient computing environments?",
+      "keywords": [
+        "ambient computing",
+        "ubiquitous computing",
+        "IoT",
+        "edge",
+        "privacy"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 337,
+      "question": "Explain how to architect security for neuromorphic computing systems.",
+      "keywords": [
+        "neuromorphic computing",
+        "AI hardware",
+        "security",
+        "novel architectures",
+        "protection"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 338,
+      "question": "How would you design a comprehensive security program for space-based systems?",
+      "keywords": [
+        "space security",
+        "satellite",
+        "ground station",
+        "communication",
+        "resilience"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 339,
+      "question": "Describe the process of implementing security for autonomous vehicle systems.",
+      "keywords": [
+        "autonomous vehicles",
+        "vehicle security",
+        "V2X",
+        "safety",
+        "cyber-physical"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 340,
+      "question": "How would you architect security for extended reality (XR) applications?",
+      "keywords": [
+        "XR security",
+        "VR",
+        "AR",
+        "privacy",
+        "authentication"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 341,
+      "question": "Explain how to implement security controls for brain-computer interfaces.",
+      "keywords": [
+        "brain-computer interface",
+        "BCI",
+        "neural security",
+        "privacy",
+        "bioethics"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 342,
+      "question": "How would you design security for quantum internet infrastructure?",
+      "keywords": [
+        "quantum internet",
+        "quantum networks",
+        "entanglement",
+        "security",
+        "future technology"
+      ],
+      "difficulty": "difficult"
+    },
+    {
+      "id": 343,
+      "question": "Describe strategies for implementing security in DNA data storage systems.",
+      "keywords": [
+        "DNA storage",
+        "biological computing",
+        "data security",
+        "novel storage",
+        "protection"
+      ],
+      "difficulty": "difficult"
+    }
   ]
 }
