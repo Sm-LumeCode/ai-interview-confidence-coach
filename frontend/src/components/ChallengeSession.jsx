@@ -5,6 +5,7 @@ import QuestionCard from './QuestionCard'
 import Recorder from './Recorder'
 import { ChevronRight, Home, Clock, Trophy, Zap } from 'lucide-react'
 import api from '../services/api'
+import { saveChallengeResult } from '../utils/ChallengeManager'
 
 const ChallengeSession = ({ user, onLogout }) => {
   const { challengeId } = useParams()
@@ -108,8 +109,12 @@ const ChallengeSession = ({ user, onLogout }) => {
       setResults(result)
       setShowResults(true)
       
-      // Save challenge completion
-      saveChallengeProgress(challengeId, result.average_scores.overall_score)
+      saveChallengeResult(
+      user.email,
+      challenge.id,
+      result.average_scores.overall_score,
+      challenge.points
+    )
     } catch (err) {
       console.error('Evaluation error:', err)
       setError('Failed to evaluate answers. Make sure Ollama is running.')

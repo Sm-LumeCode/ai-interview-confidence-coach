@@ -74,7 +74,7 @@ const RoleSelector = ({ onSelectRole, userProgress = {} }) => {
               <div className="mb-4">
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-xs font-semibold text-gray-600">
-                    {progress.currentQuestionIndex} of {progress.totalQuestions} completed
+                    {progress.currentQuestionIndex} of {progress.totalQuestions} questions completed
                   </span>
                   <span className="text-xs font-semibold text-gray-600">
                     {progressPercent}%

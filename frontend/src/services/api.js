@@ -10,7 +10,7 @@ const api = {
     return response.json()
   },
 
-  // Evaluate user's answer
+  // Evaluate user's answer (FAST - returns scores immediately)
   evaluateAnswer: async (question, answer, keywords = []) => {
     const response = await fetch(`${API_BASE_URL}/evaluate`, {
       method: 'POST',
@@ -26,6 +26,28 @@ const api = {
     
     if (!response.ok) {
       throw new Error('Failed to evaluate answer')
+    }
+    
+    return response.json()
+  },
+
+  // Generate AI feedback (SEPARATE - called after scores are shown)
+  generateFeedback: async (question, answer, keywords = [], scores = {}) => {
+    const response = await fetch(`${API_BASE_URL}/generate-feedback`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        question,
+        answer,
+        keywords,
+        scores
+      })
+    })
+    
+    if (!response.ok) {
+      throw new Error('Failed to generate feedback')
     }
     
     return response.json()

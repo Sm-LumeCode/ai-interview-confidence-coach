@@ -26,8 +26,17 @@ const Progress = ({ user, onLogout }) => {
   'Cybersecurity',
   'HR Round'
 ]
+const CATEGORY_KEY_MAP = {
+  'Software Development': 'software_development',
+  'Data & Analytics': 'data_analytics',
+  'Data Science & ML': 'data_science_ml',
+  'Cloud & DevOps': 'cloud_devops',
+  'Cybersecurity': 'cybersecurity',
+  'HR Round': 'hr_round'
+}
 
 const categoryProgress = categories.map(cat => {
+  const key = CATEGORY_KEY_MAP[cat] 
   const data = getCategoryProgress(user.email, cat)
 
   if (!data) {

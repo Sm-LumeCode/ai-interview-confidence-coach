@@ -22,12 +22,15 @@ const InterviewSession = ({ user, onLogout }) => {
   const [loading, setLoading] = useState(true)
   const [evaluating, setEvaluating] = useState(false)
   const [generatingAnswer, setGeneratingAnswer] = useState(false)
+  const [generatingFeedback, setGeneratingFeedback] = useState(false)
+  const [aiFeedback, setAiFeedback] = useState(null)
   const [error, setError] = useState('')
   
   // Timer states
   const [timeRemaining, setTimeRemaining] = useState(0)
   const [timerActive, setTimerActive] = useState(false)
   const [timerExpired, setTimerExpired] = useState(false)
+  const [showTimeUpPopup, setShowTimeUpPopup] = useState(false)
 
   // Load questions and restore progress
   useEffect(() => {
@@ -38,7 +41,6 @@ const InterviewSession = ({ user, onLogout }) => {
         const data = await api.getQuestions(category)
         setQuestions(data)
         
-        // Check for saved progress
         const savedProgress = getProgress(user.email, category)
         if (savedProgress && savedProgress.currentQuestionIndex < data.length) {
           setCurrentQuestionIndex(savedProgress.currentQuestionIndex)
@@ -60,10 +62,9 @@ const InterviewSession = ({ user, onLogout }) => {
       const currentQuestion = questions[currentQuestionIndex]
       const difficulty = currentQuestion?.difficulty || 'medium'
       
-      // Set timer based on difficulty
-      let time = 300 // default 5 minutes
-      if (difficulty === 'easy') time = 180 // 3 minutes
-      else if (difficulty === 'hard') time = 480 // 8 minutes
+      let time = 300
+      if (difficulty === 'easy') time = 180
+      else if (difficulty === 'hard') time = 480
       
       setTimeRemaining(time)
       setTimerActive(true)
@@ -74,20 +75,27 @@ const InterviewSession = ({ user, onLogout }) => {
   // Timer countdown
   useEffect(() => {
     let interval = null
-    
+
     if (timerActive && timeRemaining > 0) {
       interval = setInterval(() => {
         setTimeRemaining(prev => {
           if (prev <= 1) {
             setTimerActive(false)
             setTimerExpired(true)
+            setShowTimeUpPopup(true)
+
+            setTimeout(() => {
+              setShowTimeUpPopup(false)
+              handleTimeUpAutoAdvance()
+            }, 2000)
+
             return 0
           }
           return prev - 1
         })
       }, 1000)
     }
-    
+
     return () => {
       if (interval) clearInterval(interval)
     }
@@ -99,59 +107,97 @@ const InterviewSession = ({ user, onLogout }) => {
       return
     }
 
-    // Stop timer
     setTimerActive(false)
-
     setEvaluating(true)
     setGeneratingAnswer(true)
+    setGeneratingFeedback(false)
+    setAiFeedback(null)
     setError('')
     
     try {
       const currentQuestion = questions[currentQuestionIndex]
       
-      // Evaluate user's answer
+      // STEP 1: Fast evaluation (<2 seconds) - Get scores immediately
+      console.log('⚡ Starting fast evaluation...')
+      const evaluationStartTime = Date.now()
+      
       const evaluation = await api.evaluateAnswer(
         currentQuestion.question,
         answerText,
         currentQuestion.keywords || []
       )
+      
+      const evaluationTime = Date.now() - evaluationStartTime
+      console.log(`✅ Evaluation completed in ${evaluationTime}ms`)
+      
+      // Save scores and display results immediately
       const normalizedCategory = category
-  .replace(/_/g, ' ')
-  .replace(/\b\w/g, c => c.toUpperCase())
+        .replace(/_/g, ' ')
+        .replace(/\b\w/g, c => c.toUpperCase())
 
       saveCategoryProgress(
-  user.email,
-  normalizedCategory,
-  evaluation.technical_score,
-  evaluation.communication_score
-)
+        user.email,
+        normalizedCategory,
+        evaluation.technical_score,
+        evaluation.communication_score
+      )
+      
       setResults(evaluation)
 
-    // Save daily progress for graphs (correct fields from llm_evaluator)
-saveDailyProgress(user.email, {
-  technicalScore: evaluation.technical_score,
-  confidenceScore: evaluation.communication_score
-})
+      saveDailyProgress(user.email, {
+        technicalScore: evaluation.technical_score,
+        confidenceScore: evaluation.communication_score
+      })
 
-
-      // Generate ideal answer
-      const ideal = await api.generateIdealAnswer(
+      // STEP 2: Generate ideal answer (parallel with AI feedback)
+      const idealAnswerPromise = api.generateIdealAnswer(
         currentQuestion.question,
         currentQuestion.keywords || []
       )
       
+      // STEP 3: Generate AI feedback (separate, non-blocking)
+      // Start feedback generation in background
+      console.log('🤖 Starting AI feedback generation...')
+      setGeneratingFeedback(true)
+      
+      const feedbackPromise = api.generateFeedback(
+        currentQuestion.question,
+        answerText,
+        currentQuestion.keywords || [],
+        evaluation
+      ).then(feedbackResult => {
+        console.log(`✅ AI feedback received (method: ${feedbackResult.method})`)
+        setAiFeedback(feedbackResult.feedback)
+        setGeneratingFeedback(false)
+        return feedbackResult
+      }).catch(err => {
+        console.error('AI feedback generation failed:', err)
+        setGeneratingFeedback(false)
+        // Don't fail the whole flow - just show scores without AI feedback
+        return null
+      })
+      
+      // Wait for ideal answer
+      const ideal = await idealAnswerPromise
       setIdealAnswer(ideal)
+      setGeneratingAnswer(false)
+      
+      // Show results immediately (AI feedback will appear when ready)
       setShowResults(true)
+      setEvaluating(false)
       
       // Save progress
       saveProgress(user.email, category, currentQuestionIndex + 1, questions.length)
+      
+      // AI feedback will update when ready (via feedbackPromise)
+      
     } catch (err) {
       console.error('Evaluation error:', err)
       setError('Failed to evaluate answer. Make sure Ollama is running.')
       alert('Evaluation failed. Please check if Ollama is running on http://localhost:11434')
-    } finally {
       setEvaluating(false)
       setGeneratingAnswer(false)
+      setGeneratingFeedback(false)
     }
   }
 
@@ -159,12 +205,13 @@ saveDailyProgress(user.email, {
     setShowResults(false)
     setResults(null)
     setIdealAnswer(null)
+    setAiFeedback(null)
+    setGeneratingFeedback(false)
     
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1)
     } else {
       alert('Interview session complete! Check your progress page for detailed analytics.')
-      // Reset progress for this category
       resetProgress(user.email, category)
       navigate('/dashboard')
     }
@@ -175,6 +222,8 @@ saveDailyProgress(user.email, {
       setShowResults(false)
       setResults(null)
       setIdealAnswer(null)
+      setAiFeedback(null)
+      setGeneratingFeedback(false)
       setCurrentQuestionIndex(currentQuestionIndex - 1)
     }
   }
@@ -190,6 +239,64 @@ saveDailyProgress(user.email, {
       setShowResults(false)
       setResults(null)
       setIdealAnswer(null)
+      setAiFeedback(null)
+      setGeneratingFeedback(false)
+    }
+  }
+
+  const handleTimeUpAutoAdvance = async () => {
+    if (questions[currentQuestionIndex]) {
+      setTimerActive(false)
+      setEvaluating(true)
+      setGeneratingAnswer(true)
+      setGeneratingFeedback(false)
+      setError('')
+
+      try {
+        const currentQuestion = questions[currentQuestionIndex]
+
+        const evaluation = await api.evaluateAnswer(
+          currentQuestion.question,
+          "Time ran out - no answer provided",
+          currentQuestion.keywords || []
+        )
+
+        const normalizedCategory = category
+          .replace(/_/g, ' ')
+          .replace(/\b\w/g, c => c.toUpperCase())
+
+        saveCategoryProgress(
+          user.email,
+          normalizedCategory,
+          evaluation.technical_score,
+          evaluation.communication_score
+        )
+
+        setResults(evaluation)
+
+        saveDailyProgress(user.email, {
+          technicalScore: evaluation.technical_score,
+          confidenceScore: evaluation.communication_score
+        })
+
+        const ideal = await api.generateIdealAnswer(
+          currentQuestion.question,
+          currentQuestion.keywords || []
+        )
+
+        setIdealAnswer(ideal)
+        setShowResults(true)
+
+        saveProgress(user.email, category, currentQuestionIndex + 1, questions.length)
+      } catch (err) {
+        console.error('Time up evaluation error:', err)
+        setError('Failed to process time up. Moving to next question.')
+        saveProgress(user.email, category, currentQuestionIndex + 1, questions.length)
+        handleNextQuestion()
+      } finally {
+        setEvaluating(false)
+        setGeneratingAnswer(false)
+      }
     }
   }
 
@@ -263,21 +370,42 @@ saveDailyProgress(user.email, {
             )}
           </div>
 
-          {/* Timer and Buttons in Top Right */}
           <div className="flex items-center gap-3">
-            {/* Stopwatch Timer */}
             {!showResults && (
-              <div className={`inline-flex items-center gap-3 px-5 py-3 rounded-xl border-2 shadow-lg ${getTimerBgColor()}`}>
-                <Clock className={`w-6 h-6 ${getTimerColor()}`} />
+              <div className={`relative inline-flex items-center gap-4 px-6 py-4 rounded-2xl border-2 shadow-xl backdrop-blur-sm ${getTimerBgColor()} transition-all duration-300 hover:shadow-2xl`}>
+                <div className="relative w-16 h-16">
+                  <svg className="w-16 h-16 transform -rotate-90" viewBox="0 0 36 36">
+                    <path
+                      d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      className="text-gray-300"
+                    />
+                    <path
+                      d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeDasharray={`${((timeRemaining / (currentQuestion?.difficulty === 'easy' ? 180 : currentQuestion?.difficulty === 'hard' ? 480 : 300)) * 100)}, 100`}
+                      className={`${getTimerColor()} transition-all duration-1000 ease-linear`}
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Clock className={`w-6 h-6 ${getTimerColor()}`} />
+                  </div>
+                </div>
+
                 <div className="text-center">
-                  <div className={`text-3xl font-bold ${getTimerColor()} tabular-nums leading-none`}>
+                  <div className={`text-3xl font-bold ${getTimerColor()} tabular-nums leading-none tracking-wider`}>
                     {formatTime(timeRemaining)}
                   </div>
                   <div className="flex items-center gap-2 mt-1">
-                    <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${
-                      currentQuestion?.difficulty === 'easy' ? 'bg-green-100 text-green-800' :
-                      currentQuestion?.difficulty === 'hard' ? 'bg-red-100 text-red-800' :
-                      'bg-yellow-100 text-yellow-800'
+                    <span className={`px-2 py-0.5 rounded-full text-xs font-semibold shadow-sm ${
+                      currentQuestion?.difficulty === 'easy' ? 'bg-green-100 text-green-800 border border-green-200' :
+                      currentQuestion?.difficulty === 'hard' ? 'bg-red-100 text-red-800 border border-red-200' :
+                      'bg-yellow-100 text-yellow-800 border border-yellow-200'
                     }`}>
                       {currentQuestion?.difficulty?.toUpperCase() || 'MEDIUM'}
                     </span>
@@ -288,10 +416,13 @@ saveDailyProgress(user.email, {
                     </span>
                   </div>
                 </div>
+
+                {timeRemaining <= 30 && (
+                  <div className="absolute inset-0 rounded-2xl border-2 border-red-400 animate-ping opacity-20"></div>
+                )}
               </div>
             )}
 
-            {/* Action Buttons */}
             {isLastQuestion && (
               <button
                 onClick={handleResetProgress}
@@ -312,8 +443,7 @@ saveDailyProgress(user.email, {
           </div>
         </div>
 
-        {/* Time's Up Alert */}
-        {timerExpired && !showResults && (
+        {timerExpired && !showResults && !showTimeUpPopup && (
           <div className="mb-4">
             <div className="bg-red-100 border-2 border-red-400 text-red-700 px-6 py-4 rounded-lg shadow-lg flex items-center gap-3 animate-pulse">
               <Clock className="w-6 h-6" />
@@ -322,7 +452,23 @@ saveDailyProgress(user.email, {
           </div>
         )}
 
-        {/* Progress Bar */}
+        {showTimeUpPopup && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white rounded-xl p-8 shadow-2xl max-w-md mx-4 animate-bounce">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Clock className="w-8 h-8 text-red-600" />
+                </div>
+                <h2 className="text-2xl font-bold text-gray-800 mb-2">Time's Up!</h2>
+                <p className="text-gray-600">Moving to the next question automatically...</p>
+                <div className="mt-4 w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+                  <div className="bg-red-500 h-2 rounded-full transition-all duration-2000 ease-linear animate-pulse"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         <div className="mb-6 bg-white rounded-lg p-4 shadow-lg">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-semibold text-gray-700">
@@ -360,16 +506,20 @@ saveDailyProgress(user.email, {
           {evaluating && (
             <div className="card text-center py-12">
               <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-amber-700 mx-auto mb-4"></div>
-              <p className="text-gray-600 text-lg">Analyzing your response with AI...</p>
+              <p className="text-gray-600 text-lg">⚡ Analyzing your response...</p>
               <p className="text-gray-500 text-sm mt-2">
-                Checking keywords, filler words, structure, and generating ideal answer...
+                Fast evaluation in progress (should complete in &lt;2s)
               </p>
             </div>
           )}
 
           {showResults && !evaluating && results && (
             <>
-              <ResultPanel results={results} />
+              <ResultPanel 
+                results={results} 
+                aiFeedback={aiFeedback}
+                generatingFeedback={generatingFeedback}
+              />
               
               {generatingAnswer && (
                 <div className="card text-center py-8">
@@ -382,10 +532,8 @@ saveDailyProgress(user.email, {
                 <IdealAnswer idealAnswer={idealAnswer} />
               )}
               
-              {/* Navigation Buttons */}
               <div className="card">
                 <div className="flex items-center justify-between gap-4">
-                  {/* Previous Button */}
                   <button
                     onClick={handlePreviousQuestion}
                     disabled={currentQuestionIndex === 0}
@@ -399,7 +547,6 @@ saveDailyProgress(user.email, {
                     Previous Question
                   </button>
 
-                  {/* Next Button */}
                   <button
                     onClick={handleNextQuestion}
                     className="flex-1 btn-primary inline-flex items-center justify-center gap-2"

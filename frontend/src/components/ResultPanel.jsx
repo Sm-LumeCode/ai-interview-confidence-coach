@@ -11,10 +11,11 @@ import {
   Lightbulb,
   BookOpen,
   TrendingDown,
-  Plus
+  Plus,
+  Loader
 } from 'lucide-react'
 
-const ResultPanel = ({ results }) => {
+const ResultPanel = ({ results, aiFeedback, generatingFeedback }) => {
   const scores = results
     ? {
         technicalScore: results.technical_score ?? 0,
@@ -29,8 +30,8 @@ const ResultPanel = ({ results }) => {
         keywordCoverage: results.keyword_coverage || null,
         structureAnalysis: results.structure_analysis || null,
         structureDetection: results.structure_detection || null,
-        llmFeedback: results.llm_structured_feedback || null,
-        llmMethod: results.llm_feedback_method || 'not_generated',
+        hardGateFailed: results.hard_gate_failed || false,
+        gateReason: results.gate_reason || null,
       }
     : null
 
@@ -56,6 +57,23 @@ const ResultPanel = ({ results }) => {
 
   return (
     <div className="space-y-6 animate-fade-in">
+      {/* Hard Gate Failed Warning */}
+      {scores.hardGateFailed && (
+        <div className="card bg-red-50 border-2 border-red-300">
+          <div className="flex items-center gap-3">
+            <AlertTriangle className="w-8 h-8 text-red-600" />
+            <div>
+              <h3 className="text-lg font-bold text-red-800">Answer Quality Check Failed</h3>
+              <p className="text-red-700">
+                {scores.gateReason === 'too_short' && 'Your answer is too short. Please provide a more detailed response.'}
+                {scores.gateReason === 'excessive_repetition' && 'Your answer contains too much repetition. Try using varied vocabulary.'}
+                {scores.gateReason === 'no_verb' && 'Your answer lacks proper sentence structure. Include complete sentences with verbs.'}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Performance Analysis */}
       <div className="card">
         <h2 className="text-2xl font-bold text-gray-800 mb-6">Performance Analysis</h2>
@@ -203,8 +221,37 @@ const ResultPanel = ({ results }) => {
         </div>
       </div>
 
-      {/* AI STRUCTURED FEEDBACK - NEW SECTION */}
-      {scores.llmFeedback && (
+      {/* AI STRUCTURED FEEDBACK SECTION */}
+      {/* Show loading state while generating */}
+      {generatingFeedback && !aiFeedback && (
+        <div className="card bg-gradient-to-br from-indigo-50 to-purple-50 border-2 border-indigo-200">
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 flex items-center justify-center shadow-lg">
+              <Loader className="w-6 h-6 text-white animate-spin" />
+            </div>
+            <div>
+              <h3 className="text-xl font-bold text-gray-800">Generating AI Structured Feedback...</h3>
+              <p className="text-sm text-gray-600">
+                Our AI is analyzing your answer to provide personalized insights
+              </p>
+            </div>
+          </div>
+          
+          <div className="mt-4 bg-white rounded-lg p-4">
+            <div className="flex items-center gap-3">
+              <div className="animate-pulse flex space-x-2">
+                <div className="h-3 w-3 bg-indigo-400 rounded-full"></div>
+                <div className="h-3 w-3 bg-purple-400 rounded-full"></div>
+                <div className="h-3 w-3 bg-indigo-400 rounded-full"></div>
+              </div>
+              <span className="text-sm text-gray-600">This may take 5-10 seconds...</span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Show AI feedback when ready */}
+      {aiFeedback && (
         <div className="card bg-gradient-to-br from-indigo-50 to-purple-50 border-2 border-indigo-200">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-12 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 flex items-center justify-center shadow-lg">
@@ -213,22 +260,21 @@ const ResultPanel = ({ results }) => {
             <div>
               <h3 className="text-2xl font-bold text-gray-800">AI Structured Feedback</h3>
               <p className="text-sm text-gray-600">
-                Personalized insights based on your answer
-                {scores.llmMethod === 'fallback_generated' && ' (Fallback mode)'}
+                Personalized insights based on your specific answer
               </p>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* What You Covered */}
-            {scores.llmFeedback.what_you_covered && scores.llmFeedback.what_you_covered.length > 0 && (
+            {aiFeedback.what_you_covered && aiFeedback.what_you_covered.length > 0 && (
               <div className="bg-white rounded-lg p-5 shadow-md border-l-4 border-green-500">
                 <h4 className="font-bold text-green-800 mb-3 flex items-center gap-2 text-lg">
                   <CheckCircle className="w-5 h-5" />
                   What You Covered Well
                 </h4>
                 <ul className="space-y-2">
-                  {scores.llmFeedback.what_you_covered.map((item, i) => (
+                  {aiFeedback.what_you_covered.map((item, i) => (
                     <li key={i} className="flex items-start gap-2 text-gray-700">
                       <span className="text-green-600 font-bold mt-1">✓</span>
                       <span className="text-sm">{item}</span>
@@ -239,14 +285,14 @@ const ResultPanel = ({ results }) => {
             )}
 
             {/* What You Missed */}
-            {scores.llmFeedback.what_you_missed && scores.llmFeedback.what_you_missed.length > 0 && (
+            {aiFeedback.what_you_missed && aiFeedback.what_you_missed.length > 0 && (
               <div className="bg-white rounded-lg p-5 shadow-md border-l-4 border-red-500">
                 <h4 className="font-bold text-red-800 mb-3 flex items-center gap-2 text-lg">
                   <TrendingDown className="w-5 h-5" />
                   What You Missed
                 </h4>
                 <ul className="space-y-2">
-                  {scores.llmFeedback.what_you_missed.map((item, i) => (
+                  {aiFeedback.what_you_missed.map((item, i) => (
                     <li key={i} className="flex items-start gap-2 text-gray-700">
                       <span className="text-red-600 font-bold mt-1">✗</span>
                       <span className="text-sm">{item}</span>
@@ -257,14 +303,14 @@ const ResultPanel = ({ results }) => {
             )}
 
             {/* How to Improve */}
-            {scores.llmFeedback.how_to_improve && scores.llmFeedback.how_to_improve.length > 0 && (
+            {aiFeedback.how_to_improve && aiFeedback.how_to_improve.length > 0 && (
               <div className="bg-white rounded-lg p-5 shadow-md border-l-4 border-blue-500">
                 <h4 className="font-bold text-blue-800 mb-3 flex items-center gap-2 text-lg">
                   <Lightbulb className="w-5 h-5" />
                   How to Improve
                 </h4>
                 <ul className="space-y-2">
-                  {scores.llmFeedback.how_to_improve.map((item, i) => (
+                  {aiFeedback.how_to_improve.map((item, i) => (
                     <li key={i} className="flex items-start gap-2 text-gray-700">
                       <span className="text-blue-600 font-bold mt-1">→</span>
                       <span className="text-sm">{item}</span>
@@ -275,14 +321,14 @@ const ResultPanel = ({ results }) => {
             )}
 
             {/* Suggested Additions */}
-            {scores.llmFeedback.suggested_additions && scores.llmFeedback.suggested_additions.length > 0 && (
+            {aiFeedback.suggested_additions && aiFeedback.suggested_additions.length > 0 && (
               <div className="bg-white rounded-lg p-5 shadow-md border-l-4 border-purple-500">
                 <h4 className="font-bold text-purple-800 mb-3 flex items-center gap-2 text-lg">
                   <Plus className="w-5 h-5" />
                   Suggested Additions
                 </h4>
                 <ul className="space-y-2">
-                  {scores.llmFeedback.suggested_additions.map((item, i) => (
+                  {aiFeedback.suggested_additions.map((item, i) => (
                     <li key={i} className="flex items-start gap-2 text-gray-700">
                       <span className="text-purple-600 font-bold mt-1">+</span>
                       <span className="text-sm">{item}</span>
@@ -304,16 +350,6 @@ const ResultPanel = ({ results }) => {
                 </p>
               </div>
             </div>
-          </div>
-        </div>
-      )}
-
-      {/* Loading state if LLM feedback is being generated */}
-      {!scores.llmFeedback && (
-        <div className="card bg-gray-50">
-          <div className="flex items-center gap-3">
-            <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-indigo-600"></div>
-            <p className="text-gray-600">Generating AI structured feedback...</p>
           </div>
         </div>
       )}
