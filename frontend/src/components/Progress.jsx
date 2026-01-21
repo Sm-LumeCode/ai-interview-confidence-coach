@@ -1,4 +1,3 @@
-
 import Navbar from './Navbar'
 import { TrendingUp, Award, Target, CheckCircle } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
@@ -10,15 +9,15 @@ import {
   YAxis,
   Tooltip,
   ResponsiveContainer,
-  CartesianGrid
+  CartesianGrid,
 } from 'recharts'
 import { getCategoryProgress } from '../utils/categoryProgressManager'
 import { CATEGORY_TOTALS } from '../utils/categoryProgressManager'
+import { ReferenceLine } from 'recharts'
 
 const Progress = ({ user, onLogout }) => {
   // Mock data - replace with actual API data
    
-
   const categories = [
   'Software Development',
   'Data & Analytics',
@@ -37,6 +36,7 @@ const categoryProgress = categories.map(cat => {
       completed: 0,
       total: CATEGORY_TOTALS[cat]||0,
       score: 0
+      
     }
   }
 
@@ -92,11 +92,25 @@ const totalQuestions = dailyTimeline.reduce(
   0
 )
 
-const chartData = dailyTimeline.map(day => ({
-  date: day.date.slice(5), // MM-DD
-  technical: day.didPractice ? day.technicalScore : 0,
-  communication: day.didPractice ? day.confidenceScore : 0
-}))
+const last7Days = dailyTimeline.slice(-7)
+const currentDayIndex = dailyTimeline.length
+  ? Math.min(dailyTimeline.length, 7)
+  : 1
+
+const currentDayLabel = `Day ${currentDayIndex}`
+const totalDays = dailyTimeline.length
+const startDay = Math.max(1, totalDays - 6)
+
+const chartData = Array.from({ length: 7 }, (_, i) => {
+  const dayData = dailyTimeline[startDay - 1 + i]
+
+  return {
+    day: `Day ${startDay + i}`,
+    technical: dayData?.didPractice ? dayData.technicalScore : null,
+    communication: dayData?.didPractice ? dayData.confidenceScore : null,
+    date: dayData?.date || null
+  }
+})
 
   return (
     <div className="min-h-screen">
@@ -219,7 +233,8 @@ const chartData = dailyTimeline.map(day => ({
     <h2 className="text-xl font-bold text-blue-900 mb-4">
       Technical Progress (Day-wise)
     </h2>
-    <div className="rounded-xl p-4 bg-white-100 border border-black-200 shadow-md">
+    <div className="rounded-xl p-4 bg-white shadow-md overflow-visible">
+
 
     <ResponsiveContainer width="100%" height={300}>
       <LineChart
@@ -229,22 +244,65 @@ const chartData = dailyTimeline.map(day => ({
 
         <CartesianGrid strokeDasharray="3 3" opacity={0.5} />
 
-        <XAxis dataKey="date" tick={{ fontSize: 12 }} />
-        <YAxis domain={[0, 100]} />
-        <Tooltip
+<ReferenceLine
+  x={currentDayLabel}
+  stroke="#f2a918"
+  strokeWidth={2}
+  strokeDasharray="4 4"
+  label={{
+    value: 'Today',
+    position: 'top',
+    fill: '#d29e1c',
+    fontSize: 12,
+    fontWeight: 600
+  }}
+/>
+       <XAxis
+  dataKey="day"
+  scale="point"
+  interval={0}
+  padding={{left:20, right:20}}
+  tick={{ fontSize: 12 }}
+/>
+
+       <YAxis
+  domain={[0, 100]}
+  ticks={[0, 20, 40, 60, 80, 100]}
+  allowDecimals={false}
+  allowDataOverflow
+  hide={false}
+  tick={{ fill: '#1f2937', fontSize: 12, fontWeight: 500 }}
+  axisLine={{ stroke: '#374151' }}
+  tickLine={{ stroke: '#374151' }}
+/>
+
+
+
+       <Tooltip
+  formatter={(value, name, props) => [
+    value,
+    name === 'technical' ? 'Technical Score' : 'Communication Score'
+  ]}
+  labelFormatter={(label, payload) => {
+    const date = payload?.[0]?.payload?.date
+    return date ? `Date: ${date}` : label
+  }}
   contentStyle={{
     borderRadius: '8px',
     border: 'none',
+    fontSize: '14px',
     boxShadow: '0 10px 25px rgba(0,0,0,0.1)'
   }}
 />
+
         <Line
   type="monotone"
   dataKey="technical"
   stroke="#3b82f6"
   strokeWidth={3}
-  dot={false}
+  dot={{ fill: '#3b82f6', r: 4 }}
   activeDot={{ r: 6 }}
+  connectNulls={false}
   isAnimationActive
   animationDuration={1200}
 />
@@ -261,7 +319,8 @@ const chartData = dailyTimeline.map(day => ({
     <h2 className="text-xl font-bold text-blue-900 mb-4">
       Communication Progress (Day-wise)
     </h2>
-<div className="rounded-xl p-4 bg-white-100 border border-black-200 shadow-md">
+<div className="rounded-xl p-4 bg-white shadow-md overflow-visible">
+
     <ResponsiveContainer width="100%" height={300}>
       <LineChart
   data={chartData}
@@ -269,24 +328,66 @@ const chartData = dailyTimeline.map(day => ({
 >
 
         <CartesianGrid strokeDasharray="3 3" opacity={0.5} />
+    
+<ReferenceLine
+  x={currentDayLabel}
+  stroke="#f2a918"
+  strokeWidth={2}
+  strokeDasharray="4 4"
+  label={{
+    value: 'Today',
+    position: 'top',
+    fill: '#d29e1c',
+    fontSize: 12,
+    fontWeight: 600
+  }}
+/>
+        <XAxis
+  dataKey="day"
+  scale="point"
+  interval={0}
+  padding={{left:20, right:20}}
+  tick={{ fontSize: 12 }}
+/>
+        <YAxis
+  domain={[0, 100]}
+  ticks={[0, 20, 40, 60, 80, 100]}
+  allowDecimals={false}
+  allowDataOverflow
+  hide={false}
+  tick={{ fill: '#1f2937', fontSize: 12, fontWeight: 500 }}
+  axisLine={{ stroke: '#374151' }}
+  tickLine={{ stroke: '#374151' }}
+/>
 
-        <XAxis dataKey="date" tick={{ fontSize: 12 }} />
-        <YAxis domain={[0, 100]} />
-        <Tooltip
+
+
+       <Tooltip
+  formatter={(value, name, props) => [
+    value,
+    name === 'technical' ? 'Technical Score' : 'Communication Score'
+  ]}
+  labelFormatter={(label, payload) => {
+    const date = payload?.[0]?.payload?.date
+    return date ? `Date: ${date}` : label
+  }}
   contentStyle={{
     borderRadius: '8px',
+    fontSize: '14px',
     border: 'none',
     boxShadow: '0 10px 25px rgba(0,0,0,0.1)'
   }}
 />
+
 
         <Line
   type="monotone"
   dataKey="communication"
   stroke="#22c55e"
   strokeWidth={3}
-  dot={false}
+  dot={{ fill: '#22c55e', r: 4 }}
   activeDot={{ r: 6 }}
+  connectNulls={false}
   isAnimationActive
   animationDuration={1200}
 />
