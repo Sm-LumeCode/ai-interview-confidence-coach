@@ -28,8 +28,6 @@ const Progress = ({ user, onLogout }) => {
   'HR Round'
 ]
 
-
-
 const categoryProgress = categories.map(cat => {
   const data = getCategoryProgress(user.email, cat)
 
@@ -37,7 +35,7 @@ const categoryProgress = categories.map(cat => {
     return {
       name: cat,
       completed: 0,
-      total: 20,
+      total: CATEGORY_TOTALS[cat]||0,
       score: 0
     }
   }
