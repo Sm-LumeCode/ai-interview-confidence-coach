@@ -183,7 +183,8 @@ def generate_structured_feedback(
         # Extract JSON from response
         try:
             # Try to find JSON in the response
-            json_match = re.search(r'\{[\s\S]*\}', raw_output)
+            json_match = re.search(r'\{[\s\S]*\}\s*$', raw_output)
+            json_str = json_str.replace('\n', ' ').strip()
             if json_match:
                 json_str = json_match.group(0)
                 feedback = json.loads(json_str)
