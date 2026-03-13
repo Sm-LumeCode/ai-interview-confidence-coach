@@ -26,11 +26,14 @@ export const saveDailyProgress = (
   data = {
     date: new Date().toISOString().split('T')[0],
     technicalScores: [technicalScore],
-    confidenceScores: [confidenceScore],
+    confidenceScores: [
+      typeof confidenceScore === 'number' ? confidenceScore : 0
+    ],
     questionCount: 1,
     didPractice: true
   }
 }
+
 
 
   localStorage.setItem(key, JSON.stringify(data))
@@ -72,9 +75,13 @@ export const getDailyProgressTimeline = (userId) => {
         parsed.technicalScores.reduce((a, b) => a + b, 0) /
         parsed.technicalScores.length
 
-      const avgConfidence =
-        parsed.confidenceScores.reduce((a, b) => a + b, 0) /
-        parsed.confidenceScores.length
+      const confidenceArr = Array.isArray(parsed.confidenceScores)
+  ? parsed.confidenceScores
+  : [0]
+
+const avgConfidence =
+  confidenceArr.reduce((a, b) => a + b, 0) /
+  confidenceArr.length
 
       timeline.push({
         date: dateStr,

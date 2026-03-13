@@ -131,9 +131,17 @@ const InterviewSession = ({ user, onLogout }) => {
       console.log(`✅ Evaluation completed in ${evaluationTime}ms`)
       
       // Save scores and display results immediately
-      const normalizedCategory = category
-        .replace(/_/g, ' ')
-        .replace(/\b\w/g, c => c.toUpperCase())
+      const CATEGORY_MAP = {
+  software_development: 'Software Development',
+  data_analytics: 'Data Analytics',
+  data_science_ml: 'Data Science & ML',
+  cloud_devops: 'Cloud & DevOps',
+  cybersecurity: 'Cybersecurity',
+  hr_round: 'HR Round'
+}
+
+const normalizedCategory = CATEGORY_MAP[category]
+
 
       saveCategoryProgress(
         user.email,

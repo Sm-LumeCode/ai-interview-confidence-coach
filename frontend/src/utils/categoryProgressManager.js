@@ -1,10 +1,13 @@
+const normalizeCategory = (category) =>
+  category.replace(/&/g, '').replace(/\s+/g, '_').toLowerCase()
+
 export const saveCategoryProgress = (
   userId,
   category,
   technicalScore,
   confidenceScore
 ) => {
-  const key = `category_progress_${userId}_${category}`
+  const key = `category_progress_${userId}_${normalizeCategory(category)}`
 
   const existing = localStorage.getItem(key)
 
@@ -27,15 +30,15 @@ export const saveCategoryProgress = (
 }
 
 export const getCategoryProgress = (userId, category) => {
-  const key = `category_progress_${userId}_${category}`
+  const key = `category_progress_${userId}_${normalizeCategory(category)}`
   const data = localStorage.getItem(key)
   return data ? JSON.parse(data) : null
 }
 export const CATEGORY_TOTALS = {
-  'Software Development': 60,
-  'Data & Analytics': 50,
-  'Data Science & ML': 45,
-  'Cloud & DevOps': 40,
-  'Cybersecurity': 55,
-  'HR Round': 30
+  'Software Development': 831,
+  'Data & Analytics': 340,
+  'Data Science & ML': 355,
+  'Cloud & DevOps': 212,
+  'Cybersecurity': 343,
+  'HR Round': 205
 }

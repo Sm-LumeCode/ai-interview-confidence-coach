@@ -20,7 +20,7 @@ const Navbar = ({ user, onLogout }) => {
               to="/dashboard"
               className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 ${
                 isActive('/dashboard')
-                  ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg'
+                  ? 'bg-[radial-gradient(circle_farthest-corner_at_32.7%_49.8%,rgba(28,88,238,1)_0%,rgba(0,39,137,1)_100.2%)] text-white shadow-lg'
                   : 'text-gray-700 hover:bg-gray-100'
               }`}
             >
@@ -32,7 +32,7 @@ const Navbar = ({ user, onLogout }) => {
               to="/progress"
               className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 ${
                 isActive('/progress')
-                  ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg'
+                  ? 'bg-[radial-gradient(circle_farthest-corner_at_32.7%_49.8%,rgba(28,88,238,1)_0%,rgba(0,39,137,1)_100.2%)] text-white shadow-lg'
                   : 'text-gray-700 hover:bg-gray-100'
               }`}
             >
@@ -44,7 +44,7 @@ const Navbar = ({ user, onLogout }) => {
               to="/challenges"
               className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 ${
                 isActive('/challenges')
-                  ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg'
+                  ? 'bg-[radial-gradient(circle_farthest-corner_at_32.7%_49.8%,rgba(28,88,238,1)_0%,rgba(0,39,137,1)_100.2%)] text-white shadow-lg'
                   : 'text-gray-700 hover:bg-gray-100'
               }`}
             >
@@ -56,7 +56,7 @@ const Navbar = ({ user, onLogout }) => {
               to="/profile"
               className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 ${
                 isActive('/profile')
-                  ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg'
+                  ? 'bg-[radial-gradient(circle_farthest-corner_at_32.7%_49.8%,rgba(28,88,238,1)_0%,rgba(0,39,137,1)_100.2%)] text-white shadow-lg'
                   : 'text-gray-700 hover:bg-gray-100'
               }`}
             >

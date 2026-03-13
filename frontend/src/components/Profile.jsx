@@ -18,9 +18,9 @@ const Profile = ({ user, onLogout }) => {
   const [profileData, setProfileData] = useState({
     username: user.username,
     email: user.email,
-    joinDate: 'December 2025',
-    totalInterviews: 45,
-    averageScore: 82
+    joinDate: 'January 2026',
+    totalInterviews: 50,
+    averageScore: 52
   })
 
   const handleSave = () => {
@@ -34,39 +34,44 @@ React.useEffect(() => {
   setDailyTimeline(timeline)
 }, [user])
  
+// STEP 1: build weekly average data
 const weeklyAvgData = (() => {
   const weeks = []
-  let lastAvg = 0
+  let lastAvg = null
 
   for (let i = 0; i < dailyTimeline.length; i += 7) {
     const weekSlice = dailyTimeline.slice(i, i + 7)
 
-    const validDays = weekSlice.filter(d => d.didPractice)
+    const validDays = weekSlice.filter(
+      d => typeof d.technicalScore === 'number' &&
+           typeof d.confidenceScore === 'number'
+    )
+
+    let avg = lastAvg
+    let absent = true
 
     if (validDays.length > 0) {
-      const avg =
+      avg =
         validDays.reduce((sum, d) => {
-          return sum + (
-            (d.technicalScore +
-             d.communicationScore +
-             d.confidenceScore) / 3
-          )
+          return sum + ((d.technicalScore + d.confidenceScore) / 2)
         }, 0) / validDays.length
 
-      lastAvg = Math.round(avg)
+      avg = Math.round(avg)
+      lastAvg = avg
+      absent = false
     }
 
     weeks.push({
-  week: `Week ${weeks.length + 1}`,
-  avgScore: lastAvg,        // for LINE
-  avgScoreArea: lastAvg    // for AREA
-})
-
+      week: `Week ${weeks.length + 1}`,
+      avgScore: avg,
+      absent
+    })
   }
 
-  // 👉 show only latest 5 weeks (sliding window)
+  // show only last 5 weeks (sliding)
   return weeks.slice(-5)
 })()
+
 
   return (
     <div className="min-h-screen">
@@ -152,7 +157,7 @@ const weeklyAvgData = (() => {
               <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-lg p-6">
                 <div className="flex items-center gap-3 mb-2">
                   <Award className="w-6 h-6 text-orange-600" />
-                  <h3 className="font-semibold text-gray-700">Total Interviews</h3>
+                  <h3 className="font-semibold text-gray-700">Total Questions</h3>
                 </div>
                 <p className="text-gray-800 font-medium text-2xl">{profileData.totalInterviews}</p>
               </div>
@@ -166,113 +171,13 @@ const weeklyAvgData = (() => {
             </div>
 
 
-           <div
-  className="
-    relative z-10
-    rounded-2xl p-8
-     bg-gradient-to-r from-yellow-100 to-yellow-100
-    shadow-2xl
-    -mt-6
-  "
-> 
-           <div className="relative mt-10">
-
-
-
-
-  <h3 className="text-xl font-bold text-blue-800 mb-4 text-center">
-    Weekly Average Score Progress
-  </h3>
-<p className="text-sm text-grey-500 text-center mb-2">
-  {weeklyAvgData.at(-1)?.avgScore > weeklyAvgData.at(-2)?.avgScore
-    ? '📈 Improving'
-    : '📉 Needs consistency'}
-</p>
-
-  <ResponsiveContainer width="100%" height={280}>
-    <LineChart data={weeklyAvgData}>
-
-      <CartesianGrid strokeDasharray="3 3" opacity={0.4} />
-
-      <XAxis
-        dataKey="week"
-        interval={0}
-      />
-
-      <YAxis
-        domain={[0, 100]}
-        ticks={[0, 20, 40, 60, 80, 100]}
-        allowDecimals={false}
-      />
-
-      <Tooltip
-  formatter={(value, name, props) => {
-    // show tooltip ONLY for Line, ignore Area
-    if (props.dataKey !== 'avgScore' || props.payload?.__isArea) {
-      return null
-    }
-    return [`${value}%`, 'Average Score']
-  }}
-  labelFormatter={(label) => label}
-  contentStyle={{
-    borderRadius: '10px',
-    border: 'none',
-    backgroundColor: 'white',
-    boxShadow: '0 10px 25px rgba(0,0,0,0.15)',
-    fontSize: '14px'
-  }}
-/>
-
-<defs>
-  <linearGradient id="avgGradient" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stopColor="#7c3aed" stopOpacity={0.9} />
-    <stop offset="100%" stopColor="#7c3aed" stopOpacity={0.2} />
-  </linearGradient>
-
-  <filter id="glow">
-    <feGaussianBlur stdDeviation="4" result="coloredBlur" />
-    <feMerge>
-      <feMergeNode in="coloredBlur" />
-      <feMergeNode in="SourceGraphic" />
-    </feMerge>
-  </filter>
-</defs>
-<Area
-  type="monotone"
-  dataKey="avgScoreArea"
-  fill="url(#weeklyAreaGradient)"
-  stroke="none"
-  isAnimationActive
-/>
-
-
-
-     <Line
-  type="monotone"
-  dataKey="avgScore"
-  stroke="#7c3aed"
-  strokeWidth={4}
-  dot={{ r: 5, fill: '#7c3aed' }}
-  activeDot={{ r: 7 }}
-/>
-
-
-<defs>
-  <linearGradient id="weeklyAreaGradient" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stopColor="#facc15" stopOpacity={0.35} />
-    <stop offset="50%" stopColor="#fde68a" stopOpacity={0.18} />
-    <stop offset="100%" stopColor="#fde68a" stopOpacity={0} />
-  </linearGradient>
-</defs>
-
-    </LineChart>
-  </ResponsiveContainer>
-</div>
+      
+ </div>
           </div>
         </div>
       </div>
-      </div>
-    </div>
+       
+    
   )
 }
 
