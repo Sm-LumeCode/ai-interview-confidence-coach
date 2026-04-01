@@ -5,11 +5,20 @@ import QuestionCard from './QuestionCard'
 import Recorder from './Recorder'
 import ResultPanel from './ResultPanel'
 import IdealAnswer from './IdealAnswer'
-import { ChevronRight, ChevronLeft, Home, RotateCcw, Clock } from 'lucide-react'
+import { ChevronRight, ChevronLeft, Home, RotateCcw, Clock, AlertCircle } from 'lucide-react'
 import api from '../services/api'
 import { saveProgress, getProgress, resetProgress } from '../utils/progressManager'
 import { saveDailyProgress } from '../utils/dailyProgressManager'
 import { saveCategoryProgress } from '../utils/categoryProgressManager'
+
+const CATEGORY_MAP = {
+  software_development: 'Software Development',
+  data_analytics: 'Data Analytics',
+  data_science_ml: 'Data Science & ML',
+  cloud_devops: 'Cloud & DevOps',
+  cybersecurity: 'Cybersecurity',
+  hr_round: 'HR Round'
+}
 
 const InterviewSession = ({ user, onLogout }) => {
   const { category } = useParams()
@@ -25,14 +34,11 @@ const InterviewSession = ({ user, onLogout }) => {
   const [generatingFeedback, setGeneratingFeedback] = useState(false)
   const [aiFeedback, setAiFeedback] = useState(null)
   const [error, setError] = useState('')
-  
-  // Timer states
   const [timeRemaining, setTimeRemaining] = useState(0)
   const [timerActive, setTimerActive] = useState(false)
   const [timerExpired, setTimerExpired] = useState(false)
   const [showTimeUpPopup, setShowTimeUpPopup] = useState(false)
 
-  // Load questions and restore progress
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
@@ -40,42 +46,31 @@ const InterviewSession = ({ user, onLogout }) => {
         setError('')
         const data = await api.getQuestions(category)
         setQuestions(data)
-        
-        const savedProgress = getProgress(user.email, category)
-        if (savedProgress && savedProgress.currentQuestionIndex < data.length) {
-          setCurrentQuestionIndex(savedProgress.currentQuestionIndex)
+        const saved = getProgress(user.email, category)
+        if (saved && saved.currentQuestionIndex < data.length) {
+          setCurrentQuestionIndex(saved.currentQuestionIndex)
         }
       } catch (err) {
-        console.error('Error fetching questions:', err)
         setError('Failed to load questions. Please try again.')
       } finally {
         setLoading(false)
       }
     }
-
     fetchQuestions()
   }, [category, user.email])
 
-  // Start timer when question loads
   useEffect(() => {
     if (questions.length > 0 && !showResults) {
-      const currentQuestion = questions[currentQuestionIndex]
-      const difficulty = currentQuestion?.difficulty || 'medium'
-      
-      let time = 300
-      if (difficulty === 'easy') time = 180
-      else if (difficulty === 'hard') time = 480
-      
+      const diff = questions[currentQuestionIndex]?.difficulty || 'medium'
+      const time = diff === 'easy' ? 180 : diff === 'hard' ? 480 : 300
       setTimeRemaining(time)
       setTimerActive(true)
       setTimerExpired(false)
     }
   }, [currentQuestionIndex, questions, showResults])
 
-  // Timer countdown
   useEffect(() => {
     let interval = null
-
     if (timerActive && timeRemaining > 0) {
       interval = setInterval(() => {
         setTimeRemaining(prev => {
@@ -83,143 +78,86 @@ const InterviewSession = ({ user, onLogout }) => {
             setTimerActive(false)
             setTimerExpired(true)
             setShowTimeUpPopup(true)
-
-            setTimeout(() => {
-              setShowTimeUpPopup(false)
-              handleTimeUpAutoAdvance()
-            }, 2000)
-
+            setTimeout(() => { setShowTimeUpPopup(false); handleTimeUpAutoAdvance() }, 2000)
             return 0
           }
           return prev - 1
         })
       }, 1000)
     }
-
-    return () => {
-      if (interval) clearInterval(interval)
-    }
+    return () => { if (interval) clearInterval(interval) }
   }, [timerActive, timeRemaining])
 
   const handleRecordingComplete = async (answerText) => {
-    if (!answerText || !questions[currentQuestionIndex]) {
-      alert('Please provide an answer')
-      return
-    }
-
+    if (!answerText || !questions[currentQuestionIndex]) return
     setTimerActive(false)
     setEvaluating(true)
     setGeneratingAnswer(true)
     setGeneratingFeedback(false)
     setAiFeedback(null)
     setError('')
-    
     try {
-      const currentQuestion = questions[currentQuestionIndex]
-      
-      // STEP 1: Fast evaluation (<2 seconds) - Get scores immediately
-      console.log('⚡ Starting fast evaluation...')
-      const evaluationStartTime = Date.now()
-      
-      const evaluation = await api.evaluateAnswer(
-        currentQuestion.question,
-        answerText,
-        currentQuestion.keywords || []
-      )
-      
-      const evaluationTime = Date.now() - evaluationStartTime
-      console.log(`✅ Evaluation completed in ${evaluationTime}ms`)
-      
-      // Save scores and display results immediately
-      const CATEGORY_MAP = {
-  software_development: 'Software Development',
-  data_analytics: 'Data Analytics',
-  data_science_ml: 'Data Science & ML',
-  cloud_devops: 'Cloud & DevOps',
-  cybersecurity: 'Cybersecurity',
-  hr_round: 'HR Round'
-}
-
-const normalizedCategory = CATEGORY_MAP[category]
-
-
-      saveCategoryProgress(
-        user.email,
-        normalizedCategory,
-        evaluation.technical_score,
-        evaluation.communication_score
-      )
-      
+      const q = questions[currentQuestionIndex]
+      const evaluation = await api.evaluateAnswer(q.question, answerText, q.keywords || [])
+      saveCategoryProgress(user.email, CATEGORY_MAP[category], evaluation.technical_score, evaluation.communication_score)
       setResults(evaluation)
-
-      saveDailyProgress(user.email, {
-        technicalScore: evaluation.technical_score,
-        confidenceScore: evaluation.communication_score
-      })
-
-      // STEP 2: Generate ideal answer (parallel with AI feedback)
-      const idealAnswerPromise = api.generateIdealAnswer(
-        currentQuestion.question,
-        currentQuestion.keywords || []
-      )
-      
-      // STEP 3: Generate AI feedback (separate, non-blocking)
-      // Start feedback generation in background
-      console.log('🤖 Starting AI feedback generation...')
+      saveDailyProgress(user.email, { technicalScore: evaluation.technical_score, confidenceScore: evaluation.communication_score })
       setGeneratingFeedback(true)
-      
-      const feedbackPromise = api.generateFeedback(
-        currentQuestion.question,
-        answerText,
-        currentQuestion.keywords || [],
-        evaluation
-      ).then(feedbackResult => {
-        console.log(`✅ AI feedback received (method: ${feedbackResult.method})`)
-        setAiFeedback(feedbackResult.feedback)
-        setGeneratingFeedback(false)
-        return feedbackResult
-      }).catch(err => {
-        console.error('AI feedback generation failed:', err)
-        setGeneratingFeedback(false)
-        // Don't fail the whole flow - just show scores without AI feedback
-        return null
-      })
-      
-      // Wait for ideal answer
-      const ideal = await idealAnswerPromise
+      api.generateFeedback(q.question, answerText, q.keywords || [], evaluation)
+        .then(r => { setAiFeedback(r.feedback); setGeneratingFeedback(false) })
+        .catch(() => setGeneratingFeedback(false))
+      const ideal = await api.generateIdealAnswer(q.question, q.keywords || [])
       setIdealAnswer(ideal)
       setGeneratingAnswer(false)
-      
-      // Show results immediately (AI feedback will appear when ready)
       setShowResults(true)
       setEvaluating(false)
-      
-      // Save progress
       saveProgress(user.email, category, currentQuestionIndex + 1, questions.length)
-      
-      // AI feedback will update when ready (via feedbackPromise)
-      
     } catch (err) {
-      console.error('Evaluation error:', err)
-      setError('Failed to evaluate answer. Make sure Ollama is running.')
-      alert('Evaluation failed. Please check if Ollama is running on http://localhost:11434')
+      setError('Failed to evaluate answer. Make sure the backend is running.')
       setEvaluating(false)
       setGeneratingAnswer(false)
       setGeneratingFeedback(false)
     }
   }
 
-  const handleNextQuestion = () => {
+  const handleTimeUpAutoAdvance = async () => {
+    if (!questions[currentQuestionIndex]) return
+    setTimerActive(false)
+    setEvaluating(true)
+    setGeneratingAnswer(true)
+    try {
+      const q = questions[currentQuestionIndex]
+      const evaluation = await api.evaluateAnswer(q.question, 'Time ran out - no answer provided', q.keywords || [])
+      saveCategoryProgress(user.email, CATEGORY_MAP[category] || category, evaluation.technical_score, evaluation.communication_score)
+      setResults(evaluation)
+      saveDailyProgress(user.email, { technicalScore: evaluation.technical_score, confidenceScore: evaluation.communication_score })
+      const ideal = await api.generateIdealAnswer(q.question, q.keywords || [])
+      setIdealAnswer(ideal)
+      setShowResults(true)
+      saveProgress(user.email, category, currentQuestionIndex + 1, questions.length)
+    } catch (err) {
+      setError('Failed to process time up.')
+      handleNextQuestion()
+    } finally {
+      setEvaluating(false)
+      setGeneratingAnswer(false)
+    }
+  }
+
+  const resetQuestion = () => {
     setShowResults(false)
     setResults(null)
     setIdealAnswer(null)
     setAiFeedback(null)
     setGeneratingFeedback(false)
-    
+  }
+
+  const handleNextQuestion = () => {
+    resetQuestion()
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1)
     } else {
-      alert('Interview session complete! Check your progress page for detailed analytics.')
+      alert('Interview session complete! Check your analytics for detailed insights.')
       resetProgress(user.email, category)
       navigate('/dashboard')
     }
@@ -227,348 +165,177 @@ const normalizedCategory = CATEGORY_MAP[category]
 
   const handlePreviousQuestion = () => {
     if (currentQuestionIndex > 0) {
-      setShowResults(false)
-      setResults(null)
-      setIdealAnswer(null)
-      setAiFeedback(null)
-      setGeneratingFeedback(false)
+      resetQuestion()
       setCurrentQuestionIndex(currentQuestionIndex - 1)
     }
   }
 
-  const handleGoHome = () => {
-    navigate('/dashboard')
-  }
-
   const handleResetProgress = () => {
-    if (window.confirm('Are you sure you want to restart from the beginning? Your progress will be lost.')) {
+    if (window.confirm('Restart from the beginning? Your progress will be lost.')) {
       resetProgress(user.email, category)
       setCurrentQuestionIndex(0)
-      setShowResults(false)
-      setResults(null)
-      setIdealAnswer(null)
-      setAiFeedback(null)
-      setGeneratingFeedback(false)
+      resetQuestion()
     }
   }
 
-  const handleTimeUpAutoAdvance = async () => {
-    if (questions[currentQuestionIndex]) {
-      setTimerActive(false)
-      setEvaluating(true)
-      setGeneratingAnswer(true)
-      setGeneratingFeedback(false)
-      setError('')
-
-      try {
-        const currentQuestion = questions[currentQuestionIndex]
-
-        const evaluation = await api.evaluateAnswer(
-          currentQuestion.question,
-          "Time ran out - no answer provided",
-          currentQuestion.keywords || []
-        )
-
-        const normalizedCategory = category
-          .replace(/_/g, ' ')
-          .replace(/\b\w/g, c => c.toUpperCase())
-
-        saveCategoryProgress(
-          user.email,
-          normalizedCategory,
-          evaluation.technical_score,
-          evaluation.communication_score
-        )
-
-        setResults(evaluation)
-
-        saveDailyProgress(user.email, {
-          technicalScore: evaluation.technical_score,
-          confidenceScore: evaluation.communication_score
-        })
-
-        const ideal = await api.generateIdealAnswer(
-          currentQuestion.question,
-          currentQuestion.keywords || []
-        )
-
-        setIdealAnswer(ideal)
-        setShowResults(true)
-
-        saveProgress(user.email, category, currentQuestionIndex + 1, questions.length)
-      } catch (err) {
-        console.error('Time up evaluation error:', err)
-        setError('Failed to process time up. Moving to next question.')
-        saveProgress(user.email, category, currentQuestionIndex + 1, questions.length)
-        handleNextQuestion()
-      } finally {
-        setEvaluating(false)
-        setGeneratingAnswer(false)
-      }
-    }
-  }
-
-  const formatTime = (seconds) => {
-    const mins = Math.floor(seconds / 60)
-    const secs = seconds % 60
-    return `${mins}:${secs.toString().padStart(2, '0')}`
-  }
-
-  const getTimerColor = () => {
-    if (timeRemaining <= 30) return 'text-red-600'
-    if (timeRemaining <= 60) return 'text-orange-600'
-    return 'text-green-600'
-  }
-
-  const getTimerBgColor = () => {
-    if (timeRemaining <= 30) return 'bg-red-50 border-red-300'
-    if (timeRemaining <= 60) return 'bg-orange-50 border-orange-300'
-    return 'bg-green-50 border-green-300'
-  }
+  const formatTime = (s) => `${Math.floor(s / 60)}:${(s % 60).toString().padStart(2, '0')}`
+  const timerColor = timeRemaining <= 30 ? '#ef4444' : timeRemaining <= 60 ? '#f59e0b' : '#10b981'
+  const timerBg = timeRemaining <= 30 ? '#fee2e2' : timeRemaining <= 60 ? '#fef3c7' : '#d1fae5'
+  const q = questions[currentQuestionIndex]
+  const totalTime = q?.difficulty === 'easy' ? 180 : q?.difficulty === 'hard' ? 480 : 300
+  const pct = (timeRemaining / totalTime) * 100
 
   if (loading) {
     return (
-      <div className="min-h-screen">
+      <div className="app-layout">
         <Navbar user={user} onLogout={onLogout} />
-        <div className="flex items-center justify-center h-screen">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-amber-700 mx-auto mb-4"></div>
-            <p className="text-white text-lg">Loading questions...</p>
+        <main className="main-content" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ textAlign: 'center' }}>
+            <div style={{
+              width: 48, height: 48, border: '3px solid #e2e8f0', borderTopColor: '#10b981',
+              borderRadius: '50%', animation: 'spin 0.8s linear infinite', margin: '0 auto 16px'
+            }} />
+            <p style={{ color: '#64748b', fontSize: 15 }}>Loading questions…</p>
           </div>
-        </div>
+        </main>
       </div>
     )
   }
-
-  if (error && questions.length === 0) {
-    return (
-      <div className="min-h-screen">
-        <Navbar user={user} onLogout={onLogout} />
-        <div className="flex items-center justify-center h-screen">
-          <div className="card max-w-md text-center">
-            <p className="text-red-600 text-lg">{error}</p>
-            <button onClick={handleGoHome} className="btn-primary mt-4">
-              Back to Dashboard
-            </button>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
-  const currentQuestion = questions[currentQuestionIndex]
-  const progress = getProgress(user.email, category)
-  const isLastQuestion = currentQuestionIndex === questions.length - 1
 
   return (
-    <div className="min-h-screen">
+    <div className="app-layout">
       <Navbar user={user} onLogout={onLogout} />
-      
-      <div className="max-w-5xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="mb-6 flex items-start justify-between">
+
+      <main className="main-content">
+        {/* Header bar */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24 }}>
           <div>
-            <h1 className="text-3xl font-bold text-white">
-              {category.replace(/_/g, ' ').toUpperCase()} Interview
+            <h1 className="page-title" style={{ fontSize: 22 }}>
+              {(CATEGORY_MAP[category] || category).toUpperCase()} Interview
             </h1>
-            {progress && (
-              <p className="text-white text-sm mt-1 opacity-90">
-                Progress: {currentQuestionIndex} of {questions.length} questions completed
-              </p>
-            )}
+            <p className="page-subtitle">
+              Question {currentQuestionIndex + 1} of {questions.length}
+            </p>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            {/* Timer */}
             {!showResults && (
-              <div className={`relative inline-flex items-center gap-4 px-6 py-4 rounded-2xl border-2 shadow-xl backdrop-blur-sm ${getTimerBgColor()} transition-all duration-300 hover:shadow-2xl`}>
-                <div className="relative w-16 h-16">
-                  <svg className="w-16 h-16 transform -rotate-90" viewBox="0 0 36 36">
-                    <path
-                      d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      className="text-gray-300"
-                    />
-                    <path
-                      d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeDasharray={`${((timeRemaining / (currentQuestion?.difficulty === 'easy' ? 180 : currentQuestion?.difficulty === 'hard' ? 480 : 300)) * 100)}, 100`}
-                      className={`${getTimerColor()} transition-all duration-1000 ease-linear`}
-                      strokeLinecap="round"
-                    />
+              <div style={{
+                display: 'flex', alignItems: 'center', gap: 12,
+                background: timerBg, border: `1px solid ${timerColor}44`,
+                borderRadius: 12, padding: '10px 16px'
+              }}>
+                {/* Circular */}
+                <div style={{ position: 'relative', width: 44, height: 44 }}>
+                  <svg width="44" height="44" style={{ transform: 'rotate(-90deg)' }}>
+                    <circle cx="22" cy="22" r="18" fill="none" stroke="#e2e8f0" strokeWidth="3" />
+                    <circle cx="22" cy="22" r="18" fill="none" stroke={timerColor} strokeWidth="3"
+                      strokeDasharray={`${(pct / 100) * 113} 113`} strokeLinecap="round" />
                   </svg>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <Clock className={`w-6 h-6 ${getTimerColor()}`} />
-                  </div>
+                  <Clock size={16} color={timerColor} style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)' }} />
                 </div>
-
-                <div className="text-center">
-                  <div className={`text-3xl font-bold ${getTimerColor()} tabular-nums leading-none tracking-wider`}>
+                <div>
+                  <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 22, fontWeight: 700, color: timerColor, lineHeight: 1 }}>
                     {formatTime(timeRemaining)}
                   </div>
-                  <div className="flex items-center gap-2 mt-1">
-                    <span className={`px-2 py-0.5 rounded-full text-xs font-semibold shadow-sm ${
-                      currentQuestion?.difficulty === 'easy' ? 'bg-green-100 text-green-800 border border-green-200' :
-                      currentQuestion?.difficulty === 'hard' ? 'bg-red-100 text-red-800 border border-red-200' :
-                      'bg-yellow-100 text-yellow-800 border border-yellow-200'
-                    }`}>
-                      {currentQuestion?.difficulty?.toUpperCase() || 'MEDIUM'}
-                    </span>
-                    <span className="text-xs text-gray-600 font-medium">
-                      {currentQuestion?.difficulty === 'easy' ? '3 min' :
-                       currentQuestion?.difficulty === 'hard' ? '8 min' :
-                       '5 min'}
-                    </span>
-                  </div>
+                  <span className={`badge ${q?.difficulty === 'easy' ? 'badge-green' : q?.difficulty === 'hard' ? 'badge-red' : 'badge-yellow'}`}
+                    style={{ fontSize: 10, marginTop: 3 }}>
+                    {(q?.difficulty || 'medium').toUpperCase()}
+                  </span>
                 </div>
-
-                {timeRemaining <= 30 && (
-                  <div className="absolute inset-0 rounded-2xl border-2 border-red-400 animate-ping opacity-20"></div>
-                )}
               </div>
             )}
 
-            {isLastQuestion && (
-              <button
-                onClick={handleResetProgress}
-                className="btn-secondary flex items-center gap-2 whitespace-nowrap"
-                title="Restart from beginning"
-              >
-                <RotateCcw className="w-5 h-5" />
-                Reset
-              </button>
-            )}
-            <button
-              onClick={handleGoHome}
-              className="btn-secondary flex items-center gap-2 whitespace-nowrap"
-            >
-              <Home className="w-5 h-5" />
-              Dashboard
+            <button onClick={handleResetProgress} className="btn-secondary" style={{ padding: '8px 14px', fontSize: 13 }}>
+              <RotateCcw size={14} /> Reset
+            </button>
+            <button onClick={() => navigate('/dashboard')} className="btn-secondary" style={{ padding: '8px 14px', fontSize: 13 }}>
+              <Home size={14} /> Home
             </button>
           </div>
         </div>
 
-        {timerExpired && !showResults && !showTimeUpPopup && (
-          <div className="mb-4">
-            <div className="bg-red-100 border-2 border-red-400 text-red-700 px-6 py-4 rounded-lg shadow-lg flex items-center gap-3 animate-pulse">
-              <Clock className="w-6 h-6" />
-              <span className="font-bold text-lg">⏰ Time's up! Please submit your answer.</span>
-            </div>
+        {/* Progress bar */}
+        <div className="card" style={{ padding: '14px 20px', marginBottom: 20 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, color: '#94a3b8', marginBottom: 8, fontWeight: 500 }}>
+            <span>Progress</span>
+            <span>{Math.round((currentQuestionIndex / questions.length) * 100)}% Complete</span>
           </div>
-        )}
-
-        {showTimeUpPopup && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white rounded-xl p-8 shadow-2xl max-w-md mx-4 animate-bounce">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Clock className="w-8 h-8 text-red-600" />
-                </div>
-                <h2 className="text-2xl font-bold text-gray-800 mb-2">Time's Up!</h2>
-                <p className="text-gray-600">Moving to the next question automatically...</p>
-                <div className="mt-4 w-full bg-gray-200 rounded-full h-2 overflow-hidden">
-                  <div className="bg-red-500 h-2 rounded-full transition-all duration-2000 ease-linear animate-pulse"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        <div className="mb-6 bg-white rounded-lg p-4 shadow-lg">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-semibold text-gray-700">
-              Question {currentQuestionIndex + 1} of {questions.length}
-            </span>
-            <span className="text-sm text-gray-600">
-              {Math.round(((currentQuestionIndex) / questions.length) * 100)}% Complete
-            </span>
-          </div>
-          <div className="bg-gray-200 rounded-full h-3 overflow-hidden">
-            <div
-              className="h-full bg-gradient-to-r from-amber-500 to-amber-700 transition-all duration-500"
-              style={{ width: `${((currentQuestionIndex) / questions.length) * 100}%` }}
-            ></div>
+          <div className="progress-bar-track" style={{ height: 6 }}>
+            <div className="progress-bar-fill" style={{
+              width: `${(currentQuestionIndex / questions.length) * 100}%`,
+              background: 'linear-gradient(90deg, #10b981, #059669)'
+            }} />
           </div>
         </div>
 
-        {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4">
-            {error}
+        {/* Time's up banner */}
+        {timerExpired && !showResults && !showTimeUpPopup && (
+          <div style={{
+            background: '#fee2e2', border: '1px solid #fca5a5', borderRadius: 10,
+            padding: '12px 16px', marginBottom: 16, display: 'flex', alignItems: 'center', gap: 10
+          }}>
+            <AlertCircle size={18} color="#ef4444" />
+            <span style={{ color: '#991b1b', fontWeight: 600, fontSize: 14 }}>⏰ Time's up! Submit your answer.</span>
           </div>
         )}
 
-        <div className="space-y-6">
-          <QuestionCard
-            question={currentQuestion}
-            currentQuestion={currentQuestionIndex + 1}
-            totalQuestions={questions.length}
-          />
+        {error && (
+          <div style={{ background: '#fee2e2', border: '1px solid #fca5a5', borderRadius: 10, padding: '12px 16px', marginBottom: 16 }}>
+            <p style={{ color: '#991b1b', fontSize: 14 }}>{error}</p>
+          </div>
+        )}
 
-          {!showResults && (
-            <Recorder onRecordingComplete={handleRecordingComplete} />
-          )}
+        {/* Content */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+          <QuestionCard question={q} currentQuestion={currentQuestionIndex + 1} totalQuestions={questions.length} />
+
+          {!showResults && <Recorder onRecordingComplete={handleRecordingComplete} />}
 
           {evaluating && (
-            <div className="card text-center py-12">
-              <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-amber-700 mx-auto mb-4"></div>
-              <p className="text-gray-600 text-lg">⚡ Analyzing your response...</p>
-              <p className="text-gray-500 text-sm mt-2">
-                Fast evaluation in progress (should complete in &lt;2s)
-              </p>
+            <div className="card" style={{ textAlign: 'center', padding: '40px 24px' }}>
+              <div style={{
+                width: 48, height: 48, border: '3px solid #e2e8f0', borderTopColor: '#10b981',
+                borderRadius: '50%', animation: 'spin 0.8s linear infinite', margin: '0 auto 16px'
+              }} />
+              <p style={{ color: '#64748b', fontWeight: 600 }}>Analyzing your response…</p>
+              <p style={{ color: '#94a3b8', fontSize: 13, marginTop: 4 }}>This takes just a moment</p>
             </div>
           )}
 
           {showResults && !evaluating && results && (
             <>
-              <ResultPanel 
-                results={results} 
-                aiFeedback={aiFeedback}
-                generatingFeedback={generatingFeedback}
-              />
-              
+              <ResultPanel results={results} aiFeedback={aiFeedback} generatingFeedback={generatingFeedback} />
+
               {generatingAnswer && (
-                <div className="card text-center py-8">
-                  <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-green-600 mx-auto mb-4"></div>
-                  <p className="text-gray-600">Generating ideal answer...</p>
+                <div className="card" style={{ textAlign: 'center', padding: '28px 24px' }}>
+                  <div style={{
+                    width: 36, height: 36, border: '3px solid #e2e8f0', borderTopColor: '#10b981',
+                    borderRadius: '50%', animation: 'spin 0.8s linear infinite', margin: '0 auto 12px'
+                  }} />
+                  <p style={{ color: '#64748b', fontSize: 14 }}>Generating ideal answer…</p>
                 </div>
               )}
 
-              {idealAnswer && !generatingAnswer && (
-                <IdealAnswer idealAnswer={idealAnswer} />
-              )}
-              
-              <div className="card">
-                <div className="flex items-center justify-between gap-4">
+              {idealAnswer && !generatingAnswer && <IdealAnswer idealAnswer={idealAnswer} />}
+
+              {/* Nav buttons */}
+              <div className="card" style={{ padding: '16px 24px' }}>
+                <div style={{ display: 'flex', gap: 12 }}>
                   <button
                     onClick={handlePreviousQuestion}
                     disabled={currentQuestionIndex === 0}
-                    className={`flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold shadow-lg transition-all duration-200 ${
-                      currentQuestionIndex === 0
-                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                        : 'bg-gradient-to-r from-gray-600 to-gray-700 text-white hover:shadow-xl transform hover:-translate-y-0.5'
-                    }`}
+                    className="btn-secondary"
+                    style={{ flex: 1, justifyContent: 'center', opacity: currentQuestionIndex === 0 ? 0.4 : 1 }}
                   >
-                    <ChevronLeft className="w-5 h-5" />
-                    Previous Question
+                    <ChevronLeft size={16} /> Previous
                   </button>
-
-                  <button
-                    onClick={handleNextQuestion}
-                    className="flex-1 btn-primary inline-flex items-center justify-center gap-2"
-                  >
+                  <button onClick={handleNextQuestion} className="btn-primary" style={{ flex: 1, justifyContent: 'center' }}>
                     {currentQuestionIndex < questions.length - 1 ? (
-                      <>
-                        Next Question
-                        <ChevronRight className="w-5 h-5" />
-                      </>
+                      <>Next Question <ChevronRight size={16} /></>
                     ) : (
-                      <>
-                        Complete Interview
-                        <ChevronRight className="w-5 h-5" />
-                      </>
+                      <>Complete <ChevronRight size={16} /></>
                     )}
                   </button>
                 </div>
@@ -576,7 +343,31 @@ const normalizedCategory = CATEGORY_MAP[category]
             </>
           )}
         </div>
-      </div>
+      </main>
+
+      {/* Time up modal */}
+      {showTimeUpPopup && (
+        <div style={{
+          position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100
+        }}>
+          <div style={{
+            background: 'white', borderRadius: 16, padding: 40, maxWidth: 380,
+            textAlign: 'center', boxShadow: '0 25px 60px rgba(0,0,0,0.3)'
+          }}>
+            <div style={{
+              width: 64, height: 64, borderRadius: '50%', background: '#fee2e2',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px'
+            }}>
+              <Clock size={32} color="#ef4444" />
+            </div>
+            <h2 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: 22, marginBottom: 8 }}>Time's Up!</h2>
+            <p style={{ color: '#64748b', fontSize: 14 }}>Moving to next question…</p>
+          </div>
+        </div>
+      )}
+
+      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
     </div>
   )
 }

@@ -1,80 +1,195 @@
-import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { Home, LogOut, TrendingUp, Target, User } from 'lucide-react'
+import React, { useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import {
+  LayoutDashboard, TrendingUp, Trophy, User, LogOut,
+  Code2, ChevronRight, PanelLeftClose, PanelLeftOpen
+} from 'lucide-react'
 
 const Navbar = ({ user, onLogout }) => {
   const location = useLocation()
+  const navigate = useNavigate()
+  const [collapsed, setCollapsed] = useState(false)
 
   const isActive = (path) => location.pathname === path
 
+  const candidateLinks = [
+    { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
+    { to: '/progress', icon: TrendingUp, label: 'Analytics' },
+    { to: '/challenges', icon: Trophy, label: 'Challenges' },
+    { to: '/profile', icon: User, label: 'Profile' },
+  ]
+
+  const W = collapsed ? 68 : 260
+
+  const linkStyle = (active) => ({
+    display: 'flex',
+    alignItems: 'center',
+    gap: collapsed ? 0 : 12,
+    padding: collapsed ? '10px 0' : '10px 12px',
+    justifyContent: collapsed ? 'center' : 'flex-start',
+    borderRadius: 8,
+    color: active ? '#ffffff' : '#94a3b8',
+    textDecoration: 'none',
+    fontSize: 14,
+    fontWeight: 500,
+    background: active ? '#1e2430' : 'none',
+    marginBottom: 2,
+    transition: 'all 0.15s ease',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden'
+  })
+
   return (
-    <nav className="glass-effect shadow-lg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <div className="flex items-center">
-            <h1 className="text-2xl font-bold gradient-text">AI Interview Coach</h1>
-          </div>
+    <>
+      {/* Spacer that pushes main content */}
+      <div style={{ width: W, flexShrink: 0, transition: 'width 0.25s ease' }} />
 
-          <div className="flex items-center space-x-4">
-            <Link
-              to="/dashboard"
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 ${
-                isActive('/dashboard')
-                  ? 'bg-[radial-gradient(circle_farthest-corner_at_32.7%_49.8%,rgba(28,88,238,1)_0%,rgba(0,39,137,1)_100.2%)] text-white shadow-lg'
-                  : 'text-gray-700 hover:bg-gray-100'
-              }`}
-            >
-              <Home className="w-5 h-5" />
-              <span className="hidden sm:inline">Home</span>
-            </Link>
+      <aside style={{
+        width: W,
+        background: '#0f1117',
+        minHeight: '100vh',
+        position: 'fixed',
+        left: 0, top: 0, bottom: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        zIndex: 50,
+        transition: 'width 0.25s ease',
+        overflow: 'hidden'
+      }}>
+        {/* Logo + toggle */}
+        <div style={{
+          padding: '20px 14px',
+          borderBottom: '1px solid #1e2430',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: collapsed ? 'center' : 'space-between',
+          minHeight: 64,
+          gap: 8
+        }}>
+          {!collapsed && (
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <h1 style={{
+                fontFamily: "'Plus Jakarta Sans', sans-serif",
+                fontSize: 18, fontWeight: 800, color: '#fff', whiteSpace: 'nowrap'
+              }}>
+                <span style={{ color: '#10b981' }}>Interview</span>Coach
+              </h1>
+              <p style={{ fontSize: 11, color: '#3d4a5c', fontWeight: 500, marginTop: 2 }}>
+                AI-Powered Practice
+              </p>
+            </div>
+          )}
+          <button
+            onClick={() => setCollapsed(c => !c)}
+            title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+            style={{
+              background: 'none', border: 'none', cursor: 'pointer',
+              color: '#475569', padding: 6, borderRadius: 6,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              flexShrink: 0, transition: 'color 0.15s'
+            }}
+            onMouseEnter={e => e.currentTarget.style.color = '#94a3b8'}
+            onMouseLeave={e => e.currentTarget.style.color = '#475569'}
+          >
+            {collapsed ? <PanelLeftOpen size={18} /> : <PanelLeftClose size={18} />}
+          </button>
+        </div>
 
-            <Link
-              to="/progress"
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 ${
-                isActive('/progress')
-                  ? 'bg-[radial-gradient(circle_farthest-corner_at_32.7%_49.8%,rgba(28,88,238,1)_0%,rgba(0,39,137,1)_100.2%)] text-white shadow-lg'
-                  : 'text-gray-700 hover:bg-gray-100'
-              }`}
-            >
-              <TrendingUp className="w-5 h-5" />
-              <span className="hidden sm:inline">Progress</span>
-            </Link>
+        {/* Nav */}
+        <nav style={{ flex: 1, padding: '8px', overflowY: 'auto', overflowX: 'hidden' }}>
+          {!collapsed && (
+            <p style={{
+              padding: '14px 8px 6px', fontSize: 11, fontWeight: 600,
+              letterSpacing: '0.08em', textTransform: 'uppercase', color: '#3d4a5c'
+            }}>Candidate</p>
+          )}
+          {collapsed && <div style={{ height: 14 }} />}
 
-            <Link
-              to="/challenges"
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 ${
-                isActive('/challenges')
-                  ? 'bg-[radial-gradient(circle_farthest-corner_at_32.7%_49.8%,rgba(28,88,238,1)_0%,rgba(0,39,137,1)_100.2%)] text-white shadow-lg'
-                  : 'text-gray-700 hover:bg-gray-100'
-              }`}
-            >
-              <Target className="w-5 h-5" />
-              <span className="hidden sm:inline">Challenges</span>
-            </Link>
+          {candidateLinks.map(({ to, icon: Icon, label }) => {
+            const active = isActive(to)
+            return (
+              <Link key={to} to={to} title={collapsed ? label : ''} style={linkStyle(active)}
+                onMouseEnter={e => {
+                  if (!active) { e.currentTarget.style.background = '#1e2430'; e.currentTarget.style.color = '#cbd5e1' }
+                }}
+                onMouseLeave={e => {
+                  if (!active) { e.currentTarget.style.background = 'none'; e.currentTarget.style.color = '#94a3b8' }
+                }}
+              >
+                <Icon size={18} color={active ? '#10b981' : undefined} style={{ flexShrink: 0 }} />
+                {!collapsed && <span style={{ flex: 1 }}>{label}</span>}
+                {!collapsed && active && <ChevronRight size={14} color="#10b981" />}
+              </Link>
+            )
+          })}
 
-            <Link
-              to="/profile"
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 ${
-                isActive('/profile')
-                  ? 'bg-[radial-gradient(circle_farthest-corner_at_32.7%_49.8%,rgba(28,88,238,1)_0%,rgba(0,39,137,1)_100.2%)] text-white shadow-lg'
-                  : 'text-gray-700 hover:bg-gray-100'
-              }`}
-            >
-              <User className="w-5 h-5" />
-              <span className="hidden sm:inline">Profile</span>
-            </Link>
+          {!collapsed && (
+            <p style={{
+              padding: '14px 8px 6px', fontSize: 11, fontWeight: 600,
+              letterSpacing: '0.08em', textTransform: 'uppercase', color: '#3d4a5c', marginTop: 4
+            }}>Practice</p>
+          )}
+          {collapsed && <div style={{ height: 8 }} />}
 
-            <button
-              onClick={onLogout}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg text-red-600 hover:bg-red-50 transition-all duration-200"
-            >
-              <LogOut className="w-5 h-5" />
-              <span className="hidden sm:inline">Logout</span>
-            </button>
+          <Link to="/dashboard" title={collapsed ? 'Start Session' : ''}
+            style={{ ...linkStyle(false), color: '#475569' }}
+          >
+            <Code2 size={18} style={{ flexShrink: 0 }} />
+            {!collapsed && <span>Start Session</span>}
+          </Link>
+        </nav>
+
+        {/* Footer */}
+        <div style={{ padding: '10px 8px', borderTop: '1px solid #1e2430' }}>
+          <button
+            onClick={() => { onLogout(); navigate('/login') }}
+            title={collapsed ? 'Logout' : ''}
+            style={{
+              width: '100%', border: 'none', background: 'none', cursor: 'pointer',
+              color: '#ef4444',
+              padding: collapsed ? '10px 0' : '10px 12px',
+              borderRadius: 8,
+              display: 'flex', alignItems: 'center', justifyContent: collapsed ? 'center' : 'flex-start',
+              gap: collapsed ? 0 : 12,
+              fontSize: 14, fontWeight: 500, transition: 'background 0.15s',
+              marginBottom: 4, whiteSpace: 'nowrap', overflow: 'hidden'
+            }}
+            onMouseEnter={e => e.currentTarget.style.background = '#1a0f0f'}
+            onMouseLeave={e => e.currentTarget.style.background = 'none'}
+          >
+            <LogOut size={18} style={{ flexShrink: 0 }} />
+            {!collapsed && <span>Logout</span>}
+          </button>
+
+          <div style={{
+            display: 'flex', alignItems: 'center',
+            gap: collapsed ? 0 : 10,
+            padding: collapsed ? '8px 0' : '8px 10px',
+            justifyContent: collapsed ? 'center' : 'flex-start',
+            borderRadius: 8
+          }}>
+            <div style={{
+              width: 32, height: 32, borderRadius: '50%',
+              background: 'linear-gradient(135deg, #10b981, #059669)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              color: 'white', fontWeight: 700, fontSize: 13, flexShrink: 0
+            }}>
+              {(user?.username || 'U').charAt(0).toUpperCase()}
+            </div>
+            {!collapsed && (
+              <div style={{ minWidth: 0 }}>
+                <div style={{ fontSize: 13, fontWeight: 600, color: '#e2e8f0', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                  {user?.username || 'User'}
+                </div>
+                <div style={{ fontSize: 11, color: '#475569', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                  {user?.email || ''}
+                </div>
+              </div>
+            )}
           </div>
         </div>
-      </div>
-    </nav>
+      </aside>
+    </>
   )
 }
 

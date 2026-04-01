@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { LogIn, Mail, Lock, Sparkles, AlertCircle } from 'lucide-react'
+import { LogIn, Mail, Lock, AlertCircle, Eye, EyeOff } from 'lucide-react'
 
 const Login = ({ onLogin }) => {
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -13,131 +14,181 @@ const Login = ({ onLogin }) => {
     e.preventDefault()
     setError('')
     setLoading(true)
-
     try {
-      // Get users from localStorage
       const existingUsers = JSON.parse(localStorage.getItem('users') || '[]')
-      
-      // Find user by email
       const user = existingUsers.find(u => u.email === email)
-      
-      if (!user) {
-        setError('No account found with this email. Please create an account first.')
-        setLoading(false)
-        return
-      }
-
-      // Verify password
-      if (user.password !== password) {
-        setError('Incorrect password. Please try again.')
-        setLoading(false)
-        return
-      }
-
-      // Login successful
-      const userForLogin = {
-        id: user.id,
-        username: user.username,
-        email: user.email
-      }
-      
-      onLogin(userForLogin)
+      if (!user) { setError('No account found with this email.'); setLoading(false); return }
+      if (user.password !== password) { setError('Incorrect password. Please try again.'); setLoading(false); return }
+      onLogin({ id: user.id, username: user.username, email: user.email })
       navigate('/dashboard')
-    } catch (err) {
+    } catch {
       setError('Login failed. Please try again.')
       setLoading(false)
     }
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-beige-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse-slow"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-beige-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse-slow"></div>
+    <div style={{
+      minHeight: '100vh',
+      background: '#0f1117',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: 20,
+      fontFamily: "'Inter', sans-serif"
+    }}>
+      {/* Background glow blobs */}
+      <div style={{
+        position: 'fixed', inset: 0, overflow: 'hidden', pointerEvents: 'none', zIndex: 0
+      }}>
+        <div style={{
+          position: 'absolute', top: '-20%', right: '-10%',
+          width: 500, height: 500, borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(16,185,129,0.12) 0%, transparent 70%)'
+        }} />
+        <div style={{
+          position: 'absolute', bottom: '-20%', left: '-10%',
+          width: 500, height: 500, borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%)'
+        }} />
       </div>
 
-      <div className="relative glass-effect rounded-2xl shadow-2xl p-8 w-full max-w-md animate-fade-in">
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-amber-600 to-amber-700 rounded-full mb-4">
-            <Sparkles className="w-8 h-8 text-white" />
+      <div style={{
+        position: 'relative', zIndex: 1,
+        background: '#161b27',
+        border: '1px solid #1e2430',
+        borderRadius: 16,
+        padding: '40px 36px',
+        width: '100%',
+        maxWidth: 420,
+        boxShadow: '0 25px 60px rgba(0,0,0,0.6)',
+        animation: 'slideUp 0.35s ease forwards'
+      }}>
+        {/* Logo */}
+        <div style={{ textAlign: 'center', marginBottom: 32 }}>
+          <div style={{
+            width: 52, height: 52, borderRadius: 14,
+            background: 'linear-gradient(135deg, #10b981, #059669)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            margin: '0 auto 16px',
+            boxShadow: '0 8px 24px rgba(16,185,129,0.3)'
+          }}>
+            <LogIn size={24} color="white" />
           </div>
-          <h1 className="text-3xl font-bold text-beige-800 mb-2">AI Interview Coach</h1>
-          <p className="text-gray-600">Welcome back! Ready to practice?</p>
+          <h1 style={{
+            fontFamily: "'Plus Jakarta Sans', sans-serif",
+            fontSize: 24, fontWeight: 800, color: '#f1f5f9', marginBottom: 6
+          }}>
+            Welcome back
+          </h1>
+          <p style={{ fontSize: 14, color: '#64748b' }}>Sign in to continue your practice</p>
         </div>
 
         {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4 animate-slide-up flex items-center gap-2">
-            <AlertCircle className="w-5 h-5 flex-shrink-0" />
-            <span className="text-sm">{error}</span>
+          <div style={{
+            background: '#1f0f0f', border: '1px solid #7f1d1d',
+            borderRadius: 8, padding: '10px 14px', marginBottom: 20,
+            display: 'flex', alignItems: 'center', gap: 10
+          }}>
+            <AlertCircle size={15} color="#ef4444" style={{ flexShrink: 0 }} />
+            <span style={{ fontSize: 13, color: '#fca5a5' }}>{error}</span>
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+          {/* Email */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label style={{ fontSize: 13, fontWeight: 600, color: '#94a3b8', display: 'block', marginBottom: 6 }}>
               Email Address
             </label>
-            <div className="relative">
-              <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <div style={{ position: 'relative' }}>
+              <Mail size={16} color="#475569" style={{ position: 'absolute', left: 13, top: '50%', transform: 'translateY(-50%)' }} />
               <input
                 type="email"
                 value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value)
-                  setError('')
-                }}
-                className="input-field pl-10"
+                onChange={e => { setEmail(e.target.value); setError('') }}
                 placeholder="your@email.com"
                 required
+                style={{
+                  width: '100%', padding: '10px 14px 10px 38px',
+                  background: '#0f1117', border: '1px solid #1e2430',
+                  borderRadius: 8, fontSize: 14, color: '#f1f5f9',
+                  outline: 'none', boxSizing: 'border-box', transition: 'border-color 0.15s'
+                }}
+                onFocus={e => e.target.style.borderColor = '#10b981'}
+                onBlur={e => e.target.style.borderColor = '#1e2430'}
               />
             </div>
           </div>
 
+          {/* Password */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label style={{ fontSize: 13, fontWeight: 600, color: '#94a3b8', display: 'block', marginBottom: 6 }}>
               Password
             </label>
-            <div className="relative">
-              <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <div style={{ position: 'relative' }}>
+              <Lock size={16} color="#475569" style={{ position: 'absolute', left: 13, top: '50%', transform: 'translateY(-50%)' }} />
               <input
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value)
-                  setError('')
-                }}
-                className="input-field pl-10"
+                onChange={e => { setPassword(e.target.value); setError('') }}
                 placeholder="••••••••"
                 required
+                style={{
+                  width: '100%', padding: '10px 40px 10px 38px',
+                  background: '#0f1117', border: '1px solid #1e2430',
+                  borderRadius: 8, fontSize: 14, color: '#f1f5f9',
+                  outline: 'none', boxSizing: 'border-box', transition: 'border-color 0.15s'
+                }}
+                onFocus={e => e.target.style.borderColor = '#10b981'}
+                onBlur={e => e.target.style.borderColor = '#1e2430'}
               />
+              <button type="button" onClick={() => setShowPassword(p => !p)} style={{
+                position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)',
+                background: 'none', border: 'none', cursor: 'pointer', color: '#475569', padding: 0
+              }}>
+                {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+              </button>
             </div>
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="btn-primary w-full flex items-center justify-center gap-2"
+            style={{
+              marginTop: 4,
+              background: loading ? '#065f46' : 'linear-gradient(135deg, #10b981, #059669)',
+              color: 'white', padding: '11px 20px',
+              borderRadius: 8, fontSize: 14, fontWeight: 600,
+              border: 'none', cursor: loading ? 'not-allowed' : 'pointer',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+              transition: 'all 0.15s', boxShadow: loading ? 'none' : '0 4px 14px rgba(16,185,129,0.3)'
+            }}
           >
             {loading ? (
-              <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white"></div>
+              <div style={{
+                width: 18, height: 18, border: '2px solid rgba(255,255,255,0.3)',
+                borderTopColor: 'white', borderRadius: '50%', animation: 'spin 0.7s linear infinite'
+              }} />
             ) : (
-              <>
-                <LogIn className="w-5 h-5" />
-                Sign In
-              </>
+              <><LogIn size={16} /> Sign In</>
             )}
           </button>
         </form>
 
-        <div className="mt-6 text-center">
-          <p className="text-gray-600">
-            Don't have an account?{' '}
-            <Link to="/signup" className="text-amber-700 hover:text-amber-800 font-semibold">
-              Sign Up
-            </Link>
-          </p>
+        <div style={{ marginTop: 24, textAlign: 'center', fontSize: 14, color: '#475569' }}>
+          Don't have an account?{' '}
+          <Link to="/signup" style={{ color: '#10b981', fontWeight: 600, textDecoration: 'none' }}>
+            Sign Up
+          </Link>
         </div>
       </div>
+
+      <style>{`
+        @keyframes slideUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        input::placeholder { color: #334155; }
+      `}</style>
     </div>
   )
 }

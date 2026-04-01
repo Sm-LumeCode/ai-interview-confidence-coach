@@ -1,289 +1,280 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { UserPlus, Mail, Lock, User, Sparkles, AlertCircle } from 'lucide-react'
+import { UserPlus, Mail, Lock, User, AlertCircle, Eye, EyeOff } from 'lucide-react'
+
+const InputField = ({ icon: Icon, type, placeholder, value, onChange, onFocus, onBlur, showToggle, onToggle, showPass }) => (
+  <div style={{ position: 'relative' }}>
+    <Icon size={16} color="#475569" style={{ position: 'absolute', left: 13, top: '50%', transform: 'translateY(-50%)' }} />
+    <input
+      type={showToggle ? (showPass ? 'text' : 'password') : type}
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
+      required
+      style={{
+        width: '100%', padding: `10px ${showToggle ? '40px' : '14px'} 10px 38px`,
+        background: '#0f1117', border: '1px solid #1e2430',
+        borderRadius: 8, fontSize: 14, color: '#f1f5f9',
+        outline: 'none', boxSizing: 'border-box', transition: 'border-color 0.15s'
+      }}
+      onFocus={e => { e.target.style.borderColor = '#10b981'; onFocus?.() }}
+      onBlur={e => { e.target.style.borderColor = '#1e2430'; onBlur?.() }}
+    />
+    {showToggle && (
+      <button type="button" onClick={onToggle} style={{
+        position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)',
+        background: 'none', border: 'none', cursor: 'pointer', color: '#475569', padding: 0
+      }}>
+        {showPass ? <EyeOff size={16} /> : <Eye size={16} />}
+      </button>
+    )}
+  </div>
+)
 
 const Signup = ({ onLogin }) => {
   const navigate = useNavigate()
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    confirmPassword: ''
-  })
+  const [formData, setFormData] = useState({ email: '', password: '', confirmPassword: '' })
   const [username, setUsername] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const [showUsernamePopup, setShowUsernamePopup] = useState(false)
   const [tempUserData, setTempUserData] = useState(null)
+  const [showPass, setShowPass] = useState(false)
+  const [showConfirm, setShowConfirm] = useState(false)
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
-    setError('') // Clear error when user types
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+    setError('')
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError('')
-
-    // Validation
-    if (!formData.email.trim()) {
-      setError('Please enter your email address')
-      return
-    }
-
-    if (!formData.password) {
-      setError('Please enter a password')
-      return
-    }
-
-    if (formData.password.length < 6) {
-      setError('Password must be at least 6 characters long')
-      return
-    }
-
-    if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match')
-      return
-    }
-
+    if (!formData.email.trim()) { setError('Please enter your email address'); return }
+    if (!formData.password) { setError('Please enter a password'); return }
+    if (formData.password.length < 6) { setError('Password must be at least 6 characters'); return }
+    if (formData.password !== formData.confirmPassword) { setError('Passwords do not match'); return }
     setLoading(true)
-
     try {
-      // Check if user already exists in localStorage
       const existingUsers = JSON.parse(localStorage.getItem('users') || '[]')
-      const userExists = existingUsers.find(u => u.email === formData.email)
-      
-      if (userExists) {
-        setError('An account with this email already exists. Please login instead.')
-        setLoading(false)
-        return
+      if (existingUsers.find(u => u.email === formData.email)) {
+        setError('An account with this email already exists.')
+        setLoading(false); return
       }
-
-      // Store temp data and show username popup
-      setTempUserData({
-        email: formData.email,
-        password: formData.password
-      })
+      setTempUserData({ email: formData.email, password: formData.password })
       setShowUsernamePopup(true)
       setLoading(false)
-    } catch (err) {
+    } catch {
       setError('Registration failed. Please try again.')
       setLoading(false)
     }
   }
 
   const handleUsernameSubmit = () => {
-    if (!username.trim()) {
-      setError('Please enter a username')
-      return
-    }
-
-    if (username.length < 3) {
-      setError('Username must be at least 3 characters long')
-      return
-    }
-
+    if (!username.trim()) { setError('Please enter a username'); return }
+    if (username.length < 3) { setError('Username must be at least 3 characters'); return }
     setLoading(true)
-
     try {
-      // Get existing users from localStorage
       const existingUsers = JSON.parse(localStorage.getItem('users') || '[]')
-      
-      // Check if username already exists
-      const usernameExists = existingUsers.find(u => u.username === username)
-      if (usernameExists) {
-        setError('Username already taken. Please choose another one.')
-        setLoading(false)
-        return
+      if (existingUsers.find(u => u.username === username)) {
+        setError('Username already taken. Please choose another.'); setLoading(false); return
       }
-
-      // Create new user object
-      const newUser = {
-        id: Date.now().toString(),
-        username: username,
-        email: tempUserData.email,
-        password: tempUserData.password, // In production, this should be hashed
-        createdAt: new Date().toISOString()
-      }
-
-      // Save to localStorage
+      const newUser = { id: Date.now().toString(), username, email: tempUserData.email, password: tempUserData.password, createdAt: new Date().toISOString() }
       existingUsers.push(newUser)
       localStorage.setItem('users', JSON.stringify(existingUsers))
-
-      // Auto login after signup
-      const userForLogin = {
-        id: newUser.id,
-        username: newUser.username,
-        email: newUser.email
-      }
-      
-      onLogin(userForLogin)
+      onLogin({ id: newUser.id, username: newUser.username, email: newUser.email })
       navigate('/dashboard')
-    } catch (err) {
+    } catch {
       setError('Registration failed. Please try again.')
       setLoading(false)
     }
   }
 
+  const cardStyle = {
+    background: '#161b27',
+    border: '1px solid #1e2430',
+    borderRadius: 16,
+    padding: '40px 36px',
+    width: '100%',
+    maxWidth: 420,
+    boxShadow: '0 25px 60px rgba(0,0,0,0.6)',
+    animation: 'slideUp 0.35s ease forwards'
+  }
+
+  const labelStyle = { fontSize: 13, fontWeight: 600, color: '#94a3b8', display: 'block', marginBottom: 6 }
+
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-beige-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse-slow"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-beige-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse-slow"></div>
+    <div style={{
+      minHeight: '100vh', background: '#0f1117',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      padding: 20, fontFamily: "'Inter', sans-serif"
+    }}>
+      {/* Glows */}
+      <div style={{ position: 'fixed', inset: 0, overflow: 'hidden', pointerEvents: 'none', zIndex: 0 }}>
+        <div style={{ position: 'absolute', top: '-20%', right: '-10%', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(16,185,129,0.12) 0%, transparent 70%)' }} />
+        <div style={{ position: 'absolute', bottom: '-20%', left: '-10%', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%)' }} />
       </div>
 
-      <div className="relative glass-effect rounded-2xl shadow-2xl p-8 w-full max-w-md animate-fade-in">
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-amber-600 to-amber-700 rounded-full mb-4">
-            <Sparkles className="w-8 h-8 text-white" />
+      <div style={{ position: 'relative', zIndex: 1, ...cardStyle }}>
+        {/* Header */}
+        <div style={{ textAlign: 'center', marginBottom: 28 }}>
+          <div style={{
+            width: 52, height: 52, borderRadius: 14,
+            background: 'linear-gradient(135deg, #10b981, #059669)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            margin: '0 auto 14px',
+            boxShadow: '0 8px 24px rgba(16,185,129,0.3)'
+          }}>
+            <UserPlus size={24} color="white" />
           </div>
-          <h1 className="text-3xl font-bold text-beige-800 mb-2">Create Account</h1>
-          <p className="text-gray-600">Start your interview preparation journey</p>
+          <h1 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 24, fontWeight: 800, color: '#f1f5f9', marginBottom: 6 }}>
+            Create Account
+          </h1>
+          <p style={{ fontSize: 14, color: '#64748b' }}>Start your interview preparation journey</p>
         </div>
 
-        {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4 animate-slide-up flex items-center gap-2">
-            <AlertCircle className="w-5 h-5 flex-shrink-0" />
-            <span className="text-sm">{error}</span>
+        {error && !showUsernamePopup && (
+          <div style={{ background: '#1f0f0f', border: '1px solid #7f1d1d', borderRadius: 8, padding: '10px 14px', marginBottom: 18, display: 'flex', alignItems: 'center', gap: 10 }}>
+            <AlertCircle size={15} color="#ef4444" style={{ flexShrink: 0 }} />
+            <span style={{ fontSize: 13, color: '#fca5a5' }}>{error}</span>
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Email Address
-            </label>
-            <div className="relative">
-              <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className="input-field pl-10"
-                placeholder="your@email.com"
-                required
-              />
-            </div>
+            <label style={labelStyle}>Email Address</label>
+            <InputField icon={Mail} type="email" placeholder="your@email.com" value={formData.email}
+              onChange={e => { handleChange(e) }} />
+            <input name="email" style={{ display: 'none' }} onChange={handleChange} />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Password
-            </label>
-            <div className="relative">
-              <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-              <input
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                className="input-field pl-10"
-                placeholder="••••••••"
-                required
-                minLength={6}
-              />
-            </div>
+            <label style={labelStyle}>Password</label>
+            <InputField icon={Lock} type="password" placeholder="Min. 6 characters" value={formData.password}
+              onChange={e => { setFormData(f => ({ ...f, password: e.target.value })); setError('') }}
+              showToggle showPass={showPass} onToggle={() => setShowPass(p => !p)} />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Confirm Password
-            </label>
-            <div className="relative">
-              <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-              <input
-                type="password"
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                className="input-field pl-10"
-                placeholder="••••••••"
-                required
-                minLength={6}
-              />
-            </div>
+            <label style={labelStyle}>Confirm Password</label>
+            <InputField icon={Lock} type="password" placeholder="Repeat password" value={formData.confirmPassword}
+              onChange={e => { setFormData(f => ({ ...f, confirmPassword: e.target.value })); setError('') }}
+              showToggle showPass={showConfirm} onToggle={() => setShowConfirm(p => !p)} />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="btn-primary w-full flex items-center justify-center gap-2"
+            style={{
+              marginTop: 4,
+              background: loading ? '#065f46' : 'linear-gradient(135deg, #10b981, #059669)',
+              color: 'white', padding: '11px 20px',
+              borderRadius: 8, fontSize: 14, fontWeight: 600,
+              border: 'none', cursor: loading ? 'not-allowed' : 'pointer',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+              transition: 'all 0.15s', boxShadow: loading ? 'none' : '0 4px 14px rgba(16,185,129,0.3)'
+            }}
           >
-            {loading ? (
-              <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white"></div>
-            ) : (
-              <>
-                <UserPlus className="w-5 h-5" />
-                Sign Up
-              </>
-            )}
+            {loading
+              ? <div style={{ width: 18, height: 18, border: '2px solid rgba(255,255,255,0.3)', borderTopColor: 'white', borderRadius: '50%', animation: 'spin 0.7s linear infinite' }} />
+              : <><UserPlus size={16} /> Sign Up</>
+            }
           </button>
         </form>
 
-        <div className="mt-6 text-center">
-          <p className="text-gray-600">
-            Already have an account?{' '}
-            <Link to="/login" className="text-amber-700 hover:text-amber-800 font-semibold">
-              Sign In
-            </Link>
-          </p>
+        <div style={{ marginTop: 22, textAlign: 'center', fontSize: 14, color: '#475569' }}>
+          Already have an account?{' '}
+          <Link to="/login" style={{ color: '#10b981', fontWeight: 600, textDecoration: 'none' }}>Sign In</Link>
         </div>
       </div>
 
-      {/* Username Selection Popup */}
+      {/* Username Popup */}
       {showUsernamePopup && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 animate-fade-in">
-          <div className="glass-effect rounded-2xl shadow-2xl p-8 w-full max-w-md animate-slide-up">
-            <div className="text-center mb-6">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-amber-600 to-amber-700 rounded-full mb-4">
-                <User className="w-8 h-8 text-white" />
+        <div style={{
+          position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.7)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          zIndex: 100, padding: 20
+        }}>
+          <div style={{
+            background: '#161b27', border: '1px solid #1e2430',
+            borderRadius: 16, padding: '36px 32px',
+            width: '100%', maxWidth: 380,
+            boxShadow: '0 25px 60px rgba(0,0,0,0.8)',
+            animation: 'slideUp 0.25s ease forwards'
+          }}>
+            <div style={{ textAlign: 'center', marginBottom: 24 }}>
+              <div style={{
+                width: 48, height: 48, borderRadius: 12,
+                background: 'linear-gradient(135deg, #3b82f6, #2563eb)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                margin: '0 auto 14px',
+                boxShadow: '0 8px 20px rgba(59,130,246,0.3)'
+              }}>
+                <User size={22} color="white" />
               </div>
-              <h2 className="text-2xl font-bold text-beige-800 mb-2">Choose Your Username</h2>
-              <p className="text-gray-600">Pick a unique username for your account</p>
+              <h2 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 20, fontWeight: 700, color: '#f1f5f9', marginBottom: 4 }}>
+                Choose Username
+              </h2>
+              <p style={{ fontSize: 13, color: '#64748b' }}>Pick a unique display name</p>
             </div>
 
             {error && (
-              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4 flex items-center gap-2">
-                <AlertCircle className="w-5 h-5 flex-shrink-0" />
-                <span className="text-sm">{error}</span>
+              <div style={{ background: '#1f0f0f', border: '1px solid #7f1d1d', borderRadius: 8, padding: '10px 14px', marginBottom: 16, display: 'flex', alignItems: 'center', gap: 10 }}>
+                <AlertCircle size={15} color="#ef4444" style={{ flexShrink: 0 }} />
+                <span style={{ fontSize: 13, color: '#fca5a5' }}>{error}</span>
               </div>
             )}
-            
-            <div className="space-y-4">
-              <div className="relative">
-                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+
+            <div style={{ marginBottom: 14 }}>
+              <div style={{ position: 'relative' }}>
+                <User size={16} color="#475569" style={{ position: 'absolute', left: 13, top: '50%', transform: 'translateY(-50%)' }} />
                 <input
                   type="text"
                   value={username}
-                  onChange={(e) => {
-                    setUsername(e.target.value)
-                    setError('')
-                  }}
-                  className="input-field pl-10"
-                  placeholder="Enter username"
+                  onChange={e => { setUsername(e.target.value); setError('') }}
+                  placeholder="e.g. alex_chen"
                   autoFocus
                   minLength={3}
+                  style={{
+                    width: '100%', padding: '10px 14px 10px 38px',
+                    background: '#0f1117', border: '1px solid #1e2430',
+                    borderRadius: 8, fontSize: 14, color: '#f1f5f9',
+                    outline: 'none', boxSizing: 'border-box', transition: 'border-color 0.15s'
+                  }}
+                  onFocus={e => e.target.style.borderColor = '#10b981'}
+                  onBlur={e => e.target.style.borderColor = '#1e2430'}
+                  onKeyDown={e => e.key === 'Enter' && handleUsernameSubmit()}
                 />
               </div>
-              
-              <button
-                onClick={handleUsernameSubmit}
-                disabled={loading}
-                className="btn-primary w-full flex items-center justify-center gap-2"
-              >
-                {loading ? (
-                  <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white"></div>
-                ) : (
-                  'Create Account'
-                )}
-              </button>
             </div>
+
+            <button
+              onClick={handleUsernameSubmit}
+              disabled={loading}
+              style={{
+                width: '100%',
+                background: 'linear-gradient(135deg, #10b981, #059669)',
+                color: 'white', padding: '11px 20px',
+                borderRadius: 8, fontSize: 14, fontWeight: 600,
+                border: 'none', cursor: loading ? 'not-allowed' : 'pointer',
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                boxShadow: '0 4px 14px rgba(16,185,129,0.3)'
+              }}
+            >
+              {loading
+                ? <div style={{ width: 18, height: 18, border: '2px solid rgba(255,255,255,0.3)', borderTopColor: 'white', borderRadius: '50%', animation: 'spin 0.7s linear infinite' }} />
+                : 'Create Account →'
+              }
+            </button>
           </div>
         </div>
       )}
+
+      <style>{`
+        @keyframes slideUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        input::placeholder { color: #334155; }
+      `}</style>
     </div>
   )
 }

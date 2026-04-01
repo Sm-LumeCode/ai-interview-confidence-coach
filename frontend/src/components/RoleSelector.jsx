@@ -1,102 +1,165 @@
 import React from 'react'
-import { Code, Database, Brain, Cloud, Shield, Users } from 'lucide-react'
+import { Code, Database, Brain, Cloud, Shield, Users, ArrowRight } from 'lucide-react'
 
 const categories = [
   {
     id: 'software_development',
     name: 'Software Development',
     icon: Code,
-    color: 'from-blue-500 to-cyan-500',
-    description: 'Master coding interviews and system design'
+    accent: '#3b82f6',
+    accentLight: '#dbeafe',
+    description: 'Coding, system design & architecture'
   },
   {
     id: 'data_analytics',
     name: 'Data & Analytics',
     icon: Database,
-    color: 'from-purple-500 to-pink-500',
-    description: 'Excel in data analysis and visualization'
+    accent: '#8b5cf6',
+    accentLight: '#ede9fe',
+    description: 'Data analysis, SQL & visualization'
   },
   {
     id: 'data_science_ml',
     name: 'Data Science & ML',
     icon: Brain,
-    color: 'from-green-500 to-emerald-500',
-    description: 'Ace machine learning and AI interviews'
+    accent: '#10b981',
+    accentLight: '#d1fae5',
+    description: 'Machine learning & AI concepts'
   },
   {
     id: 'cloud_devops',
     name: 'Cloud & DevOps',
     icon: Cloud,
-    color: 'from-orange-500 to-red-500',
-    description: 'Prepare for cloud and DevOps roles'
+    accent: '#f59e0b',
+    accentLight: '#fef3c7',
+    description: 'AWS, GCP, CI/CD pipelines'
   },
   {
     id: 'cybersecurity',
     name: 'Cybersecurity',
     icon: Shield,
-    color: 'from-indigo-500 to-purple-500',
-    description: 'Secure your cybersecurity interview'
+    accent: '#6366f1',
+    accentLight: '#e0e7ff',
+    description: 'Security principles & threat modeling'
   },
   {
     id: 'hr_round',
     name: 'HR Round',
     icon: Users,
-    color: 'from-pink-500 to-rose-500',
-    description: 'Prepare for behavioral and HR interviews'
+    accent: '#ec4899',
+    accentLight: '#fce7f3',
+    description: 'Behavioral & situational questions'
   }
 ]
 
 const RoleSelector = ({ onSelectRole, userProgress = {} }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-      {categories.map((category, index) => {
-        const Icon = category.icon
-        const progress = userProgress[category.id]
+    <div style={{
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+      gap: 16
+    }}>
+      {categories.map((cat, index) => {
+        const Icon = cat.icon
+        const progress = userProgress[cat.id]
         const hasProgress = progress && progress.currentQuestionIndex > 0
-        const progressPercent = hasProgress 
+        const pct = hasProgress
           ? Math.round((progress.currentQuestionIndex / progress.totalQuestions) * 100)
           : 0
-        
+
         return (
-          <div
-            key={category.id}
-            className="card cursor-pointer transform hover:scale-105 animate-fade-in relative overflow-hidden"
-            style={{ animationDelay: `${index * 100}ms` }}
-            onClick={() => onSelectRole(category.id)}
+          <button
+            key={cat.id}
+            onClick={() => onSelectRole(cat.id)}
+            className="animate-slide-up"
+            style={{
+              animationDelay: `${index * 60}ms`,
+              background: 'white',
+              border: '1px solid #e2e8f0',
+              borderRadius: 12,
+              padding: 20,
+              textAlign: 'left',
+              cursor: 'pointer',
+              transition: 'all 0.15s ease',
+              position: 'relative',
+              overflow: 'hidden'
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.borderColor = cat.accent
+              e.currentTarget.style.boxShadow = `0 4px 20px ${cat.accent}22`
+              e.currentTarget.style.transform = 'translateY(-2px)'
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.borderColor = '#e2e8f0'
+              e.currentTarget.style.boxShadow = 'none'
+              e.currentTarget.style.transform = 'translateY(0)'
+            }}
           >
-            <div className={`w-16 h-16 rounded-full bg-gradient-to-r ${category.color} flex items-center justify-center mb-4`}>
-              <Icon className="w-8 h-8 text-white" />
+            {/* Icon */}
+            <div style={{
+              width: 44,
+              height: 44,
+              borderRadius: 10,
+              background: cat.accentLight,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: 14
+            }}>
+              <Icon size={22} color={cat.accent} />
             </div>
-            <h3 className="text-xl font-bold text-gray-800 mb-2">{category.name}</h3>
-            <p className="text-gray-600 mb-4">{category.description}</p>
-            
-            {hasProgress && (
-              <div className="mb-4">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs font-semibold text-gray-600">
-                    {progress.currentQuestionIndex} of {progress.totalQuestions} questions completed
-                  </span>
-                  <span className="text-xs font-semibold text-gray-600">
-                    {progressPercent}%
-                  </span>
+
+            {/* Title */}
+            <div style={{
+              fontFamily: "'Plus Jakarta Sans', sans-serif",
+              fontWeight: 700,
+              fontSize: 15,
+              color: '#0f172a',
+              marginBottom: 4
+            }}>
+              {cat.name}
+            </div>
+
+            <div style={{ fontSize: 13, color: '#64748b', marginBottom: 16 }}>
+              {cat.description}
+            </div>
+
+            {/* Progress bar */}
+            {hasProgress ? (
+              <div style={{ marginBottom: 12 }}>
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  fontSize: 11,
+                  color: '#94a3b8',
+                  fontWeight: 500,
+                  marginBottom: 6
+                }}>
+                  <span>{progress.currentQuestionIndex}/{progress.totalQuestions} done</span>
+                  <span>{pct}%</span>
                 </div>
-                <div className="bg-gray-200 rounded-full h-2 overflow-hidden">
+                <div className="progress-bar-track" style={{ height: 5 }}>
                   <div
-                    className={`h-full bg-gradient-to-r ${category.color} transition-all duration-500`}
-                    style={{ width: `${progressPercent}%` }}
-                  ></div>
+                    className="progress-bar-fill"
+                    style={{ width: `${pct}%`, background: cat.accent }}
+                  />
                 </div>
-                <p className="text-xs text-blue-600 mt-2 font-medium">Continue from Question {progress.currentQuestionIndex + 1}</p>
               </div>
-            )}
-            
-            <div className="mt-4 flex items-center text-blue-600 font-semibold">
+            ) : null}
+
+            {/* CTA */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 6,
+              fontSize: 13,
+              fontWeight: 600,
+              color: cat.accent
+            }}>
               <span>{hasProgress ? 'Continue Practice' : 'Start Practice'}</span>
-              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
+              <ArrowRight size={14} />
             </div>
-          </div>
+          </button>
         )
       })}
     </div>

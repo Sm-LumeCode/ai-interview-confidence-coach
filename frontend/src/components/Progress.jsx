@@ -1,417 +1,177 @@
 import Navbar from './Navbar'
-import { TrendingUp, Award, Target, CheckCircle } from 'lucide-react'
+import { TrendingUp, Award, Target, CheckCircle, BarChart2 } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { getDailyProgressTimeline } from '../utils/dailyProgressManager.js'
 import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-  CartesianGrid,
+  LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, ReferenceLine
 } from 'recharts'
-import { getCategoryProgress } from '../utils/categoryProgressManager'
-import { CATEGORY_TOTALS } from '../utils/categoryProgressManager'
-import { ReferenceLine } from 'recharts'
+import { getCategoryProgress, CATEGORY_TOTALS } from '../utils/categoryProgressManager'
 
-const Progress = ({ user, onLogout }) => {
-  // Mock data - replace with actual API data
-   
-  const categories = [
-  'Software Development',
-  'Data & Analytics',
-  'Data Science & ML',
-  'Cloud & DevOps',
-  'Cybersecurity',
-  'HR Round'
+const categories = [
+  'Software Development', 'Data & Analytics', 'Data Science & ML',
+  'Cloud & DevOps', 'Cybersecurity', 'HR Round'
 ]
-const CATEGORY_KEY_MAP = {
-  'Software Development': 'software_development',
-  'Data & Analytics': 'data_analytics',
-  'Data Science & ML': 'data_science_ml',
-  'Cloud & DevOps': 'cloud_devops',
-  'Cybersecurity': 'cybersecurity',
-  'HR Round': 'hr_round'
+
+const CAT_COLORS = {
+  'Software Development': '#3b82f6',
+  'Data & Analytics': '#8b5cf6',
+  'Data Science & ML': '#10b981',
+  'Cloud & DevOps': '#f59e0b',
+  'Cybersecurity': '#6366f1',
+  'HR Round': '#ec4899'
 }
 
-const categoryProgress = categories.map(cat => {
-  const key = CATEGORY_KEY_MAP[cat] 
-  const data = getCategoryProgress(user.email, cat)
-
-  if (!data) {
-    return {
-      name: cat,
-      completed: 0,
-      total: CATEGORY_TOTALS[cat]||0,
-      score: 0
-      
-    }
-  }
-
-  const avgScore =
-    [...data.technicalScores, ...data.confidenceScores]
-      .reduce((a, b) => a + b, 0) /
-    (data.technicalScores.length + data.confidenceScores.length)
-
-  return {
-    name: cat,
-    completed: data.completed,
-    total: CATEGORY_TOTALS[cat]||0,
-    score: Math.round(avgScore)
-  }
-})
-
-
+const Progress = ({ user, onLogout }) => {
   const [dailyTimeline, setDailyTimeline] = useState([])
 
-useEffect(() => {
-  if (!user?.email) return
+  useEffect(() => {
+    if (!user?.email) return
+    setDailyTimeline(getDailyProgressTimeline(user.email))
+  }, [user])
 
-  const timeline = getDailyProgressTimeline(user.email)
-  setDailyTimeline(timeline)
-}, [user])
-const strongestCategory =
-  categoryProgress.every(cat => cat.score === 0)
-    ? 'Not enough data yet'
-    : categoryProgress.reduce(
-        (best, current) => (current.score > best.score ? current : best),
-        categoryProgress[0]
-      ).name
+  const categoryProgress = categories.map(cat => {
+    const data = getCategoryProgress(user.email, cat)
+    if (!data) return { name: cat, completed: 0, total: CATEGORY_TOTALS[cat] || 0, score: 0 }
+    const avgScore =
+      [...data.technicalScores, ...data.confidenceScores].reduce((a, b) => a + b, 0) /
+      (data.technicalScores.length + data.confidenceScores.length)
+    return { name: cat, completed: data.completed, total: CATEGORY_TOTALS[cat] || 0, score: Math.round(avgScore) }
+  })
 
+  const practicedDays = dailyTimeline.filter(d => d.didPractice).length
+  const validDays = dailyTimeline.filter(d => d.technicalScore !== null)
+  const avgTechnical = validDays.length
+    ? Math.round(validDays.reduce((s, d) => s + d.technicalScore, 0) / validDays.length) : 0
+  const avgConfidence = validDays.length
+    ? Math.round(validDays.reduce((s, d) => s + (d.confidenceScore || 0), 0) / validDays.length) : 0
+  const totalQuestions = dailyTimeline.reduce((s, d) => s + (d.questionCount || 0), 0)
 
-const practicedDays = dailyTimeline.filter(d => d.didPractice).length
+  const strongestCategory = categoryProgress.every(c => c.score === 0)
+    ? '—'
+    : categoryProgress.reduce((best, c) => c.score > best.score ? c : best, categoryProgress[0]).name
 
-const avgTechnical =
-  dailyTimeline.filter(d => d.technicalScore !== null)
-    .reduce((sum, d) => sum + d.technicalScore, 0) /
-  (dailyTimeline.filter(d => d.technicalScore !== null).length || 1)
+  const totalDays = dailyTimeline.length
+  const startDay = Math.max(1, totalDays - 6)
+  const chartData = Array.from({ length: 7 }, (_, i) => {
+    const d = dailyTimeline[startDay - 1 + i]
+    return {
+      day: `Day ${startDay + i}`,
+      technical: d?.didPractice ? d.technicalScore : null,
+      communication: d?.didPractice ? d.confidenceScore : null,
+      date: d?.date || null
+    }
+  })
+  const currentDayLabel = `Day ${Math.min(totalDays, 7)}`
 
-const avgConfidence =
-  dailyTimeline.filter(d => d.confidenceScore !== null)
-    .reduce((sum, d) => sum + d.confidenceScore, 0) /
-  (dailyTimeline.filter(d => d.confidenceScore !== null).length || 1)
+  const StatCard = ({ icon: Icon, iconBg, iconColor, label, value }) => (
+    <div className="stat-card animate-slide-up">
+      <div className="stat-card-icon" style={{ background: iconBg }}>
+        <Icon size={18} color={iconColor} />
+      </div>
+      <p className="stat-card-label">{label}</p>
+      <p className="stat-card-value" style={{ fontSize: 26 }}>{value}</p>
+    </div>
+  )
 
-const overallAverage = Math.round((avgTechnical + avgConfidence) / 2)
-const technicalScore = Math.round(avgTechnical) || 0
-const communicationScore = Math.round(avgConfidence) || 0
-
-const totalQuestions = dailyTimeline.reduce(
-  (sum, d) => sum + (d.questionCount || 0),
-  0
-)
-
-const last7Days = dailyTimeline.slice(-7)
-const currentDayIndex = dailyTimeline.length
-  ? Math.min(dailyTimeline.length, 7)
-  : 1
-
-const currentDayLabel = `Day ${currentDayIndex}`
-const totalDays = dailyTimeline.length
-const startDay = Math.max(1, totalDays - 6)
-
-const chartData = Array.from({ length: 7 }, (_, i) => {
-  const dayData = dailyTimeline[startDay - 1 + i]
-
-  return {
-    day: `Day ${startDay + i}`,
-    technical: dayData?.didPractice ? dayData.technicalScore : null,
-    communication: dayData?.didPractice ? dayData.confidenceScore : null,
-    date: dayData?.date || null
+  const CustomTooltip = ({ active, payload, label }) => {
+    if (!active || !payload?.length) return null
+    return (
+      <div style={{
+        background: 'white', border: '1px solid #e2e8f0', borderRadius: 8,
+        padding: '10px 14px', fontSize: 13, boxShadow: '0 4px 16px rgba(0,0,0,0.08)'
+      }}>
+        <p style={{ fontWeight: 600, marginBottom: 4, color: '#0f172a' }}>
+          {payload[0]?.payload?.date || label}
+        </p>
+        {payload.map(p => (
+          <p key={p.dataKey} style={{ color: p.color }}>
+            {p.dataKey === 'technical' ? 'Technical' : 'Communication'}: {p.value}%
+          </p>
+        ))}
+      </div>
+    )
   }
-})
 
   return (
-    <div className="min-h-screen">
+    <div className="app-layout">
       <Navbar user={user} onLogout={onLogout} />
-      
-      <div className="max-w-6xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold text-white mb-8 animate-fade-in">Progress Tracking</h1>
 
-        {/* Stats Overview */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
-          <div className="card animate-slide-up">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center">
-                <Target className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <p className="text-gray-600 text-sm">Questions Answered</p>
-                <p className="text-2xl font-bold text-gray-800">{totalQuestions}</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="card animate-slide-up" style={{ animationDelay: '100ms' }}>
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
-                <CheckCircle className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <p className="text-gray-600 text-sm">Challenges Done</p>
-                <p className="text-2xl font-bold text-gray-800">{practicedDays}</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="card animate-slide-up" style={{ animationDelay: '200ms' }}>
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center">
-                <TrendingUp className="w-6 h-6 text-white" />
-              </div>
-              <div>
-               <p className="text-gray-600 text-sm">Technical Score</p>
-<p className="text-2xl font-bold text-gray-800">{technicalScore}%</p>
-
-              </div>
-            </div>
-          </div>
-
-          <div className="card animate-slide-up" style={{ animationDelay: '300ms' }}>
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-r from-orange-500 to-red-500 flex items-center justify-center">
-                <Award className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <p className="text-gray-600 text-sm">Communication Score</p>
-                <p className="text-2xl font-bold text-gray-800">{communicationScore}%</p>
-
-              </div>
-            </div>
-          </div>
-          <div className="card animate-slide-up" style={{ animationDelay: '400ms' }}>
-  <div className="flex items-center gap-4">
-    <div className="w-12 h-12 rounded-full bg-gradient-to-r from-orange-500 to-red-500 flex items-center justify-center">
-      <Award className="w-6 h-6 text-white" />
-    </div>
-    <div>
-      <p className="text-gray-600 text-sm">Best Category</p>
-      <p className="text-lg font-bold text-gray-800">{strongestCategory}</p>
-    </div>
-  </div>
-</div>
-
+      <main className="main-content">
+        <div className="page-header">
+          <h1 className="page-title">Analytics</h1>
+          <p className="page-subtitle">Track your progress and performance over time</p>
         </div>
-        
-        {/* Category Progress */}
+
+        {/* Stats */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 16, marginBottom: 24 }}>
+          <StatCard icon={Target} iconBg="#d1fae5" iconColor="#10b981" label="Questions Answered" value={totalQuestions} />
+          <StatCard icon={CheckCircle} iconBg="#ede9fe" iconColor="#8b5cf6" label="Practice Days" value={practicedDays} />
+          <StatCard icon={TrendingUp} iconBg="#dbeafe" iconColor="#3b82f6" label="Technical Score" value={`${avgTechnical}%`} />
+          <StatCard icon={Award} iconBg="#fef3c7" iconColor="#f59e0b" label="Communication" value={`${avgConfidence}%`} />
+          <div className="stat-card animate-slide-up" style={{ animationDelay: '320ms' }}>
+            <div className="stat-card-icon" style={{ background: '#fce7f3' }}>
+              <BarChart2 size={18} color="#ec4899" />
+            </div>
+            <p className="stat-card-label">Best Category</p>
+            <p style={{ fontWeight: 700, fontSize: 13, color: '#0f172a', marginTop: 4 }}>{strongestCategory}</p>
+          </div>
+        </div>
+
+        {/* Charts */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 24 }}>
+          {[
+            { key: 'technical', color: '#3b82f6', label: 'Technical Progress' },
+            { key: 'communication', color: '#10b981', label: 'Communication Progress' }
+          ].map(({ key, color, label }) => (
+            <div key={key} className="card animate-fade-in">
+              <h3 className="card-title">{label}</h3>
+              <ResponsiveContainer width="100%" height={220}>
+                <LineChart data={chartData} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
+                  <ReferenceLine x={currentDayLabel} stroke="#f59e0b" strokeDasharray="4 4"
+                    label={{ value: 'Today', position: 'top', fill: '#f59e0b', fontSize: 11 }} />
+                  <XAxis dataKey="day" tick={{ fontSize: 11, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
+                  <YAxis domain={[0, 100]} ticks={[0, 25, 50, 75, 100]} tick={{ fontSize: 11, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
+                  <Tooltip content={<CustomTooltip />} />
+                  <Line type="monotone" dataKey={key} stroke={color} strokeWidth={2.5}
+                    dot={{ fill: color, r: 3, strokeWidth: 0 }} activeDot={{ r: 5 }}
+                    connectNulls={false} animationDuration={1000} />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          ))}
+        </div>
+
+        {/* Category Breakdown */}
         <div className="card animate-fade-in">
-          <h2 className="text-2xl font-bold gradient-text mb-6">Category Progress</h2>
-          
-          <div className="space-y-6">
-            {categoryProgress.map((category, index) => (
-              <div key={index} className="animate-slide-up" style={{ animationDelay: `${index * 100}ms` }}>
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-semibold text-gray-800">{category.name}</h3>
-                  <span className="text-sm text-gray-600">
-                    {category.completed}/{category.total} completed • Score: {category.score}%
-                  </span>
+          <h2 className="card-title">Category Breakdown</h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            {categoryProgress.map((cat, i) => {
+              const pct = cat.total > 0 ? Math.round((cat.completed / cat.total) * 100) : 0
+              const color = CAT_COLORS[cat.name] || '#10b981'
+              return (
+                <div key={i} className="animate-slide-up" style={{ animationDelay: `${i * 80}ms` }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, alignItems: 'center' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                      <div style={{ width: 10, height: 10, borderRadius: '50%', background: color }} />
+                      <span style={{ fontSize: 14, fontWeight: 600, color: '#0f172a' }}>{cat.name}</span>
+                    </div>
+                    <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+                      <span className="badge badge-blue" style={{ background: `${color}18`, color }}>
+                        Score: {cat.score}%
+                      </span>
+                      <span style={{ fontSize: 13, color: '#94a3b8' }}>{cat.completed}/{cat.total}</span>
+                    </div>
+                  </div>
+                  <div className="progress-bar-track" style={{ height: 8 }}>
+                    <div className="progress-bar-fill" style={{ width: `${pct}%`, background: color }} />
+                  </div>
                 </div>
-                <div className="bg-gray-200 rounded-full h-4 overflow-hidden">
-                  <div
-                    className="h-full bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-1000 ease-out"
-                    style={{
-  width:
-    category.total > 0
-      ? `${(category.completed / category.total) * 100}%`
-      : '0%'
-}}
-
-                  ></div>
-                </div>
-              </div>
-            ))}
-            <div className="mt-12 mb-8 text-center">
-  <h2 className="text-3xl font-bold text-purple-700">
-    Daily Performance Insights
-  </h2>
-  <p className="mt-2 text-sm text-gray-600">
-    Track how your skills improve every day
-  </p>
-</div>
-
-
-
-            {/* Daily Progress Graphs */}
-        <div className="mt-12 rounded-2xl bg-purple-400 p-8">
-
-
-<div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
-  
-  {/* Technical Score Graph */}
-  <div className="bg-white rounded-xl p-6 shadow-md">
-    <h2 className="text-xl font-bold text-blue-900 mb-4">
-      Technical Progress (Day-wise)
-    </h2>
-    <div className="rounded-xl p-4 bg-white shadow-md overflow-visible">
-
-
-    <ResponsiveContainer width="100%" height={300}>
-      <LineChart
-  data={chartData}
-  margin={{ top: 20, right: 20, left: 0, bottom: 0 }}
->
-
-        <CartesianGrid strokeDasharray="3 3" opacity={0.5} />
-
-<ReferenceLine
-  x={currentDayLabel}
-  stroke="#f2a918"
-  strokeWidth={2}
-  strokeDasharray="4 4"
-  label={{
-    value: 'Today',
-    position: 'top',
-    fill: '#d29e1c',
-    fontSize: 12,
-    fontWeight: 600
-  }}
-/>
-       <XAxis
-  dataKey="day"
-  scale="point"
-  interval={0}
-  padding={{left:20, right:20}}
-  tick={{ fontSize: 12 }}
-/>
-
-       <YAxis
-  domain={[0, 100]}
-  ticks={[0, 20, 40, 60, 80, 100]}
-  allowDecimals={false}
-  allowDataOverflow
-  hide={false}
-  tick={{ fill: '#1f2937', fontSize: 12, fontWeight: 500 }}
-  axisLine={{ stroke: '#374151' }}
-  tickLine={{ stroke: '#374151' }}
-/>
-
-
-
-       <Tooltip
-  formatter={(value, name, props) => [
-    value,
-    name === 'technical' ? 'Technical Score' : 'Communication Score'
-  ]}
-  labelFormatter={(label, payload) => {
-    const date = payload?.[0]?.payload?.date
-    return date ? `Date: ${date}` : label
-  }}
-  contentStyle={{
-    borderRadius: '8px',
-    border: 'none',
-    fontSize: '14px',
-    boxShadow: '0 10px 25px rgba(0,0,0,0.1)'
-  }}
-/>
-
-        <Line
-  type="monotone"
-  dataKey="technical"
-  stroke="#3b82f6"
-  strokeWidth={3}
-  dot={{ fill: '#3b82f6', r: 4 }}
-  activeDot={{ r: 6 }}
-  connectNulls={false}
-  isAnimationActive
-  animationDuration={1200}
-/>
-
-      </LineChart>
-    </ResponsiveContainer>
-    </div>
-     </div>
-
-  {/* Communication Score Graph */}
-  <div className="bg-white rounded-xl p-6 shadow-md">
-
-
-    <h2 className="text-xl font-bold text-blue-900 mb-4">
-      Communication Progress (Day-wise)
-    </h2>
-<div className="rounded-xl p-4 bg-white shadow-md overflow-visible">
-
-    <ResponsiveContainer width="100%" height={300}>
-      <LineChart
-  data={chartData}
-  margin={{ top: 20, right: 20, left: 0, bottom: 0 }}
->
-
-        <CartesianGrid strokeDasharray="3 3" opacity={0.5} />
-    
-<ReferenceLine
-  x={currentDayLabel}
-  stroke="#f2a918"
-  strokeWidth={2}
-  strokeDasharray="4 4"
-  label={{
-    value: 'Today',
-    position: 'top',
-    fill: '#d29e1c',
-    fontSize: 12,
-    fontWeight: 600
-  }}
-/>
-        <XAxis
-  dataKey="day"
-  scale="point"
-  interval={0}
-  padding={{left:20, right:20}}
-  tick={{ fontSize: 12 }}
-/>
-        <YAxis
-  domain={[0, 100]}
-  ticks={[0, 20, 40, 60, 80, 100]}
-  allowDecimals={false}
-  allowDataOverflow
-  hide={false}
-  tick={{ fill: '#1f2937', fontSize: 12, fontWeight: 500 }}
-  axisLine={{ stroke: '#374151' }}
-  tickLine={{ stroke: '#374151' }}
-/>
-
-
-
-       <Tooltip
-  formatter={(value, name, props) => [
-    value,
-    name === 'technical' ? 'Technical Score' : 'Communication Score'
-  ]}
-  labelFormatter={(label, payload) => {
-    const date = payload?.[0]?.payload?.date
-    return date ? `Date: ${date}` : label
-  }}
-  contentStyle={{
-    borderRadius: '8px',
-    fontSize: '14px',
-    border: 'none',
-    boxShadow: '0 10px 25px rgba(0,0,0,0.1)'
-  }}
-/>
-
-
-        <Line
-  type="monotone"
-  dataKey="communication"
-  stroke="#22c55e"
-  strokeWidth={3}
-  dot={{ fill: '#22c55e', r: 4 }}
-  activeDot={{ r: 6 }}
-  connectNulls={false}
-  isAnimationActive
-  animationDuration={1200}
-/>
-
-      </LineChart>
-    </ResponsiveContainer>
-    </div>
-  </div>
-
-</div>
-
+              )
+            })}
           </div>
         </div>
-      </div>
-      </div>
+      </main>
     </div>
   )
 }

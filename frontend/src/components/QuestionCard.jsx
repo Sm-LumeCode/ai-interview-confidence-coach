@@ -4,22 +4,31 @@ import { MessageSquare } from 'lucide-react'
 const QuestionCard = ({ question, currentQuestion, totalQuestions }) => {
   return (
     <div className="card animate-slide-up">
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-2">
-          <MessageSquare className="w-6 h-6 text-amber-700" />
-          <span className="text-sm font-semibold text-gray-600">
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <div style={{
+            width: 32, height: 32, borderRadius: 8, background: '#d1fae5',
+            display: 'flex', alignItems: 'center', justifyContent: 'center'
+          }}>
+            <MessageSquare size={16} color="#10b981" />
+          </div>
+          <span style={{ fontSize: 13, fontWeight: 600, color: '#64748b' }}>
             Question {currentQuestion} of {totalQuestions}
           </span>
         </div>
-        <div className="px-4 py-1 bg-amber-100 text-amber-700 rounded-full text-sm font-semibold">
-          Interview Question
-        </div>
+        <span className="badge badge-blue">Interview Q</span>
       </div>
 
-      <div className="bg-gradient-to-r from-amber-50 to-beige-50 rounded-lg p-6">
-        <h2 className="text-2xl font-bold text-gray-800 leading-relaxed">
-          {question?.question || 'Loading question...'}
-        </h2>
+      <div style={{
+        background: '#f8fafc', border: '1px solid #e2e8f0',
+        borderRadius: 10, padding: '20px 24px'
+      }}>
+        <p style={{
+          fontFamily: "'Plus Jakarta Sans', sans-serif",
+          fontSize: 18, fontWeight: 700, color: '#0f172a', lineHeight: 1.5
+        }}>
+          {question?.question || 'Loading question…'}
+        </p>
       </div>
     </div>
   )

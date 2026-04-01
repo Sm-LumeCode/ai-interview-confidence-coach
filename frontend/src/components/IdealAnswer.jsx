@@ -1,97 +1,78 @@
-import React from 'react'
-import { BookOpen, CheckCircle, Lightbulb } from 'lucide-react'
+import React, { useState } from 'react'
+import { Lightbulb, ChevronDown, ChevronRight } from 'lucide-react'
 
 const IdealAnswer = ({ idealAnswer }) => {
+  const [showDPMA, setShowDPMA] = useState(false)
   if (!idealAnswer) return null
-
   const { full_answer, sections, word_count } = idealAnswer
 
+  const dpma = [
+    { key: 'definition', label: 'D — Definition', color: '#3b82f6', bg: '#dbeafe' },
+    { key: 'process', label: 'P — Process', color: '#8b5cf6', bg: '#ede9fe' },
+    { key: 'method', label: 'M — Method', color: '#f59e0b', bg: '#fef3c7' },
+    { key: 'application', label: 'A — Application', color: '#10b981', bg: '#d1fae5' },
+  ]
+
   return (
-    <div className="card animate-fade-in">
-      <div className="flex items-center gap-3 mb-6">
-        <div className="w-12 h-12 rounded-full bg-gradient-to-r from-green-500 to-emerald-600 flex items-center justify-center">
-          <Lightbulb className="w-6 h-6 text-white" />
+    <div className="card animate-fade-in" style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+        <div style={{
+          width: 44, height: 44, borderRadius: 10,
+          background: 'linear-gradient(135deg, #10b981, #059669)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0
+        }}>
+          <Lightbulb size={20} color="white" />
         </div>
         <div>
-          <h3 className="text-2xl font-bold text-gray-800">Ideal Answer (DPMA Structure)</h3>
-          <p className="text-sm text-gray-600">Follow this structure for perfect answers • {word_count} words</p>
+          <h3 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: 16, color: '#0f172a' }}>
+            Ideal Answer
+          </h3>
+          <p style={{ fontSize: 12, color: '#94a3b8' }}>{word_count} words · how to say it in an interview</p>
         </div>
       </div>
 
-      {/* Full Answer */}
-      <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-l-4 border-green-500 p-6 rounded-lg mb-6">
-        <div className="flex items-center gap-2 mb-3">
-          <BookOpen className="w-5 h-5 text-green-700" />
-          <h4 className="font-semibold text-green-800">Complete Answer:</h4>
-        </div>
-        <p className="text-gray-800 leading-relaxed whitespace-pre-line">
-          {full_answer}
+      <div style={{ background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: 10, padding: '16px 20px' }}>
+        <p style={{ fontSize: 14, color: '#0f172a', lineHeight: 1.7 }}>{full_answer}</p>
+      </div>
+
+      <div style={{ background: '#fefbeb', border: '1px solid #fde68a', borderRadius: 8, padding: '12px 16px' }}>
+        <p style={{ fontSize: 13, color: '#92400e' }}>
+          <strong>💡 Tip:</strong> Practice saying this out loud. Speak naturally — don't memorise word for word, just cover all the key ideas confidently.
         </p>
       </div>
 
-      {/* DPMA Breakdown */}
-      <div className="space-y-4">
-        <h4 className="font-bold text-gray-800 text-lg mb-4">Structure Breakdown (DPMA):</h4>
+      <div>
+        <button
+          onClick={() => setShowDPMA(p => !p)}
+          style={{
+            display: 'flex', alignItems: 'center', gap: 8, fontSize: 13,
+            fontWeight: 600, color: '#64748b', background: 'none', border: 'none', cursor: 'pointer'
+          }}
+        >
+          {showDPMA ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+          {showDPMA ? 'Hide' : 'View'} DPMA Structure Breakdown
+        </button>
 
-        {/* Definition */}
-        {sections.definition && (
-          <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
-            <div className="flex items-center gap-2 mb-2">
-              <CheckCircle className="w-5 h-5 text-blue-600" />
-              <h5 className="font-semibold text-blue-800">1. Definition</h5>
-            </div>
-            <p className="text-gray-700 text-sm leading-relaxed">
-              {sections.definition}
+        {showDPMA && sections && (
+          <div style={{ marginTop: 14, display: 'flex', flexDirection: 'column', gap: 10 }}>
+            <p style={{ fontSize: 11, color: '#94a3b8', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+              How the answer is structured
             </p>
+            {dpma.map(({ key, label, color, bg }) =>
+              sections[key] ? (
+                <div key={key} style={{
+                  background: bg, borderLeft: `3px solid ${color}`,
+                  borderRadius: '0 8px 8px 0', padding: '12px 16px'
+                }}>
+                  <p style={{ fontSize: 11, fontWeight: 700, color, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 4 }}>
+                    {label}
+                  </p>
+                  <p style={{ fontSize: 13, color: '#374151', lineHeight: 1.6 }}>{sections[key]}</p>
+                </div>
+              ) : null
+            )}
           </div>
         )}
-
-        {/* Process */}
-        {sections.process && (
-          <div className="bg-purple-50 border-l-4 border-purple-500 p-4 rounded">
-            <div className="flex items-center gap-2 mb-2">
-              <CheckCircle className="w-5 h-5 text-purple-600" />
-              <h5 className="font-semibold text-purple-800">2. Process</h5>
-            </div>
-            <p className="text-gray-700 text-sm leading-relaxed">
-              {sections.process}
-            </p>
-          </div>
-        )}
-
-        {/* Method */}
-        {sections.method && (
-          <div className="bg-amber-50 border-l-4 border-amber-500 p-4 rounded">
-            <div className="flex items-center gap-2 mb-2">
-              <CheckCircle className="w-5 h-5 text-amber-600" />
-              <h5 className="font-semibold text-amber-800">3. Method</h5>
-            </div>
-            <p className="text-gray-700 text-sm leading-relaxed">
-              {sections.method}
-            </p>
-          </div>
-        )}
-
-        {/* Application */}
-        {sections.application && (
-          <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded">
-            <div className="flex items-center gap-2 mb-2">
-              <CheckCircle className="w-5 h-5 text-green-600" />
-              <h5 className="font-semibold text-green-800">4. Application</h5>
-            </div>
-            <p className="text-gray-700 text-sm leading-relaxed">
-              {sections.application}
-            </p>
-          </div>
-        )}
-      </div>
-
-      {/* Tips */}
-      <div className="mt-6 bg-yellow-50 border border-yellow-200 p-4 rounded-lg">
-        <p className="text-yellow-800 text-sm">
-          <strong>💡 Tip:</strong> Use this structure in your next answer: Start with a clear definition, 
-          explain the process step-by-step, describe the method/technique, and finish with real-world applications.
-        </p>
       </div>
     </div>
   )
