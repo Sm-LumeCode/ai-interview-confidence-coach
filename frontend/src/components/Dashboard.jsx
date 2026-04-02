@@ -37,8 +37,9 @@ const Dashboard = ({ user, onLogout }) => {
     setStats({ totalQuestions, streak, avgScore })
   }, [user.email])
 
-  const handleSelectRole = (category) => {
-    navigate(`/interview/${category}`)
+  // Clicking a category goes to the sessions list, not directly into interview
+  const handleSelectRole = (categoryId) => {
+    navigate(`/sessions/${categoryId}`)
   }
 
   return (
@@ -67,7 +68,9 @@ const Dashboard = ({ user, onLogout }) => {
               <Flame size={20} color="#f59e0b" />
             </div>
             <p className="stat-card-label">Current Streak</p>
-            <p className="stat-card-value">{stats.streak} <span style={{ fontSize: 16, fontWeight: 500, color: '#64748b' }}>days</span></p>
+            <p className="stat-card-value">
+              {stats.streak} <span style={{ fontSize: 16, fontWeight: 500, color: '#64748b' }}>days</span>
+            </p>
           </div>
 
           <div className="stat-card animate-slide-up" style={{ animationDelay: '160ms' }}>
@@ -75,7 +78,9 @@ const Dashboard = ({ user, onLogout }) => {
               <TrendingUp size={20} color="#3b82f6" />
             </div>
             <p className="stat-card-label">Avg Score</p>
-            <p className="stat-card-value">{stats.avgScore}<span style={{ fontSize: 18, color: '#64748b' }}>%</span></p>
+            <p className="stat-card-value">
+              {stats.avgScore}<span style={{ fontSize: 18, color: '#64748b' }}>%</span>
+            </p>
           </div>
 
           <div className="stat-card animate-slide-up" style={{ animationDelay: '240ms' }}>
@@ -91,7 +96,7 @@ const Dashboard = ({ user, onLogout }) => {
         <div className="card animate-fade-in">
           <h2 className="card-title">Choose a Category</h2>
           <p style={{ fontSize: 13, color: '#64748b', marginBottom: 20, marginTop: -8 }}>
-            Select an area to start your interview practice session
+            Each category is split into sessions of 5 questions. Complete a session to unlock the next.
           </p>
           <RoleSelector onSelectRole={handleSelectRole} userProgress={userProgress} />
         </div>

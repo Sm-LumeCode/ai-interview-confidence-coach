@@ -66,6 +66,7 @@ const RoleSelector = ({ onSelectRole, userProgress = {} }) => {
         const pct = hasProgress
           ? Math.round((progress.currentQuestionIndex / progress.totalQuestions) * 100)
           : 0
+        const sessionsDone = hasProgress ? Math.floor(progress.currentQuestionIndex / 5) : 0
 
         return (
           <button
@@ -97,13 +98,9 @@ const RoleSelector = ({ onSelectRole, userProgress = {} }) => {
           >
             {/* Icon */}
             <div style={{
-              width: 44,
-              height: 44,
-              borderRadius: 10,
+              width: 44, height: 44, borderRadius: 10,
               background: cat.accentLight,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
               marginBottom: 14
             }}>
               <Icon size={22} color={cat.accent} />
@@ -112,30 +109,23 @@ const RoleSelector = ({ onSelectRole, userProgress = {} }) => {
             {/* Title */}
             <div style={{
               fontFamily: "'Plus Jakarta Sans', sans-serif",
-              fontWeight: 700,
-              fontSize: 15,
-              color: '#0f172a',
-              marginBottom: 4
+              fontWeight: 700, fontSize: 15, color: '#0f172a', marginBottom: 4
             }}>
               {cat.name}
             </div>
 
-            <div style={{ fontSize: 13, color: '#64748b', marginBottom: 16 }}>
+            <div style={{ fontSize: 13, color: '#64748b', marginBottom: 14 }}>
               {cat.description}
             </div>
 
-            {/* Progress bar */}
+            {/* Sessions progress */}
             {hasProgress ? (
               <div style={{ marginBottom: 12 }}>
                 <div style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  fontSize: 11,
-                  color: '#94a3b8',
-                  fontWeight: 500,
-                  marginBottom: 6
+                  display: 'flex', justifyContent: 'space-between',
+                  fontSize: 11, color: '#94a3b8', fontWeight: 500, marginBottom: 6
                 }}>
-                  <span>{progress.currentQuestionIndex}/{progress.totalQuestions} done</span>
+                  <span>{sessionsDone} session{sessionsDone !== 1 ? 's' : ''} completed</span>
                   <span>{pct}%</span>
                 </div>
                 <div className="progress-bar-track" style={{ height: 5 }}>
@@ -149,14 +139,10 @@ const RoleSelector = ({ onSelectRole, userProgress = {} }) => {
 
             {/* CTA */}
             <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 6,
-              fontSize: 13,
-              fontWeight: 600,
-              color: cat.accent
+              display: 'flex', alignItems: 'center', gap: 6,
+              fontSize: 13, fontWeight: 600, color: cat.accent
             }}>
-              <span>{hasProgress ? 'Continue Practice' : 'Start Practice'}</span>
+              <span>{hasProgress ? 'View Sessions' : 'Start Practice'}</span>
               <ArrowRight size={14} />
             </div>
           </button>

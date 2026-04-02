@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { UserPlus, Mail, Lock, User, AlertCircle, Eye, EyeOff } from 'lucide-react'
 
-const InputField = ({ icon: Icon, type, placeholder, value, onChange, onFocus, onBlur, showToggle, onToggle, showPass }) => (
+const InputField = ({ icon: Icon, type, placeholder, value, onChange, onFocus, onBlur, showToggle, onToggle, showPass, name }) => (
   <div style={{ position: 'relative' }}>
     <Icon size={16} color="#475569" style={{ position: 'absolute', left: 13, top: '50%', transform: 'translateY(-50%)' }} />
     <input
@@ -10,6 +10,7 @@ const InputField = ({ icon: Icon, type, placeholder, value, onChange, onFocus, o
       placeholder={placeholder}
       value={value}
       onChange={onChange}
+      name={name}
       required
       style={{
         width: '100%', padding: `10px ${showToggle ? '40px' : '14px'} 10px 38px`,
@@ -143,9 +144,8 @@ const Signup = ({ onLogin }) => {
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           <div>
             <label style={labelStyle}>Email Address</label>
-            <InputField icon={Mail} type="email" placeholder="your@email.com" value={formData.email}
+            <InputField icon={Mail} type="email" name="email" placeholder="your@email.com" value={formData.email}
               onChange={e => { handleChange(e) }} />
-            <input name="email" style={{ display: 'none' }} onChange={handleChange} />
           </div>
 
           <div>

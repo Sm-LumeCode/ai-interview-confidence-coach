@@ -10,13 +10,14 @@ const Navbar = ({ user, onLogout }) => {
   const navigate = useNavigate()
   const [collapsed, setCollapsed] = useState(false)
 
-  const isActive = (path) => location.pathname === path
+  const isActive = (path) =>
+    location.pathname === path || location.pathname.startsWith(path + '/')
 
   const candidateLinks = [
-    { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
-    { to: '/progress', icon: TrendingUp, label: 'Analytics' },
-    { to: '/challenges', icon: Trophy, label: 'Challenges' },
-    { to: '/profile', icon: User, label: 'Profile' },
+    { to: '/dashboard',  icon: LayoutDashboard, label: 'Dashboard' },
+    { to: '/progress',   icon: TrendingUp,      label: 'Analytics'  },
+    { to: '/challenges', icon: Trophy,           label: 'Challenges' },
+    { to: '/profile',    icon: User,             label: 'Profile'    },
   ]
 
   const W = collapsed ? 68 : 260
@@ -141,6 +142,7 @@ const Navbar = ({ user, onLogout }) => {
 
         {/* Footer */}
         <div style={{ padding: '10px 8px', borderTop: '1px solid #1e2430' }}>
+          {/* Logout */}
           <button
             onClick={() => { onLogout(); navigate('/login') }}
             title={collapsed ? 'Logout' : ''}
@@ -161,18 +163,28 @@ const Navbar = ({ user, onLogout }) => {
             {!collapsed && <span>Logout</span>}
           </button>
 
-          <div style={{
-            display: 'flex', alignItems: 'center',
-            gap: collapsed ? 0 : 10,
-            padding: collapsed ? '8px 0' : '8px 10px',
-            justifyContent: collapsed ? 'center' : 'flex-start',
-            borderRadius: 8
-          }}>
+          {/* User — clicking opens profile */}
+          <div
+            onClick={() => navigate('/profile')}
+            title="View Profile"
+            style={{
+              display: 'flex', alignItems: 'center',
+              gap: collapsed ? 0 : 10,
+              padding: collapsed ? '8px 0' : '8px 10px',
+              justifyContent: collapsed ? 'center' : 'flex-start',
+              borderRadius: 8,
+              cursor: 'pointer',
+              transition: 'background 0.15s'
+            }}
+            onMouseEnter={e => e.currentTarget.style.background = '#1e2430'}
+            onMouseLeave={e => e.currentTarget.style.background = 'none'}
+          >
             <div style={{
-              width: 32, height: 32, borderRadius: '50%',
+              width: 34, height: 34, borderRadius: '50%',
               background: 'linear-gradient(135deg, #10b981, #059669)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              color: 'white', fontWeight: 700, fontSize: 13, flexShrink: 0
+              color: 'white', fontWeight: 700, fontSize: 13, flexShrink: 0,
+              border: '2px solid #1e2430'
             }}>
               {(user?.username || 'U').charAt(0).toUpperCase()}
             </div>

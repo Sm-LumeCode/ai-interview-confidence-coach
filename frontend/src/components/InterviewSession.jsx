@@ -5,69 +5,90 @@ import QuestionCard from './QuestionCard'
 import Recorder from './Recorder'
 import ResultPanel from './ResultPanel'
 import IdealAnswer from './IdealAnswer'
-import { ChevronRight, ChevronLeft, Home, RotateCcw, Clock, AlertCircle } from 'lucide-react'
+import { ChevronRight, ChevronLeft, Home, RotateCcw, Clock, AlertCircle, Trophy } from 'lucide-react'
 import api from '../services/api'
 import { saveProgress, getProgress, resetProgress } from '../utils/progressManager'
 import { saveDailyProgress } from '../utils/dailyProgressManager'
 import { saveCategoryProgress } from '../utils/categoryProgressManager'
 
+const QUESTIONS_PER_SESSION = 5
+
 const CATEGORY_MAP = {
   software_development: 'Software Development',
-  data_analytics: 'Data Analytics',
-  data_science_ml: 'Data Science & ML',
-  cloud_devops: 'Cloud & DevOps',
-  cybersecurity: 'Cybersecurity',
-  hr_round: 'HR Round'
+  data_analytics:       'Data Analytics',
+  data_science_ml:      'Data Science & ML',
+  cloud_devops:         'Cloud & DevOps',
+  cybersecurity:        'Cybersecurity',
+  hr_round:             'HR Round'
 }
 
 const InterviewSession = ({ user, onLogout }) => {
-  const { category } = useParams()
+  const { category, sessionIndex: sessionIndexParam } = useParams()
   const navigate = useNavigate()
-  const [questions, setQuestions] = useState([])
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
-  const [showResults, setShowResults] = useState(false)
-  const [results, setResults] = useState(null)
-  const [idealAnswer, setIdealAnswer] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [evaluating, setEvaluating] = useState(false)
+
+  // sessionIndex from URL (0-based). Defaults to 0 for legacy /interview/:category route.
+  const sessionIndex = sessionIndexParam !== undefined ? parseInt(sessionIndexParam, 10) : 0
+
+  const [allQuestions, setAllQuestions]     = useState([])
+  const [sessionQuestions, setSessionQuestions] = useState([])
+  const [currentIdx, setCurrentIdx]         = useState(0)   // index within session (0-4)
+  const [showResults, setShowResults]       = useState(false)
+  const [results, setResults]               = useState(null)
+  const [idealAnswer, setIdealAnswer]       = useState(null)
+  const [loading, setLoading]               = useState(true)
+  const [evaluating, setEvaluating]         = useState(false)
   const [generatingAnswer, setGeneratingAnswer] = useState(false)
   const [generatingFeedback, setGeneratingFeedback] = useState(false)
-  const [aiFeedback, setAiFeedback] = useState(null)
-  const [error, setError] = useState('')
-  const [timeRemaining, setTimeRemaining] = useState(0)
-  const [timerActive, setTimerActive] = useState(false)
-  const [timerExpired, setTimerExpired] = useState(false)
+  const [aiFeedback, setAiFeedback]         = useState(null)
+  const [error, setError]                   = useState('')
+  const [sessionComplete, setSessionComplete] = useState(false)
+
+  // Timer
+  const [timeRemaining, setTimeRemaining]   = useState(0)
+  const [timerActive, setTimerActive]       = useState(false)
+  const [timerExpired, setTimerExpired]     = useState(false)
   const [showTimeUpPopup, setShowTimeUpPopup] = useState(false)
 
+  // ── Load questions ─────────────────────────────────────────────────────────
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
         setLoading(true)
         setError('')
         const data = await api.getQuestions(category)
-        setQuestions(data)
-        const saved = getProgress(user.email, category)
-        if (saved && saved.currentQuestionIndex < data.length) {
-          setCurrentQuestionIndex(saved.currentQuestionIndex)
+        setAllQuestions(data)
+
+        // Slice to this session's 5 questions
+        const start = sessionIndex * QUESTIONS_PER_SESSION
+        const slice = data.slice(start, start + QUESTIONS_PER_SESSION)
+        setSessionQuestions(slice)
+
+        // Restore intra-session progress if any
+        const globalAnswered = getProgress(user.email, category)?.currentQuestionIndex ?? 0
+        const sessionStart = sessionIndex * QUESTIONS_PER_SESSION
+        const doneInSession = Math.max(0, globalAnswered - sessionStart)
+        if (doneInSession > 0 && doneInSession < QUESTIONS_PER_SESSION) {
+          setCurrentIdx(doneInSession)
         }
-      } catch (err) {
+      } catch {
         setError('Failed to load questions. Please try again.')
       } finally {
         setLoading(false)
       }
     }
     fetchQuestions()
-  }, [category, user.email])
+  }, [category, sessionIndex, user.email])
 
+  // ── Timer per question ─────────────────────────────────────────────────────
   useEffect(() => {
-    if (questions.length > 0 && !showResults) {
-      const diff = questions[currentQuestionIndex]?.difficulty || 'medium'
+    if (sessionQuestions.length > 0 && !showResults) {
+      const diff = sessionQuestions[currentIdx]?.difficulty || 'medium'
       const time = diff === 'easy' ? 180 : diff === 'hard' ? 480 : 300
       setTimeRemaining(time)
       setTimerActive(true)
       setTimerExpired(false)
     }
-  }, [currentQuestionIndex, questions, showResults])
+  }, [currentIdx, sessionQuestions, showResults])
 
   useEffect(() => {
     let interval = null
@@ -88,31 +109,39 @@ const InterviewSession = ({ user, onLogout }) => {
     return () => { if (interval) clearInterval(interval) }
   }, [timerActive, timeRemaining])
 
+  // ── Answer submitted ───────────────────────────────────────────────────────
   const handleRecordingComplete = async (answerText) => {
-    if (!answerText || !questions[currentQuestionIndex]) return
+    if (!answerText || !sessionQuestions[currentIdx]) return
     setTimerActive(false)
     setEvaluating(true)
     setGeneratingAnswer(true)
     setGeneratingFeedback(false)
     setAiFeedback(null)
     setError('')
+
     try {
-      const q = questions[currentQuestionIndex]
+      const q = sessionQuestions[currentIdx]
       const evaluation = await api.evaluateAnswer(q.question, answerText, q.keywords || [])
+
       saveCategoryProgress(user.email, CATEGORY_MAP[category], evaluation.technical_score, evaluation.communication_score)
       setResults(evaluation)
       saveDailyProgress(user.email, { technicalScore: evaluation.technical_score, confidenceScore: evaluation.communication_score })
+
+      // Global progress = how many questions answered across ALL sessions
+      const globalIndex = sessionIndex * QUESTIONS_PER_SESSION + currentIdx + 1
+      saveProgress(user.email, category, globalIndex, allQuestions.length)
+
       setGeneratingFeedback(true)
       api.generateFeedback(q.question, answerText, q.keywords || [], evaluation)
         .then(r => { setAiFeedback(r.feedback); setGeneratingFeedback(false) })
         .catch(() => setGeneratingFeedback(false))
+
       const ideal = await api.generateIdealAnswer(q.question, q.keywords || [])
       setIdealAnswer(ideal)
       setGeneratingAnswer(false)
       setShowResults(true)
       setEvaluating(false)
-      saveProgress(user.email, category, currentQuestionIndex + 1, questions.length)
-    } catch (err) {
+    } catch {
       setError('Failed to evaluate answer. Make sure the backend is running.')
       setEvaluating(false)
       setGeneratingAnswer(false)
@@ -121,123 +150,178 @@ const InterviewSession = ({ user, onLogout }) => {
   }
 
   const handleTimeUpAutoAdvance = async () => {
-    if (!questions[currentQuestionIndex]) return
-    setTimerActive(false)
-    setEvaluating(true)
-    setGeneratingAnswer(true)
+    if (!sessionQuestions[currentIdx]) return
+    setTimerActive(false); setEvaluating(true); setGeneratingAnswer(true)
     try {
-      const q = questions[currentQuestionIndex]
+      const q = sessionQuestions[currentIdx]
       const evaluation = await api.evaluateAnswer(q.question, 'Time ran out - no answer provided', q.keywords || [])
       saveCategoryProgress(user.email, CATEGORY_MAP[category] || category, evaluation.technical_score, evaluation.communication_score)
       setResults(evaluation)
       saveDailyProgress(user.email, { technicalScore: evaluation.technical_score, confidenceScore: evaluation.communication_score })
+      const globalIndex = sessionIndex * QUESTIONS_PER_SESSION + currentIdx + 1
+      saveProgress(user.email, category, globalIndex, allQuestions.length)
       const ideal = await api.generateIdealAnswer(q.question, q.keywords || [])
       setIdealAnswer(ideal)
       setShowResults(true)
-      saveProgress(user.email, category, currentQuestionIndex + 1, questions.length)
-    } catch (err) {
+    } catch {
       setError('Failed to process time up.')
       handleNextQuestion()
     } finally {
-      setEvaluating(false)
-      setGeneratingAnswer(false)
+      setEvaluating(false); setGeneratingAnswer(false)
     }
   }
 
   const resetQuestion = () => {
-    setShowResults(false)
-    setResults(null)
-    setIdealAnswer(null)
-    setAiFeedback(null)
-    setGeneratingFeedback(false)
+    setShowResults(false); setResults(null); setIdealAnswer(null)
+    setAiFeedback(null); setGeneratingFeedback(false)
   }
 
   const handleNextQuestion = () => {
     resetQuestion()
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1)
+    if (currentIdx < QUESTIONS_PER_SESSION - 1) {
+      setCurrentIdx(currentIdx + 1)
     } else {
-      alert('Interview session complete! Check your analytics for detailed insights.')
-      resetProgress(user.email, category)
-      navigate('/dashboard')
+      // Session complete!
+      setSessionComplete(true)
     }
   }
 
   const handlePreviousQuestion = () => {
-    if (currentQuestionIndex > 0) {
-      resetQuestion()
-      setCurrentQuestionIndex(currentQuestionIndex - 1)
+    if (currentIdx > 0) { resetQuestion(); setCurrentIdx(currentIdx - 1) }
+  }
+
+  const handleResetSession = () => {
+    if (window.confirm('Restart this session from Q1? Progress for this session will be lost.')) {
+      const globalStart = sessionIndex * QUESTIONS_PER_SESSION
+      saveProgress(user.email, category, globalStart, allQuestions.length)
+      setCurrentIdx(0); resetQuestion()
     }
   }
 
-  const handleResetProgress = () => {
-    if (window.confirm('Restart from the beginning? Your progress will be lost.')) {
-      resetProgress(user.email, category)
-      setCurrentQuestionIndex(0)
-      resetQuestion()
-    }
-  }
-
-  const formatTime = (s) => `${Math.floor(s / 60)}:${(s % 60).toString().padStart(2, '0')}`
-  const timerColor = timeRemaining <= 30 ? '#ef4444' : timeRemaining <= 60 ? '#f59e0b' : '#10b981'
-  const timerBg = timeRemaining <= 30 ? '#fee2e2' : timeRemaining <= 60 ? '#fef3c7' : '#d1fae5'
-  const q = questions[currentQuestionIndex]
+  const fmt = (s) => `${Math.floor(s / 60)}:${(s % 60).toString().padStart(2, '0')}`
+  const q = sessionQuestions[currentIdx]
   const totalTime = q?.difficulty === 'easy' ? 180 : q?.difficulty === 'hard' ? 480 : 300
   const pct = (timeRemaining / totalTime) * 100
+  const timerColor = timeRemaining <= 30 ? '#ef4444' : timeRemaining <= 60 ? '#f59e0b' : '#10b981'
+  const timerBg    = timeRemaining <= 30 ? 'rgba(239,68,68,0.1)' : timeRemaining <= 60 ? 'rgba(245,158,11,0.1)' : 'rgba(16,185,129,0.1)'
 
+  // ── Loading ────────────────────────────────────────────────────────────────
   if (loading) {
     return (
       <div className="app-layout">
         <Navbar user={user} onLogout={onLogout} />
         <main className="main-content" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ textAlign: 'center' }}>
-            <div style={{
-              width: 48, height: 48, border: '3px solid #e2e8f0', borderTopColor: '#10b981',
-              borderRadius: '50%', animation: 'spin 0.8s linear infinite', margin: '0 auto 16px'
-            }} />
-            <p style={{ color: '#64748b', fontSize: 15 }}>Loading questions…</p>
+            <div style={{ width: 48, height: 48, border: '3px solid #e2e8f0', borderTopColor: '#10b981', borderRadius: '50%', animation: 'spin 0.8s linear infinite', margin: '0 auto 16px' }} />
+            <p style={{ color: '#64748b', fontSize: 15 }}>Loading session…</p>
           </div>
         </main>
+        <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
       </div>
     )
   }
 
+  // ── Session complete screen ────────────────────────────────────────────────
+  if (sessionComplete) {
+    const nextSession = sessionIndex + 1
+    const hasNextSession = nextSession * QUESTIONS_PER_SESSION < allQuestions.length
+
+    return (
+      <div className="app-layout">
+        <Navbar user={user} onLogout={onLogout} />
+        <main className="main-content" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div className="card animate-slide-up" style={{ maxWidth: 440, textAlign: 'center' }}>
+            <div style={{
+              width: 72, height: 72, borderRadius: '50%',
+              background: 'linear-gradient(135deg, #10b981, #059669)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              margin: '0 auto 20px',
+              boxShadow: '0 8px 28px rgba(16,185,129,0.35)'
+            }}>
+              <Trophy size={32} color="white" />
+            </div>
+
+            <h2 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontSize: 22, color: '#0f172a', marginBottom: 8 }}>
+              Session {sessionIndex + 1} Complete! 🎉
+            </h2>
+            <p style={{ fontSize: 14, color: '#64748b', marginBottom: 24 }}>
+              You've answered all 5 questions in this session.
+              {hasNextSession ? ' Session ' + (nextSession + 1) + ' is now unlocked!' : ' You\'ve completed all sessions in this category!'}
+            </p>
+
+            {/* Badge */}
+            <div style={{
+              background: '#f0fdf4', border: '1px solid #bbf7d0',
+              borderRadius: 12, padding: '14px 20px', marginBottom: 24,
+              display: 'inline-flex', alignItems: 'center', gap: 10
+            }}>
+              <Trophy size={18} color="#10b981" />
+              <span style={{ fontSize: 14, fontWeight: 700, color: '#065f46' }}>
+                Session {sessionIndex + 1} Badge Earned!
+              </span>
+            </div>
+
+            <div style={{ display: 'flex', gap: 12 }}>
+              <button
+                onClick={() => navigate(`/sessions/${category}`)}
+                className="btn-secondary"
+                style={{ flex: 1, justifyContent: 'center' }}
+              >
+                <Home size={15} /> All Sessions
+              </button>
+              {hasNextSession && (
+                <button
+                  onClick={() => navigate(`/interview/${category}/${nextSession}`)}
+                  className="btn-primary"
+                  style={{ flex: 1, justifyContent: 'center' }}
+                >
+                  Session {nextSession + 1} <ChevronRight size={15} />
+                </button>
+              )}
+            </div>
+          </div>
+        </main>
+        <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+      </div>
+    )
+  }
+
+  // ── Main interview UI ──────────────────────────────────────────────────────
   return (
     <div className="app-layout">
       <Navbar user={user} onLogout={onLogout} />
 
       <main className="main-content">
         {/* Header bar */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24 }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
           <div>
-            <h1 className="page-title" style={{ fontSize: 22 }}>
-              {(CATEGORY_MAP[category] || category).toUpperCase()} Interview
+            <h1 className="page-title" style={{ fontSize: 20 }}>
+              {CATEGORY_MAP[category] || category} — Session {sessionIndex + 1}
             </h1>
             <p className="page-subtitle">
-              Question {currentQuestionIndex + 1} of {questions.length}
+              Question {currentIdx + 1} of {QUESTIONS_PER_SESSION}
             </p>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             {/* Timer */}
             {!showResults && (
               <div style={{
-                display: 'flex', alignItems: 'center', gap: 12,
+                display: 'flex', alignItems: 'center', gap: 10,
                 background: timerBg, border: `1px solid ${timerColor}44`,
                 borderRadius: 12, padding: '10px 16px'
               }}>
-                {/* Circular */}
-                <div style={{ position: 'relative', width: 44, height: 44 }}>
-                  <svg width="44" height="44" style={{ transform: 'rotate(-90deg)' }}>
-                    <circle cx="22" cy="22" r="18" fill="none" stroke="#e2e8f0" strokeWidth="3" />
-                    <circle cx="22" cy="22" r="18" fill="none" stroke={timerColor} strokeWidth="3"
-                      strokeDasharray={`${(pct / 100) * 113} 113`} strokeLinecap="round" />
+                <div style={{ position: 'relative', width: 40, height: 40 }}>
+                  <svg width="40" height="40" style={{ transform: 'rotate(-90deg)' }}>
+                    <circle cx="20" cy="20" r="16" fill="none" stroke="#e2e8f0" strokeWidth="3" />
+                    <circle cx="20" cy="20" r="16" fill="none" stroke={timerColor} strokeWidth="3"
+                      strokeDasharray={`${(pct / 100) * 100} 100`} strokeLinecap="round" />
                   </svg>
-                  <Clock size={16} color={timerColor} style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)' }} />
+                  <Clock size={14} color={timerColor} style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)' }} />
                 </div>
                 <div>
-                  <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 22, fontWeight: 700, color: timerColor, lineHeight: 1 }}>
-                    {formatTime(timeRemaining)}
+                  <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 20, fontWeight: 700, color: timerColor, lineHeight: 1 }}>
+                    {fmt(timeRemaining)}
                   </div>
                   <span className={`badge ${q?.difficulty === 'easy' ? 'badge-green' : q?.difficulty === 'hard' ? 'badge-red' : 'badge-yellow'}`}
                     style={{ fontSize: 10, marginTop: 3 }}>
@@ -247,36 +331,48 @@ const InterviewSession = ({ user, onLogout }) => {
               </div>
             )}
 
-            <button onClick={handleResetProgress} className="btn-secondary" style={{ padding: '8px 14px', fontSize: 13 }}>
-              <RotateCcw size={14} /> Reset
+            <button onClick={handleResetSession} className="btn-secondary" style={{ padding: '8px 12px', fontSize: 13 }}>
+              <RotateCcw size={13} /> Reset
             </button>
-            <button onClick={() => navigate('/dashboard')} className="btn-secondary" style={{ padding: '8px 14px', fontSize: 13 }}>
-              <Home size={14} /> Home
+            <button onClick={() => navigate(`/sessions/${category}`)} className="btn-secondary" style={{ padding: '8px 12px', fontSize: 13 }}>
+              <Home size={13} /> Sessions
             </button>
           </div>
         </div>
 
-        {/* Progress bar */}
+        {/* Session progress bar — 5 dots */}
         <div className="card" style={{ padding: '14px 20px', marginBottom: 20 }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, color: '#94a3b8', marginBottom: 8, fontWeight: 500 }}>
-            <span>Progress</span>
-            <span>{Math.round((currentQuestionIndex / questions.length) * 100)}% Complete</span>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8, alignItems: 'center' }}>
+            <span style={{ fontSize: 12, color: '#94a3b8', fontWeight: 600 }}>
+              Session {sessionIndex + 1} Progress
+            </span>
+            <span style={{ fontSize: 12, color: '#94a3b8' }}>
+              {currentIdx}/{QUESTIONS_PER_SESSION} complete
+            </span>
           </div>
-          <div className="progress-bar-track" style={{ height: 6 }}>
-            <div className="progress-bar-fill" style={{
-              width: `${(currentQuestionIndex / questions.length) * 100}%`,
-              background: 'linear-gradient(90deg, #10b981, #059669)'
-            }} />
+          {/* 5 step dots */}
+          <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+            {Array.from({ length: QUESTIONS_PER_SESSION }).map((_, i) => (
+              <div key={i} style={{
+                flex: 1, height: 6, borderRadius: 999,
+                background: i < currentIdx ? '#10b981' : i === currentIdx ? '#3b82f6' : '#e2e8f0',
+                transition: 'background 0.3s'
+              }} />
+            ))}
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 4 }}>
+            {Array.from({ length: QUESTIONS_PER_SESSION }).map((_, i) => (
+              <span key={i} style={{ flex: 1, textAlign: 'center', fontSize: 10, color: i <= currentIdx ? '#10b981' : '#94a3b8', fontWeight: 600 }}>
+                Q{i + 1}
+              </span>
+            ))}
           </div>
         </div>
 
         {/* Time's up banner */}
         {timerExpired && !showResults && !showTimeUpPopup && (
-          <div style={{
-            background: '#fee2e2', border: '1px solid #fca5a5', borderRadius: 10,
-            padding: '12px 16px', marginBottom: 16, display: 'flex', alignItems: 'center', gap: 10
-          }}>
-            <AlertCircle size={18} color="#ef4444" />
+          <div style={{ background: '#fee2e2', border: '1px solid #fca5a5', borderRadius: 10, padding: '12px 16px', marginBottom: 16, display: 'flex', gap: 10 }}>
+            <AlertCircle size={16} color="#ef4444" />
             <span style={{ color: '#991b1b', fontWeight: 600, fontSize: 14 }}>⏰ Time's up! Submit your answer.</span>
           </div>
         )}
@@ -289,18 +385,14 @@ const InterviewSession = ({ user, onLogout }) => {
 
         {/* Content */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-          <QuestionCard question={q} currentQuestion={currentQuestionIndex + 1} totalQuestions={questions.length} />
+          <QuestionCard question={q} currentQuestion={currentIdx + 1} totalQuestions={QUESTIONS_PER_SESSION} />
 
           {!showResults && <Recorder onRecordingComplete={handleRecordingComplete} />}
 
           {evaluating && (
             <div className="card" style={{ textAlign: 'center', padding: '40px 24px' }}>
-              <div style={{
-                width: 48, height: 48, border: '3px solid #e2e8f0', borderTopColor: '#10b981',
-                borderRadius: '50%', animation: 'spin 0.8s linear infinite', margin: '0 auto 16px'
-              }} />
-              <p style={{ color: '#64748b', fontWeight: 600 }}>Analyzing your response…</p>
-              <p style={{ color: '#94a3b8', fontSize: 13, marginTop: 4 }}>This takes just a moment</p>
+              <div style={{ width: 48, height: 48, border: '3px solid #e2e8f0', borderTopColor: '#10b981', borderRadius: '50%', animation: 'spin 0.8s linear infinite', margin: '0 auto 16px' }} />
+              <p style={{ color: '#64748b', fontWeight: 600 }}>Analysing your response…</p>
             </div>
           )}
 
@@ -310,10 +402,7 @@ const InterviewSession = ({ user, onLogout }) => {
 
               {generatingAnswer && (
                 <div className="card" style={{ textAlign: 'center', padding: '28px 24px' }}>
-                  <div style={{
-                    width: 36, height: 36, border: '3px solid #e2e8f0', borderTopColor: '#10b981',
-                    borderRadius: '50%', animation: 'spin 0.8s linear infinite', margin: '0 auto 12px'
-                  }} />
+                  <div style={{ width: 36, height: 36, border: '3px solid #e2e8f0', borderTopColor: '#10b981', borderRadius: '50%', animation: 'spin 0.8s linear infinite', margin: '0 auto 12px' }} />
                   <p style={{ color: '#64748b', fontSize: 14 }}>Generating ideal answer…</p>
                 </div>
               )}
@@ -325,18 +414,17 @@ const InterviewSession = ({ user, onLogout }) => {
                 <div style={{ display: 'flex', gap: 12 }}>
                   <button
                     onClick={handlePreviousQuestion}
-                    disabled={currentQuestionIndex === 0}
+                    disabled={currentIdx === 0}
                     className="btn-secondary"
-                    style={{ flex: 1, justifyContent: 'center', opacity: currentQuestionIndex === 0 ? 0.4 : 1 }}
+                    style={{ flex: 1, justifyContent: 'center', opacity: currentIdx === 0 ? 0.4 : 1 }}
                   >
-                    <ChevronLeft size={16} /> Previous
+                    <ChevronLeft size={15} /> Previous
                   </button>
                   <button onClick={handleNextQuestion} className="btn-primary" style={{ flex: 1, justifyContent: 'center' }}>
-                    {currentQuestionIndex < questions.length - 1 ? (
-                      <>Next Question <ChevronRight size={16} /></>
-                    ) : (
-                      <>Complete <ChevronRight size={16} /></>
-                    )}
+                    {currentIdx < QUESTIONS_PER_SESSION - 1
+                      ? <> Next Question <ChevronRight size={15} /> </>
+                      : <> Complete Session <Trophy size={15} /> </>
+                    }
                   </button>
                 </div>
               </div>
@@ -347,18 +435,9 @@ const InterviewSession = ({ user, onLogout }) => {
 
       {/* Time up modal */}
       {showTimeUpPopup && (
-        <div style={{
-          position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100
-        }}>
-          <div style={{
-            background: 'white', borderRadius: 16, padding: 40, maxWidth: 380,
-            textAlign: 'center', boxShadow: '0 25px 60px rgba(0,0,0,0.3)'
-          }}>
-            <div style={{
-              width: 64, height: 64, borderRadius: '50%', background: '#fee2e2',
-              display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px'
-            }}>
+        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100 }}>
+          <div style={{ background: 'white', borderRadius: 16, padding: 40, maxWidth: 380, textAlign: 'center', boxShadow: '0 25px 60px rgba(0,0,0,0.3)' }}>
+            <div style={{ width: 64, height: 64, borderRadius: '50%', background: '#fee2e2', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
               <Clock size={32} color="#ef4444" />
             </div>
             <h2 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: 22, marginBottom: 8 }}>Time's Up!</h2>
