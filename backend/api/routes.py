@@ -1,9 +1,10 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, File, UploadFile
 from pydantic import BaseModel
 from typing import List, Optional
 import json
 import os
 import time
+import tempfile
 from services.evaluator import evaluate_answer_legacy
 from services.answer_generator import generate_ideal_answer
 from services.llm_evaluator import generate_structured_feedback
@@ -32,18 +33,45 @@ class AnswerGenerationRequest(BaseModel):
 # Get questions by category
 @router.get("/questions/{category}")
 def get_questions(category: str):
-    file_path = os.path.join(DATA_DIR, f"{category}.json")
+    """
+    Retrieves questions for a specific category from the local JSON storage.
+    """
+    print(f"🔍 [GET] /api/questions/{category} requested")
+    
+    try:
+        # Sanitize category name
+        category = category.strip().lower()
+        file_path = os.path.join(DATA_DIR, f"{category}.json")
 
-    if not os.path.exists(file_path):
+        if not os.path.exists(file_path):
+            print(f"❌ [NOT FOUND] No questions file at: {file_path}")
+            raise HTTPException(
+                status_code=404,
+                detail=f"No questions found for role: {category}"
+            )
+
+        print(f"📂 Reading questions from: {file_path}")
+        with open(file_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        questions = data if isinstance(data, list) else data.get("questions", [])
+        print(f"✅ Successfully retrieved {len(questions)} questions for: {category}")
+        return questions
+
+    except json.JSONDecodeError as e:
+        print(f"❌ [CORRUPTION] JSON file at {file_path} is corrupted: {str(e)}")
         raise HTTPException(
-            status_code=404,
-            detail=f"No questions found for role: {category}"
+            status_code=500,
+            detail=f"Questions data for {category} is corrupted. Please contact support."
         )
-
-    with open(file_path, "r", encoding="utf-8") as f:
-        data = json.load(f)
-
-    return data if isinstance(data, list) else data.get("questions", [])
+    except Exception as e:
+        print(f"❌ [SERVER ERROR] Error fetching questions for {category}: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to load questions: {str(e)}"
+        )
 
 
 # Fast evaluation endpoint (<2 seconds)
@@ -203,4 +231,31 @@ def generate_answer(request: AnswerGenerationRequest):
         raise HTTPException(
             status_code=500,
             detail=f"Answer generation failed: {str(e)}"
+        )
+
+# Transcription endpoint (initialize STT service lazily to avoid import-time failures)
+@router.post("/transcribe")
+async def transcribe_audio(audio: UploadFile = File(...)):
+    try:
+        suffix = os.path.splitext(audio.filename)[1] if audio.filename else ".wav"
+        with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
+            tmp.write(await audio.read())
+            tmp_path = tmp.name
+
+        try:
+            # Import and initialize STT service here to avoid failing imports
+            # when Deepgram is not available or incompatible
+            from services.stt import SpeechToTextService
+            stt_service = SpeechToTextService()
+            transcript = stt_service.transcribe(tmp_path)
+            return {"transcript": transcript}
+        finally:
+            if os.path.exists(tmp_path):
+                os.remove(tmp_path)
+                
+    except Exception as e:
+        print(f"❌ TRANSCRIPTION ERROR: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Transcription failed: {str(e)}"
         )

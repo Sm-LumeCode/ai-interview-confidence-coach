@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pydantic
+requests
+deepgram-sdk==3.4.0
+python-dotenv
+python-multipart
+typing-extensions
+aiofiles

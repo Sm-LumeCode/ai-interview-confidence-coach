@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { Mic, MicOff, RotateCcw, Send, AlertCircle, Loader2, FileText, RefreshCw } from 'lucide-react'
 
-const API_BASE_URL = 'http://localhost:8000/api'
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api'
 
 const Recorder = ({ onRecordingComplete }) => {
   // phases: idle | recording | transcribing | done | error

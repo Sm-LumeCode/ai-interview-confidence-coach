@@ -1,13 +1,23 @@
-const API_BASE_URL = 'http://localhost:8000/api'
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8002/api'
 
 const api = {
   // Get questions by category
-  getQuestions: async (category) => {
-    const response = await fetch(`${API_BASE_URL}/questions/${category}`)
-    if (!response.ok) {
-      throw new Error('Failed to fetch questions')
+  getQuestions: async (category, retries = 1) => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/questions/${category}`)
+      if (!response.ok) {
+        throw new Error(`Failed to fetch questions: ${response.statusText}`)
+      }
+      return await response.json()
+    } catch (err) {
+      if (retries > 0) {
+        console.warn(`Fetch failed, retrying... (${retries} left)`, err)
+        // Wait 1 second before retrying
+        await new Promise(res => setTimeout(res, 1000))
+        return api.getQuestions(category, retries - 1)
+      }
+      throw err
     }
-    return response.json()
   },
 
   // Evaluate user's answer (FAST - returns scores immediately)

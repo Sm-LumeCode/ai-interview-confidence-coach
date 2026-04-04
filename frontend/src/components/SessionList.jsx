@@ -87,8 +87,27 @@ const SessionList = ({ user, onLogout }) => {
         <Navbar user={user} onLogout={onLogout} />
         <main className="main-content" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div className="card" style={{ maxWidth: 380, textAlign: 'center' }}>
-            <p style={{ color: '#ef4444', marginBottom: 16 }}>{error}</p>
-            <button onClick={() => navigate('/dashboard')} className="btn-primary">Back to Dashboard</button>
+            <div style={{ width: 48, height: 48, background: '#fee2e2', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
+              <AlertCircle size={24} color="#ef4444" />
+            </div>
+            <h2 style={{ fontSize: 18, color: '#0f172a', marginBottom: 8 }}>Fail to Load Questions</h2>
+            <p style={{ color: '#64748b', fontSize: 14, marginBottom: 24 }}>{error}. Make sure the backend is running at http://localhost:8002.</p>
+            <div style={{ display: 'flex', gap: 12 }}>
+              <button onClick={() => navigate('/dashboard')} className="btn-secondary" style={{ flex: 1, justifyContent: 'center' }}>Back to Dashboard</button>
+              <button 
+                onClick={() => {
+                  setError('')
+                  setLoading(true)
+                  api.getQuestions(category)
+                    .then(data => { setQuestions(data); setLoading(false) })
+                    .catch(() => { setError('Failed to load questions.'); setLoading(false) })
+                }} 
+                className="btn-primary"
+                style={{ flex: 1, justifyContent: 'center' }}
+              >
+                Try Again
+              </button>
+            </div>
           </div>
         </main>
       </div>
