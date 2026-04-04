@@ -1,8 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
 
 * {
   margin: 0;
@@ -221,10 +221,10 @@ body {
   font-weight: 600;
 }
 
-.badge-green { background: #d1fae5; color: #065f46; }
+.badge-green  { background: #d1fae5; color: #065f46; }
 .badge-yellow { background: #fef3c7; color: #92400e; }
-.badge-red { background: #fee2e2; color: #991b1b; }
-.badge-blue { background: #dbeafe; color: #1e40af; }
+.badge-red    { background: #fee2e2; color: #991b1b; }
+.badge-blue   { background: #dbeafe; color: #1e40af; }
 .badge-purple { background: #ede9fe; color: #6d28d9; }
 
 /* ── Input ── */
@@ -246,9 +246,9 @@ body {
 }
 
 /* ── Difficulty bar ── */
-.diff-easy { background: #10b981; }
+.diff-easy   { background: #10b981; }
 .diff-medium { background: #f59e0b; }
-.diff-hard { background: #ef4444; }
+.diff-hard   { background: #ef4444; }
 
 /* ── Auth pages ── */
 .auth-page {
@@ -272,15 +272,15 @@ body {
 /* ── Animations ── */
 @keyframes fadeIn {
   from { opacity: 0; }
-  to { opacity: 1; }
+  to   { opacity: 1; }
 }
 
 @keyframes slideUp {
   from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.animate-fade-in { animation: fadeIn 0.3s ease forwards; }
+.animate-fade-in  { animation: fadeIn  0.3s  ease forwards; }
 .animate-slide-up { animation: slideUp 0.35s ease forwards; }
 
 /* ── Score circle ── */
@@ -297,12 +297,12 @@ body {
 }
 
 /* ── Scrollbar ── */
-::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar       { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-  .sidebar { transform: translateX(-100%); }
+  .sidebar      { transform: translateX(-100%); }
   .main-content { margin-left: 0; padding: 20px 16px; }
 }

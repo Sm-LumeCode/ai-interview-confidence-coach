@@ -1,7 +1,7 @@
 import React from 'react'
 import {
   TrendingUp, MessageCircle, Award, Target, AlertTriangle, CheckCircle,
-  XCircle, List, Lightbulb, BookOpen, TrendingDown, Plus, Loader
+  XCircle, List, Lightbulb, BookOpen, TrendingDown, Plus, Loader, Volume2
 } from 'lucide-react'
 
 const ResultPanel = ({ results, aiFeedback, generatingFeedback }) => {
@@ -23,12 +23,25 @@ const ResultPanel = ({ results, aiFeedback, generatingFeedback }) => {
   if (!scores) return null
 
   const scoreMetrics = [
-    { label: 'Technical', value: scores.technicalScore, color: '#3b82f6', bg: '#dbeafe', icon: Target },
-    { label: 'Structure', value: scores.structureScore, color: '#8b5cf6', bg: '#ede9fe', icon: List },
-    { label: 'Confidence', value: scores.confidenceScore, color: '#10b981', bg: '#d1fae5', icon: TrendingUp },
+    { label: 'Technical',     value: scores.technicalScore,     color: '#3b82f6', bg: '#dbeafe', icon: Target },
+    { label: 'Structure',     value: scores.structureScore,     color: '#8b5cf6', bg: '#ede9fe', icon: List },
+    { label: 'Confidence',    value: scores.confidenceScore,    color: '#10b981', bg: '#d1fae5', icon: TrendingUp },
     { label: 'Communication', value: scores.communicationScore, color: '#f59e0b', bg: '#fef3c7', icon: MessageCircle },
-    { label: 'Overall', value: scores.overallScore, color: '#6366f1', bg: '#e0e7ff', icon: Award },
+    { label: 'Overall',       value: scores.overallScore,       color: '#6366f1', bg: '#e0e7ff', icon: Award },
   ]
+
+  // Filler word helpers
+  const fillerTotal   = scores.fillerWords?.total_count ?? 0
+  const fillerDetails = scores.fillerWords?.filler_details ?? {}
+  const fillerLevel   = fillerTotal > 10 ? 'high' : fillerTotal > 5 ? 'medium' : fillerTotal > 0 ? 'low' : 'none'
+
+  const fillerConfig = {
+    high:   { bg: '#fef2f2', border: '#fecaca', labelColor: '#991b1b', tagBg: '#fee2e2',   tagColor: '#991b1b',  icon: '🔴', msg: 'High filler word usage — practice speaking without these to sound more confident.' },
+    medium: { bg: '#fefbeb', border: '#fde68a', labelColor: '#92400e', tagBg: '#fef3c7',   tagColor: '#92400e',  icon: '🟡', msg: 'Moderate filler word usage — try to reduce these for a more polished delivery.' },
+    low:    { bg: '#f0fdf4', border: '#bbf7d0', labelColor: '#166534', tagBg: '#dcfce7',   tagColor: '#166534',  icon: '🟢', msg: 'Low filler word usage — great job keeping your speech clean and confident!' },
+    none:   { bg: '#f0fdf4', border: '#bbf7d0', labelColor: '#166534', tagBg: '#dcfce7',   tagColor: '#166534',  icon: '✅', msg: 'No filler words detected — excellent fluency and confidence!' },
+  }
+  const fc = fillerConfig[fillerLevel]
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }} className="animate-fade-in">
@@ -40,9 +53,9 @@ const ResultPanel = ({ results, aiFeedback, generatingFeedback }) => {
           <div>
             <p style={{ fontWeight: 700, color: '#991b1b', marginBottom: 4 }}>Answer Quality Check Failed</p>
             <p style={{ fontSize: 14, color: '#b91c1c' }}>
-              {scores.gateReason === 'too_short' && 'Your answer is too short. Please provide a more detailed response.'}
+              {scores.gateReason === 'too_short'            && 'Your answer is too short. Please provide a more detailed response.'}
               {scores.gateReason === 'excessive_repetition' && 'Too much repetition detected. Try using varied vocabulary.'}
-              {scores.gateReason === 'no_verb' && 'Your answer lacks proper sentence structure. Include complete sentences.'}
+              {scores.gateReason === 'no_verb'              && 'Your answer lacks proper sentence structure. Include complete sentences.'}
             </p>
           </div>
         </div>
@@ -116,31 +129,122 @@ const ResultPanel = ({ results, aiFeedback, generatingFeedback }) => {
         </div>
       )}
 
-      {/* Filler words */}
-      {scores.fillerWords && scores.fillerWords.total_count > 0 && (
-        <div className="card">
-          <h3 className="card-title" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <AlertTriangle size={16} color="#f59e0b" /> Filler Words · {scores.fillerWords.total_count} detected
-          </h3>
+      {/* ── Filler Words — always shown, redesigned ── */}
+      <div className="card" style={{ border: `1.5px solid ${fc.border}`, background: fc.bg }}>
+
+        {/* Card header */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14 }}>
           <div style={{
-            background: scores.fillerWords.total_count > 10 ? '#fef2f2' : scores.fillerWords.total_count > 5 ? '#fefbeb' : '#eff6ff',
-            borderRadius: 8, padding: '12px 16px'
+            width: 40, height: 40, borderRadius: 10,
+            background: 'white', border: `1.5px solid ${fc.border}`,
+            display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0
           }}>
-            <p style={{ fontSize: 13, marginBottom: 10, color: '#475569' }}>
-              {scores.fillerWords.total_count > 10 ? '⚠️ High usage — work on speaking more fluently'
-                : scores.fillerWords.total_count > 5 ? '⚠️ Moderate usage — try to reduce for better confidence'
-                : '✓ Acceptable filler word usage'}
-            </p>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-              {Object.entries(scores.fillerWords.filler_details || {}).slice(0, 8).map(([word, count]) => (
-                <span key={word} className="badge" style={{ background: '#f1f5f9', color: '#475569' }}>
-                  {word}: <strong>{count}</strong>
-                </span>
-              ))}
+            <Volume2 size={18} color={fc.labelColor} />
+          </div>
+          <div style={{ flex: 1 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <h3 style={{
+                fontFamily: "'Plus Jakarta Sans', sans-serif",
+                fontSize: 15, fontWeight: 700, color: '#0f172a', margin: 0
+              }}>
+                Filler Words
+              </h3>
+              {/* Count badge */}
+              <span style={{
+                fontSize: 13, fontWeight: 800,
+                background: fillerTotal === 0 ? '#dcfce7' : fillerLevel === 'high' ? '#fee2e2' : fillerLevel === 'medium' ? '#fef3c7' : '#dcfce7',
+                color: fc.labelColor,
+                padding: '2px 10px', borderRadius: 999,
+                border: `1px solid ${fc.border}`
+              }}>
+                {fillerTotal} detected
+              </span>
             </div>
+            <p style={{ fontSize: 13, color: fc.labelColor, marginTop: 3, fontWeight: 500 }}>
+              {fc.icon} {fc.msg}
+            </p>
           </div>
         </div>
-      )}
+
+        {/* Filler word pills — only if any detected */}
+        {fillerTotal > 0 && Object.keys(fillerDetails).length > 0 ? (
+          <>
+            <div style={{
+              height: 1, background: fc.border, marginBottom: 14
+            }} />
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+              {Object.entries(fillerDetails)
+                .sort((a, b) => b[1] - a[1])   // highest count first
+                .map(([word, count]) => (
+                  <div
+                    key={word}
+                    style={{
+                      display: 'flex', alignItems: 'center', gap: 0,
+                      background: 'white',
+                      border: `1.5px solid ${fc.border}`,
+                      borderRadius: 8,
+                      overflow: 'hidden',
+                      boxShadow: '0 1px 4px rgba(0,0,0,0.06)'
+                    }}
+                  >
+                    {/* Word label */}
+                    <span style={{
+                      padding: '6px 12px',
+                      fontSize: 14,
+                      fontWeight: 600,
+                      color: '#374151',
+                      borderRight: `1.5px solid ${fc.border}`,
+                    }}>
+                      "{word}"
+                    </span>
+                    {/* Count pill */}
+                    <span style={{
+                      padding: '6px 12px',
+                      fontSize: 14,
+                      fontWeight: 800,
+                      color: fc.labelColor,
+                      background: fc.tagBg,
+                    }}>
+                      ×{count}
+                    </span>
+                  </div>
+                ))}
+            </div>
+
+            {/* Progress bar showing filler rate */}
+            {(() => {
+              const totalWords = results?.word_count || 1
+              const rate = Math.min(Math.round((fillerTotal / Math.max(totalWords, 20)) * 100), 100)
+              return (
+                <div style={{ marginTop: 14 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, color: fc.labelColor, fontWeight: 600, marginBottom: 5 }}>
+                    <span>Filler word rate</span>
+                    <span>{fillerTotal} out of ~{Math.max(totalWords, 20)} words</span>
+                  </div>
+                  <div style={{ background: 'white', borderRadius: 999, height: 7, overflow: 'hidden', border: `1px solid ${fc.border}` }}>
+                    <div style={{
+                      width: `${rate}%`, height: '100%', borderRadius: 999,
+                      background: fillerLevel === 'high' ? '#ef4444' : fillerLevel === 'medium' ? '#f59e0b' : '#10b981',
+                      transition: 'width 1s ease-out'
+                    }} />
+                  </div>
+                </div>
+              )
+            })()}
+          </>
+        ) : (
+          <div style={{
+            display: 'flex', alignItems: 'center', gap: 10,
+            background: 'white', borderRadius: 8, padding: '12px 16px',
+            border: `1px solid ${fc.border}`
+          }}>
+            <CheckCircle size={18} color="#16a34a" />
+            <span style={{ fontSize: 14, fontWeight: 600, color: '#166534' }}>
+              No filler words detected in your answer — keep it up!
+            </span>
+          </div>
+        )}
+      </div>
 
       {/* Quick Feedback */}
       <div className="card">
@@ -223,10 +327,10 @@ const ResultPanel = ({ results, aiFeedback, generatingFeedback }) => {
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
             {[
-              { key: 'what_you_covered', icon: CheckCircle, color: '#16a34a', bg: 'white', border: '#bbf7d0', label: 'What You Covered', symbol: '✓' },
-              { key: 'what_you_missed', icon: TrendingDown, color: '#dc2626', bg: 'white', border: '#fecaca', label: 'What You Missed', symbol: '✗' },
-              { key: 'how_to_improve', icon: Lightbulb, color: '#2563eb', bg: 'white', border: '#bfdbfe', label: 'How to Improve', symbol: '→' },
-              { key: 'suggested_additions', icon: Plus, color: '#7c3aed', bg: 'white', border: '#c4b5fd', label: 'Suggested Additions', symbol: '+' },
+              { key: 'what_you_covered',    icon: CheckCircle,  color: '#16a34a', bg: 'white', border: '#bbf7d0', label: 'What You Covered',   symbol: '✓' },
+              { key: 'what_you_missed',     icon: TrendingDown, color: '#dc2626', bg: 'white', border: '#fecaca', label: 'What You Missed',     symbol: '✗' },
+              { key: 'how_to_improve',      icon: Lightbulb,    color: '#2563eb', bg: 'white', border: '#bfdbfe', label: 'How to Improve',      symbol: '→' },
+              { key: 'suggested_additions', icon: Plus,         color: '#7c3aed', bg: 'white', border: '#c4b5fd', label: 'Suggested Additions', symbol: '+' },
             ].map(({ key, icon: Icon, color, bg, border, label, symbol }) =>
               aiFeedback[key]?.length > 0 ? (
                 <div key={key} style={{ background: bg, border: `1px solid ${border}`, borderRadius: 10, padding: '14px 16px' }}>

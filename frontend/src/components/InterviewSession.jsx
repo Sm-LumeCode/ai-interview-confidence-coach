@@ -26,22 +26,22 @@ const InterviewSession = ({ user, onLogout }) => {
   const { category, sessionIndex: sessionIndexParam } = useParams()
   const navigate = useNavigate()
 
-  // sessionIndex from URL (0-based). Defaults to 0 for legacy /interview/:category route.
   const sessionIndex = sessionIndexParam !== undefined ? parseInt(sessionIndexParam, 10) : 0
 
-  const [allQuestions, setAllQuestions]     = useState([])
+  const [allQuestions, setAllQuestions]         = useState([])
   const [sessionQuestions, setSessionQuestions] = useState([])
-  const [currentIdx, setCurrentIdx]         = useState(0)   // index within session (0-4)
-  const [showResults, setShowResults]       = useState(false)
-  const [results, setResults]               = useState(null)
-  const [idealAnswer, setIdealAnswer]       = useState(null)
-  const [loading, setLoading]               = useState(true)
-  const [evaluating, setEvaluating]         = useState(false)
+  const [currentIdx, setCurrentIdx]             = useState(0)
+  const [showResults, setShowResults]           = useState(false)
+  const [results, setResults]                   = useState(null)
+  const [submittedAnswer, setSubmittedAnswer]   = useState('')   // ← NEW: store transcribed answer
+  const [idealAnswer, setIdealAnswer]           = useState(null)
+  const [loading, setLoading]                   = useState(true)
+  const [evaluating, setEvaluating]             = useState(false)
   const [generatingAnswer, setGeneratingAnswer] = useState(false)
   const [generatingFeedback, setGeneratingFeedback] = useState(false)
-  const [aiFeedback, setAiFeedback]         = useState(null)
-  const [error, setError]                   = useState('')
-  const [sessionComplete, setSessionComplete] = useState(false)
+  const [aiFeedback, setAiFeedback]             = useState(null)
+  const [error, setError]                       = useState('')
+  const [sessionComplete, setSessionComplete]   = useState(false)
 
   // Timer
   const [timeRemaining, setTimeRemaining]   = useState(0)
@@ -58,12 +58,10 @@ const InterviewSession = ({ user, onLogout }) => {
         const data = await api.getQuestions(category)
         setAllQuestions(data)
 
-        // Slice to this session's 5 questions
         const start = sessionIndex * QUESTIONS_PER_SESSION
         const slice = data.slice(start, start + QUESTIONS_PER_SESSION)
         setSessionQuestions(slice)
 
-        // Restore intra-session progress if any
         const globalAnswered = getProgress(user.email, category)?.currentQuestionIndex ?? 0
         const sessionStart = sessionIndex * QUESTIONS_PER_SESSION
         const doneInSession = Math.max(0, globalAnswered - sessionStart)
@@ -118,6 +116,7 @@ const InterviewSession = ({ user, onLogout }) => {
     setGeneratingFeedback(false)
     setAiFeedback(null)
     setError('')
+    setSubmittedAnswer(answerText)   // ← store it for display
 
     try {
       const q = sessionQuestions[currentIdx]
@@ -127,7 +126,6 @@ const InterviewSession = ({ user, onLogout }) => {
       setResults(evaluation)
       saveDailyProgress(user.email, { technicalScore: evaluation.technical_score, confidenceScore: evaluation.communication_score })
 
-      // Global progress = how many questions answered across ALL sessions
       const globalIndex = sessionIndex * QUESTIONS_PER_SESSION + currentIdx + 1
       saveProgress(user.email, category, globalIndex, allQuestions.length)
 
@@ -152,9 +150,11 @@ const InterviewSession = ({ user, onLogout }) => {
   const handleTimeUpAutoAdvance = async () => {
     if (!sessionQuestions[currentIdx]) return
     setTimerActive(false); setEvaluating(true); setGeneratingAnswer(true)
+    const autoAnswer = 'Time ran out - no answer provided'
+    setSubmittedAnswer(autoAnswer)
     try {
       const q = sessionQuestions[currentIdx]
-      const evaluation = await api.evaluateAnswer(q.question, 'Time ran out - no answer provided', q.keywords || [])
+      const evaluation = await api.evaluateAnswer(q.question, autoAnswer, q.keywords || [])
       saveCategoryProgress(user.email, CATEGORY_MAP[category] || category, evaluation.technical_score, evaluation.communication_score)
       setResults(evaluation)
       saveDailyProgress(user.email, { technicalScore: evaluation.technical_score, confidenceScore: evaluation.communication_score })
@@ -173,7 +173,7 @@ const InterviewSession = ({ user, onLogout }) => {
 
   const resetQuestion = () => {
     setShowResults(false); setResults(null); setIdealAnswer(null)
-    setAiFeedback(null); setGeneratingFeedback(false)
+    setAiFeedback(null); setGeneratingFeedback(false); setSubmittedAnswer('')
   }
 
   const handleNextQuestion = () => {
@@ -181,7 +181,6 @@ const InterviewSession = ({ user, onLogout }) => {
     if (currentIdx < QUESTIONS_PER_SESSION - 1) {
       setCurrentIdx(currentIdx + 1)
     } else {
-      // Session complete!
       setSessionComplete(true)
     }
   }
@@ -249,7 +248,6 @@ const InterviewSession = ({ user, onLogout }) => {
               {hasNextSession ? ' Session ' + (nextSession + 1) + ' is now unlocked!' : ' You\'ve completed all sessions in this category!'}
             </p>
 
-            {/* Badge */}
             <div style={{
               background: '#f0fdf4', border: '1px solid #bbf7d0',
               borderRadius: 12, padding: '14px 20px', marginBottom: 24,
@@ -304,7 +302,6 @@ const InterviewSession = ({ user, onLogout }) => {
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            {/* Timer */}
             {!showResults && (
               <div style={{
                 display: 'flex', alignItems: 'center', gap: 10,
@@ -340,7 +337,7 @@ const InterviewSession = ({ user, onLogout }) => {
           </div>
         </div>
 
-        {/* Session progress bar — 5 dots */}
+        {/* Session progress bar */}
         <div className="card" style={{ padding: '14px 20px', marginBottom: 20 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8, alignItems: 'center' }}>
             <span style={{ fontSize: 12, color: '#94a3b8', fontWeight: 600 }}>
@@ -350,7 +347,6 @@ const InterviewSession = ({ user, onLogout }) => {
               {currentIdx}/{QUESTIONS_PER_SESSION} complete
             </span>
           </div>
-          {/* 5 step dots */}
           <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
             {Array.from({ length: QUESTIONS_PER_SESSION }).map((_, i) => (
               <div key={i} style={{
@@ -369,7 +365,6 @@ const InterviewSession = ({ user, onLogout }) => {
           </div>
         </div>
 
-        {/* Time's up banner */}
         {timerExpired && !showResults && !showTimeUpPopup && (
           <div style={{ background: '#fee2e2', border: '1px solid #fca5a5', borderRadius: 10, padding: '12px 16px', marginBottom: 16, display: 'flex', gap: 10 }}>
             <AlertCircle size={16} color="#ef4444" />
@@ -383,7 +378,6 @@ const InterviewSession = ({ user, onLogout }) => {
           </div>
         )}
 
-        {/* Content */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
           <QuestionCard question={q} currentQuestion={currentIdx + 1} totalQuestions={QUESTIONS_PER_SESSION} />
 
@@ -398,7 +392,30 @@ const InterviewSession = ({ user, onLogout }) => {
 
           {showResults && !evaluating && results && (
             <>
-              <ResultPanel results={results} aiFeedback={aiFeedback} generatingFeedback={generatingFeedback} />
+              {/* ── Transcribed Answer Display ── */}
+              <div className="card" style={{ background: '#f8fafc', border: '1px solid #e2e8f0' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+                  <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#10b981' }} />
+                  <h3 style={{ fontSize: 14, fontWeight: 700, color: '#374151' }}>Your Answer (Transcribed)</h3>
+                  <span style={{ marginLeft: 'auto', fontSize: 12, color: '#94a3b8' }}>
+                    {submittedAnswer.trim().split(/\s+/).filter(Boolean).length} words
+                  </span>
+                </div>
+                <p style={{
+                  fontSize: 14, color: '#1e293b', lineHeight: 1.7,
+                  background: 'white', border: '1px solid #e2e8f0',
+                  borderRadius: 8, padding: '14px 16px',
+                  whiteSpace: 'pre-wrap'
+                }}>
+                  {submittedAnswer || '—'}
+                </p>
+              </div>
+
+              <ResultPanel
+                results={results}
+                aiFeedback={aiFeedback}
+                generatingFeedback={generatingFeedback}
+              />
 
               {generatingAnswer && (
                 <div className="card" style={{ textAlign: 'center', padding: '28px 24px' }}>
@@ -409,7 +426,6 @@ const InterviewSession = ({ user, onLogout }) => {
 
               {idealAnswer && !generatingAnswer && <IdealAnswer idealAnswer={idealAnswer} />}
 
-              {/* Nav buttons */}
               <div className="card" style={{ padding: '16px 24px' }}>
                 <div style={{ display: 'flex', gap: 12 }}>
                   <button
@@ -433,7 +449,6 @@ const InterviewSession = ({ user, onLogout }) => {
         </div>
       </main>
 
-      {/* Time up modal */}
       {showTimeUpPopup && (
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100 }}>
           <div style={{ background: 'white', borderRadius: 16, padding: 40, maxWidth: 380, textAlign: 'center', boxShadow: '0 25px 60px rgba(0,0,0,0.3)' }}>
