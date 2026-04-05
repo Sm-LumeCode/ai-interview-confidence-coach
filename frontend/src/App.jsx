@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
-import Login from './components/Login'
-import Signup from './components/Signup'
+import LandingPage from './components/LandingPage'
+import AuthPage from './components/AuthPage'
 import Dashboard from './components/Dashboard'
 import InterviewSession from './components/InterviewSession'
 import SessionList from './components/SessionList'
@@ -48,26 +48,22 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/signup"    element={user ? <Navigate to="/dashboard" /> : <Signup onLogin={handleLogin} />} />
-        <Route path="/login"     element={user ? <Navigate to="/dashboard" /> : <Login onLogin={handleLogin} />} />
-        <Route path="/dashboard" element={user ? <Dashboard user={user} onLogout={handleLogout} /> : <Navigate to="/signup" />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/signup" element={<AuthPage onLogin={handleLogin} />} />
+        <Route path="/login"  element={<AuthPage onLogin={handleLogin} />} />
+        <Route path="/dashboard" element={user ? <Dashboard user={user} onLogout={handleLogout} /> : <Navigate to="/login" />} />
 
         {/* Session list for a category — shows sessions of 5 questions each */}
         <Route path="/sessions/:category"
-          element={user ? <SessionList user={user} onLogout={handleLogout} /> : <Navigate to="/signup" />} />
+          element={user ? <SessionList user={user} onLogout={handleLogout} /> : <Navigate to="/login" />} />
 
         {/* Actual interview — now receives sessionIndex via URL */}
         <Route path="/interview/:category/:sessionIndex"
-          element={user ? <InterviewSession user={user} onLogout={handleLogout} /> : <Navigate to="/signup" />} />
+          element={user ? <InterviewSession user={user} onLogout={handleLogout} /> : <Navigate to="/login" />} />
 
-        {/* Legacy route kept for backward compat */}
-        <Route path="/interview/:category"
-          element={user ? <InterviewSession user={user} onLogout={handleLogout} /> : <Navigate to="/signup" />} />
-
-        <Route path="/profile"    element={user ? <Profile user={user} onLogout={handleLogout} /> : <Navigate to="/signup" />} />
-        <Route path="/progress"   element={user ? <Progress user={user} onLogout={handleLogout} /> : <Navigate to="/signup" />} />
-        <Route path="/challenges" element={user ? <Challenges user={user} onLogout={handleLogout} /> : <Navigate to="/signup" />} />
-        <Route path="/" element={<Navigate to={user ? "/dashboard" : "/signup"} />} />
+        <Route path="/profile"    element={user ? <Profile user={user} onLogout={handleLogout} /> : <Navigate to="/login" />} />
+        <Route path="/progress"   element={user ? <Progress user={user} onLogout={handleLogout} /> : <Navigate to="/login" />} />
+        <Route path="/challenges" element={user ? <Challenges user={user} onLogout={handleLogout} /> : <Navigate to="/login" />} />
       </Routes>
     </Router>
   )

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -11,22 +11,24 @@
 }
 
 :root {
-  --sidebar-bg: #0f1117;
+  --primary-teal: hsl(168, 60%, 36%);
+  --bg-cool-gray: hsl(210, 20%, 98%);
+  --fg-dark-slate: hsl(220, 20%, 10%);
+  --sidebar-dark: hsl(220, 20%, 14%);
+  
+  --sidebar-bg: var(--sidebar-dark);
   --sidebar-width: 260px;
-  --accent-green: #10b981;
-  --accent-green-light: #d1fae5;
-  --accent-blue: #3b82f6;
-  --accent-amber: #f59e0b;
-  --content-bg: #f8fafc;
+  --accent-green: var(--primary-teal);
+  --accent-green-light: hsl(168, 60%, 92%);
+  --content-bg: var(--bg-cool-gray);
   --card-bg: #ffffff;
-  --text-primary: #0f172a;
+  --text-primary: var(--fg-dark-slate);
   --text-secondary: #64748b;
-  --text-muted: #94a3b8;
   --border: #e2e8f0;
-  --sidebar-text: #94a3b8;
-  --sidebar-active: #ffffff;
-  --sidebar-hover: #1e2430;
-  --sidebar-active-bg: #1e2430;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -35,6 +37,10 @@ body {
   background: var(--content-bg);
   min-height: 100vh;
   color: var(--text-primary);
+}
+
+code, pre {
+  font-family: 'JetBrains Mono', monospace !important;
 }
 
 #root {

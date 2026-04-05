@@ -5,7 +5,7 @@ import api from '../services/api'
 import { getProgress } from '../utils/progressManager'
 import {
   ChevronRight, Lock, CheckCircle2, PlayCircle,
-  ArrowLeft, Clock, Zap, BarChart2
+  ArrowLeft, Clock, Zap, BarChart2, AlertCircle
 } from 'lucide-react'
 
 const QUESTIONS_PER_SESSION = 5

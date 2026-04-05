@@ -144,7 +144,7 @@ const Navbar = ({ user, onLogout }) => {
         <div style={{ padding: '10px 8px', borderTop: '1px solid #1e2430' }}>
           {/* Logout */}
           <button
-            onClick={() => { onLogout(); navigate('/login') }}
+            onClick={() => { onLogout(); navigate('/') }}
             title={collapsed ? 'Logout' : ''}
             style={{
               width: '100%', border: 'none', background: 'none', cursor: 'pointer',

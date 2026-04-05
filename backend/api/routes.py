@@ -259,3 +259,58 @@ async def transcribe_audio(audio: UploadFile = File(...)):
             status_code=500,
             detail=f"Transcription failed: {str(e)}"
         )
+
+# OTP storage (In-memory for demo, should use Redis/Cache in prod)
+otp_storage = {}
+
+class OTPRequest(BaseModel):
+    email: str
+
+class OTPVerifyRequest(BaseModel):
+    email: str
+    otp: str
+
+@router.post("/send-otp")
+def send_otp_handler(request: OTPRequest):
+    """
+    Sends a real OTP code to the provided email.
+    """
+    import random
+    from services.email_service import EmailService
+    
+    otp = str(random.randint(1001, 9999))
+    email_service = EmailService()
+    
+    print(f"🔄 [OTP] Processing request for {request.email}...")
+    success = email_service.send_otp(request.email, otp)
+    
+    if success:
+        otp_storage[request.email] = otp
+        return {"status": "sent", "message": f"Verification code sent to {request.email}"}
+    else:
+        # Fallback simulation if credentials are missing
+        # We store it anyway so the user can 'verify' even without a real email if they check logs
+        otp_storage[request.email] = otp
+        print(f"⚠️ [SIMULATION] Credentials missing, OTP for {request.email} is: {otp}")
+        return {
+            "status": "simulated", 
+            "message": "Simulated OTP (Backend credentials missing). Check console/logs.",
+            "otp_preview": otp # In real life, we wouldn't show this
+        }
+
+@router.post("/verify-otp")
+def verify_otp_handler(request: OTPVerifyRequest):
+    """
+    Verifies that the OTP code matches the stored value for the user's email.
+    """
+    stored_otp = otp_storage.get(request.email)
+    
+    if not stored_otp:
+        raise HTTPException(status_code=400, detail="OTP session expired or not found")
+        
+    if stored_otp == request.otp:
+        # Remove OTP after successful verification
+        del otp_storage[request.email]
+        return {"status": "verified", "message": "Identity confirmed"}
+    else:
+        raise HTTPException(status_code=400, detail="Invalid verification code")
