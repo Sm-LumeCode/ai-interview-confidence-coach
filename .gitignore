@@ -4,6 +4,12 @@
 backend/.env
 frontend/.env
 *.local
+!.env.example
+!backend/.env.example
+!frontend/.env.example
+backend/firebase-service-account*.json
+backend/serviceAccountKey*.json
+backend/firebase-credentials*.json
 
 # Python artifacts
 __pycache__/

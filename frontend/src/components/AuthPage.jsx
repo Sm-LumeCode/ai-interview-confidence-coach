@@ -17,6 +17,7 @@ import {
   AlertCircle
 } from 'lucide-react'
 import { useNavigate, useLocation } from 'react-router-dom'
+import api from '../services/api'
 
 const AuthPage = ({ onLogin }) => {
   const navigate = useNavigate()
@@ -39,9 +40,9 @@ const AuthPage = ({ onLogin }) => {
   const [successMsg, setSuccessMsg] = useState('')
 
   useEffect(() => {
-    // Sync with local storage on mount
-    const users = JSON.parse(localStorage.getItem('users') || '[]')
-    setRegisteredUsers(users)
+    api.listAuthUsers()
+      .then(data => setRegisteredUsers(data.users || []))
+      .catch(() => setRegisteredUsers([]))
     
     if (location.pathname === '/login') setMode('login')
     else if (location.pathname === '/signup') setMode('signup')
@@ -67,8 +68,9 @@ const AuthPage = ({ onLogin }) => {
 
   const handleSocialClick = (provider) => {
     if (provider === 'Google') {
-      const users = JSON.parse(localStorage.getItem('users') || '[]')
-      setRegisteredUsers(users)
+      api.listAuthUsers()
+        .then(data => setRegisteredUsers(data.users || []))
+        .catch(() => setRegisteredUsers([]))
       setShowGoogleModal(true)
     } else {
       setLoading(true)
@@ -102,42 +104,25 @@ const AuthPage = ({ onLogin }) => {
     setLoading(true)
 
     try {
-      const users = JSON.parse(localStorage.getItem('users') || '[]')
-      
       if (mode === 'login') {
-        const u = users.find(u => u.email === email)
-        if (!u) throw new Error('No account found with this email.')
-        if (u.password !== password) throw new Error('Incorrect password.')
-        
-        onLogin({ id: u.id, username: u.username, email: u.email })
+        const data = await api.login({ email, password })
+        onLogin(data.user)
         navigate('/dashboard')
       } 
       else if (mode === 'signup') {
         if (password.length < 6) throw new Error('Password must be at least 6 characters.')
         if (password !== confirmPassword) throw new Error('Passwords do not match.')
-        if (users.find(u => u.email === email)) throw new Error('Account already exists.')
-
-        const newUser = {
-          id: Date.now().toString(),
-          username: fullName.split(' ')[0].toLowerCase() + Math.round(Math.random() * 100),
-          fullName, email, password, createdAt: new Date().toISOString()
-        }
-        users.push(newUser)
-        localStorage.setItem('users', JSON.stringify(users))
-        setRegisteredUsers(users)
-        onLogin({ id: newUser.id, username: newUser.username, email: newUser.email })
+        const data = await api.signup({ email, password, fullName })
+        const usersData = await api.listAuthUsers().catch(() => ({ users: [] }))
+        setRegisteredUsers(usersData.users || [])
+        onLogin(data.user)
         navigate('/dashboard')
       }
       else if (mode === 'forgotPassword') {
-        const u = users.find(u => u.email === email)
-        if (!u) throw new Error('No account found with this email.')
+        const lookup = await api.userExists(email)
+        if (!lookup.exists) throw new Error('No account found with this email.')
         
-        const response = await fetch('http://localhost:8002/api/send-otp', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email })
-        })
-        const data = await response.json()
+        const data = await api.sendOtp(email)
         
         if (data.status === 'sent' || data.status === 'simulated') {
           setSuccessMsg(data.message)
@@ -147,12 +132,7 @@ const AuthPage = ({ onLogin }) => {
         }
       }
       else if (mode === 'otpVerification') {
-        const response = await fetch('http://localhost:8002/api/verify-otp', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, otp })
-        })
-        const data = await response.json()
+        const data = await api.verifyOtp({ email, otp })
         
         if (data.status === 'verified') {
           setMode('resetPassword')
@@ -165,13 +145,9 @@ const AuthPage = ({ onLogin }) => {
         if (password.length < 6) throw new Error('Password must be at least 6 characters.')
         if (password !== confirmPassword) throw new Error('Passwords do not match.')
         
-        const idx = users.findIndex(u => u.email === email)
-        if (idx !== -1) {
-          users[idx].password = password
-          localStorage.setItem('users', JSON.stringify(users))
-          setSuccessMsg('Password updated! Redirecting to Sign In...')
-          setTimeout(() => setMode('login'), 2000)
-        }
+        await api.resetPassword({ email, password })
+        setSuccessMsg('Password updated! Redirecting to Sign In...')
+        setTimeout(() => setMode('login'), 2000)
       }
     } catch (err) {
       setError(err.message)

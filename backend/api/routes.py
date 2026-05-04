@@ -8,6 +8,7 @@ import tempfile
 from services.evaluator import evaluate_answer_legacy
 from services.answer_generator import generate_ideal_answer
 from services.llm_evaluator import generate_structured_feedback
+from services.firebase_service import FirebaseConfigError, get_firebase_service
 
 router = APIRouter()
 
@@ -29,6 +30,81 @@ class FeedbackRequest(BaseModel):
 class AnswerGenerationRequest(BaseModel):
     question: str
     keywords: Optional[List[str]] = None
+
+class SignupRequest(BaseModel):
+    email: str
+    password: str
+    fullName: str
+
+class LoginRequest(BaseModel):
+    email: str
+    password: str
+
+class EmailLookupRequest(BaseModel):
+    email: str
+
+class PasswordResetRequest(BaseModel):
+    email: str
+    password: str
+
+
+def _firebase_or_503():
+    try:
+        return get_firebase_service()
+    except FirebaseConfigError as exc:
+        raise HTTPException(status_code=503, detail=str(exc))
+    except Exception as exc:
+        print(f"Firebase initialization failed: {exc}")
+        raise HTTPException(status_code=503, detail="Firebase is not configured correctly.")
+
+
+@router.post("/auth/signup")
+def signup(request: SignupRequest):
+    if not request.email.strip():
+        raise HTTPException(status_code=400, detail="Email is required.")
+    if len(request.password) < 6:
+        raise HTTPException(status_code=400, detail="Password must be at least 6 characters.")
+    if not request.fullName.strip():
+        raise HTTPException(status_code=400, detail="Full name is required.")
+
+    try:
+        user = _firebase_or_503().signup(request.email, request.password, request.fullName)
+        return {"user": user}
+    except ValueError as exc:
+        raise HTTPException(status_code=409, detail=str(exc))
+
+
+@router.post("/auth/login")
+def login(request: LoginRequest):
+    try:
+        user = _firebase_or_503().login(request.email, request.password)
+        return {"user": user}
+    except ValueError as exc:
+        raise HTTPException(status_code=401, detail=str(exc))
+
+
+@router.get("/auth/users")
+def list_auth_users():
+    users = _firebase_or_503().list_public_users()
+    return {"users": users}
+
+
+@router.post("/auth/user-exists")
+def user_exists(request: EmailLookupRequest):
+    exists = _firebase_or_503().user_exists(request.email)
+    return {"exists": exists}
+
+
+@router.post("/auth/reset-password")
+def reset_password(request: PasswordResetRequest):
+    if len(request.password) < 6:
+        raise HTTPException(status_code=400, detail="Password must be at least 6 characters.")
+
+    try:
+        _firebase_or_503().reset_password(request.email, request.password)
+        return {"status": "updated"}
+    except ValueError as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
 
 # Get questions by category
 @router.get("/questions/{category}")
