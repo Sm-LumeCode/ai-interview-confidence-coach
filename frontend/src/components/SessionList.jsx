@@ -36,7 +36,7 @@ const SessionList = ({ user, onLogout }) => {
   useEffect(() => {
     api.getQuestions(category)
       .then(data => { setQuestions(data); setLoading(false) })
-      .catch(() => { setError('Failed to load questions.'); setLoading(false) })
+      .catch((err) => { setError(err.message || 'Failed to load questions.'); setLoading(false) })
   }, [category])
 
   // How many questions has the user answered in this category?
@@ -90,8 +90,8 @@ const SessionList = ({ user, onLogout }) => {
             <div style={{ width: 48, height: 48, background: '#fee2e2', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
               <AlertCircle size={24} color="#ef4444" />
             </div>
-            <h2 style={{ fontSize: 18, color: '#0f172a', marginBottom: 8 }}>Fail to Load Questions</h2>
-            <p style={{ color: '#64748b', fontSize: 14, marginBottom: 24 }}>{error}. Make sure the backend is running at http://localhost:8002.</p>
+            <h2 style={{ fontSize: 18, color: '#0f172a', marginBottom: 8 }}>Failed to Load Questions</h2>
+            <p style={{ color: '#64748b', fontSize: 14, marginBottom: 24 }}>{error} Make sure the backend is running at http://localhost:8000.</p>
             <div style={{ display: 'flex', gap: 12 }}>
               <button onClick={() => navigate('/dashboard')} className="btn-secondary" style={{ flex: 1, justifyContent: 'center' }}>Back to Dashboard</button>
               <button 
@@ -100,7 +100,7 @@ const SessionList = ({ user, onLogout }) => {
                   setLoading(true)
                   api.getQuestions(category)
                     .then(data => { setQuestions(data); setLoading(false) })
-                    .catch(() => { setError('Failed to load questions.'); setLoading(false) })
+                    .catch((err) => { setError(err.message || 'Failed to load questions.'); setLoading(false) })
                 }} 
                 className="btn-primary"
                 style={{ flex: 1, justifyContent: 'center' }}

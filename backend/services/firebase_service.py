@@ -7,16 +7,28 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-import firebase_admin
-from firebase_admin import credentials, db
-
 
 class FirebaseConfigError(RuntimeError):
     pass
 
 
+def _load_firebase_admin():
+    try:
+        import firebase_admin
+        from firebase_admin import credentials, db
+    except ModuleNotFoundError as exc:
+        if exc.name == "firebase_admin":
+            raise FirebaseConfigError(
+                "firebase-admin is not installed. Run `pip install -r requirements.txt` in the backend venv."
+            ) from exc
+        raise
+
+    return firebase_admin, credentials, db
+
+
 class FirebaseService:
     def __init__(self) -> None:
+        self._firebase_admin, self._credentials, self._db = _load_firebase_admin()
         self._app = self._initialize_app()
 
     def signup(self, email: str, password: str, full_name: str) -> Dict[str, str]:
@@ -41,7 +53,7 @@ class FirebaseService:
             "updatedAt": now,
         }
 
-        root = db.reference("/")
+        root = self._db.reference("/")
         root.child("users").child(uid).set(user_record)
         root.child("userEmails").child(_email_key(email)).set(uid)
 
@@ -61,13 +73,13 @@ class FirebaseService:
         if not uid:
             raise ValueError("No account found with this email.")
 
-        db.reference("users").child(uid).update({
+        self._db.reference("users").child(uid).update({
             "passwordHash": _hash_password(password),
             "updatedAt": _utc_now(),
         })
 
     def list_public_users(self, limit: int = 10) -> List[Dict[str, str]]:
-        data = db.reference("users").order_by_child("createdAt").limit_to_last(limit).get() or {}
+        data = self._db.reference("users").order_by_child("createdAt").limit_to_last(limit).get() or {}
         users = [_public_user(user) for user in data.values() if isinstance(user, dict)]
         return sorted(users, key=lambda user: user.get("createdAt", ""), reverse=True)
 
@@ -75,24 +87,24 @@ class FirebaseService:
         uid = self._get_uid_by_email(email)
         if not uid:
             return None
-        user = db.reference("users").child(uid).get()
+        user = self._db.reference("users").child(uid).get()
         return user if isinstance(user, dict) else None
 
     def _get_uid_by_email(self, email: str) -> Optional[str]:
-        uid = db.reference("userEmails").child(_email_key(email.strip().lower())).get()
+        uid = self._db.reference("userEmails").child(_email_key(email.strip().lower())).get()
         return uid if isinstance(uid, str) else None
 
-    def _initialize_app(self) -> firebase_admin.App:
-        if firebase_admin._apps:
-            return firebase_admin.get_app()
+    def _initialize_app(self):
+        if self._firebase_admin._apps:
+            return self._firebase_admin.get_app()
 
         database_url = os.getenv("FIREBASE_DATABASE_URL")
         if not database_url:
             raise FirebaseConfigError("FIREBASE_DATABASE_URL is missing.")
 
         cred_data = _load_credentials()
-        return firebase_admin.initialize_app(
-            credentials.Certificate(cred_data),
+        return self._firebase_admin.initialize_app(
+            self._credentials.Certificate(cred_data),
             {"databaseURL": database_url},
         )
 

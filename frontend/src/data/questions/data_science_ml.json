@@ -1,0 +1,2144 @@
+{
+  "role": "data_science_ml",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Explain the bias-variance tradeoff in machine learning.",
+      "expected_answer": "The bias-variance tradeoff describes the balance between model simplicity and flexibility. High bias leads to underfitting, where the model cannot capture data patterns. High variance leads to overfitting, where the model fits noise instead of signal. The goal is to minimize total error by finding the optimal balance.",
+      "keywords": ["bias", "variance", "tradeoff", "overfitting", "underfitting", "model complexity"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 2,
+      "question": "What is the difference between supervised and unsupervised learning?",
+      "expected_answer": "Supervised learning uses labeled data to learn input-output mappings, while unsupervised learning works with unlabeled data to discover patterns such as clusters or latent structures.",
+      "keywords": ["supervised", "unsupervised", "labeled", "unlabeled", "classification", "clustering"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "question": "Explain regularization techniques in machine learning.",
+      "expected_answer": "Regularization reduces overfitting by penalizing model complexity. Common techniques include L1 (Lasso), L2 (Ridge), Elastic Net, dropout, and early stopping.",
+      "keywords": ["regularization", "L1", "L2", "Lasso", "Ridge", "overfitting"],
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "question": "What are precision and recall, and how do they differ?",
+      "expected_answer": "Precision measures correctness of positive predictions, while recall measures how many actual positives were captured. They often trade off against each other.",
+      "keywords": ["precision", "recall", "F1-score", "classification", "evaluation metrics"],
+      "difficulty": "easy"
+    },
+    {
+      "id": 5,
+      "question": "Explain the working of a Random Forest algorithm.",
+      "expected_answer": "Random Forest builds multiple decision trees using bootstrap sampling and random feature selection, then aggregates their predictions to improve generalization and reduce overfitting.",
+      "keywords": ["Random Forest", "ensemble", "decision trees", "bagging", "feature importance"],
+      "difficulty": "medium"
+    },
+  {
+    "id": 6,
+    "question": "What are autoencoders? Explain the different layers of autoencoders and mention three practical usages of them.",
+    "keywords": ["autoencoders", "encoder", "decoder", "dimensionality reduction", "feature learning", "anomaly detection"],
+    "category": "easy"
+  },
+  {
+    "id": 7,
+    "question": "What is an activation function and why is it used in neural networks? Explain three different types of activation functions.",
+    "keywords": ["activation function", "non-linearity", "ReLU", "Sigmoid", "Tanh"],
+    "category": "easy"
+  },
+  {
+    "id": 8,
+    "question": "Why should we use Batch Normalization in deep neural networks?",
+    "keywords": ["batch normalization", "internal covariate shift", "training stability", "faster convergence"],
+    "category": "medium"
+  },
+  {
+    "id": 9,
+    "question": "What is the Vanishing Gradient Problem in artificial neural networks and how can it be fixed?",
+    "keywords": ["vanishing gradient", "backpropagation", "deep networks", "ReLU", "weight initialization"],
+    "category": "medium"
+  },
+  {
+    "id": 10,
+    "question": "Why are Sigmoid or Tanh activation functions not preferred in the hidden layers of deep neural networks?",
+    "keywords": ["sigmoid", "tanh", "gradient saturation", "vanishing gradients", "ReLU"],
+    "category": "medium"
+  },
+  {
+    "id": 11,
+    "question": "What can be done to reduce overfitting in a deep neural network?",
+    "keywords": ["overfitting", "regularization", "dropout", "data augmentation", "early stopping"],
+    "category": "easy"
+  },
+  {
+    "id": 12,
+    "question": "Describe the architecture of a typical Convolutional Neural Network (CNN).",
+    "keywords": ["CNN", "convolution layer", "pooling", "feature maps", "fully connected layer"],
+    "category": "easy"
+  },
+  {
+    "id": 13,
+    "question": "What is transfer learning, and in what situations is it recommended or not recommended to use it?",
+    "keywords": ["transfer learning", "pre-trained models", "fine-tuning", "domain similarity"],
+    "category": "medium"
+  },
+  {
+    "id": 14,
+    "question": "What is a transformer architecture, and why is it widely used in natural language processing tasks?",
+    "keywords": ["transformer", "attention mechanism", "parallelization", "NLP"],
+    "category": "medium"
+  },
+  {
+    "id": 15,
+    "question": "What is self-attention, and how does it work in transformer models?",
+    "keywords": ["self-attention", "query", "key", "value", "contextual representation"],
+    "category": "difficult"
+  },
+  {
+    "id": 16,
+    "question": "What is BERT (Bidirectional Encoder Representations from Transformers), and how does it improve language understanding tasks?",
+    "keywords": ["BERT", "bidirectional context", "pre-training", "fine-tuning", "language understanding"],
+    "category": "medium"
+  },
+  {
+    "id": 17,
+    "question": "What is object detection, and how does it differ from image classification?",
+    "keywords": ["object detection", "image classification", "bounding boxes", "localization"],
+    "category": "easy"
+  },
+     {
+    "id": 18,
+    "question": "What are Bias and Variance in a machine learning model, and explain the bias–variance trade-off?",
+    "keywords": ["bias", "variance", "underfitting", "overfitting", "trade-off"],
+    "category": "easy"
+  },
+  {
+    "id": 19,
+    "question": "What are L1 and L2 regularization? What are the differences between them?",
+    "keywords": ["L1 regularization", "L2 regularization", "lasso", "ridge", "overfitting"],
+    "category": "easy"
+  },
+  {
+    "id": 20,
+    "question": "Describe the motivation behind random forests and mention why they are better than individual decision trees.",
+    "keywords": ["random forest", "ensemble learning", "bagging", "decision trees"],
+    "category": "medium"
+  },
+  {
+    "id": 21,
+    "question": "What are the differences and similarities between gradient boosting and random forest?",
+    "keywords": ["gradient boosting", "random forest", "ensemble methods", "bias reduction", "variance reduction"],
+    "category": "difficult"
+  },
+  {
+    "id": 22,
+    "question": "Explain what information gain and entropy are in the context of decision trees.",
+    "keywords": ["entropy", "information gain", "decision trees", "feature splitting"],
+    "category": "easy"
+  },
+  {
+    "id": 23,
+    "question": "Define precision, recall, and F1-score and discuss the trade-off between them.",
+    "keywords": ["precision", "recall", "F1-score", "classification metrics"],
+    "category": "easy"
+  },
+  {
+    "id": 24,
+    "question": "What is cross-validation and why is it used in machine learning?",
+    "keywords": ["cross-validation", "model evaluation", "generalization", "overfitting"],
+    "category": "easy"
+  },
+  {
+    "id": 25,
+    "question": "You are building a binary classifier and the data is imbalanced. How would you handle this situation?",
+    "keywords": ["imbalanced data", "resampling", "SMOTE", "class weights", "evaluation metrics"],
+    "category": "medium"
+  },
+  {
+    "id": 26,
+    "question": "Explain the kernel trick in Support Vector Machines and how to choose an appropriate kernel.",
+    "keywords": ["SVM", "kernel trick", "non-linear separation", "RBF", "polynomial kernel"],
+    "category": "difficult"
+  },
+  {
+    "id": 27,
+    "question": "What is the curse of dimensionality and how can it be addressed?",
+    "keywords": ["curse of dimensionality", "high-dimensional data", "feature selection", "dimensionality reduction"],
+    "category": "medium"
+  },
+  {
+    "id": 28,
+    "question": "What is boosting in ensemble learning, and name two popular boosting algorithms?",
+    "keywords": ["boosting", "ensemble learning", "AdaBoost", "Gradient Boosting"],
+    "category": "medium"
+  },
+  {
+    "id": 29,
+    "question": "What is the ROC curve and when should it be used?",
+    "keywords": ["ROC curve", "AUC", "classification performance", "threshold analysis"],
+    "category": "easy"
+  },
+    {
+    "id": 29,
+    "question": "What is the difference between Bernoulli and Binomial distributions?",
+    "keywords": ["Bernoulli distribution", "Binomial distribution", "trials", "success probability"],
+    "category": "easy"
+  },
+  {
+    "id": 30,
+    "question": "Can you explain the difference between frequentist and Bayesian probability approaches?",
+    "keywords": ["frequentist", "Bayesian", "prior", "posterior", "inference"],
+    "category": "medium"
+  },
+  {
+    "id": 31,
+    "question": "Explain the difference between probability and likelihood.",
+    "keywords": ["probability", "likelihood", "parameters", "data"],
+    "category": "easy"
+  },
+ {
+    "id": 32,
+    "question": "What is the difference between supervised, unsupervised, and semi-supervised learning?",
+    "keywords": ["supervised learning", "unsupervised learning", "semi-supervised learning", "labels"],
+    "category": "easy"
+  },
+  {
+    "id": 33,
+    "question": "Explain the bias–variance trade-off in machine learning.",
+    "keywords": ["bias", "variance", "overfitting", "underfitting"],
+    "category": "easy"
+  },
+  {
+    "id": 34,
+    "question": "What is overfitting, and how can it be detected and prevented?",
+    "keywords": ["overfitting", "generalization", "cross-validation", "regularization"],
+    "category": "easy"
+  },
+  {
+    "id": 35,
+    "question": "What is the difference between probability and likelihood in statistics?",
+    "keywords": ["probability", "likelihood", "statistical inference"],
+    "category": "medium"
+  },
+  {
+    "id": 36,
+    "question": "Explain the Central Limit Theorem and why it is important in data science.",
+    "keywords": ["central limit theorem", "sampling distribution", "normal distribution"],
+    "category": "medium"
+  },
+  {
+    "id": 37,
+    "question": "What are precision, recall, F1-score, and accuracy? When would accuracy be misleading?",
+    "keywords": ["precision", "recall", "F1-score", "accuracy", "imbalanced data"],
+    "category": "easy"
+  },
+  {
+    "id": 38,
+    "question": "What is regularization in machine learning, and how do L1 and L2 regularization differ?",
+    "keywords": ["regularization", "L1", "L2", "lasso", "ridge"],
+    "category": "medium"
+  },
+  {
+    "id": 39,
+    "question": "Explain the difference between parametric and non-parametric models with examples.",
+    "keywords": ["parametric models", "non-parametric models", "model assumptions"],
+    "category": "medium"
+  },
+  {
+    "id": 40,
+    "question": "What is the curse of dimensionality, and how can it be addressed in practice?",
+    "keywords": ["curse of dimensionality", "high-dimensional data", "feature selection", "PCA"],
+    "category": "medium"
+  },
+  {
+    "id": 41,
+    "question": "What is Bayes’ Theorem, and how is it used in machine learning?",
+    "keywords": ["Bayes theorem", "prior", "posterior", "conditional probability"],
+    "category": "easy"
+  },
+  {
+    "id": 42,
+    "question": "What is cross-validation, and why is it preferred over a single train-test split?",
+    "keywords": ["cross-validation", "model evaluation", "generalization"],
+    "category": "easy"
+  },
+  {
+    "id": 43,
+    "question": "Explain the difference between frequentist and Bayesian approaches to probability.",
+    "keywords": ["frequentist", "Bayesian", "prior", "posterior", "inference"],
+    "category": "difficult"
+  },
+  {
+    "id": 44,
+    "question": "What are joins in SQL, and what are the different types of joins?",
+    "keywords": ["SQL joins", "inner join", "left join", "right join", "full join"],
+    "category": "easy"
+  },
+  {
+    "id": 45,
+    "question": "What are primary keys, foreign keys, and unique keys, and how do they differ?",
+    "keywords": ["primary key", "foreign key", "unique key", "constraints", "referential integrity"],
+    "category": "easy"
+  },
+  {
+    "id": 46,
+    "question": "What is the difference between the BETWEEN and IN operators in SQL?",
+    "keywords": ["BETWEEN", "IN", "SQL operators", "filtering"],
+    "category": "easy"
+  },
+  {
+    "id": 47,
+    "question": "What are the advantages and disadvantages of relational databases compared to NoSQL databases?",
+    "keywords": ["relational database", "NoSQL", "schema", "scalability", "consistency"],
+    "category": "medium"
+  },
+  {
+    "id": 48,
+    "question": "What is a self join in SQL, and when is it used?",
+    "keywords": ["self join", "hierarchical data", "recursive relationships"],
+    "category": "medium"
+  },
+  {
+    "id": 49,
+    "question": "What is the conceptual approach to identifying reactivated users in a database?",
+    "keywords": ["user activity", "reactivated users", "time-based analysis", "login history"],
+    "category": "medium"
+  },
+  {
+    "id": 50,
+    "question": "How can window functions be used to retrieve the nth record per group in SQL?",
+    "keywords": ["window functions", "ROW_NUMBER", "RANK", "partition by"],
+    "category": "medium"
+  },
+  {
+    "id": 51,
+    "question": "What is the difference between temporary tables and common table expressions (CTEs)?",
+    "keywords": ["temporary tables", "CTE", "query optimization", "scope"],
+    "category": "easy"
+  },
+  {
+    "id": 52,
+    "question": "Why would you use a RIGHT JOIN when a LEFT JOIN can often achieve similar results?",
+    "keywords": ["right join", "left join", "query readability", "join direction"],
+    "category": "medium"
+  },
+  {
+    "id": 53,
+    "question": "What is the difference between RANK, DENSE_RANK, and ROW_NUMBER functions?",
+    "keywords": ["RANK", "DENSE_RANK", "ROW_NUMBER", "window functions"],
+    "category": "medium"
+  },
+  {
+    "id": 54,
+    "question": "How can SQL be used to combine data from more than two tables conceptually?",
+    "keywords": ["multi-table joins", "foreign keys", "relational modeling"],
+    "category": "easy"
+  },
+  {
+    "id": 55,
+    "question": "Why does the RANK function skip sequence values, and when is this behavior useful?",
+    "keywords": ["RANK", "ties", "ranking behavior", "window functions"],
+    "category": "difficult"
+  },
+    {
+    "id": 56,
+    "question": "Explain the Central Limit Theorem and give real-world examples of where it can be applied.",
+    "keywords": ["central limit theorem", "sampling distribution", "normal approximation"],
+    "category": "easy"
+  },
+  {
+    "id": 57,
+    "question": "What is A/B testing and what are its practical applications? What are common pitfalls in A/B testing?",
+    "keywords": ["A/B testing", "experimentation", "control group", "bias"],
+    "category": "medium"
+  },
+  {
+    "id": 58,
+    "question": "Explain hypothesis testing and p-value in simple terms with a practical example.",
+    "keywords": ["hypothesis testing", "null hypothesis", "p-value", "decision making"],
+    "category": "easy"
+  },
+  {
+    "id": 59,
+    "question": "What is selection bias and how can it be avoided in data analysis?",
+    "keywords": ["selection bias", "sampling bias", "data collection"],
+    "category": "easy"
+  },
+  {
+    "id": 60,
+    "question": "What is a long-tailed distribution and why is it important in classification and regression problems?",
+    "keywords": ["long-tailed distribution", "power law", "outliers", "imbalance"],
+    "category": "medium"
+  },
+  {
+    "id": 61,
+    "question": "What considerations are important when testing hundreds of hypotheses simultaneously?",
+    "keywords": ["multiple hypothesis testing", "false positives", "Bonferroni correction", "FDR"],
+    "category": "difficult"
+  },
+  {
+    "id": 62,
+    "question": "What is skewness, and what are two methods used to measure it?",
+    "keywords": ["skewness", "distribution shape", "moment coefficient", "Pearson skewness"],
+    "category": "easy"
+  },
+  {
+    "id": 63,
+    "question": "Explain the difference between confidence intervals and prediction intervals.",
+    "keywords": ["confidence interval", "prediction interval", "uncertainty"],
+    "category": "medium"
+  },
+  {
+    "id": 64,
+    "question": "What is the Law of Large Numbers and how is it useful in data science?",
+    "keywords": ["law of large numbers", "convergence", "expected value"],
+    "category": "easy"
+  },
+  {
+    "id": 65,
+    "question": "What is the difference between a z-test and a t-test?",
+    "keywords": ["z-test", "t-test", "sample size", "population variance"],
+    "category": "easy"
+  },
+  {
+    "id": 66,
+    "question": "When should you use a z-test versus a t-test?",
+    "keywords": ["hypothesis testing", "sample size", "normal distribution"],
+    "category": "medium"
+  },
+  {
+    "id": 67,
+    "question": "What is the relationship between significance level and confidence level in statistics?",
+    "keywords": ["significance level", "confidence level", "alpha"],
+    "category": "easy"
+  },  
+
+  {
+    "id": 68,
+    "question": "What is Machine Learning and how does it differ from Artificial Intelligence and Data Science?",
+    "keywords": ["machine learning", "artificial intelligence", "data science", "scope", "applications"],
+    "category": "easy"
+  },
+  {
+    "id": 69,
+    "question": "What is overfitting and underfitting in machine learning, and how can each be avoided?",
+    "keywords": ["overfitting", "underfitting", "model complexity", "generalization"],
+    "category": "easy"
+  },
+  {
+    "id": 70,
+    "question": "What is regularization and how do L1, L2, and Elastic Net regularization differ?",
+    "keywords": ["regularization", "L1", "L2", "elastic net", "overfitting control"],
+    "category": "medium"
+  },
+  {
+    "id": 71,
+    "question": "What are the most common model evaluation techniques used in machine learning?",
+    "keywords": ["model evaluation", "cross-validation", "accuracy", "precision", "recall", "ROC-AUC"],
+    "category": "easy"
+  },
+  {
+    "id": 72,
+    "question": "Explain the confusion matrix and its role in evaluating classification models.",
+    "keywords": ["confusion matrix", "true positive", "false positive", "classification metrics"],
+    "category": "easy"
+  },
+  {
+    "id": 73,
+    "question": "What is the difference between precision and recall, and how does the F1-score combine them?",
+    "keywords": ["precision", "recall", "F1-score", "imbalanced data"],
+    "category": "easy"
+  },
+  {
+    "id": 74,
+    "question": "What are loss functions in machine learning and how do they differ across regression and classification problems?",
+    "keywords": ["loss functions", "MSE", "MAE", "cross-entropy", "optimization"],
+    "category": "medium"
+  },
+  {
+    "id": 75,
+    "question": "What is the AUC–ROC curve and why is it preferred over accuracy for imbalanced datasets?",
+    "keywords": ["ROC curve", "AUC", "classification performance", "thresholds"],
+    "category": "medium"
+  },
+  {
+    "id": 76,
+    "question": "What is cross-validation and what are the differences between k-fold, leave-one-out, and hold-out methods?",
+    "keywords": ["cross-validation", "k-fold", "LOO", "model generalization"],
+    "category": "medium"
+  },
+  {
+    "id": 77,
+    "question": "What is feature engineering and how does it differ from feature selection?",
+    "keywords": ["feature engineering", "feature selection", "data preprocessing"],
+    "category": "medium"
+  },
+  {
+    "id": 78,
+    "question": "What is the bias–variance tradeoff and why is it fundamental in machine learning?",
+    "keywords": ["bias-variance tradeoff", "underfitting", "overfitting", "model error"],
+    "category": "medium"
+  },
+  {
+    "id": 79,
+    "question": "What is hyperparameter tuning and what are common strategies used to perform it?",
+    "keywords": ["hyperparameter tuning", "grid search", "random search", "bayesian optimization"],
+    "category": "difficult"
+  },
+
+  {
+    "id": 80,
+    "question": "What is the difference between correlation and causation?",
+    "keywords": ["correlation", "causation", "association", "cause-effect"],
+    "category": "easy"
+  },
+  {
+    "id": 81,
+    "question": "What is the role of statistics in data science?",
+    "keywords": ["statistics", "data analysis", "uncertainty", "inference"],
+    "category": "easy"
+  },
+  {
+    "id": 82,
+    "question": "How do you handle missing data in a dataset?",
+    "keywords": ["missing data", "MCAR", "MAR", "MNAR", "imputation"],
+    "category": "medium"
+  },
+  {
+    "id": 83,
+    "question": "What is the difference between univariate, bivariate, and multivariate analysis?",
+    "keywords": ["univariate", "bivariate", "multivariate", "data analysis"],
+    "category": "easy"
+  },
+  {
+    "id": 84,
+    "question": "What is the difference between wide format and long format data?",
+    "keywords": ["wide format", "long format", "data reshaping", "tidy data"],
+    "category": "easy"
+  },
+  {
+    "id": 85,
+    "question": "What is multicollinearity and how do you detect it?",
+    "keywords": ["multicollinearity", "VIF", "correlation matrix"],
+    "category": "medium"
+  },
+  {
+    "id": 86,
+    "question": "What is variance and why is it important in data science?",
+    "keywords": ["variance", "spread", "data distribution"],
+    "category": "easy"
+  },
+  {
+    "id": 87,
+    "question": "What do you understand by imbalanced data?",
+    "keywords": ["imbalanced data", "class imbalance", "bias"],
+    "category": "easy"
+  },
+  {
+    "id": 88,
+    "question": "How do you preprocess categorical and continuous variables differently?",
+    "keywords": ["categorical variables", "continuous variables", "encoding", "scaling"],
+    "category": "easy"
+  },
+  {
+    "id": 89,
+    "question": "Why is transforming data from wide format to long format sometimes necessary?",
+    "keywords": ["data transformation", "wide to long", "analysis"],
+    "category": "medium"
+  },
+  {
+    "id": 90,
+    "question": "How do you combine data from multiple sources with inconsistent formats?",
+    "keywords": ["data integration", "schema alignment", "data cleaning"],
+    "category": "medium"
+  },
+  {
+    "id": 91,
+    "question": "What is the Central Limit Theorem and why is it important?",
+    "keywords": ["central limit theorem", "sampling distribution", "normality"],
+    "category": "easy"
+  },
+  {
+    "id": 92,
+    "question": "What is the difference between Type I and Type II errors?",
+    "keywords": ["type I error", "type II error", "false positive", "false negative"],
+    "category": "easy"
+  },
+  {
+    "id": 93,
+    "question": "What is a p-value and how do you interpret it?",
+    "keywords": ["p-value", "hypothesis testing", "statistical significance"],
+    "category": "easy"
+  },
+  {
+    "id": 94,
+    "question": "What is a confidence interval and what does it represent?",
+    "keywords": ["confidence interval", "uncertainty", "estimation"],
+    "category": "easy"
+  },
+  {
+    "id": 95,
+    "question": "What is a probability distribution and name a few common ones?",
+    "keywords": ["probability distribution", "normal", "binomial", "poisson"],
+    "category": "easy"
+  },
+  {
+    "id": 96,
+    "question": "When should you use a t-test versus a z-test?",
+    "keywords": ["t-test", "z-test", "hypothesis testing"],
+    "category": "medium"
+  },
+  {
+    "id": 97,
+    "question": "What is the null hypothesis and how do you decide to reject it?",
+    "keywords": ["null hypothesis", "significance level", "decision rule"],
+    "category": "easy"
+  },
+  {
+    "id": 98,
+    "question": "What is a long-tail distribution and why does it matter in modeling?",
+    "keywords": ["long-tail distribution", "outliers", "rare events"],
+    "category": "medium"
+  },
+  {
+    "id": 99,
+    "question": "What is the difference between supervised, unsupervised, and reinforcement learning?",
+    "keywords": ["supervised learning", "unsupervised learning", "reinforcement learning"],
+    "category": "easy"
+  },
+  {
+    "id": 100,
+    "question": "Explain the bias–variance trade-off.",
+    "keywords": ["bias", "variance", "overfitting", "underfitting"],
+    "category": "easy"
+  },
+  {
+    "id": 101,
+    "question": "What is cross-validation and why is it important?",
+    "keywords": ["cross-validation", "model evaluation", "generalization"],
+    "category": "easy"
+  },
+  {
+    "id": 102,
+    "question": "What is overfitting and how can it be prevented?",
+    "keywords": ["overfitting", "regularization", "early stopping"],
+    "category": "easy"
+  },
+  {
+    "id": 103,
+    "question": "How do decision trees work?",
+    "keywords": ["decision tree", "splitting", "entropy", "information gain"],
+    "category": "easy"
+  },
+  {
+    "id": 104,
+    "question": "How does a random forest differ from a decision tree?",
+    "keywords": ["random forest", "ensemble learning", "bagging"],
+    "category": "medium"
+  },
+  {
+    "id": 105,
+    "question": "How does logistic regression work?",
+    "keywords": ["logistic regression", "sigmoid", "binary classification"],
+    "category": "easy"
+  },
+  {
+    "id": 106,
+    "question": "What is linear regression and what are its assumptions?",
+    "keywords": ["linear regression", "assumptions", "linearity"],
+    "category": "easy"
+  },
+  {
+    "id": 107,
+    "question": "What are support vectors in Support Vector Machines?",
+    "keywords": ["SVM", "support vectors", "margin"],
+    "category": "medium"
+  },
+  {
+    "id": 108,
+    "question": "What is the difference between KNN and K-means?",
+    "keywords": ["KNN", "K-means", "supervised", "unsupervised"],
+    "category": "easy"
+  },
+  {
+    "id": 109,
+    "question": "What is the difference between bagging and boosting?",
+    "keywords": ["bagging", "boosting", "ensemble methods"],
+    "category": "medium"
+  },
+  {
+    "id": 110,
+    "question": "When would you use linear regression over logistic regression?",
+    "keywords": ["linear regression", "logistic regression", "use cases"],
+    "category": "easy"
+  },
+  {
+    "id": 111,
+    "question": "What is regularization and why is it useful?",
+    "keywords": ["regularization", "L1", "L2", "overfitting"],
+    "category": "easy"
+  },
+  {
+    "id": 112,
+    "question": "What are precision, recall, F1-score, and AUC-ROC?",
+    "keywords": ["precision", "recall", "F1-score", "AUC-ROC"],
+    "category": "easy"
+  },
+  {
+    "id": 113,
+    "question": "What is a confusion matrix and how do you interpret it?",
+    "keywords": ["confusion matrix", "TP", "FP", "FN", "TN"],
+    "category": "easy"
+  },
+  {
+    "id": 114,
+    "question": "How do you choose the right features for a predictive model?",
+    "keywords": ["feature selection", "domain knowledge", "model performance"],
+    "category": "medium"
+  },
+  {
+    "id": 115,
+    "question": "What is the difference between false positives and false negatives in fraud detection?",
+    "keywords": ["false positives", "false negatives", "fraud detection"],
+    "category": "medium"
+  },
+  {
+    "id": 116,
+    "question": "How would you measure the success of a new product launch using data?",
+    "keywords": ["KPIs", "product analytics", "business metrics"],
+    "category": "medium"
+  },
+  {
+    "id": 117,
+    "question": "How would you investigate a sudden drop in website traffic?",
+    "keywords": ["traffic analysis", "debugging", "SEO", "monitoring"],
+    "category": "medium"
+  },
+  {
+    "id": 118,
+    "question": "Why might a model with high accuracy still fail in business applications?",
+    "keywords": ["accuracy", "business metrics", "model evaluation"],
+    "category": "medium"
+  },
+  {
+    "id": 119,
+    "question": "How do you assess whether a dataset is useful for a given problem?",
+    "keywords": ["data quality", "relevance", "representativeness"],
+    "category": "medium"
+  },
+  {
+    "id": 120,
+    "question": "How would you evaluate a classification model for medical diagnosis?",
+    "keywords": ["medical ML", "sensitivity", "specificity"],
+    "category": "difficult"
+  },
+  {
+    "id": 121,
+    "question": "What is the difference between batch learning and online learning?",
+    "keywords": ["batch learning", "online learning", "streaming data"],
+    "category": "medium"
+  },
+  {
+    "id": 122,
+    "question": "What are the pros and cons of deep learning compared to traditional machine learning?",
+    "keywords": ["deep learning", "traditional ML", "interpretability"],
+    "category": "medium"
+  },
+  {
+    "id": 123,
+    "question": "How do you monitor model performance in production?",
+    "keywords": ["model monitoring", "data drift", "performance metrics"],
+    "category": "difficult"
+  },
+  {
+    "id": 124,
+    "question": "What is concept drift and how can it be detected?",
+    "keywords": ["concept drift", "data drift", "monitoring"],
+    "category": "difficult"
+  },
+  {
+    "id": 125,
+    "question": "How do you ensure fairness and reduce bias in machine learning models?",
+    "keywords": ["fairness", "bias", "ethical AI"],
+    "category": "difficult"
+  },
+  {
+    "id": 126,
+    "question": "When should you fine-tune a model versus generalizing it with more data?",
+    "keywords": ["fine-tuning", "generalization", "transfer learning"],
+    "category": "difficult"
+  },
+  {
+    "id": 127,
+    "question": "What is the importance of communicating results in business terms?",
+    "keywords": ["data communication", "stakeholders", "business impact"],
+    "category": "easy"
+  },
+  {
+    "id": 128,
+    "question": "What are common mistakes candidates make in data science interviews?",
+    "keywords": ["interview preparation", "common pitfalls", "communication"],
+    "category": "easy"
+  },
+  {
+    "id": 129,
+    "question": "How do you stay updated with trends in data science?",
+    "keywords": ["continuous learning", "industry trends", "data science"],
+    "category": "easy"
+  },
+  {
+    "id": 130,
+    "question": "What is Machine Learning and how is it different from traditional programming?",
+    "keywords": ["machine learning", "traditional programming", "data-driven", "algorithms"],
+    "category": "easy"
+  },
+  {
+    "id": 131,
+    "question": "What are the different types of Machine Learning?",
+    "keywords": ["supervised learning", "unsupervised learning", "reinforcement learning"],
+    "category": "easy"
+  },
+  {
+    "id": 132,
+    "question": "What are training, validation, and test datasets?",
+    "keywords": ["training set", "validation set", "test set", "model evaluation"],
+    "category": "easy"
+  },
+  {
+    "id": 133,
+    "question": "What is the difference between classification and regression?",
+    "keywords": ["classification", "regression", "prediction types"],
+    "category": "easy"
+  },
+  {
+    "id": 134,
+    "question": "What is logistic regression?",
+    "keywords": ["logistic regression", "binary classification", "sigmoid"],
+    "category": "easy"
+  },
+  {
+    "id": 135,
+    "question": "Explain overfitting and underfitting.",
+    "keywords": ["overfitting", "underfitting", "model complexity"],
+    "category": "easy"
+  },
+  {
+    "id": 136,
+    "question": "How do you handle missing or corrupted data?",
+    "keywords": ["missing data", "imputation", "data cleaning"],
+    "category": "medium"
+  },
+  {
+    "id": 137,
+    "question": "What is feature engineering and why is it important?",
+    "keywords": ["feature engineering", "model performance", "data preprocessing"],
+    "category": "easy"
+  },
+  {
+    "id": 138,
+    "question": "What is normalization and standardization?",
+    "keywords": ["normalization", "standardization", "feature scaling"],
+    "category": "easy"
+  },
+  {
+    "id": 139,
+    "question": "What is supervised learning?",
+    "keywords": ["supervised learning", "labeled data", "prediction"],
+    "category": "easy"
+  },
+  {
+    "id": 140,
+    "question": "What is a decision tree and how does it work?",
+    "keywords": ["decision tree", "splitting", "rules"],
+    "category": "easy"
+  },
+  {
+    "id": 141,
+    "question": "Explain the K-Nearest Neighbors (KNN) algorithm.",
+    "keywords": ["KNN", "distance-based", "classification"],
+    "category": "easy"
+  },
+  {
+    "id": 142,
+    "question": "What is Naive Bayes and why is it called naive?",
+    "keywords": ["naive bayes", "probability", "independence assumption"],
+    "category": "easy"
+  },
+  {
+    "id": 143,
+    "question": "What is a recommendation system?",
+    "keywords": ["recommendation system", "collaborative filtering", "content-based"],
+    "category": "easy"
+  },
+  {
+    "id": 144,
+    "question": "What is deep learning?",
+    "keywords": ["deep learning", "neural networks", "representation learning"],
+    "category": "easy"
+  },
+  {
+    "id": 145,
+    "question": "What are real-world applications of supervised learning?",
+    "keywords": ["applications", "spam detection", "fraud detection"],
+    "category": "easy"
+  },
+  {
+    "id": 146,
+    "question": "What is clustering in machine learning?",
+    "keywords": ["clustering", "unsupervised learning", "k-means"],
+    "category": "easy"
+  },
+  {
+    "id": 147,
+    "question": "What is a confusion matrix?",
+    "keywords": ["confusion matrix", "classification metrics", "TP FP"],
+    "category": "easy"
+  },
+  {
+    "id": 148,
+    "question": "Define precision, recall, and F1-score.",
+    "keywords": ["precision", "recall", "F1 score"],
+    "category": "easy"
+  },
+  {
+    "id": 149,
+    "question": "What is the difference between accuracy and precision?",
+    "keywords": ["accuracy", "precision", "evaluation metrics"],
+    "category": "easy"
+  },
+  {
+    "id": 150,
+    "question": "What is the ROC-AUC curve?",
+    "keywords": ["ROC", "AUC", "classification performance"],
+    "category": "medium"
+  },
+  {
+    "id": 151,
+    "question": "What are Type I and Type II errors?",
+    "keywords": ["type I error", "type II error", "false positive"],
+    "category": "easy"
+  },
+  {
+    "id": 152,
+    "question": "What is cross-validation and why is it important?",
+    "keywords": ["cross-validation", "generalization", "overfitting"],
+    "category": "easy"
+  },
+  {
+    "id": 153,
+    "question": "What is data preprocessing?",
+    "keywords": ["data preprocessing", "cleaning", "encoding"],
+    "category": "easy"
+  },
+  {
+    "id": 154,
+    "question": "How do you handle imbalanced datasets?",
+    "keywords": ["imbalanced data", "SMOTE", "resampling"],
+    "category": "medium"
+  },
+  {
+    "id": 155,
+    "question": "What is dimensionality reduction?",
+    "keywords": ["dimensionality reduction", "feature reduction", "noise"],
+    "category": "easy"
+  },
+  {
+    "id": 156,
+    "question": "Explain Principal Component Analysis (PCA).",
+    "keywords": ["PCA", "variance", "orthogonal components"],
+    "category": "medium"
+  },
+  {
+    "id": 157,
+    "question": "What is feature scaling and why is it needed?",
+    "keywords": ["feature scaling", "normalization", "distance-based models"],
+    "category": "easy"
+  },
+  {
+    "id": 158,
+    "question": "What is one-hot encoding?",
+    "keywords": ["one-hot encoding", "categorical variables", "encoding"],
+    "category": "easy"
+  },
+  {
+    "id": 159,
+    "question": "What is a hypothesis in machine learning?",
+    "keywords": ["hypothesis", "model assumption", "learning"],
+    "category": "easy"
+  },
+  {
+    "id": 160,
+    "question": "What is the difference between covariance and correlation?",
+    "keywords": ["covariance", "correlation", "statistical relationship"],
+    "category": "easy"
+  },
+  {
+    "id": 161,
+    "question": "How is feature selection performed?",
+    "keywords": ["feature selection", "filter methods", "wrapper methods"],
+    "category": "medium"
+  },
+  {
+    "id": 162,
+    "question": "How can overfitting be avoided?",
+    "keywords": ["overfitting", "regularization", "cross-validation"],
+    "category": "easy"
+  },
+  {
+    "id": 163,
+    "question": "What is underfitting and how do you detect it?",
+    "keywords": ["underfitting", "high bias", "model simplicity"],
+    "category": "easy"
+  },
+  {
+    "id": 164,
+    "question": "How do you evaluate a machine learning model?",
+    "keywords": ["model evaluation", "metrics", "validation"],
+    "category": "easy"
+  },
+  {
+    "id": 165,
+    "question": "What is the bias-variance tradeoff?",
+    "keywords": ["bias", "variance", "generalization"],
+    "category": "easy"
+  },
+  {
+    "id": 166,
+    "question": "What are hyperparameters?",
+    "keywords": ["hyperparameters", "model tuning", "configuration"],
+    "category": "easy"
+  },
+  {
+    "id": 167,
+    "question": "What is grid search and random search?",
+    "keywords": ["grid search", "random search", "hyperparameter tuning"],
+    "category": "medium"
+  },
+  {
+    "id": 168,
+    "question": "What is gradient descent?",
+    "keywords": ["gradient descent", "optimization", "loss minimization"],
+    "category": "medium"
+  },
+  {
+    "id": 169,
+    "question": "What is stochastic gradient descent?",
+    "keywords": ["SGD", "optimization", "mini updates"],
+    "category": "medium"
+  },
+  {
+    "id": 170,
+    "question": "What is mini-batch gradient descent?",
+    "keywords": ["mini-batch", "gradient descent", "optimization"],
+    "category": "medium"
+  },
+  {
+    "id": 171,
+    "question": "What is regularization and why is it used?",
+    "keywords": ["regularization", "overfitting", "penalty"],
+    "category": "easy"
+  },
+  {
+    "id": 172,
+    "question": "What is the difference between L1 and L2 regularization?",
+    "keywords": ["L1", "L2", "lasso", "ridge"],
+    "category": "medium"
+  },
+  {
+    "id": 173,
+    "question": "What is a cost function?",
+    "keywords": ["cost function", "loss", "optimization"],
+    "category": "easy"
+  },
+  {
+    "id": 174,
+    "question": "What is early stopping?",
+    "keywords": ["early stopping", "overfitting", "training control"],
+    "category": "easy"
+  },
+  {
+    "id": 175,
+    "question": "Compare K-means and KNN.",
+    "keywords": ["k-means", "KNN", "supervised vs unsupervised"],
+    "category": "easy"
+  },
+  {
+    "id": 176,
+    "question": "What is a Support Vector Machine (SVM)?",
+    "keywords": ["SVM", "margin", "hyperplane"],
+    "category": "medium"
+  },
+  {
+    "id": 177,
+    "question": "What is kernel SVM?",
+    "keywords": ["kernel trick", "non-linear separation", "SVM"],
+    "category": "medium"
+  },
+  {
+    "id": 178,
+    "question": "How does Random Forest work?",
+    "keywords": ["random forest", "ensemble", "bagging"],
+    "category": "medium"
+  },
+  {
+    "id": 179,
+    "question": "What is the difference between decision tree and random forest?",
+    "keywords": ["decision tree", "random forest", "ensemble"],
+    "category": "easy"
+  },
+  {
+    "id": 180,
+    "question": "What is ensemble learning?",
+    "keywords": ["ensemble learning", "bagging", "boosting"],
+    "category": "easy"
+  },
+  {
+    "id": 181,
+    "question": "What is boosting?",
+    "keywords": ["boosting", "weak learners", "sequential"],
+    "category": "medium"
+  },
+  {
+    "id": 182,
+    "question": "What is bagging?",
+    "keywords": ["bagging", "bootstrap", "variance reduction"],
+    "category": "medium"
+  },
+  {
+    "id": 183,
+    "question": "What is a neural network?",
+    "keywords": ["neural network", "neurons", "layers"],
+    "category": "easy"
+  },
+  {
+    "id": 184,
+    "question": "What is data augmentation?",
+    "keywords": ["data augmentation", "deep learning", "generalization"],
+    "category": "easy"
+  },
+  {
+    "id": 185,
+    "question": "What is SMOTE?",
+    "keywords": ["SMOTE", "imbalanced data", "synthetic sampling"],
+    "category": "medium"
+  },
+  {
+    "id": 186,
+    "question": "What is t-SNE used for?",
+    "keywords": ["t-SNE", "visualization", "dimensionality reduction"],
+    "category": "medium"
+  },
+  {
+    "id": 187,
+    "question": "Explain Central Limit Theorem in the ML context.",
+    "keywords": ["CLT", "sampling distribution", "statistics"],
+    "category": "medium"
+  },
+  {
+    "id": 188,
+    "question": "How do you handle multicollinearity?",
+    "keywords": ["multicollinearity", "correlated features", "PCA"],
+    "category": "medium"
+  },
+  {
+    "id": 189,
+    "question": "What is mutual information in feature selection?",
+    "keywords": ["mutual information", "feature relevance", "dependency"],
+    "category": "medium"
+  },
+  {
+    "id": 190,
+    "question": "What is the difference between MSE and RMSE?",
+    "keywords": ["MSE", "RMSE", "regression metrics"],
+    "category": "easy"
+  },
+  {
+    "id": 191,
+    "question": "What is Mean Absolute Error (MAE)?",
+    "keywords": ["MAE", "regression", "error metric"],
+    "category": "easy"
+  },
+  {
+    "id": 192,
+    "question": "What is the F1-score and when is it useful?",
+    "keywords": ["F1 score", "imbalanced data", "harmonic mean"],
+    "category": "easy"
+  },
+  {
+    "id": 193,
+    "question": "How do you choose the right evaluation metric?",
+    "keywords": ["evaluation metrics", "problem type", "model goals"],
+    "category": "medium"
+  },
+  {
+    "id": 194,
+    "question": "What is Matthews Correlation Coefficient (MCC)?",
+    "keywords": ["MCC", "binary classification", "balanced metric"],
+    "category": "difficult"
+  },
+  {
+    "id": 195,
+    "question": "How does a recommendation engine work?",
+    "keywords": ["recommendation engine", "filtering", "user behavior"],
+    "category": "medium"
+  },
+  {
+    "id": 196,
+    "question": "How would you design a spam filter?",
+    "keywords": ["spam detection", "text classification", "naive bayes"],
+    "category": "medium"
+  },
+  {
+    "id": 197,
+    "question": "Explain reinforcement learning with an example.",
+    "keywords": ["reinforcement learning", "agent", "reward"],
+    "category": "easy"
+  },
+  {
+    "id": 198,
+    "question": "What is transfer learning?",
+    "keywords": ["transfer learning", "pretrained models", "fine-tuning"],
+    "category": "medium"
+  },
+  {
+    "id": 199,
+    "question": "What is semi-supervised learning?",
+    "keywords": ["semi-supervised learning", "labeled data", "unlabeled data"],
+    "category": "medium"
+  },
+  {
+    "id": 200,
+    "question": "Explain the SVM algorithm in detail.",
+    "keywords": ["SVM", "optimization", "margin maximization"],
+    "category": "difficult"
+  },
+  {
+    "id": 201,
+    "question": "What is the difference between Lasso and Ridge regression?",
+    "keywords": ["lasso", "ridge", "regularization"],
+    "category": "medium"
+  },
+  {
+    "id": 202,
+    "question": "How does a neural network learn?",
+    "keywords": ["backpropagation", "weights", "learning"],
+    "category": "medium"
+  },
+  {
+    "id": 203,
+    "question": "What is a Convolutional Neural Network (CNN)?",
+    "keywords": ["CNN", "image processing", "convolution"],
+    "category": "medium"
+  },
+  {
+    "id": 204,
+    "question": "What is a Recurrent Neural Network (RNN)?",
+    "keywords": ["RNN", "sequence data", "memory"],
+    "category": "medium"
+  },
+  {
+    "id": 205,
+    "question": "What is LSTM and why is it used?",
+    "keywords": ["LSTM", "long-term dependency", "RNN"],
+    "category": "medium"
+  },
+  {
+    "id": 206,
+    "question": "What is the Bellman equation?",
+    "keywords": ["Bellman equation", "reinforcement learning", "value function"],
+    "category": "difficult"
+  },
+  {
+    "id": 207,
+    "question": "Explain Q-learning.",
+    "keywords": ["Q-learning", "reinforcement learning", "policy"],
+    "category": "difficult"
+  },
+  {
+    "id": 208,
+    "question": "What is Bayesian optimization?",
+    "keywords": ["Bayesian optimization", "hyperparameter tuning", "probabilistic"],
+    "category": "difficult"
+  },
+  {
+    "id": 209,
+    "question": "What is model drift and how do you prevent it?",
+    "keywords": ["model drift", "data drift", "monitoring"],
+    "category": "difficult"
+  },
+  {
+    "id": 210,
+    "question": "What is the difference between batch learning and online learning?",
+    "keywords": ["batch learning", "online learning", "streaming"],
+    "category": "easy"
+  },
+  {
+    "id": 211,
+    "question": "What is model interpretability?",
+    "keywords": ["interpretability", "explainability", "trust"],
+    "category": "medium"
+  },
+  {
+    "id": 212,
+    "question": "What is the difference between inductive and deductive learning?",
+    "keywords": ["inductive", "deductive", "learning paradigms"],
+    "category": "medium"
+  },
+  {
+    "id": 213,
+    "question": "What is backpropagation?",
+    "keywords": ["backpropagation", "neural networks", "gradient"],
+    "category": "medium"
+  },
+  {
+    "id": 214,
+    "question": "What is a Generative Adversarial Network (GAN)?",
+    "keywords": ["GAN", "generator", "discriminator"],
+    "category": "difficult"
+  },
+  {
+    "id": 215,
+    "question": "What are autoencoders?",
+    "keywords": ["autoencoders", "dimensionality reduction", "reconstruction"],
+    "category": "medium"
+  },
+  {
+    "id": 216,
+    "question": "What are activation functions?",
+    "keywords": ["activation functions", "non-linearity", "ReLU"],
+    "category": "easy"
+  },
+  {
+    "id": 217,
+    "question": "What is the difference between sigmoid and softmax?",
+    "keywords": ["sigmoid", "softmax", "classification"],
+    "category": "easy"
+  },
+  {
+    "id": 218,
+    "question": "What is the Gini index?",
+    "keywords": ["gini index", "decision trees", "impurity"],
+    "category": "medium"
+  },
+  {
+    "id": 219,
+    "question": "How do you handle overfitting in deep learning?",
+    "keywords": ["deep learning", "overfitting", "dropout"],
+    "category": "medium"
+  },
+  {
+    "id": 220,
+    "question": "What is dropout?",
+    "keywords": ["dropout", "regularization", "neural networks"],
+    "category": "easy"
+  },
+  {
+    "id": 221,
+    "question": "What is Explainable AI (XAI)?",
+    "keywords": ["XAI", "interpretability", "trust"],
+    "category": "medium"
+  },
+  {
+    "id": 222,
+    "question": "What is model fairness?",
+    "keywords": ["fairness", "bias", "ethical AI"],
+    "category": "medium"
+  },
+  {
+    "id": 223,
+    "question": "What is quantum machine learning?",
+    "keywords": ["quantum ML", "quantum computing", "advanced ML"],
+    "category": "difficult"
+  },
+  {
+    "id": 224,
+    "question": "What is the role of reinforcement learning in robotics?",
+    "keywords": ["robotics", "reinforcement learning", "control"],
+    "category": "medium"
+  },
+  {
+    "id": 225,
+    "question": "What is few-shot learning?",
+    "keywords": ["few-shot learning", "limited data", "generalization"],
+    "category": "difficult"
+  },
+  {
+    "id": 226,
+    "question": "What is zero-shot learning?",
+    "keywords": ["zero-shot learning", "unseen classes", "transfer"],
+    "category": "difficult"
+  },
+  {
+    "id": 227,
+    "question": "What is meta-learning?",
+    "keywords": ["meta-learning", "learning to learn", "adaptation"],
+    "category": "difficult"
+  },
+  {
+    "id": 228,
+    "question": "How would you implement a sentiment analysis model?",
+    "keywords": ["sentiment analysis", "NLP", "text classification"],
+    "category": "medium"
+  },
+  {
+    "id": 229,
+    "question": "How do you optimize models for time series forecasting?",
+    "keywords": ["time series", "forecasting", "model tuning"],
+    "category": "difficult"
+  },
+  {
+    "id": 230,
+    "question": "What is federated learning?",
+    "keywords": ["federated learning", "privacy", "distributed ML"],
+    "category": "difficult"
+  },
+  {
+    "id": 231,
+    "question": "What is the difference between content-based and collaborative filtering?",
+    "keywords": ["content-based", "collaborative filtering", "recommendation"],
+    "category": "easy"
+  },
+  {
+    "id": 232,
+    "question": "How would you design a self-driving car AI using reinforcement learning?",
+    "keywords": ["self-driving cars", "reinforcement learning", "autonomous systems"],
+    "category": "difficult"
+  },
+  {
+    "id": 233,
+    "question": "What challenges arise in deploying machine learning models to production?",
+    "keywords": ["deployment", "scalability", "monitoring"],
+    "category": "medium"
+  },
+  {
+    "id": 234,
+    "question": "Why is continuous learning important in machine learning systems?",
+    "keywords": ["continuous learning", "model updates", "adaptation"],
+    "category": "easy"
+  },
+  {
+    "id": 235,
+    "question": "What are the different kernels used in Support Vector Machines (SVM)?",
+    "keywords": ["SVM kernels", "linear kernel", "polynomial kernel", "RBF", "sigmoid"],
+    "category": "easy"
+  },
+  {
+    "id": 236,
+    "question": "Why was Machine Learning introduced?",
+    "keywords": ["machine learning motivation", "rule-based systems", "automation", "pattern learning"],
+    "category": "easy"
+  },
+  {
+    "id": 237,
+    "question": "What is the difference between classification and regression?",
+    "keywords": ["classification", "regression", "discrete output", "continuous output"],
+    "category": "easy"
+  },
+  {
+    "id": 238,
+    "question": "What is bias in Machine Learning?",
+    "keywords": ["bias", "data inconsistency", "model bias", "fairness"],
+    "category": "medium"
+  },
+  {
+    "id": 239,
+    "question": "What is cross-validation and how does k-fold cross-validation work?",
+    "keywords": ["cross-validation", "k-fold", "model evaluation"],
+    "category": "easy"
+  },
+  {
+    "id": 240,
+    "question": "What are support vectors in Support Vector Machines?",
+    "keywords": ["support vectors", "SVM", "margin", "hyperplane"],
+    "category": "easy"
+  },
+  {
+    "id": 241,
+    "question": "Explain the SVM algorithm in detail.",
+    "keywords": ["SVM algorithm", "maximum margin", "hyperplane", "classification"],
+    "category": "difficult"
+  },
+  {
+    "id": 242,
+    "question": "What is Principal Component Analysis (PCA) and when is it used?",
+    "keywords": ["PCA", "dimensionality reduction", "feature correlation"],
+    "category": "medium"
+  },
+  {
+    "id": 243,
+    "question": "Why is Naive Bayes called 'naive'?",
+    "keywords": ["naive bayes", "conditional independence", "bayes theorem"],
+    "category": "medium"
+  },
+  {
+    "id": 244,
+    "question": "What is unsupervised learning?",
+    "keywords": ["unsupervised learning", "clustering", "anomaly detection"],
+    "category": "easy"
+  },
+  {
+    "id": 245,
+    "question": "What is supervised learning?",
+    "keywords": ["supervised learning", "labeled data", "classification", "regression"],
+    "category": "easy"
+  },
+  {
+    "id": 246,
+    "question": "What are the different types of Machine Learning algorithms?",
+    "keywords": ["machine learning types", "supervised", "unsupervised", "reinforcement"],
+    "category": "easy"
+  },
+  {
+    "id": 247,
+    "question": "What is the F1 score and when should it be used?",
+    "keywords": ["F1 score", "precision", "recall", "imbalanced data"],
+    "category": "easy"
+  },
+  {
+    "id": 248,
+    "question": "What is the difference between precision and recall?",
+    "keywords": ["precision", "recall", "false positives", "false negatives"],
+    "category": "easy"
+  },
+  {
+    "id": 249,
+    "question": "How do you tackle overfitting and underfitting?",
+    "keywords": ["overfitting", "underfitting", "cross-validation", "model complexity"],
+    "category": "medium"
+  },
+  {
+    "id": 250,
+    "question": "What is a neural network?",
+    "keywords": ["neural network", "neurons", "layers", "deep learning"],
+    "category": "easy"
+  },
+  {
+    "id": 251,
+    "question": "What is the difference between loss function and cost function?",
+    "keywords": ["loss function", "cost function", "error measurement"],
+    "category": "medium"
+  },
+  {
+    "id": 252,
+    "question": "What is ensemble learning?",
+    "keywords": ["ensemble learning", "bagging", "boosting", "bias-variance tradeoff"],
+    "category": "medium"
+  },
+  {
+    "id": 253,
+    "question": "How do you decide which Machine Learning algorithm to use for a problem?",
+    "keywords": ["algorithm selection", "EDA", "data type", "problem understanding"],
+    "category": "medium"
+  },
+  {
+    "id": 254,
+    "question": "What is the difference between sigmoid and softmax activation functions?",
+    "keywords": ["sigmoid", "softmax", "binary classification", "multiclass classification"],
+    "category": "easy"
+  },
+  {
+    "id": 255,
+    "question": "What is variance in machine learning?",
+    "keywords": ["variance", "overfitting", "model sensitivity"],
+    "category": "easy"
+  },
+  {
+    "id": 256,
+    "question": "What is bias–variance tradeoff?",
+    "keywords": ["bias-variance tradeoff", "generalization", "model complexity"],
+    "category": "easy"
+  },
+  {
+    "id": 257,
+    "question": "What is data leakage in machine learning?",
+    "keywords": ["data leakage", "training data", "model evaluation"],
+    "category": "medium"
+  },
+  {
+    "id": 258,
+    "question": "What is feature scaling and why is it important?",
+    "keywords": ["feature scaling", "normalization", "standardization"],
+    "category": "easy"
+  },
+  {
+    "id": 259,
+    "question": "What is dimensionality curse?",
+    "keywords": ["curse of dimensionality", "high dimensional data", "distance"],
+    "category": "medium"
+  },
+  {
+    "id": 260,
+    "question": "What is entropy in machine learning?",
+    "keywords": ["entropy", "information theory", "decision trees"],
+    "category": "easy"
+  },
+  {
+    "id": 261,
+    "question": "What is information gain?",
+    "keywords": ["information gain", "entropy", "feature selection"],
+    "category": "easy"
+  },
+  {
+    "id": 262,
+    "question": "What is Gini impurity?",
+    "keywords": ["gini impurity", "decision trees", "node split"],
+    "category": "easy"
+  },
+  {
+    "id": 263,
+    "question": "What is pruning in decision trees?",
+    "keywords": ["pruning", "decision trees", "overfitting"],
+    "category": "medium"
+  },
+  {
+    "id": 264,
+    "question": "What is class imbalance and why is it a problem?",
+    "keywords": ["class imbalance", "biased model", "minority class"],
+    "category": "easy"
+  },
+  {
+    "id": 265,
+    "question": "What is ROC curve?",
+    "keywords": ["ROC curve", "TPR", "FPR"],
+    "category": "easy"
+  },
+  {
+    "id": 266,
+    "question": "What is AUC score?",
+    "keywords": ["AUC", "ROC", "model evaluation"],
+    "category": "easy"
+  },
+  {
+    "id": 267,
+    "question": "What is precision-recall tradeoff?",
+    "keywords": ["precision", "recall", "threshold"],
+    "category": "easy"
+  },
+  {
+    "id": 268,
+    "question": "What is hold-out validation?",
+    "keywords": ["hold-out validation", "train-test split"],
+    "category": "easy"
+  },
+  {
+    "id": 269,
+    "question": "What is bootstrapping?",
+    "keywords": ["bootstrapping", "sampling", "bagging"],
+    "category": "medium"
+  },
+  {
+    "id": 270,
+    "question": "What is bag-of-words model?",
+    "keywords": ["bag of words", "NLP", "text representation"],
+    "category": "easy"
+  },
+  {
+    "id": 271,
+    "question": "What is TF-IDF?",
+    "keywords": ["TF-IDF", "text mining", "feature extraction"],
+    "category": "medium"
+  },
+  {
+    "id": 272,
+    "question": "What is word embedding?",
+    "keywords": ["word embeddings", "semantic meaning", "NLP"],
+    "category": "medium"
+  },
+  {
+    "id": 273,
+    "question": "What is cosine similarity?",
+    "keywords": ["cosine similarity", "vector similarity", "distance metric"],
+    "category": "easy"
+  },
+  {
+    "id": 274,
+    "question": "What is Euclidean distance?",
+    "keywords": ["euclidean distance", "distance metric", "geometry"],
+    "category": "easy"
+  },
+  {
+    "id": 275,
+    "question": "What is Manhattan distance?",
+    "keywords": ["manhattan distance", "L1 distance", "metrics"],
+    "category": "easy"
+  },
+  {
+    "id": 276,
+    "question": "What is feature importance?",
+    "keywords": ["feature importance", "model interpretability"],
+    "category": "easy"
+  },
+  {
+    "id": 277,
+    "question": "What is SHAP?",
+    "keywords": ["SHAP", "explainability", "model interpretation"],
+    "category": "difficult"
+  },
+  {
+    "id": 278,
+    "question": "What is LIME?",
+    "keywords": ["LIME", "local explanation", "interpretability"],
+    "category": "medium"
+  },
+  {
+    "id": 279,
+    "question": "What is concept drift?",
+    "keywords": ["concept drift", "data change", "model degradation"],
+    "category": "medium"
+  },
+  {
+    "id": 280,
+    "question": "What is data drift?",
+    "keywords": ["data drift", "distribution shift"],
+    "category": "medium"
+  },
+  {
+    "id": 281,
+    "question": "What is target leakage?",
+    "keywords": ["target leakage", "data leakage"],
+    "category": "medium"
+  },
+  {
+    "id": 282,
+    "question": "What is model generalization?",
+    "keywords": ["generalization", "unseen data", "robustness"],
+    "category": "easy"
+  },
+  {
+    "id": 283,
+    "question": "What is hyperparameter tuning?",
+    "keywords": ["hyperparameter tuning", "model optimization"],
+    "category": "easy"
+  },
+  {
+    "id": 284,
+    "question": "What is random search?",
+    "keywords": ["random search", "hyperparameter optimization"],
+    "category": "easy"
+  },
+  {
+    "id": 285,
+    "question": "What is Bayesian inference?",
+    "keywords": ["bayesian inference", "prior", "posterior"],
+    "category": "medium"
+  },
+  {
+    "id": 286,
+    "question": "What is maximum likelihood estimation?",
+    "keywords": ["MLE", "parameter estimation"],
+    "category": "medium"
+  },
+  {
+    "id": 287,
+    "question": "What is prior probability?",
+    "keywords": ["prior probability", "bayesian"],
+    "category": "easy"
+  },
+  {
+    "id": 288,
+    "question": "What is posterior probability?",
+    "keywords": ["posterior probability", "bayesian"],
+    "category": "easy"
+  },
+  {
+    "id": 289,
+    "question": "What is likelihood?",
+    "keywords": ["likelihood", "probability", "estimation"],
+    "category": "easy"
+  },
+  {
+    "id": 290,
+    "question": "What is expectation-maximization algorithm?",
+    "keywords": ["EM algorithm", "latent variables"],
+    "category": "difficult"
+  },
+  {
+    "id": 291,
+    "question": "What is anomaly detection?",
+    "keywords": ["anomaly detection", "outliers"],
+    "category": "easy"
+  },
+  {
+    "id": 292,
+    "question": "What is isolation forest?",
+    "keywords": ["isolation forest", "anomaly detection"],
+    "category": "medium"
+  },
+  {
+    "id": 293,
+    "question": "What is LOF (Local Outlier Factor)?",
+    "keywords": ["LOF", "outlier detection"],
+    "category": "medium"
+  },
+  {
+    "id": 294,
+    "question": "What is clustering validation?",
+    "keywords": ["clustering validation", "silhouette score"],
+    "category": "medium"
+  },
+  {
+    "id": 295,
+    "question": "What is silhouette score?",
+    "keywords": ["silhouette score", "clustering evaluation"],
+    "category": "easy"
+  },
+  {
+    "id": 296,
+    "question": "What is Davies–Bouldin index?",
+    "keywords": ["Davies-Bouldin", "clustering metric"],
+    "category": "medium"
+  },
+  {
+    "id": 297,
+    "question": "What is hierarchical clustering?",
+    "keywords": ["hierarchical clustering", "dendrogram"],
+    "category": "easy"
+  },
+  {
+    "id": 298,
+    "question": "What is agglomerative clustering?",
+    "keywords": ["agglomerative clustering", "bottom-up"],
+    "category": "easy"
+  },
+  {
+    "id": 299,
+    "question": "What is divisive clustering?",
+    "keywords": ["divisive clustering", "top-down"],
+    "category": "easy"
+  },
+  {
+    "id": 300,
+    "question": "What is density-based clustering?",
+    "keywords": ["density-based clustering", "DBSCAN"],
+    "category": "easy"
+  },
+  {
+    "id": 301,
+    "question": "What is DBSCAN?",
+    "keywords": ["DBSCAN", "density clustering"],
+    "category": "medium"
+  },
+  {
+    "id": 302,
+    "question": "What is HDBSCAN?",
+    "keywords": ["HDBSCAN", "hierarchical density clustering"],
+    "category": "difficult"
+  },
+  {
+    "id": 303,
+    "question": "What is latent variable?",
+    "keywords": ["latent variable", "hidden variables"],
+    "category": "medium"
+  },
+  {
+    "id": 304,
+    "question": "What is generative model?",
+    "keywords": ["generative model", "data generation"],
+    "category": "easy"
+  },
+  {
+    "id": 305,
+    "question": "What is discriminative model?",
+    "keywords": ["discriminative model", "classification"],
+    "category": "easy"
+  },
+  {
+    "id": 306,
+    "question": "Difference between generative and discriminative models?",
+    "keywords": ["generative vs discriminative", "model comparison"],
+    "category": "medium"
+  },
+  {
+    "id": 307,
+    "question": "What is NaN problem in ML pipelines?",
+    "keywords": ["NaN values", "data preprocessing"],
+    "category": "easy"
+  },
+  {
+    "id": 308,
+    "question": "What is cold start problem?",
+    "keywords": ["cold start", "recommender systems"],
+    "category": "medium"
+  },
+  {
+    "id": 309,
+    "question": "What is exploration vs exploitation?",
+    "keywords": ["exploration", "exploitation", "reinforcement learning"],
+    "category": "medium"
+  },
+  {
+    "id": 310,
+    "question": "What is epsilon-greedy strategy?",
+    "keywords": ["epsilon-greedy", "reinforcement learning"],
+    "category": "medium"
+  },
+  {
+    "id": 311,
+    "question": "What is Markov Decision Process (MDP)?",
+    "keywords": ["MDP", "reinforcement learning"],
+    "category": "difficult"
+  },
+  {
+    "id": 312,
+    "question": "What is reward function?",
+    "keywords": ["reward function", "reinforcement learning"],
+    "category": "easy"
+  },
+  {
+    "id": 313,
+    "question": "What is state and action in RL?",
+    "keywords": ["state", "action", "reinforcement learning"],
+    "category": "easy"
+  },
+  {
+    "id": 314,
+    "question": "What is policy in reinforcement learning?",
+    "keywords": ["policy", "reinforcement learning"],
+    "category": "easy"
+  },
+  {
+    "id": 315,
+    "question": "What is value function?",
+    "keywords": ["value function", "reinforcement learning"],
+    "category": "medium"
+  },
+  {
+    "id": 316,
+    "question": "What is Monte Carlo method?",
+    "keywords": ["Monte Carlo", "sampling", "estimation"],
+    "category": "medium"
+  },
+  {
+    "id": 317,
+    "question": "What is bootstrap aggregating?",
+    "keywords": ["bagging", "bootstrap aggregating"],
+    "category": "easy"
+  },
+  {
+    "id": 318,
+    "question": "What is stacking in ensemble learning?",
+    "keywords": ["stacking", "ensemble learning"],
+    "category": "medium"
+  },
+  {
+    "id": 319,
+    "question": "What is voting classifier?",
+    "keywords": ["voting classifier", "ensemble"],
+    "category": "easy"
+  },
+  {
+    "id": 320,
+    "question": "What is hard voting vs soft voting?",
+    "keywords": ["hard voting", "soft voting"],
+    "category": "easy"
+  },
+  {
+    "id": 321,
+    "question": "What is regularization path?",
+    "keywords": ["regularization path", "model tuning"],
+    "category": "medium"
+  },
+  {
+    "id": 322,
+    "question": "What is learning rate?",
+    "keywords": ["learning rate", "optimization"],
+    "category": "easy"
+  },
+  {
+    "id": 323,
+    "question": "What happens if learning rate is too high?",
+    "keywords": ["learning rate", "divergence"],
+    "category": "easy"
+  },
+  {
+    "id": 324,
+    "question": "What is momentum in optimization?",
+    "keywords": ["momentum", "gradient descent"],
+    "category": "medium"
+  },
+  {
+    "id": 325,
+    "question": "What is Adam optimizer?",
+    "keywords": ["Adam optimizer", "optimization"],
+    "category": "medium"
+  },
+  {
+    "id": 326,
+    "question": "What is RMSProp?",
+    "keywords": ["RMSProp", "optimizer"],
+    "category": "medium"
+  },
+  {
+    "id": 327,
+    "question": "What is vanishing gradient problem?",
+    "keywords": ["vanishing gradient", "deep learning"],
+    "category": "medium"
+  },
+  {
+    "id": 328,
+    "question": "What is exploding gradient problem?",
+    "keywords": ["exploding gradient", "neural networks"],
+    "category": "medium"
+  },
+  {
+    "id": 329,
+    "question": "What is batch normalization?",
+    "keywords": ["batch normalization", "training stability"],
+    "category": "medium"
+  },
+  {
+    "id": 330,
+    "question": "What is early stopping in deep learning?",
+    "keywords": ["early stopping", "overfitting"],
+    "category": "easy"
+  },
+  {
+    "id": 331,
+    "question": "What is transfer learning?",
+    "keywords": ["transfer learning", "pretrained models"],
+    "category": "easy"
+  },
+  {
+    "id": 332,
+    "question": "What is fine-tuning?",
+    "keywords": ["fine-tuning", "transfer learning"],
+    "category": "easy"
+  },
+  {
+    "id": 333,
+    "question": "What is catastrophic forgetting?",
+    "keywords": ["catastrophic forgetting", "neural networks"],
+    "category": "difficult"
+  },
+  {
+    "id": 334,
+    "question": "What is attention mechanism?",
+    "keywords": ["attention mechanism", "deep learning"],
+    "category": "medium"
+  },
+  {
+    "id": 335,
+    "question": "What is self-attention?",
+    "keywords": ["self-attention", "transformers"],
+    "category": "medium"
+  },
+  {
+    "id": 336,
+    "question": "What is transformer architecture?",
+    "keywords": ["transformers", "NLP"],
+    "category": "medium"
+  },
+  {
+    "id": 337,
+    "question": "What is encoder-decoder architecture?",
+    "keywords": ["encoder-decoder", "sequence models"],
+    "category": "easy"
+  },
+  {
+    "id": 338,
+    "question": "What is BLEU score?",
+    "keywords": ["BLEU score", "NLP evaluation"],
+    "category": "medium"
+  },
+  {
+    "id": 339,
+    "question": "What is perplexity?",
+    "keywords": ["perplexity", "language models"],
+    "category": "medium"
+  },
+  {
+    "id": 340,
+    "question": "What is time series forecasting?",
+    "keywords": ["time series", "forecasting"],
+    "category": "easy"
+  },
+  {
+    "id": 341,
+    "question": "What is stationarity in time series?",
+    "keywords": ["stationarity", "time series"],
+    "category": "medium"
+  },
+  {
+    "id": 342,
+    "question": "What is seasonality?",
+    "keywords": ["seasonality", "time series"],
+    "category": "easy"
+  },
+  {
+    "id": 343,
+    "question": "What is trend in time series?",
+    "keywords": ["trend", "time series"],
+    "category": "easy"
+  },
+  {
+    "id": 344,
+    "question": "What is ARIMA model?",
+    "keywords": ["ARIMA", "time series"],
+    "category": "medium"
+  },
+  {
+    "id": 345,
+    "question": "What is moving average?",
+    "keywords": ["moving average", "smoothing"],
+    "category": "easy"
+  },
+  {
+    "id": 346,
+    "question": "What is exponential smoothing?",
+    "keywords": ["exponential smoothing", "time series"],
+    "category": "medium"
+  },
+  {
+    "id": 347,
+    "question": "What is model monitoring?",
+    "keywords": ["model monitoring", "production ML"],
+    "category": "easy"
+  },
+  {
+    "id": 348,
+    "question": "What is MLOps?",
+    "keywords": ["MLOps", "deployment", "monitoring"],
+    "category": "medium"
+  },
+  {
+    "id": 349,
+    "question": "What is model versioning?",
+    "keywords": ["model versioning", "ML lifecycle"],
+    "category": "easy"
+  },
+  {
+    "id": 350,
+    "question": "What is A/B testing?",
+    "keywords": ["A/B testing", "experimentation"],
+    "category": "easy"
+  },
+  {
+    "id": 351,
+    "question": "What is hypothesis testing?",
+    "keywords": ["hypothesis testing", "statistics"],
+    "category": "easy"
+  },
+  {
+    "id": 352,
+    "question": "What is confidence interval?",
+    "keywords": ["confidence interval", "statistics"],
+    "category": "easy"
+  },
+  {
+    "id": 353,
+    "question": "What is statistical significance?",
+    "keywords": ["statistical significance", "p-value"],
+    "category": "easy"
+  },
+  {
+    "id": 354,
+    "question": "What ethical issues arise in machine learning?",
+    "keywords": ["ethics", "bias", "privacy", "fairness"],
+    "category": "medium"
+  }
+
+]
+
+}
