@@ -41,11 +41,11 @@ const InteractiveRoadmapContainer = ({ children }) => {
       className="hide-scroll"
       style={{ 
         flex: 1, display: 'flex', overflowX: 'auto',
-        padding: '40px 40px', alignItems: 'center', position: 'relative',
+        padding: '0px 40px', alignItems: 'center', position: 'relative',
         background: 'linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%)', // Light green landing page match
         borderRadius: 24, border: '1px solid #a7f3d0',
         boxShadow: 'inset 0 2px 20px rgba(16,185,129,0.05)',
-        minHeight: 620, marginBottom: 40,
+        minHeight: 580, marginBottom: 40,
         overflowY: 'hidden', cursor: 'crosshair'
       }}
     >
@@ -333,48 +333,48 @@ const Challenges = ({ user, onLogout }) => {
     <div className="app-layout">
       <Navbar user={user} onLogout={onLogout} />
 
-      <main className="main-content" style={{ background: '#f8fafc', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <main className="main-content" style={{ background: '#f8fafc', minHeight: '100vh', display: 'flex', flexDirection: 'column', paddingTop: '32px' }}>
         
         {/* ── Top Premium Light Green Stats Cards ── */}
-        <div style={{ display: 'flex', gap: 24, marginBottom: 24, flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: 20, marginBottom: 16, flexWrap: 'wrap' }}>
           
-          <div style={{ flex: 1, minWidth: 300, height: 140, background: 'linear-gradient(135deg, #10b981, #059669)', borderRadius: 24, padding: '24px 32px', color: '#fff', boxShadow: '0 12px 30px rgba(16,185,129,0.3)', display: 'flex', alignItems: 'center', gap: 24, position: 'relative', overflow: 'hidden' }}>
-            <Star size={160} color="#fff" style={{ position: 'absolute', right: -30, top: -30, opacity: 0.15 }} />
-            <div style={{ background: 'rgba(255,255,255,0.2)', width: 72, height: 72, borderRadius: 20, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1 }}>
-              <Star size={32} color="#fff" />
+          <div style={{ flex: 1, minWidth: 220, height: 130, background: 'linear-gradient(135deg, #10b981, #059669)', borderRadius: 24, padding: '20px 24px', color: '#fff', boxShadow: '0 12px 30px rgba(16,185,129,0.3)', display: 'flex', alignItems: 'center', gap: 20, position: 'relative', overflow: 'hidden' }}>
+            <Star size={140} color="#fff" style={{ position: 'absolute', right: -25, top: -25, opacity: 0.15 }} />
+            <div style={{ background: 'rgba(255,255,255,0.2)', width: 64, height: 64, borderRadius: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1 }}>
+              <Star size={28} color="#fff" />
             </div>
             <div style={{ zIndex: 1 }}>
-              <p style={{ margin: 0, fontSize: 13, fontWeight: 700, color: '#d1fae5', textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 6 }}>Total Points</p>
-              <h2 style={{ margin: 0, fontSize: 36, fontWeight: 900, lineHeight: 1 }}>{totalPoints}</h2>
+              <p style={{ margin: 0, fontSize: 12, fontWeight: 700, color: '#d1fae5', textTransform: 'uppercase', letterSpacing: 1.2, marginBottom: 4 }}>Total Points</p>
+              <h2 style={{ margin: 0, fontSize: 32, fontWeight: 900, lineHeight: 1 }}>{totalPoints}</h2>
             </div>
           </div>
 
-          <div style={{ flex: 1, minWidth: 300, height: 140, background: 'linear-gradient(135deg, #34d399, #10b981)', borderRadius: 24, padding: '24px 32px', color: '#fff', boxShadow: '0 12px 30px rgba(52,211,153,0.3)', display: 'flex', alignItems: 'center', gap: 24, position: 'relative', overflow: 'hidden' }}>
-            <Target size={160} color="#fff" style={{ position: 'absolute', right: -30, top: -30, opacity: 0.15 }} />
-            <div style={{ background: 'rgba(255,255,255,0.2)', width: 72, height: 72, borderRadius: 20, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1 }}>
-              <Target size={32} color="#fff" />
+          <div style={{ flex: 1, minWidth: 220, height: 130, background: 'linear-gradient(135deg, #34d399, #10b981)', borderRadius: 24, padding: '20px 24px', color: '#fff', boxShadow: '0 12px 30px rgba(52,211,153,0.3)', display: 'flex', alignItems: 'center', gap: 20, position: 'relative', overflow: 'hidden' }}>
+            <Target size={140} color="#fff" style={{ position: 'absolute', right: -25, top: -25, opacity: 0.15 }} />
+            <div style={{ background: 'rgba(255,255,255,0.2)', width: 64, height: 64, borderRadius: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1 }}>
+              <Target size={28} color="#fff" />
             </div>
             <div style={{ zIndex: 1 }}>
-              <p style={{ margin: 0, fontSize: 13, fontWeight: 700, color: '#d1fae5', textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 6 }}>Current Level</p>
-              <h2 style={{ margin: 0, fontSize: 36, fontWeight: 900, lineHeight: 1 }}>Level {currentLevelObj.id}</h2>
+              <p style={{ margin: 0, fontSize: 12, fontWeight: 700, color: '#d1fae5', textTransform: 'uppercase', letterSpacing: 1.2, marginBottom: 4 }}>Current Level</p>
+              <h2 style={{ margin: 0, fontSize: 32, fontWeight: 900, lineHeight: 1 }}>Level {currentLevelObj.id}</h2>
             </div>
           </div>
 
-          <div style={{ flex: 1, minWidth: 300, height: 140, background: 'linear-gradient(135deg, #059669, #047857)', borderRadius: 24, padding: '24px 32px', color: '#fff', boxShadow: '0 12px 30px rgba(5,150,105,0.3)', display: 'flex', alignItems: 'center', gap: 24, position: 'relative', overflow: 'hidden' }}>
-            <RankIcon size={160} color="#fff" style={{ position: 'absolute', right: -30, top: -30, opacity: 0.15 }} />
-            <div style={{ background: `rgba(255,255,255,0.2)`, width: 72, height: 72, borderRadius: 20, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1 }}>
-              <RankIcon size={32} color="#fff" />
+          <div style={{ flex: 1, minWidth: 220, height: 130, background: 'linear-gradient(135deg, #059669, #047857)', borderRadius: 24, padding: '20px 24px', color: '#fff', boxShadow: '0 12px 30px rgba(5,150,105,0.3)', display: 'flex', alignItems: 'center', gap: 20, position: 'relative', overflow: 'hidden' }}>
+            <RankIcon size={140} color="#fff" style={{ position: 'absolute', right: -25, top: -25, opacity: 0.15 }} />
+            <div style={{ background: `rgba(255,255,255,0.2)`, width: 64, height: 64, borderRadius: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1 }}>
+              <RankIcon size={28} color="#fff" />
             </div>
             <div style={{ zIndex: 1 }}>
-              <p style={{ margin: 0, fontSize: 13, fontWeight: 700, color: '#d1fae5', textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 6 }}>Rank Badge</p>
-              <h2 style={{ margin: 0, fontSize: 26, fontWeight: 900, lineHeight: 1.1 }}>{rank.name}</h2>
+              <p style={{ margin: 0, fontSize: 12, fontWeight: 700, color: '#d1fae5', textTransform: 'uppercase', letterSpacing: 1.2, marginBottom: 4 }}>Rank Badge</p>
+              <h2 style={{ margin: 0, fontSize: 24, fontWeight: 900, lineHeight: 1.1 }}>{rank.name}</h2>
             </div>
           </div>
 
         </div>
 
         {/* ── Title Above Road ── */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16, paddingLeft: 8 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8, paddingLeft: 8 }}>
           <div style={{ width: 8, height: 28, background: '#10b981', borderRadius: 8 }} />
           <h2 style={{ fontSize: 24, fontWeight: 900, color: '#0f172a', margin: 0, letterSpacing: -0.5 }}>Your Challenge Roadmap</h2>
         </div>
