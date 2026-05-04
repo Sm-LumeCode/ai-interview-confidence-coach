@@ -1,0 +1,1028 @@
+{
+  "role": "cloud devops",
+  "questions": [
+  { "id": 1, "question": "What is automation in DevOps and why is it important?", "keywords": ["automation", "DevOps", "efficiency", "CI/CD"], "difficulty": "easy" },
+  { "id": 2, "question": "What are the key benefits of scripting in DevOps?", "keywords": ["scripting", "automation", "consistency", "error reduction"], "difficulty": "easy" },
+  { "id": 3, "question": "What is Bash scripting and where is it commonly used?", "keywords": ["bash", "shell scripting", "linux", "task automation"], "difficulty": "easy" },
+  { "id": 4, "question": "What is YAML and why is it widely used in DevOps tools?", "keywords": ["YAML", "configuration files", "Kubernetes", "Ansible", "CI/CD"], "difficulty": "easy" },
+  { "id": 5, "question": "What role does Python scripting play in DevOps automation?", "keywords": ["python", "automation", "infrastructure as code", "cloud"], "difficulty": "medium" },
+  { "id": 6, "question": "What is the difference between Bash scripting and general Shell scripting?", "keywords": ["bash vs shell", "scripting languages", "unix"], "difficulty": "medium" },
+  { "id": 7, "question": "What is an Ansible playbook and why is it used?", "keywords": ["Ansible", "playbook", "configuration management", "automation"], "difficulty": "medium" },
+  { "id": 8, "question": "How does Cron help in scheduling and automation?", "keywords": ["cron jobs", "task scheduling", "linux automation"], "difficulty": "medium" },
+  { "id": 9, "question": "What is a Jenkins pipeline and how does it support CI/CD?", "keywords": ["Jenkins", "pipeline", "CI/CD", "automation workflow"], "difficulty": "medium" },
+  { "id": 10, "question": "What is idempotency in Ansible and why is it important?", "keywords": ["idempotency", "Ansible", "configuration management"], "difficulty": "difficult" },
+  { "id": 11, "question": "What is the difference between break and continue in scripting loops?", "keywords": ["loops", "break", "continue", "control flow"], "difficulty": "difficult" },
+  { "id": 12, "question": "What is a Jenkins shared library and how does it benefit large teams?", "keywords": ["Jenkins", "shared library", "Groovy", "CI/CD scalability"], "difficulty": "difficult" },
+
+  { "id": 13, "question": "What are DevOps best practices and why are they important in real-world projects?", "keywords": ["DevOps best practices", "CI/CD", "automation", "monitoring", "security"], "difficulty": "easy" },
+  { "id": 14, "question": "What is Infrastructure as Code (IaC) and what problems does it solve?", "keywords": ["Infrastructure as Code", "IaC", "Terraform", "Ansible", "automation"], "difficulty": "easy" },
+  { "id": 15, "question": "Why is version control critical in DevOps workflows?", "keywords": ["version control", "Git", "collaboration", "rollback"], "difficulty": "easy" },
+  { "id": 16, "question": "What is Continuous Integration and how does it improve software quality?", "keywords": ["Continuous Integration", "CI", "automated testing", "code quality"], "difficulty": "easy" },
+  { "id": 17, "question": "What is the difference between Continuous Delivery and Continuous Deployment?", "keywords": ["Continuous Delivery", "Continuous Deployment", "CI/CD"], "difficulty": "medium" },
+  { "id": 18, "question": "How do blue-green, rolling, and canary deployments reduce production risk?", "keywords": ["blue-green deployment", "rolling deployment", "canary deployment", "zero downtime"], "difficulty": "medium" },
+  { "id": 19, "question": "What is the role of monitoring and logging in DevOps?", "keywords": ["monitoring", "logging", "observability", "Prometheus", "ELK"], "difficulty": "medium" },
+  { "id": 20, "question": "What is DevSecOps and how is security integrated into CI/CD pipelines?", "keywords": ["DevSecOps", "CI/CD security", "SAST", "dependency scanning"], "difficulty": "medium" },
+  { "id": 21, "question": "What is GitOps and how does it change infrastructure management?", "keywords": ["GitOps", "infrastructure management", "Kubernetes", "version control"], "difficulty": "medium" },
+  { "id": 22, "question": "What is chaos engineering and how does it improve system reliability?", "keywords": ["chaos engineering", "resilience", "fault tolerance", "Chaos Monkey"], "difficulty": "difficult" },
+  { "id": 23, "question": "How do large organizations like Netflix or Amazon use DevOps practices to achieve high availability?", "keywords": ["high availability", "DevOps at scale", "auto-scaling", "CI/CD"], "difficulty": "difficult" },
+
+  { "id": 24, "question": "What is DevOps?", "keywords": ["DevOps", "collaboration", "automation", "software delivery"], "difficulty": "easy" },
+  { "id": 25, "question": "What are the main goals of DevOps?", "keywords": ["faster delivery", "automation", "continuous improvement", "collaboration"], "difficulty": "easy" },
+  { "id": 26, "question": "What is Continuous Integration (CI)?", "keywords": ["CI", "automated testing", "shared repository", "early bug detection"], "difficulty": "easy" },
+  { "id": 27, "question": "What is Infrastructure as Code (IaC)?", "keywords": ["IaC", "automation", "Terraform", "CloudFormation"], "difficulty": "easy" },
+  { "id": 28, "question": "What is the difference between monolithic and microservices architecture?", "keywords": ["monolithic", "microservices", "scalability", "independent services"], "difficulty": "medium" },
+  { "id": 29, "question": "What is a DevOps pipeline?", "keywords": ["DevOps pipeline", "CI/CD", "build", "test", "deploy"], "difficulty": "medium" },
+  { "id": 30, "question": "What is observability in DevOps?", "keywords": ["observability", "logs", "metrics", "tracing"], "difficulty": "medium" },
+  { "id": 31, "question": "What is DevSecOps and how is security integrated into DevOps?", "keywords": ["DevSecOps", "security automation", "CI/CD security", "shift-left"], "difficulty": "difficult" },
+  { "id": 32, "question": "How do you ensure high availability in a DevOps environment?", "keywords": ["high availability", "load balancing", "auto-scaling", "failover"], "difficulty": "difficult" },
+  { "id": 33, "question": "What are the challenges of DevOps adoption in large enterprises?", "keywords": ["DevOps adoption", "legacy systems", "cultural resistance", "skill gaps"], "difficulty": "difficult" },
+
+  { "id": 34, "question": "What is Docker?", "keywords": ["Docker", "containerization", "application packaging", "isolation"], "difficulty": "easy" },
+  { "id": 35, "question": "Explain the difference between a container and a virtual machine (VM).", "keywords": ["container vs VM", "host OS", "lightweight", "virtualization"], "difficulty": "easy" },
+  { "id": 36, "question": "What is a Docker image?", "keywords": ["Docker image", "application dependencies", "immutable", "runtime"], "difficulty": "easy" },
+  { "id": 37, "question": "What is a Docker container?", "keywords": ["Docker container", "runtime instance", "isolation", "execution"], "difficulty": "easy" },
+  { "id": 38, "question": "How does Docker work internally?", "keywords": ["Docker architecture", "containerization", "kernel sharing", "Docker Engine"], "difficulty": "medium" },
+  { "id": 39, "question": "What is Docker Compose and why is it used?", "keywords": ["Docker Compose", "multi-container apps", "orchestration", "services"], "difficulty": "medium" },
+  { "id": 40, "question": "Why are Docker volumes used?", "keywords": ["Docker volumes", "persistent storage", "data management"], "difficulty": "medium" },
+  { "id": 41, "question": "What is Docker Swarm and what problem does it solve?", "keywords": ["Docker Swarm", "container orchestration", "clustering", "scalability"], "difficulty": "difficult" },
+  { "id": 42, "question": "How can Docker container security be improved?", "keywords": ["Docker security", "least privilege", "official images", "hardening"], "difficulty": "difficult" },
+
+  { "id": 43, "question": "What is CI/CD in DevOps?", "keywords": ["Continuous Integration", "Continuous Deployment", "automation", "DevOps"], "difficulty": "easy" },
+  { "id": 44, "question": "What are the benefits of using CI/CD?", "keywords": ["faster releases", "early bug detection", "collaboration", "consistency"], "difficulty": "easy" },
+  { "id": 45, "question": "What are some popular CI/CD tools?", "keywords": ["Jenkins", "GitHub Actions", "GitLab CI/CD", "CircleCI", "Azure DevOps"], "difficulty": "easy" },
+  { "id": 46, "question": "What is pipeline as code?", "keywords": ["Jenkinsfile", "GitHub Actions YAML", "GitLab CI/CD YAML", "automation"], "difficulty": "medium" },
+
+  { "id": 47, "question": "What is version control, and why is it important?", "keywords": ["Version Control", "Basics"], "difficulty": "easy" },
+  { "id": 48, "question": "What is Git and how does it differ from other version control systems?", "keywords": ["Git", "VCS", "Comparison"], "difficulty": "easy" },
+  { "id": 49, "question": "What is the difference between Git pull, fetch, and clone?", "keywords": ["Git Commands", "Fetch", "Pull", "Clone"], "difficulty": "medium" },
+  { "id": 50, "question": "What is Git stash and when should it be used?", "keywords": ["Git stash", "Workflow"], "difficulty": "medium" },
+  { "id": 51, "question": "How do you resolve merge conflicts in Git?", "keywords": ["Merge conflicts", "Git"], "difficulty": "difficult" },
+  {
+    "id": 52,
+    "question": "What is DevOps?",
+    "keywords": ["DevOps", "development", "operations", "automation"],
+    "category": "easy"
+  },
+  {
+    "id": 53,
+    "question": "What is CI/CD and why is it important in DevOps?",
+    "keywords": ["CI/CD", "continuous integration", "continuous delivery", "automation"],
+    "category": "easy"
+  },
+  {
+    "id": 54,
+    "question": "What are the core benefits of Google Cloud for DevOps?",
+    "keywords": ["Google Cloud", "scalability", "automation", "DevOps"],
+    "category": "easy"
+  },
+  {
+    "id": 55,
+    "question": "What role does Google Kubernetes Engine (GKE) play in DevOps?",
+    "keywords": ["GKE", "Kubernetes", "container orchestration", "DevOps"],
+    "category": "medium"
+  },
+  {
+    "id": 56,
+    "question": "How do Cloud Source Repositories help DevOps teams?",
+    "keywords": ["Cloud Source Repositories", "Git", "version control"],
+    "category": "easy"
+  },
+  {
+    "id": 57,
+    "question": "What is the function of Cloud Build in DevOps?",
+    "keywords": ["Cloud Build", "CI/CD", "build automation"],
+    "category": "easy"
+  },
+  {
+    "id": 58,
+    "question": "How does Google Cloud Operations Suite support DevOps?",
+    "keywords": ["monitoring", "logging", "observability", "DevOps"],
+    "category": "medium"
+  },
+  {
+    "id": 59,
+    "question": "What is Infrastructure as Code (IaC) and why is it important?",
+    "keywords": ["IaC", "automation", "configuration management"],
+    "category": "easy"
+  },
+  {
+    "id": 60,
+    "question": "What are security best practices for DevOps on Google Cloud?",
+    "keywords": ["DevSecOps", "least privilege", "security scanning"],
+    "category": "medium"
+  },
+  {
+    "id": 61,
+    "question": "What is the role of Container Registry in a DevOps workflow?",
+    "keywords": ["Container Registry", "Docker images", "CI/CD"],
+    "category": "easy"
+  },
+  {
+    "id": 62,
+    "question": "What is Google Cloud Deployment Manager?",
+    "keywords": ["Deployment Manager", "IaC", "resource provisioning"],
+    "category": "medium"
+  },
+  {
+    "id": 63,
+    "question": "How do Google Cloud Functions support DevOps strategies?",
+    "keywords": ["Cloud Functions", "serverless", "event-driven"],
+    "category": "easy"
+  },
+  {
+    "id": 64,
+    "question": "How is Terraform used in Google Cloud DevOps?",
+    "keywords": ["Terraform", "IaC", "automation"],
+    "category": "medium"
+  },
+  {
+    "id": 65,
+    "question": "What role does Google Cloud Pub/Sub play in DevOps?",
+    "keywords": ["Pub/Sub", "event-driven", "microservices"],
+    "category": "medium"
+  },
+  {
+    "id": 66,
+    "question": "How does Artifact Registry differ from Container Registry?",
+    "keywords": ["Artifact Registry", "Container Registry", "CI/CD"],
+    "category": "easy"
+  },
+  {
+    "id": 67,
+    "question": "How does Google Cloud Build enhance DevOps automation?",
+    "keywords": ["Cloud Build", "automation", "CI/CD pipelines"],
+    "category": "medium"
+  },
+  {
+    "id": 68,
+    "question": "What is Anthos and how does it support multi-cloud DevOps?",
+    "keywords": ["Anthos", "multi-cloud", "hybrid cloud"],
+    "category": "difficult"
+  },
+  {
+    "id": 69,
+    "question": "Why is GKE suitable for microservices architectures?",
+    "keywords": ["GKE", "microservices", "scalability"],
+    "category": "medium"
+  },
+  {
+    "id": 70,
+    "question": "What are best practices for managing stateful applications in Kubernetes?",
+    "keywords": ["stateful applications", "StatefulSets", "persistent storage"],
+    "category": "difficult"
+  },
+  {
+    "id": 71,
+    "question": "What are Kubernetes network policies and why are they important?",
+    "keywords": ["network policies", "Kubernetes security", "isolation"],
+    "category": "medium"
+  },
+  {
+    "id": 72,
+    "question": "How does Google Cloud Armor enhance application security in DevOps?",
+    "keywords": ["Cloud Armor", "DDoS protection", "security"],
+    "category": "medium"
+  },
+  {
+    "id": 73,
+    "question": "What is Spinnaker and how is it used for continuous delivery?",
+    "keywords": ["Spinnaker", "continuous delivery", "deployment strategies"],
+    "category": "difficult"
+  },
+  {
+    "id": 74,
+    "question": "How can IAM roles be optimized for secure DevOps operations?",
+    "keywords": ["IAM", "least privilege", "security"],
+    "category": "medium"
+  },
+  {
+    "id": 75,
+    "question": "How do Cloud Functions enable event-driven DevOps automation?",
+    "keywords": ["Cloud Functions", "event-driven", "automation"],
+    "category": "medium"
+  },
+  {
+    "id": 76,
+    "question": "What is telemetry and why is it important in DevOps?",
+    "keywords": ["telemetry", "monitoring", "observability"],
+    "category": "easy"
+  },
+  {
+    "id": 77,
+    "question": "How does Google Cloud Pub/Sub improve operational efficiency?",
+    "keywords": ["Pub/Sub", "asynchronous messaging", "DevOps"],
+    "category": "medium"
+  },
+  {
+    "id": 78,
+    "question": "What should be considered when implementing disaster recovery in Google Cloud?",
+    "keywords": ["disaster recovery", "RTO", "RPO"],
+    "category": "difficult"
+  },
+  {
+    "id": 79,
+    "question": "How can Google Cloud integrate with third-party DevOps tools?",
+    "keywords": ["third-party tools", "CI/CD integration", "DevOps ecosystem"],
+    "category": "medium"
+  },
+  {
+    "id": 80,
+    "question": "How can machine learning optimize DevOps processes?",
+    "keywords": ["machine learning", "DevOps optimization", "automation"],
+    "category": "difficult"
+  },
+  {
+    "id": 81,
+    "question": "How does Identity-Aware Proxy (IAP) improve DevOps security?",
+    "keywords": ["IAP", "access control", "DevOps security"],
+    "category": "medium"
+  },
+  {
+    "id": 82,
+    "question": "What are the key differences between DevOps and Agile?",
+    "keywords": ["DevOps", "Agile", "collaboration", "delivery"],
+    "category": "easy"
+  },
+  {
+    "id": 83,
+    "question": "Why is DevOps needed in modern software development?",
+    "keywords": ["DevOps need", "faster delivery", "collaboration"],
+    "category": "easy"
+  },
+  {
+    "id": 84,
+    "question": "What is Continuous Integration and Continuous Deployment (CI/CD)?",
+    "keywords": ["CI/CD", "automation", "continuous integration"],
+    "category": "easy"
+  },
+  {
+    "id": 85,
+    "question": "What does CAMS stand for in DevOps?",
+    "keywords": ["CAMS", "culture", "automation", "measurement", "sharing"],
+    "category": "easy"
+  },
+  {
+    "id": 86,
+    "question": "What are the different phases in the DevOps lifecycle?",
+    "keywords": ["DevOps lifecycle", "CI/CD", "monitoring"],
+    "category": "easy"
+  },
+  {
+    "id": 87,
+    "question": "Explain a real-world industry use case of DevOps.",
+    "keywords": ["DevOps use case", "industry", "automation"],
+    "category": "medium"
+  },
+  {
+    "id": 88,
+    "question": "What is SSH and why is it used in DevOps?",
+    "keywords": ["SSH", "secure shell", "remote access"],
+    "category": "easy"
+  },
+  {
+    "id": 89,
+    "question": "What is Continuous Testing in DevOps?",
+    "keywords": ["continuous testing", "automation", "CI/CD"],
+    "category": "medium"
+  },
+  {
+    "id": 90,
+    "question": "What are the differences between Ansible, Chef, and Puppet?",
+    "keywords": ["Ansible", "Chef", "Puppet", "configuration management"],
+    "category": "medium"
+  },
+  {
+    "id": 91,
+    "question": "What are the key DevOps KPIs?",
+    "keywords": ["DevOps KPIs", "deployment frequency", "MTTR"],
+    "category": "easy"
+  },
+  {
+    "id": 92,
+    "question": "What is Infrastructure as Code (IaC) in configuration management?",
+    "keywords": ["IaC", "configuration management", "automation"],
+    "category": "easy"
+  },
+  {
+    "id": 93,
+    "question": "What are Azure Boards and how are they used?",
+    "keywords": ["Azure Boards", "project management", "DevOps tools"],
+    "category": "easy"
+  },
+  {
+    "id": 94,
+    "question": "What is the difference between Continuous Delivery and Continuous Deployment?",
+    "keywords": ["continuous delivery", "continuous deployment", "CI/CD"],
+    "category": "medium"
+  },
+  {
+    "id": 95,
+    "question": "What is version control?",
+    "keywords": ["version control", "Git", "source code management"],
+    "category": "easy"
+  },
+  {
+    "id": 96,
+    "question": "What are the benefits of using version control systems?",
+    "keywords": ["VCS benefits", "collaboration", "change tracking"],
+    "category": "easy"
+  },
+  {
+    "id": 97,
+    "question": "What is the difference between Azure DevOps Services and Azure DevOps Server?",
+    "keywords": ["Azure DevOps Services", "Azure DevOps Server", "cloud vs on-prem"],
+    "category": "medium"
+  },
+  {
+    "id": 98,
+    "question": "What are containers in DevOps and why are they important?",
+    "keywords": ["containers", "Docker", "Kubernetes"],
+    "category": "easy"
+  },
+  {
+    "id": 99,
+    "question": "What are Microsoft-hosted agents in Azure Pipelines?",
+    "keywords": ["Microsoft-hosted agents", "Azure Pipelines", "CI/CD"],
+    "category": "easy"
+  },
+  {
+    "id": 100,
+    "question": "What is a self-hosted agent in Azure Pipelines?",
+    "keywords": ["self-hosted agents", "Azure Pipelines", "build agents"],
+    "category": "easy"
+  },
+  {
+    "id": 101,
+    "question": "What is Blue-Green Deployment?",
+    "keywords": ["blue-green deployment", "zero downtime", "release strategy"],
+    "category": "medium"
+  },
+  {
+    "id": 102,
+    "question": "How can Puppet be enhanced using open-source tools?",
+    "keywords": ["Puppet", "open-source tools", "DevOps automation"],
+    "category": "medium"
+  },
+  {
+    "id": 103,
+    "question": "What is the difference between Azure DevOps and VSTS Online?",
+    "keywords": ["Azure DevOps", "VSTS", "ALM"],
+    "category": "easy"
+  },
+  {
+    "id": 104,
+    "question": "How can notifications be configured in Azure DevOps?",
+    "keywords": ["Azure DevOps notifications", "alerts", "collaboration"],
+    "category": "medium"
+  },
+  {
+    "id": 105,
+    "question": "What are Azure Test Plans?",
+    "keywords": ["Azure Test Plans", "manual testing", "exploratory testing"],
+    "category": "easy"
+  },
+  {
+    "id": 106,
+    "question": "Explain an industry case study where DevOps was successfully implemented.",
+    "keywords": ["DevOps case study", "industry adoption", "automation"],
+    "category": "medium"
+  },
+  {
+    "id": 107,
+    "question": "Why would you prefer self-hosted agents over Microsoft-hosted agents?",
+    "keywords": ["self-hosted agents", "build performance", "customization"],
+    "category": "medium"
+  },
+  {
+    "id": 108,
+    "question": "How can Jenkins be secured in a DevOps environment?",
+    "keywords": ["Jenkins security", "CI/CD security", "DevOps"],
+    "category": "medium"
+  },
+  {
+    "id": 109,
+    "question": "How can a NuGet package be shared securely with external users?",
+    "keywords": ["NuGet", "Azure Artifacts", "package management"],
+    "category": "medium"
+  },
+  {
+    "id": 110,
+    "question": "What are the components required to integrate Azure DevOps with Bitbucket?",
+    "keywords": ["Azure DevOps", "Bitbucket", "integration"],
+    "category": "medium"
+  },
+  {
+    "id": 111,
+    "question": "Why is collaboration considered a core principle of DevOps?",
+    "keywords": ["DevOps culture", "collaboration", "shared responsibility"],
+    "category": "easy"
+  },
+  {
+    "id": 112,
+    "question": "What are the benefits of using AWS for DevOps?",
+    "keywords": ["AWS", "DevOps", "scalability", "automation", "CI/CD"],
+    "category": "easy"
+  },
+  {
+    "id": 113,
+    "question": "What is Infrastructure as Code (IaC) in AWS?",
+    "keywords": ["IaC", "AWS CloudFormation", "AWS CDK", "automation"],
+    "category": "easy"
+  },
+  {
+    "id": 114,
+    "question": "Explain the difference between DevOps and Agile.",
+    "keywords": ["DevOps", "Agile", "software delivery", "collaboration"],
+    "category": "easy"
+  },
+  {
+    "id": 115,
+    "question": "What are some popular AWS DevOps tools?",
+    "keywords": ["AWS CodePipeline", "CodeBuild", "CodeDeploy", "ECS", "EKS"],
+    "category": "easy"
+  },
+  {
+    "id": 116,
+    "question": "What is a CI/CD pipeline?",
+    "keywords": ["CI/CD", "automation", "software delivery"],
+    "category": "easy"
+  },
+  {
+    "id": 117,
+    "question": "How would you implement a CI/CD pipeline in AWS?",
+    "keywords": ["AWS CodePipeline", "CodeCommit", "CodeBuild", "CodeDeploy"],
+    "category": "medium"
+  },
+  {
+    "id": 118,
+    "question": "Explain AWS CodePipeline.",
+    "keywords": ["AWS CodePipeline", "CI/CD", "automation"],
+    "category": "easy"
+  },
+  {
+    "id": 119,
+    "question": "What is AWS CodeBuild?",
+    "keywords": ["AWS CodeBuild", "build automation", "CI"],
+    "category": "easy"
+  },
+  {
+    "id": 120,
+    "question": "What is AWS CodeDeploy?",
+    "keywords": ["AWS CodeDeploy", "deployment automation", "DevOps"],
+    "category": "easy"
+  },
+  {
+    "id": 121,
+    "question": "What are containers?",
+    "keywords": ["containers", "Docker", "application packaging"],
+    "category": "easy"
+  },
+  {
+    "id": 122,
+    "question": "What is the difference between Docker and Virtual Machines?",
+    "keywords": ["Docker", "VM", "virtualization"],
+    "category": "easy"
+  },
+  {
+    "id": 123,
+    "question": "How do you orchestrate containers in AWS?",
+    "keywords": ["Amazon ECS", "Amazon EKS", "container orchestration"],
+    "category": "easy"
+  },
+  {
+    "id": 124,
+    "question": "What is Amazon ECS?",
+    "keywords": ["Amazon ECS", "containers", "AWS"],
+    "category": "easy"
+  },
+  {
+    "id": 125,
+    "question": "What is Amazon EKS?",
+    "keywords": ["Amazon EKS", "Kubernetes", "AWS"],
+    "category": "easy"
+  },
+  {
+    "id": 126,
+    "question": "What is AWS Elastic Beanstalk?",
+    "keywords": ["Elastic Beanstalk", "PaaS", "AWS deployment"],
+    "category": "easy"
+  },
+  {
+    "id": 127,
+    "question": "How do you deploy an application using Elastic Beanstalk?",
+    "keywords": ["Elastic Beanstalk", "deployment", "AWS CLI"],
+    "category": "medium"
+  },
+  {
+    "id": 128,
+    "question": "What is AWS Lambda?",
+    "keywords": ["AWS Lambda", "serverless", "event-driven"],
+    "category": "easy"
+  },
+  {
+    "id": 129,
+    "question": "How does AWS Lambda integrate with CI/CD?",
+    "keywords": ["AWS Lambda", "CI/CD", "CodePipeline"],
+    "category": "medium"
+  },
+  {
+    "id": 130,
+    "question": "What are the limitations of AWS Lambda?",
+    "keywords": ["AWS Lambda", "execution limits", "serverless constraints"],
+    "category": "medium"
+  },
+  {
+    "id": 131,
+    "question": "What is Amazon EC2?",
+    "keywords": ["Amazon EC2", "compute", "AWS"],
+    "category": "easy"
+  },
+  {
+    "id": 132,
+    "question": "What is an EC2 instance?",
+    "keywords": ["EC2 instance", "virtual server", "AWS"],
+    "category": "easy"
+  },
+  {
+    "id": 133,
+    "question": "How can you automatically scale EC2 instances?",
+    "keywords": ["Auto Scaling", "CloudWatch", "EC2"],
+    "category": "easy"
+  },
+  {
+    "id": 134,
+    "question": "What is Elastic Load Balancer (ELB)?",
+    "keywords": ["ELB", "load balancing", "high availability"],
+    "category": "easy"
+  },
+  {
+    "id": 135,
+    "question": "What are the types of load balancers in AWS?",
+    "keywords": ["ALB", "NLB", "GLB", "AWS load balancers"],
+    "category": "easy"
+  },
+  {
+    "id": 136,
+    "question": "What is AWS CloudFormation?",
+    "keywords": ["AWS CloudFormation", "IaC", "automation"],
+    "category": "easy"
+  },
+  {
+    "id": 137,
+    "question": "How does CloudFormation help with DevOps?",
+    "keywords": ["CloudFormation", "DevOps", "infrastructure automation"],
+    "category": "easy"
+  },
+  {
+    "id": 138,
+    "question": "What is a CloudFormation stack?",
+    "keywords": ["CloudFormation stack", "AWS resources", "IaC"],
+    "category": "easy"
+  },
+  {
+    "id": 139,
+    "question": "How do you update a CloudFormation stack?",
+    "keywords": ["CloudFormation update", "templates", "rollback"],
+    "category": "medium"
+  },
+  {
+    "id": 140,
+    "question": "Can CloudFormation roll back changes automatically?",
+    "keywords": ["CloudFormation rollback", "failure handling", "AWS"],
+    "category": "easy"
+  },
+  {
+    "id": 141,
+    "question": "What is AWS CloudWatch?",
+    "keywords": ["CloudWatch", "monitoring", "AWS metrics"],
+    "category": "easy"
+  },
+  {
+    "id": 142,
+    "question": "What are CloudWatch Alarms?",
+    "keywords": ["CloudWatch alarms", "monitoring", "alerts"],
+    "category": "easy"
+  },
+  {
+    "id": 143,
+    "question": "How does AWS CloudTrail help in monitoring?",
+    "keywords": ["CloudTrail", "auditing", "security"],
+    "category": "easy"
+  },
+  {
+    "id": 144,
+    "question": "What is AWS X-Ray?",
+    "keywords": ["AWS X-Ray", "distributed tracing", "microservices"],
+    "category": "medium"
+  },
+  {
+    "id": 145,
+    "question": "What is AWS IAM?",
+    "keywords": ["AWS IAM", "security", "access control"],
+    "category": "easy"
+  },
+  {
+    "id": 146,
+    "question": "What are IAM roles?",
+    "keywords": ["IAM roles", "permissions", "AWS security"],
+    "category": "easy"
+  },
+  {
+    "id": 147,
+    "question": "What is an IAM policy?",
+    "keywords": ["IAM policy", "JSON", "permissions"],
+    "category": "easy"
+  },
+  {
+    "id": 148,
+    "question": "How can you secure a CI/CD pipeline in AWS?",
+    "keywords": ["CI/CD security", "IAM", "encryption"],
+    "category": "medium"
+  },
+  {
+    "id": 149,
+    "question": "What is AWS KMS?",
+    "keywords": ["AWS KMS", "encryption", "key management"],
+    "category": "easy"
+  },
+  {
+    "id": 150,
+    "question": "What is AWS Shield?",
+    "keywords": ["AWS Shield", "DDoS protection", "security"],
+    "category": "easy"
+  },
+  {
+    "id": 151,
+    "question": "What is AWS WAF?",
+    "keywords": ["AWS WAF", "web security", "firewall"],
+    "category": "easy"
+  },
+  {
+    "id": 152,
+    "question": "How do you secure data in transit and at rest in AWS?",
+    "keywords": ["encryption", "SSL/TLS", "AWS security"],
+    "category": "medium"
+  },
+  {
+    "id": 153,
+    "question": "What is AWS Secrets Manager?",
+    "keywords": ["AWS Secrets Manager", "credentials", "security"],
+    "category": "easy"
+  },
+  {
+    "id": 154,
+    "question": "What is Amazon S3?",
+    "keywords": ["Amazon S3", "object storage", "AWS"],
+    "category": "easy"
+  },
+  {
+    "id": 155,
+    "question": "What are the different storage classes in Amazon S3?",
+    "keywords": ["S3 storage classes", "Glacier", "Intelligent-Tiering"],
+    "category": "easy"
+  },
+  {
+    "id": 156,
+    "question": "What is versioning in Amazon S3?",
+    "keywords": ["S3 versioning", "data protection", "backup"],
+    "category": "easy"
+  },
+  {
+    "id": 157,
+    "question": "What is a VPC in AWS?",
+    "keywords": ["VPC", "networking", "AWS"],
+    "category": "easy"
+  },
+  {
+    "id": 158,
+    "question": "What is Amazon RDS?",
+    "keywords": ["Amazon RDS", "managed database", "AWS"],
+    "category": "easy"
+  },
+  {
+    "id": 159,
+    "question": "What is Amazon DynamoDB?",
+    "keywords": ["DynamoDB", "NoSQL", "AWS"],
+    "category": "easy"
+  },
+  {
+    "id": 160,
+    "question": "How would you design a highly available, fault-tolerant CI/CD pipeline across multiple regions in the cloud?",
+    "keywords": ["multi-region", "high availability", "CI/CD", "fault tolerance"],
+    "category": "hard"
+  },
+  {
+    "id": 161,
+    "question": "How do you handle state management and locking in Infrastructure as Code tools like Terraform in large teams?",
+    "keywords": ["Terraform", "state management", "state locking", "IaC"],
+    "category": "hard"
+  },
+  {
+    "id": 162,
+    "question": "How can you implement zero-downtime deployments for microservices running on Kubernetes?",
+    "keywords": ["zero-downtime deployment", "Kubernetes", "rolling updates", "microservices"],
+    "category": "hard"
+  },
+  {
+    "id": 163,
+    "question": "What strategies would you use to secure secrets and credentials across CI/CD pipelines in a multi-cloud DevOps setup?",
+    "keywords": ["secrets management", "multi-cloud", "CI/CD security", "vaults"],
+    "category": "hard"
+  },
+  {
+    "id": 164,
+    "question": "How do you detect and handle configuration drift in cloud infrastructure?",
+    "keywords": ["configuration drift", "IaC", "cloud governance", "compliance"],
+    "category": "hard"
+  },
+  {
+    "id": 165,
+    "question": "Explain how you would design a DevOps monitoring and alerting strategy for a large-scale distributed system.",
+    "keywords": ["monitoring", "alerting", "distributed systems", "observability"],
+    "category": "hard"
+  },
+  {
+    "id": 166,
+    "question": "How do you optimize cloud costs in a DevOps-driven environment without impacting performance or reliability?",
+    "keywords": ["cost optimization", "FinOps", "cloud efficiency", "DevOps"],
+    "category": "hard"
+  },
+  {
+    "id": 167,
+    "question": "What challenges arise when implementing GitOps at scale, and how do you address them?",
+    "keywords": ["GitOps", "Kubernetes", "scalability", "deployment strategy"],
+    "category": "hard"
+  },
+  {
+    "id": 168,
+    "question": "How would you design disaster recovery (DR) for a cloud-native application with strict RPO and RTO requirements?",
+    "keywords": ["disaster recovery", "RPO", "RTO", "cloud-native"],
+    "category": "hard"
+  },
+  {
+    "id": 169,
+    "question": "How do service meshes like Istio or Linkerd improve DevOps practices in Kubernetes environments?",
+    "keywords": ["service mesh", "Istio", "observability", "Kubernetes"],
+    "category": "hard"
+  },
+  {
+    "id": 170,
+    "question": "How do you implement policy-as-code for enforcing security and compliance in cloud DevOps pipelines?",
+    "keywords": ["policy as code", "compliance", "security automation", "DevOps"],
+    "category": "hard"
+  },
+  {
+    "id": 171,
+    "question": "What are the trade-offs between using managed Kubernetes services and self-managed clusters in DevOps?",
+    "keywords": ["managed Kubernetes", "self-managed clusters", "trade-offs", "operations"],
+    "category": "hard"
+  },
+  {
+    "id": 172,
+    "question": "How would you design a logging and tracing strategy to debug intermittent issues in production microservices?",
+    "keywords": ["distributed tracing", "logging", "production debugging", "microservices"],
+    "category": "hard"
+  },
+  {
+    "id": 173,
+    "question": "How can chaos engineering be integrated into DevOps workflows to improve system resilience?",
+    "keywords": ["chaos engineering", "resilience", "DevOps testing", "fault injection"],
+    "category": "hard"
+  },
+  {
+    "id": 174,
+    "question": "How do you manage versioning and backward compatibility of APIs in a continuous deployment environment?",
+    "keywords": ["API versioning", "backward compatibility", "continuous deployment"],
+    "category": "hard"
+  },
+  {
+    "id": 175,
+    "question": "How would you design a secure CI/CD pipeline that complies with industry standards such as SOC 2 or ISO 27001?",
+    "keywords": ["CI/CD security", "SOC 2", "ISO 27001", "compliance"],
+    "category": "hard"
+  },
+  {
+    "id": 176,
+    "question": "How do you implement blue-green and canary deployments together in a Kubernetes-based DevOps workflow?",
+    "keywords": ["blue-green deployment", "canary release", "Kubernetes", "DevOps"],
+    "category": "hard"
+  },
+  {
+    "id": 177,
+    "question": "What strategies would you use to manage secrets rotation without downtime in production systems?",
+    "keywords": ["secrets rotation", "zero downtime", "security", "DevOps"],
+    "category": "hard"
+  },
+  {
+    "id": 178,
+    "question": "How do you ensure consistency between development, staging, and production environments in cloud DevOps?",
+    "keywords": ["environment parity", "IaC", "DevOps consistency"],
+    "category": "hard"
+  },
+  {
+    "id": 179,
+    "question": "How would you design a scalable logging pipeline for petabyte-scale cloud applications?",
+    "keywords": ["scalable logging", "cloud observability", "distributed systems"],
+    "category": "hard"
+  },
+  {
+    "id": 180,
+    "question": "What are the key challenges of managing Kubernetes clusters at scale, and how do you mitigate them?",
+    "keywords": ["Kubernetes at scale", "cluster management", "DevOps"],
+    "category": "hard"
+  },
+  {
+    "id": 181,
+    "question": "How can you enforce least-privilege access across cloud resources in a large DevOps organization?",
+    "keywords": ["least privilege", "IAM", "cloud security"],
+    "category": "hard"
+  },
+  {
+    "id": 182,
+    "question": "How do you design CI/CD pipelines for monorepos with hundreds of microservices?",
+    "keywords": ["monorepo", "CI/CD optimization", "microservices"],
+    "category": "hard"
+  },
+  {
+    "id": 183,
+    "question": "What techniques can be used to detect and prevent supply chain attacks in DevOps pipelines?",
+    "keywords": ["supply chain security", "DevSecOps", "pipeline security"],
+    "category": "hard"
+  },
+  {
+    "id": 184,
+    "question": "How do you implement progressive delivery strategies in cloud-native applications?",
+    "keywords": ["progressive delivery", "cloud-native", "DevOps"],
+    "category": "hard"
+  },
+  {
+    "id": 185,
+    "question": "How would you manage multi-account cloud architectures using DevOps best practices?",
+    "keywords": ["multi-account strategy", "cloud governance", "DevOps"],
+    "category": "hard"
+  },
+  {
+    "id": 186,
+    "question": "How do you design an automated rollback mechanism for failed cloud deployments?",
+    "keywords": ["automated rollback", "deployment failure", "DevOps"],
+    "category": "hard"
+  },
+  {
+    "id": 187,
+    "question": "What role does observability play in Site Reliability Engineering (SRE) and DevOps?",
+    "keywords": ["observability", "SRE", "DevOps metrics"],
+    "category": "hard"
+  },
+  {
+    "id": 188,
+    "question": "How do you manage API rate limiting and throttling in cloud-native DevOps systems?",
+    "keywords": ["API management", "rate limiting", "cloud-native"],
+    "category": "hard"
+  },
+  {
+    "id": 189,
+    "question": "How can you integrate vulnerability scanning into CI/CD pipelines without slowing down delivery?",
+    "keywords": ["vulnerability scanning", "DevSecOps", "CI/CD"],
+    "category": "hard"
+  },
+  {
+    "id": 190,
+    "question": "How do you implement service-level objectives (SLOs) and error budgets in DevOps workflows?",
+    "keywords": ["SLO", "error budgets", "SRE", "DevOps"],
+    "category": "hard"
+  },
+  {
+    "id": 191,
+    "question": "How would you architect a cloud-native DevOps solution for real-time streaming applications?",
+    "keywords": ["real-time systems", "cloud-native", "DevOps architecture"],
+    "category": "hard"
+  },
+  {
+    "id": 192,
+    "question": "What are the trade-offs between event-driven and polling-based CI/CD triggers?",
+    "keywords": ["event-driven", "polling", "CI/CD design"],
+    "category": "hard"
+  },
+  {
+    "id": 193,
+    "question": "How do you ensure data consistency during rolling updates of stateful services?",
+    "keywords": ["stateful services", "rolling updates", "data consistency"],
+    "category": "hard"
+  },
+  {
+    "id": 194,
+    "question": "How can you design DevOps pipelines to support regulatory compliance and auditing requirements?",
+    "keywords": ["compliance", "auditing", "DevOps governance"],
+    "category": "hard"
+  },
+  {
+    "id": 195,
+    "question": "How do you evaluate and choose between serverless, container-based, and VM-based architectures?",
+    "keywords": ["serverless", "containers", "VMs", "architecture decisions"],
+    "category": "hard"
+  },
+  {
+    "id": 196,
+    "question": "How do you manage dependencies and version conflicts in large-scale DevOps environments?",
+    "keywords": ["dependency management", "versioning", "DevOps"],
+    "category": "hard"
+  },
+  {
+    "id": 197,
+    "question": "How can you automate compliance checks using policy-as-code tools?",
+    "keywords": ["policy as code", "automation", "compliance"],
+    "category": "hard"
+  },
+  {
+    "id": 198,
+    "question": "What are the challenges of implementing DevOps for legacy monolithic applications?",
+    "keywords": ["legacy systems", "monoliths", "DevOps transformation"],
+    "category": "hard"
+  },
+  {
+    "id": 199,
+    "question": "How do you design cloud DevOps pipelines to handle sudden traffic spikes?",
+    "keywords": ["traffic spikes", "autoscaling", "cloud resilience"],
+    "category": "hard"
+  },
+  {
+    "id": 200,
+    "question": "How can feature flags be used to reduce risk in continuous deployment?",
+    "keywords": ["feature flags", "continuous deployment", "risk mitigation"],
+    "category": "hard"
+  },
+  {
+    "id": 201,
+    "question": "How do you integrate performance testing into CI/CD pipelines effectively?",
+    "keywords": ["performance testing", "CI/CD", "automation"],
+    "category": "hard"
+  },
+  {
+    "id": 202,
+    "question": "How do you design DevOps pipelines for data-intensive and ML-driven applications?",
+    "keywords": ["MLOps", "data pipelines", "DevOps"],
+    "category": "hard"
+  },
+  {
+    "id": 203,
+    "question": "How can you detect and prevent privilege escalation in cloud DevOps environments?",
+    "keywords": ["privilege escalation", "cloud security", "IAM"],
+    "category": "hard"
+  },
+  {
+    "id": 204,
+    "question": "What strategies would you use to test infrastructure changes before production rollout?",
+    "keywords": ["infrastructure testing", "IaC", "DevOps validation"],
+    "category": "hard"
+  },
+  {
+    "id": 205,
+    "question": "How do you manage certificate lifecycle and TLS automation in large cloud systems?",
+    "keywords": ["TLS", "certificates", "security automation"],
+    "category": "hard"
+  },
+  {
+    "id": 206,
+    "question": "How do you design DevOps pipelines that support multi-tenant cloud applications?",
+    "keywords": ["multi-tenancy", "cloud architecture", "DevOps"],
+    "category": "hard"
+  },
+  {
+    "id": 207,
+    "question": "How can chaos engineering experiments be safely run in production environments?",
+    "keywords": ["chaos engineering", "production safety", "resilience"],
+    "category": "hard"
+  },
+  {
+    "id": 208,
+    "question": "How do you implement fine-grained network security controls in Kubernetes clusters?",
+    "keywords": ["network policies", "Kubernetes security", "DevOps"],
+    "category": "hard"
+  },
+  {
+    "id": 209,
+    "question": "How would you architect DevOps workflows for edge computing environments?",
+    "keywords": ["edge computing", "DevOps workflows", "distributed systems"],
+    "category": "hard"
+  },
+  {
+    "id": 210,
+    "question": "What are the challenges of managing secrets across hybrid cloud DevOps setups?",
+    "keywords": ["hybrid cloud", "secrets management", "DevOps security"],
+    "category": "hard"
+  },
+  {
+    "id": 211,
+    "question": "How do you measure and improve developer productivity in a cloud DevOps organization?",
+    "keywords": ["developer productivity", "DevOps metrics", "DORA"],
+    "category": "hard"
+  },
+  {
+    "id": 212,
+    "question": "How would you design a DevOps platform that supports continuous experimentation and rapid innovation?",
+    "keywords": ["continuous experimentation", "platform engineering", "DevOps"],
+    "category": "hard"
+  }
+
+]
+}

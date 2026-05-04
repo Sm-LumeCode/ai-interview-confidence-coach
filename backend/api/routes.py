@@ -15,6 +15,10 @@ router = APIRouter()
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "data")
 
+
+def safe_log(message: str):
+    print(message.encode("ascii", "replace").decode("ascii"))
+
 # Request models
 class EvaluationRequest(BaseModel):
     question: str
@@ -112,7 +116,7 @@ def get_questions(category: str):
     """
     Retrieves questions for a specific category from the local JSON storage.
     """
-    print(f"🔍 [GET] /api/questions/{category} requested")
+    safe_log(f"[GET] /api/questions/{category} requested")
     
     try:
         # Sanitize category name
@@ -120,28 +124,30 @@ def get_questions(category: str):
         file_path = os.path.join(DATA_DIR, f"{category}.json")
 
         if not os.path.exists(file_path):
-            print(f"❌ [NOT FOUND] No questions file at: {file_path}")
+            safe_log(f"[NOT FOUND] No questions file at: {file_path}")
             raise HTTPException(
                 status_code=404,
                 detail=f"No questions found for role: {category}"
             )
 
-        print(f"📂 Reading questions from: {file_path}")
+        safe_log(f"Reading questions from: {file_path}")
         with open(file_path, "r", encoding="utf-8") as f:
             data = json.load(f)
 
         questions = data if isinstance(data, list) else data.get("questions", [])
-        print(f"✅ Successfully retrieved {len(questions)} questions for: {category}")
+        safe_log(f"Successfully retrieved {len(questions)} questions for: {category}")
         return questions
 
     except json.JSONDecodeError as e:
-        print(f"❌ [CORRUPTION] JSON file at {file_path} is corrupted: {str(e)}")
+        safe_log(f"[CORRUPTION] JSON file at {file_path} is corrupted: {str(e)}")
         raise HTTPException(
             status_code=500,
             detail=f"Questions data for {category} is corrupted. Please contact support."
         )
+    except HTTPException:
+        raise
     except Exception as e:
-        print(f"❌ [SERVER ERROR] Error fetching questions for {category}: {str(e)}")
+        safe_log(f"[SERVER ERROR] Error fetching questions for {category}: {str(e)}")
         import traceback
         traceback.print_exc()
         raise HTTPException(

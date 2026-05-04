@@ -1,5 +1,9 @@
 export const API_BASE_URL = import.meta.env.VITE_API_URL || '/api'
 
+const bundledQuestionFiles = import.meta.glob('../data/questions/*.json', {
+  import: 'default',
+})
+
 const DEFAULT_TIMEOUT_MS = 15000
 const QUESTION_TIMEOUT_MS = 10000
 const LONG_AI_TIMEOUT_MS = 90000
@@ -32,6 +36,19 @@ const parseApiError = async (response, fallback) => {
   }
 }
 
+const normalizeQuestions = (data) => {
+  if (Array.isArray(data)) return data
+  if (Array.isArray(data?.questions)) return data.questions
+  return []
+}
+
+const getBundledQuestions = async (category) => {
+  const key = `../data/questions/${category}.json`
+  const loadQuestions = bundledQuestionFiles[key]
+  if (!loadQuestions) return []
+  return normalizeQuestions(await loadQuestions())
+}
+
 const api = {
   // Get questions by category
   getQuestions: async (category, retries = 1) => {
@@ -40,7 +57,7 @@ const api = {
       if (!response.ok) {
         throw new Error(await parseApiError(response, `Failed to fetch questions: ${response.statusText}`))
       }
-      return await response.json()
+      return normalizeQuestions(await response.json())
     } catch (err) {
       if (retries > 0) {
         console.warn(`Fetch failed, retrying... (${retries} left)`, err)
@@ -48,6 +65,13 @@ const api = {
         await new Promise(res => setTimeout(res, 1000))
         return api.getQuestions(category, retries - 1)
       }
+
+      const bundledQuestions = await getBundledQuestions(category)
+      if (bundledQuestions.length > 0) {
+        console.warn(`Using bundled questions for ${category} because the backend request failed.`, err)
+        return bundledQuestions
+      }
+
       throw err
     }
   },
