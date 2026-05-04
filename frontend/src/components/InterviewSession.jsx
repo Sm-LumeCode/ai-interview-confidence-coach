@@ -269,7 +269,7 @@ const InterviewSession = ({ user, onLogout }) => {
   // ── Session complete screen ────────────────────────────────────────────────
   if (sessionComplete) {
     const nextSession = sessionIndex + 1
-    const hasNextSession = nextSession * QUESTIONS_PER_SESSION < allQuestions.length
+    const hasNextSession = false // Always hide next session button
 
     return (
       <div className="app-layout">
@@ -313,15 +313,6 @@ const InterviewSession = ({ user, onLogout }) => {
               >
                 <Home size={15} /> All Sessions
               </button>
-              {hasNextSession && (
-                <button
-                  onClick={() => navigate(`/interview/${category}/${nextSession}`)}
-                  className="btn-primary"
-                  style={{ flex: 1, justifyContent: 'center' }}
-                >
-                  Session {nextSession + 1} <ChevronRight size={15} />
-                </button>
-              )}
             </div>
           </div>
         </main>
