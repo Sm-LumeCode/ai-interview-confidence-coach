@@ -7,7 +7,7 @@ import time
 import tempfile
 from services.evaluator import evaluate_answer_legacy
 from services.answer_generator import generate_ideal_answer
-from services.llm_evaluator import generate_structured_feedback
+
 from services.firebase_service import FirebaseConfigError, get_firebase_service
 
 router = APIRouter()
@@ -24,12 +24,6 @@ class EvaluationRequest(BaseModel):
     question: str
     answer: str
     keywords: Optional[List[str]] = None
-
-class FeedbackRequest(BaseModel):
-    question: str
-    answer: str
-    keywords: Optional[List[str]] = None
-    scores: Optional[dict] = None
 
 class AnswerGenerationRequest(BaseModel):
     question: str
@@ -216,60 +210,7 @@ def evaluate_interview_answer(request: EvaluationRequest):
         )
 
 
-# Separate AI feedback endpoint (called after scores are shown)
-@router.post("/generate-feedback")
-def generate_ai_feedback(request: FeedbackRequest):
-    """
-    Generate detailed AI feedback - called AFTER evaluation.
-    Can take 5-10 seconds. Non-blocking for UI.
-    """
-    try:
-        if not request.question or not request.answer:
-            raise HTTPException(
-                status_code=400,
-                detail="Question and answer are required"
-            )
-        
-        print("="*70)
-        print(f"🤖 AI FEEDBACK GENERATION REQUEST")
-        print(f"Question: {request.question[:60]}...")
-        print(f"Answer length: {len(request.answer)} chars")
-        print("="*70)
-        
-        start_time = time.time()
-        
-        # Generate LLM structured feedback
-        llm_feedback = generate_structured_feedback(
-            question=request.question,
-            answer=request.answer,
-            keywords=request.keywords or [],
-            scores=request.scores or {}
-        )
-        
-        elapsed_time = time.time() - start_time
-        
-        print("="*70)
-        print(f"{'✅' if llm_feedback['success'] else '⚠️'} AI FEEDBACK COMPLETE in {elapsed_time:.3f}s")
-        print(f"Method: {llm_feedback['method']}")
-        print(f"Feedback sections: {len(llm_feedback['feedback'])}")
-        print("="*70)
-        
-        return {
-            'success': llm_feedback['success'],
-            'feedback': llm_feedback['feedback'],
-            'method': llm_feedback['method'],
-            'generation_time_seconds': round(elapsed_time, 3)
-        }
-    
-    except Exception as e:
-        print(f"❌ FEEDBACK GENERATION ERROR: {str(e)}")
-        import traceback
-        traceback.print_exc()
-        
-        raise HTTPException(
-            status_code=500,
-            detail=f"Feedback generation failed: {str(e)}"
-        )
+
 
 
 # Generate ideal answer
