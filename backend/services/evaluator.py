@@ -12,12 +12,7 @@ Fast Interview Answer Evaluation System
 import re
 from typing import Dict, List, Tuple
 from collections import Counter
-import requests
-import json
-
-# Ollama configuration
-OLLAMA_URL = "http://localhost:11434/api/generate"
-MODEL = "gemma:2b"
+from services.groq_client import call_groq_chat
 
 # ============================================================================
 # HARD GATE - Detect Invalid Answers
@@ -125,6 +120,46 @@ Response:"""
 # ============================================================================
 # 1. COMMUNICATION SCORE - Grammar Rules
 # ============================================================================
+
+def validate_context_with_llm(question: str, answer: str, timeout: int = 3) -> str:
+    """
+    Fast Groq call to validate if the answer addresses the question correctly.
+
+    Returns: "YES" | "PARTIAL" | "NO"
+    """
+    prompt = f"""You are evaluating if a student's answer correctly addresses the interview question.
+
+Question: {question}
+
+Answer: {answer}
+
+Analyze if the answer:
+1. Addresses the question topic
+2. Provides relevant technical information
+3. Shows understanding of the concept
+
+Respond with ONLY ONE WORD:
+- YES
+- PARTIAL
+- NO"""
+
+    raw_output = call_groq_chat(
+        prompt,
+        timeout=timeout,
+        max_tokens=8,
+        temperature=0,
+    )
+
+    if not raw_output:
+        print("LLM validation failed, using fallback")
+        return "PARTIAL"
+
+    raw_output = raw_output.strip().upper()
+    if "YES" in raw_output:
+        return "YES"
+    if "NO" in raw_output:
+        return "NO"
+    return "PARTIAL"
 
 def calculate_communication_score(answer: str) -> Tuple[int, Dict]:
     """
@@ -286,7 +321,7 @@ def calculate_technical_score(
     
     # 2. CONTEXT CORRECTNESS (0-40 points) - LLM
     if use_llm:
-        context_validation = validate_context_with_llm(question, answer)
+        context_validation = validate_context_with_llm(question, answer, timeout=10)
         
         if context_validation == "YES":
             context_score = 40
