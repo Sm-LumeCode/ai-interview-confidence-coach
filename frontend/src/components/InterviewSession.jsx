@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Navbar from './Navbar'
 import QuestionCard from './QuestionCard'
@@ -42,6 +42,8 @@ const InterviewSession = ({ user, onLogout }) => {
   const [aiFeedback, setAiFeedback]             = useState(null)
   const [error, setError]                       = useState('')
   const [sessionComplete, setSessionComplete]   = useState(false)
+  const submissionInFlightRef = useRef(false)
+  const idealAnswerRequestRef = useRef('')
 
   // Timer
   const [timeRemaining, setTimeRemaining]   = useState(0)
@@ -110,6 +112,9 @@ const InterviewSession = ({ user, onLogout }) => {
   // ── Answer submitted ───────────────────────────────────────────────────────
   const handleRecordingComplete = async (answerText) => {
     if (!answerText || !sessionQuestions[currentIdx]) return
+    if (submissionInFlightRef.current) return
+    submissionInFlightRef.current = true
+
     setTimerActive(false)
     setEvaluating(true)
     setGeneratingAnswer(true)
@@ -129,26 +134,47 @@ const InterviewSession = ({ user, onLogout }) => {
       const globalIndex = sessionIndex * QUESTIONS_PER_SESSION + currentIdx + 1
       saveProgress(user.email, category, globalIndex, allQuestions.length)
 
-      setGeneratingFeedback(true)
-      api.generateFeedback(q.question, answerText, q.keywords || [], evaluation)
-        .then(r => { setAiFeedback(r.feedback); setGeneratingFeedback(false) })
-        .catch(() => setGeneratingFeedback(false))
-
-      const ideal = await api.generateIdealAnswer(q.question, q.keywords || [])
-      setIdealAnswer(ideal)
-      setGeneratingAnswer(false)
       setShowResults(true)
       setEvaluating(false)
+      submissionInFlightRef.current = false
+
+      setGeneratingFeedback(true)
+      api.generateFeedback(q.question, answerText, q.keywords || [], evaluation)
+        .then(r => setAiFeedback(r.feedback))
+        .catch(() => {})
+        .finally(() => setGeneratingFeedback(false))
+
+      const idealRequestKey = `${category}:${sessionIndex}:${currentIdx}:${q.question}`
+      idealAnswerRequestRef.current = idealRequestKey
+      try {
+        const ideal = await api.generateIdealAnswer(q.question, q.keywords || [])
+        if (idealAnswerRequestRef.current === idealRequestKey) {
+          setIdealAnswer(ideal)
+        }
+      } catch {
+        if (idealAnswerRequestRef.current) {
+          setIdealAnswer(null)
+        }
+      } finally {
+        if (idealAnswerRequestRef.current === idealRequestKey) {
+          setGeneratingAnswer(false)
+        }
+      }
     } catch {
       setError('Failed to evaluate answer. Make sure the backend is running.')
       setEvaluating(false)
       setGeneratingAnswer(false)
       setGeneratingFeedback(false)
+    } finally {
+      submissionInFlightRef.current = false
     }
   }
 
   const handleTimeUpAutoAdvance = async () => {
     if (!sessionQuestions[currentIdx]) return
+    if (submissionInFlightRef.current) return
+    submissionInFlightRef.current = true
+
     setTimerActive(false); setEvaluating(true); setGeneratingAnswer(true)
     const autoAnswer = 'Time ran out - no answer provided'
     setSubmittedAnswer(autoAnswer)
@@ -160,18 +186,38 @@ const InterviewSession = ({ user, onLogout }) => {
       saveDailyProgress(user.email, { technicalScore: evaluation.technical_score, confidenceScore: evaluation.communication_score })
       const globalIndex = sessionIndex * QUESTIONS_PER_SESSION + currentIdx + 1
       saveProgress(user.email, category, globalIndex, allQuestions.length)
-      const ideal = await api.generateIdealAnswer(q.question, q.keywords || [])
-      setIdealAnswer(ideal)
       setShowResults(true)
+      setEvaluating(false)
+      submissionInFlightRef.current = false
+
+      const idealRequestKey = `${category}:${sessionIndex}:${currentIdx}:${q.question}`
+      idealAnswerRequestRef.current = idealRequestKey
+      try {
+        const ideal = await api.generateIdealAnswer(q.question, q.keywords || [])
+        if (idealAnswerRequestRef.current === idealRequestKey) {
+          setIdealAnswer(ideal)
+        }
+      } catch {
+        if (idealAnswerRequestRef.current) {
+          setIdealAnswer(null)
+        }
+      } finally {
+        if (idealAnswerRequestRef.current === idealRequestKey) {
+          setGeneratingAnswer(false)
+        }
+      }
     } catch {
       setError('Failed to process time up.')
+      setGeneratingAnswer(false)
       handleNextQuestion()
     } finally {
-      setEvaluating(false); setGeneratingAnswer(false)
+      setEvaluating(false)
+      submissionInFlightRef.current = false
     }
   }
 
   const resetQuestion = () => {
+    idealAnswerRequestRef.current = ''
     setShowResults(false); setResults(null); setIdealAnswer(null)
     setAiFeedback(null); setGeneratingFeedback(false); setSubmittedAnswer('')
   }
