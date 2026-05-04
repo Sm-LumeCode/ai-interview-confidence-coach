@@ -1,39 +1,196 @@
+// ── Master challenge definitions ──────────────────────────────────────────────
+// "id" must match the backend route param used in api.getChallenge(id)
+export const LEVELS = [
+  {
+    id: 1,
+    title: 'The Warmup',
+    description: 'Get started with the basics',
+    badgeIcon: 'Shield',
+    color: '#3b82f6',
+  },
+  {
+    id: 2,
+    title: 'The Specialist',
+    description: 'Show your domain expertise',
+    badgeIcon: 'Medal',
+    color: '#10b981',
+  },
+  {
+    id: 3,
+    title: 'The Master',
+    description: 'Flawless execution across the board',
+    badgeIcon: 'Crown',
+    color: '#f59e0b',
+  }
+]
+
+export const CHALLENGES = [
+  {
+    id: 'first-victory',
+    title: 'First Victory',
+    description: 'Complete your first interview session',
+    icon: 'Target',
+    points: 300,
+    color: '#06b6d4',
+    colorLight: '#cffafe',
+    requiredScore: 0,
+    metricKey: 'sessionsCompleted',
+    metricTotal: 1,
+    level: 1,
+    unlockedBy: null,
+  },
+  {
+    id: 'speed-demon',
+    title: 'Speed Demon',
+    description: 'Complete 10 questions in under 2 minutes each',
+    icon: 'Zap',
+    points: 500,
+    color: '#f59e0b',
+    colorLight: '#fef3c7',
+    requiredScore: 70,
+    metricKey: 'fastAnswers',
+    metricTotal: 10,
+    level: 1,
+    unlockedBy: null,
+  },
+  {
+    id: 'consistency-king',
+    title: 'Consistency King',
+    description: 'Practice for 7 consecutive days',
+    icon: 'Calendar',
+    points: 600,
+    color: '#3b82f6',
+    colorLight: '#dbeafe',
+    requiredScore: 70,
+    metricKey: 'streak',
+    metricTotal: 7,
+    level: 1,
+    unlockedBy: null,
+  },
+  {
+    id: 'perfect-score',
+    title: 'Perfect Score',
+    description: 'Achieve 100% score in any category',
+    icon: 'Target',
+    points: 1000,
+    color: '#10b981',
+    colorLight: '#d1fae5',
+    requiredScore: 100,
+    metricKey: 'perfectSessions',
+    metricTotal: 1,
+    level: 2,
+    unlockedBy: null, // Unlocked by default
+  },
+  {
+    id: 'communication-expert',
+    title: 'Communication Expert',
+    description: 'Achieve 95%+ communication score in 5 interviews',
+    icon: 'Users',
+    points: 800,
+    color: '#ec4899',
+    colorLight: '#fce7f3',
+    requiredScore: 95,
+    metricKey: 'highCommSessions',
+    metricTotal: 5,
+    level: 2,
+    unlockedBy: null, // Unlocked by default
+  },
+  {
+    id: 'category-master',
+    title: 'Category Master',
+    description: 'Complete all questions in one full category',
+    icon: 'Crown',
+    points: 750,
+    color: '#8b5cf6',
+    colorLight: '#ede9fe',
+    requiredScore: 70,
+    metricKey: 'categoryCompleted',
+    metricTotal: 1,
+    level: 3,
+    unlockedBy: 'perfect-score', // Requires a level 2 challenge
+  },
+  {
+    id: 'grand-master',
+    title: 'Grand Master',
+    description: 'Complete all categories with 90%+ average',
+    icon: 'Trophy',
+    points: 2000,
+    color: '#f59e0b',
+    colorLight: '#fef3c7',
+    requiredScore: 90,
+    metricKey: 'allCatHighScore',
+    metricTotal: 6,
+    level: 3,
+    unlockedBy: 'category-master', // Requires previous level 3 challenge
+  },
+]
+
+// ── Storage helpers ────────────────────────────────────────────────────────────
+
 export const getChallengeData = (email) => {
   const key = `challenge_progress_${email}`
   const data = localStorage.getItem(key)
-
-  if (!data) {
-    return {
-      totalPoints: 0,
-      challenges: {}
-    }
-  }
-
+  if (!data) return { totalPoints: 0, challenges: {} }
   return JSON.parse(data)
 }
 
 export const saveChallengeResult = (email, challengeId, score, points) => {
   const data = getChallengeData(email)
-
   if (!data.challenges[challengeId]) {
-    data.challenges[challengeId] = {
-      completed: false,
-      bestScore: 0,
-      attempts: 0
-    }
+    data.challenges[challengeId] = { completed: false, bestScore: 0, attempts: 0 }
+  }
+  const ch = data.challenges[challengeId]
+  ch.attempts += 1
+  ch.bestScore = Math.max(ch.bestScore, score)
+
+  const def = CHALLENGES.find(c => c.id === challengeId)
+  const threshold = def?.requiredScore ?? 70
+
+  if (!ch.completed && score >= threshold) {
+    ch.completed = true
+    data.totalPoints = (data.totalPoints || 0) + points
   }
 
-  const challenge = data.challenges[challengeId]
-  challenge.attempts += 1
-  challenge.bestScore = Math.max(challenge.bestScore, score)
+  localStorage.setItem(`challenge_progress_${email}`, JSON.stringify(data))
+}
 
-  if (!challenge.completed && score >= 70) {
-    challenge.completed = true
-    data.totalPoints += points
+// Increment a custom metric counter for a challenge
+export const incrementChallengeMetric = (email, challengeId, amount = 1) => {
+  const data = getChallengeData(email)
+  if (!data.challenges[challengeId]) {
+    data.challenges[challengeId] = { completed: false, bestScore: 0, attempts: 0, metricCount: 0 }
   }
+  const ch = data.challenges[challengeId]
+  ch.metricCount = (ch.metricCount || 0) + amount
+  localStorage.setItem(`challenge_progress_${email}`, JSON.stringify(data))
+}
 
-  localStorage.setItem(
-    `challenge_progress_${email}`,
-    JSON.stringify(data)
+// ── Derived progress for display ──────────────────────────────────────────────
+// Returns enriched challenge list with real progress from localStorage + lock state
+
+export const getEnrichedChallenges = (email, streak = 0) => {
+  const data = getChallengeData(email)
+  const completedIds = new Set(
+    Object.entries(data.challenges)
+      .filter(([, v]) => v.completed)
+      .map(([k]) => k)
   )
+
+  return CHALLENGES.map(def => {
+    const saved = data.challenges[def.id] || {}
+    const isLocked = def.unlockedBy ? !completedIds.has(def.unlockedBy) : false
+
+    // Derive metric progress from different sources
+    let metricProgress = saved.metricCount || 0
+    if (def.metricKey === 'streak') metricProgress = streak
+
+    return {
+      ...def,
+      locked: isLocked,
+      completed: saved.completed || false,
+      bestScore: saved.bestScore || 0,
+      attempts: saved.attempts || 0,
+      metricProgress: Math.min(metricProgress, def.metricTotal),
+    }
+  })
 }

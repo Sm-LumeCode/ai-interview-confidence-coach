@@ -49,7 +49,7 @@ const Dashboard = ({ user, onLogout }) => {
       <main className="main-content">
         {/* Header */}
         <div className="page-header">
-          <h1 className="page-title">Welcome back, {user.username}! 👋</h1>
+          <h1 className="page-title">Welcome back, {user.username}</h1>
           <p className="page-subtitle">Here's your preparation overview.</p>
         </div>
 

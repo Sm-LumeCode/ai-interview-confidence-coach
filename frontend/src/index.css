@@ -37,6 +37,7 @@ body {
   background: var(--content-bg);
   min-height: 100vh;
   color: var(--text-primary);
+  font-size: 15px;
 }
 
 code, pre {
@@ -69,16 +70,16 @@ code, pre {
 
 .page-title {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 700;
   color: var(--text-primary);
   line-height: 1.2;
 }
 
 .page-subtitle {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--text-secondary);
-  margin-top: 4px;
+  margin-top: 5px;
 }
 
 /* ── Stats Cards ── */
@@ -99,7 +100,7 @@ code, pre {
 }
 
 .stat-card-label {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-secondary);
   font-weight: 500;
   margin-bottom: 8px;
@@ -107,7 +108,7 @@ code, pre {
 
 .stat-card-value {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 32px;
+  font-size: 34px;
   font-weight: 700;
   color: var(--text-primary);
   line-height: 1;
@@ -135,7 +136,7 @@ code, pre {
 
 .card-title {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 16px;
@@ -147,7 +148,7 @@ code, pre {
   color: white;
   padding: 10px 20px;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   border: none;
   cursor: pointer;
@@ -169,7 +170,7 @@ code, pre {
   color: var(--text-primary);
   padding: 10px 20px;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   border: 1px solid var(--border);
   cursor: pointer;
@@ -189,7 +190,7 @@ code, pre {
   color: #ef4444;
   padding: 10px 20px;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   border: 1px solid #fecaca;
   cursor: pointer;
@@ -223,7 +224,7 @@ code, pre {
   gap: 4px;
   padding: 3px 10px;
   border-radius: 999px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
 }
 
@@ -239,7 +240,7 @@ code, pre {
   padding: 10px 14px;
   border: 1px solid var(--border);
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 15px;
   color: var(--text-primary);
   background: white;
   transition: border-color 0.15s ease;

@@ -160,7 +160,7 @@ const ChallengeSession = ({ user, onLogout }) => {
 
               {/* Rules */}
               <div style={{ background: '#fefbeb', border: '1px solid #fde68a', borderRadius: 10, padding: '14px 16px', marginBottom: 24 }}>
-                <p style={{ fontSize: 13, fontWeight: 700, color: '#92400e', marginBottom: 8 }}>📋 Challenge Rules</p>
+                <p style={{ fontSize: 13, fontWeight: 700, color: '#92400e', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 6 }}><Target size={13} color="#92400e" /> Challenge Rules</p>
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                   {[
                     `Answer all ${challenge.totalQuestions} questions within ${fmt(challenge.timeLimit)}`,
@@ -219,7 +219,7 @@ const ChallengeSession = ({ user, onLogout }) => {
                   <Trophy size={32} color="white" />
                 </div>
                 <h1 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 24, fontWeight: 800, color: '#0f172a', marginBottom: 6 }}>
-                  {passed ? '🎉 Challenge Completed!' : 'Challenge Attempted'}
+                  {passed ? 'Challenge Completed!' : 'Challenge Attempted'}
                 </h1>
                 <p style={{ fontSize: 14, color: '#64748b' }}>
                   {passed ? `You earned ${challenge.points} points!` : 'Keep practicing to improve your score!'}
