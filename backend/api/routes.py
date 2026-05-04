@@ -1,5 +1,7 @@
 from fastapi import APIRouter, HTTPException, File, UploadFile
 from pydantic import BaseModel
+from groq import Groq
+
 from typing import List, Optional
 import json
 import os
@@ -44,6 +46,10 @@ class EmailLookupRequest(BaseModel):
 class PasswordResetRequest(BaseModel):
     email: str
     password: str
+
+class ChatRequest(BaseModel):
+    message: str
+    history: Optional[List[dict]] = []
 
 
 def _firebase_or_503():
@@ -337,3 +343,57 @@ def verify_otp_handler(request: OTPVerifyRequest):
         return {"status": "verified", "message": "Identity confirmed"}
     else:
         raise HTTPException(status_code=400, detail="Invalid verification code")
+
+@router.post("/test-chat")
+async def test_chat_handler(request: ChatRequest):
+    return {"response": "I can hear you! The backend is connected."}
+
+# Groq Chat Integration
+@router.post("/chat")
+async def chat_with_ai(request: ChatRequest):
+    """
+    Handles simple basic questions using Groq.
+    """
+    api_key = os.getenv("GROQ_API_KEY")
+    model = os.getenv("GROQ_MODEL", "llama-3.1-8b-instant")
+    
+    print(f"DEBUG: Chat request received. Model: {model}")
+    
+    if not api_key:
+        print("❌ ERROR: No GROQ_API_KEY found in environment")
+        return {"response": "no", "error": "API Key missing"}
+        
+    try:
+        # Use sync client for now as per groq docs for simplicity, 
+        # but in a real async environment you'd use AsyncGroq
+        client = Groq(api_key=api_key)
+        
+        system_prompt = {
+            "role": "system",
+            "content": "You are a helpful AI Assistant for the InterviewCoach app. Your ONLY purpose is to help users with app navigation, procedures, and features. \n\n1. If the user asks about how to use the app, where to find things, or app procedures, answer briefly and clearly. \n2. For ANY other question (interview tips, general knowledge, coding, etc.), you MUST respond exactly with: 'no'.\n3. Always start your first response in a session with 'How can I help you?' if it's the beginning of the conversation."
+        }
+        
+        messages = [system_prompt]
+        if request.history:
+            for msg in request.history:
+                if isinstance(msg, dict) and "role" in msg and "content" in msg:
+                    messages.append({"role": msg["role"], "content": msg["content"]})
+        
+        messages.append({"role": "user", "content": request.message})
+        
+        print(f"DEBUG: Calling Groq with {len(messages)} messages...")
+        
+        completion = client.chat.completions.create(
+            messages=messages,
+            model=model,
+            temperature=0.7,
+            max_tokens=500,
+        )
+        
+        response_text = completion.choices[0].message.content
+        print(f"DEBUG: Groq response: {response_text[:50]}...")
+        return {"response": response_text}
+        
+    except Exception as e:
+        print(f"❌ GROQ CHAT ERROR: {str(e)}")
+        return {"response": "no", "error": str(e)}

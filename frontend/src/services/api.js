@@ -5,7 +5,7 @@ const bundledQuestionFiles = import.meta.glob('../data/questions/*.json', {
 })
 
 const DEFAULT_TIMEOUT_MS = 15000
-const QUESTION_TIMEOUT_MS = 10000
+const QUESTION_TIMEOUT_MS = 2000
 const LONG_AI_TIMEOUT_MS = 90000
 
 const fetchWithTimeout = async (url, options = {}, timeoutMs = DEFAULT_TIMEOUT_MS) => {
@@ -51,7 +51,7 @@ const getBundledQuestions = async (category) => {
 
 const api = {
   // Get questions by category
-  getQuestions: async (category, retries = 1) => {
+  getQuestions: async (category) => {
     try {
       const response = await fetchWithTimeout(`${API_BASE_URL}/questions/${category}`, {}, QUESTION_TIMEOUT_MS)
       if (!response.ok) {
@@ -59,19 +59,11 @@ const api = {
       }
       return normalizeQuestions(await response.json())
     } catch (err) {
-      if (retries > 0) {
-        console.warn(`Fetch failed, retrying... (${retries} left)`, err)
-        // Wait 1 second before retrying
-        await new Promise(res => setTimeout(res, 1000))
-        return api.getQuestions(category, retries - 1)
-      }
-
       const bundledQuestions = await getBundledQuestions(category)
       if (bundledQuestions.length > 0) {
-        console.warn(`Using bundled questions for ${category} because the backend request failed.`, err)
+        console.warn(`Using bundled questions for ${category} because the backend request failed or timed out.`)
         return bundledQuestions
       }
-
       throw err
     }
   },

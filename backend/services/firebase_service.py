@@ -38,7 +38,7 @@ class FirebaseService:
         if self._get_uid_by_email(email):
             raise ValueError("Account already exists.")
 
-        uid = self._make_uid(email)
+        uid = _make_uid(email)
         now = _utc_now()
         username = _make_username(full_name, email)
         password_hash = _hash_password(password)
@@ -79,9 +79,12 @@ class FirebaseService:
         })
 
     def list_public_users(self, limit: int = 10) -> List[Dict[str, str]]:
-        data = self._db.reference("users").order_by_child("createdAt").limit_to_last(limit).get() or {}
+        # Fetch all users and sort in-memory to avoid 'Index not defined' error in Firebase RTDB
+        data = self._db.reference("users").get() or {}
         users = [_public_user(user) for user in data.values() if isinstance(user, dict)]
-        return sorted(users, key=lambda user: user.get("createdAt", ""), reverse=True)
+        # Sort by createdAt descending
+        sorted_users = sorted(users, key=lambda user: user.get("createdAt", ""), reverse=True)
+        return sorted_users[:limit]
 
     def get_user_by_email(self, email: str) -> Optional[Dict[str, Any]]:
         uid = self._get_uid_by_email(email)

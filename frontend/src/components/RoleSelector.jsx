@@ -1,153 +1,186 @@
 import React from 'react'
 import { Code, Database, Brain, Cloud, Shield, Users, ArrowRight } from 'lucide-react'
 
+const THEME_COLOR = '#10b981' // Vibrant Emerald Green
+const THEME_LIGHT = '#f0fdf4'
+
 const categories = [
   {
     id: 'software_development',
     name: 'Software Development',
     icon: Code,
-    accent: '#3b82f6',
-    accentLight: '#dbeafe',
-    description: 'Coding, system design & architecture'
+    description: 'Master coding, system design, and software architecture principles.'
   },
   {
     id: 'data_analytics',
     name: 'Data & Analytics',
     icon: Database,
-    accent: '#8b5cf6',
-    accentLight: '#ede9fe',
-    description: 'Data analysis, SQL & visualization'
+    description: 'Expertise in data analysis, SQL queries, and visualization techniques.'
   },
   {
     id: 'data_science_ml',
     name: 'Data Science & ML',
     icon: Brain,
-    accent: '#10b981',
-    accentLight: '#d1fae5',
-    description: 'Machine learning & AI concepts'
+    description: 'Dive deep into machine learning models and AI concepts.'
   },
   {
     id: 'cloud_devops',
     name: 'Cloud & DevOps',
     icon: Cloud,
-    accent: '#f59e0b',
-    accentLight: '#fef3c7',
-    description: 'AWS, GCP, CI/CD pipelines'
+    description: 'Infrastructure management, AWS, GCP, and CI/CD pipelines.'
   },
   {
     id: 'cybersecurity',
     name: 'Cybersecurity',
     icon: Shield,
-    accent: '#6366f1',
-    accentLight: '#e0e7ff',
-    description: 'Security principles & threat modeling'
+    description: 'Learn security principles, threat modeling, and risk management.'
   },
   {
     id: 'hr_round',
     name: 'HR Round',
     icon: Users,
-    accent: '#ec4899',
-    accentLight: '#fce7f3',
-    description: 'Behavioral & situational questions'
+    description: 'Polish your behavioral, situational, and cultural fit responses.'
   }
 ]
 
 const RoleSelector = ({ onSelectRole, userProgress = {} }) => {
   return (
-    <div style={{
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-      gap: 16
-    }}>
-      {categories.map((cat, index) => {
-        const Icon = cat.icon
-        const progress = userProgress[cat.id]
-        const hasProgress = progress && progress.currentQuestionIndex > 0
-        const pct = hasProgress
-          ? Math.round((progress.currentQuestionIndex / progress.totalQuestions) * 100)
-          : 0
-        const sessionsDone = hasProgress ? Math.floor(progress.currentQuestionIndex / 5) : 0
+    <div style={{ position: 'relative', maxWidth: 800, margin: '20px auto', paddingLeft: 60 }}>
+      {/* Vertical Line on the left */}
+      <div style={{
+        position: 'absolute',
+        left: 20,
+        top: 20,
+        bottom: 20,
+        width: 2,
+        background: `linear-gradient(to bottom, ${THEME_LIGHT}, ${THEME_COLOR}33, ${THEME_LIGHT})`,
+        zIndex: 0
+      }} />
 
-        return (
-          <button
-            key={cat.id}
-            onClick={() => onSelectRole(cat.id)}
-            className="animate-slide-up"
-            style={{
-              animationDelay: `${index * 60}ms`,
-              background: 'white',
-              border: '1px solid #e2e8f0',
-              borderRadius: 12,
-              padding: 20,
-              textAlign: 'left',
-              cursor: 'pointer',
-              transition: 'all 0.15s ease',
-              position: 'relative',
-              overflow: 'hidden'
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.borderColor = cat.accent
-              e.currentTarget.style.boxShadow = `0 4px 20px ${cat.accent}22`
-              e.currentTarget.style.transform = 'translateY(-2px)'
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.borderColor = '#e2e8f0'
-              e.currentTarget.style.boxShadow = 'none'
-              e.currentTarget.style.transform = 'translateY(0)'
-            }}
-          >
-            {/* Icon */}
-            <div style={{
-              width: 44, height: 44, borderRadius: 10,
-              background: cat.accentLight,
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              marginBottom: 14
-            }}>
-              <Icon size={22} color={cat.accent} />
-            </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
+        {categories.map((cat, index) => {
+          const Icon = cat.icon
+          const progress = userProgress[cat.id]
+          const hasProgress = progress && progress.currentQuestionIndex > 0
+          const pct = hasProgress
+            ? Math.round((progress.currentQuestionIndex / progress.totalQuestions) * 100)
+            : 0
 
-            {/* Title */}
-            <div style={{
-              fontFamily: "'Plus Jakarta Sans', sans-serif",
-              fontWeight: 700, fontSize: 15, color: '#0f172a', marginBottom: 4
-            }}>
-              {cat.name}
-            </div>
+          return (
+            <div key={cat.id} style={{ position: 'relative' }}>
+              {/* Dot on the line with Glow */}
+              <div style={{
+                position: 'absolute',
+                left: -48,
+                top: 40,
+                width: 18,
+                height: 18,
+                background: 'white',
+                border: `4.5px solid ${THEME_COLOR}`,
+                borderRadius: '50%',
+                zIndex: 2,
+                boxShadow: `0 0 0 6px ${THEME_COLOR}15, 0 0 15px ${THEME_COLOR}25`
+              }} />
 
-            <div style={{ fontSize: 13, color: '#64748b', marginBottom: 14 }}>
-              {cat.description}
-            </div>
+              {/* Horizontal Connector Line */}
+              <div style={{
+                position: 'absolute',
+                left: -32,
+                top: 48,
+                width: 32,
+                height: 2,
+                background: `${THEME_COLOR}22`,
+                zIndex: 1
+              }} />
 
-            {/* Sessions progress */}
-            {hasProgress ? (
-              <div style={{ marginBottom: 12 }}>
+              {/* Card */}
+              <button
+                onClick={() => onSelectRole(cat.id)}
+                className="animate-slide-up"
+                style={{
+                  width: '100%',
+                  animationDelay: `${index * 80}ms`,
+                  background: 'white',
+                  border: '1px solid #e2e8f0',
+                  borderRadius: 20,
+                  padding: '24px 32px',
+                  textAlign: 'left',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 24,
+                  boxShadow: '0 4px 20px rgba(0,0,0,0.03)',
+                  position: 'relative'
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.borderColor = THEME_COLOR
+                  e.currentTarget.style.boxShadow = `0 12px 30px ${THEME_COLOR}15`
+                  e.currentTarget.style.transform = 'translateX(10px)'
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.borderColor = '#e2e8f0'
+                  e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.03)'
+                  e.currentTarget.style.transform = 'translateX(0)'
+                }}
+              >
+                {/* Icon Box */}
                 <div style={{
-                  display: 'flex', justifyContent: 'space-between',
-                  fontSize: 11, color: '#94a3b8', fontWeight: 500, marginBottom: 6
+                  width: 64, height: 64, borderRadius: 16,
+                  background: THEME_LIGHT,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  flexShrink: 0,
+                  boxShadow: `inset 0 0 0 1px ${THEME_COLOR}15`
                 }}>
-                  <span>{sessionsDone} session{sessionsDone !== 1 ? 's' : ''} completed</span>
-                  <span>{pct}%</span>
+                  <Icon size={30} color={THEME_COLOR} />
                 </div>
-                <div className="progress-bar-track" style={{ height: 5 }}>
-                  <div
-                    className="progress-bar-fill"
-                    style={{ width: `${pct}%`, background: cat.accent }}
-                  />
-                </div>
-              </div>
-            ) : null}
 
-            {/* CTA */}
-            <div style={{
-              display: 'flex', alignItems: 'center', gap: 6,
-              fontSize: 13, fontWeight: 600, color: cat.accent
-            }}>
-              <span>{hasProgress ? 'View Sessions' : 'Start Practice'}</span>
-              <ArrowRight size={14} />
+                {/* Content */}
+                <div style={{ flex: 1 }}>
+                  <div style={{
+                    fontFamily: "'Plus Jakarta Sans', sans-serif",
+                    fontWeight: 800, fontSize: 19, color: '#0f172a', marginBottom: 6
+                  }}>
+                    {cat.name}
+                  </div>
+                  <div style={{ fontSize: 14, color: '#64748b', lineHeight: 1.6 }}>
+                    {cat.description}
+                  </div>
+                </div>
+
+                {/* Progress / Status */}
+                <div style={{ textAlign: 'right', minWidth: 120 }}>
+                  {hasProgress ? (
+                    <div>
+                      <div style={{ fontSize: 11, fontWeight: 800, color: THEME_COLOR, marginBottom: 6, letterSpacing: '0.05em' }}>
+                        {pct}% COMPLETE
+                      </div>
+                      <div style={{ width: 80, height: 6, background: '#f1f5f9', borderRadius: 99, overflow: 'hidden', marginLeft: 'auto' }}>
+                        <div style={{ width: `${pct}%`, height: '100%', background: THEME_COLOR, borderRadius: 99 }} />
+                      </div>
+                    </div>
+                  ) : (
+                    <div style={{ 
+                      background: THEME_LIGHT, 
+                      color: THEME_COLOR, 
+                      padding: '8px 16px', 
+                      borderRadius: 99,
+                      fontWeight: 800, 
+                      fontSize: 12, 
+                      display: 'inline-flex', 
+                      alignItems: 'center', 
+                      gap: 6, 
+                      letterSpacing: '0.05em' 
+                    }}>
+                      PRACTICE <ArrowRight size={14} />
+                    </div>
+                  )}
+                </div>
+              </button>
             </div>
-          </button>
-        )
-      })}
+          )
+        })}
+      </div>
     </div>
   )
 }

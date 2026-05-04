@@ -7,6 +7,7 @@ export const saveCategoryProgress = (
   technicalScore,
   confidenceScore
 ) => {
+  if (userId && userId.startsWith('guest_')) return // Skip saving for guest users
   const key = `category_progress_${userId}_${normalizeCategory(category)}`
 
   const existing = localStorage.getItem(key)
