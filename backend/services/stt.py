@@ -47,6 +47,7 @@ class SpeechToTextService:
                 utterances=True,
                 punctuate=True,
                 diarize=False,
+                filler_words=True,
             )
 
             # Call the Deepgram API
