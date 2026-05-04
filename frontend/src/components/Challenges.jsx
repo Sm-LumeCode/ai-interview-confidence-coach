@@ -236,7 +236,7 @@ const ChallengeNode = ({ ch, index, nodeNum, yOffset, isCompleted, onStart }) =>
                 transition: 'all 0.2s'
               }}
             >
-              {ch.completed ? 'Play Again' : ch.locked ? 'Locked' : 'Start Challenge'}
+              {ch.completed ? 'Completed' : ch.locked ? 'Locked' : 'Pending'}
             </button>
           </motion.div>
         </div>
