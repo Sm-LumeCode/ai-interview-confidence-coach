@@ -43,11 +43,13 @@ class SpeechToTextService:
 
             options = PrerecordedOptions(
                 model="nova-2",
+                language="en",
                 smart_format=True,
-                utterances=True,
                 punctuate=True,
-                diarize=False,
+                paragraphs=True,
                 filler_words=True,
+                utterances=True,
+                diarize=False,
             )
 
             # Call the Deepgram API
