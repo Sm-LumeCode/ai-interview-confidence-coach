@@ -12,6 +12,10 @@ import ChallengeSession from './components/ChallengeSession'
 import BrowseQuestions from './components/BrowseQuestions'
 import FloatingHelpBot from './components/FloatingHelpBot'
 
+import { syncProgressFromBackend } from './utils/progressManager'
+import { syncDailyProgressFromBackend } from './utils/dailyProgressManager'
+import { syncCategoryProgressFromBackend } from './utils/categoryProgressManager'
+
 function App() {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -24,14 +28,22 @@ function App() {
     setLoading(false)
   }, [])
 
-  const handleLogin = (userData) => {
+  const handleLogin = async (userData) => {
     // Save first-login date if not already set
     const joinKey = `join_date_${userData.email}`
     if (!localStorage.getItem(joinKey)) {
       localStorage.setItem(joinKey, new Date().toISOString())
     }
+    
+    // Set user first so UI updates
     setUser(userData)
-    localStorage.setItem('user', JSON.stringify(userData))
+    if (userData.email && !userData.email.startsWith('guest_')) {
+      Promise.all([
+        syncProgressFromBackend(userData.email),
+        syncDailyProgressFromBackend(userData.email),
+        syncCategoryProgressFromBackend(userData.email)
+      ]).catch(err => console.error("Initial login sync failed:", err))
+    }
   }
 
   const handleLogout = () => {

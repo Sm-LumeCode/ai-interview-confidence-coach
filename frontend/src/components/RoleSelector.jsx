@@ -61,10 +61,10 @@ const RoleSelector = ({ onSelectRole, userProgress = {} }) => {
         {categories.map((cat, index) => {
           const Icon = cat.icon
           const progress = userProgress[cat.id]
-          const hasProgress = progress && progress.currentQuestionIndex > 0
-          const pct = hasProgress
-            ? Math.round((progress.currentQuestionIndex / progress.totalQuestions) * 100)
-            : 0
+          const completed = progress?.completed || 0
+          const total = progress?.totalQuestions || 100
+          const pct = Math.min(100, Math.round((completed / total) * 100))
+          const hasProgress = completed > 0
 
           return (
             <div key={cat.id} id={`category-${cat.id}`} style={{ position: 'relative', scrollMarginTop: '120px' }}>

@@ -245,8 +245,16 @@ const api = {
     })
   },
 
-  getDailyProgress: async (email) => {
-    const res = await fetchWithTimeout(`${API_BASE_URL}/progress/daily/${encodeURIComponent(email)}`)
+  saveCategoryProgress: async (email, category, technicalScore, confidenceScore) => {
+    return fetchWithTimeout(`${API_BASE_URL}/progress/category/save`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, date: category, technicalScore, confidenceScore })
+    })
+  },
+
+  getCategoryProgress: async (email) => {
+    const res = await fetchWithTimeout(`${API_BASE_URL}/progress/category/${encodeURIComponent(email)}`)
     return res.json()
   }
 }

@@ -523,6 +523,34 @@ def save_daily_progress(request: SaveDailyProgressRequest):
         print(f"❌ Save Daily Progress Error: {e}")
         raise HTTPException(status_code=500, detail="Failed to save daily progress")
 
+@router.post("/progress/category/save")
+def save_category_progress_route(request: SaveDailyProgressRequest): # Reuse the same model as daily
+    if not request.email or request.email.startswith('guest_'):
+        return {"status": "skipped"}
+    try:
+        # Note: request.date here will be used as category name for simplicity or we can use another model
+        _firebase_or_503().save_category_progress(
+            request.email,
+            request.date, # In this route, date field is the category name
+            request.technicalScore,
+            request.confidenceScore
+        )
+        return {"status": "saved"}
+    except Exception as e:
+        print(f"❌ Save Category Progress Error: {e}")
+        raise HTTPException(status_code=500, detail="Failed to save category progress")
+
+@router.get("/progress/category/{email}")
+def get_all_category_progress_route(email: str):
+    if not email or email.startswith('guest_'):
+        return {}
+    try:
+        data = _firebase_or_503().get_all_category_progress(email)
+        return data
+    except Exception as e:
+        print(f"❌ Get Category Progress Error: {e}")
+        return {}
+
 @router.get("/progress/daily/{email}")
 def get_all_daily_progress(email: str):
     if not email or email.startswith('guest_'):

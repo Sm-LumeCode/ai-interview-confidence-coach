@@ -7,8 +7,8 @@ import ResultPanel from './ResultPanel'
 import IdealAnswer from './IdealAnswer'
 import { ChevronRight, ChevronLeft, Home, RotateCcw, Clock, AlertCircle, Trophy, Zap } from 'lucide-react'
 import api from '../services/api'
-import { saveProgress, getProgress, resetProgress } from '../utils/progressManager'
-import { saveDailyProgress } from '../utils/dailyProgressManager'
+import { saveProgress, getProgress, resetProgress, syncProgressFromBackend } from '../utils/progressManager'
+import { saveDailyProgress, syncDailyProgressFromBackend } from '../utils/dailyProgressManager'
 import { saveCategoryProgress } from '../utils/categoryProgressManager'
 import { incrementChallengeMetric, getChallengeData } from '../utils/ChallengeManager'
 
@@ -63,6 +63,15 @@ const InterviewSession = ({ user, onLogout }) => {
       try {
         setLoading(true)
         setError('')
+
+        // Sync from backend first to handle new devices
+        if (user.email && !user.email.startsWith('guest_')) {
+          await Promise.all([
+            syncProgressFromBackend(user.email),
+            syncDailyProgressFromBackend(user.email)
+          ]).catch(e => console.error("Session sync failed:", e))
+        }
+
         const data = await api.getQuestions(category)
         setAllQuestions(data)
 
@@ -182,12 +191,17 @@ const InterviewSession = ({ user, onLogout }) => {
       const q = sessionQuestions[currentIdx]
       const evaluation = await api.evaluateAnswer(q.question, answerText, q.keywords || [])
 
-      saveCategoryProgress(user.email, CATEGORY_MAP[category], evaluation.technical_score, evaluation.communication_score)
-      setResults(evaluation)
+      // 1. Save specific category progress (linked to dashboard cards)
+      saveCategoryProgress(user.email, category, evaluation.technical_score, evaluation.communication_score)
+      
+      // 2. Save daily progress timeline
       saveDailyProgress(user.email, { technicalScore: evaluation.technical_score, confidenceScore: evaluation.communication_score })
 
+      // 3. Save roadmap progress (unlocking logic)
       const globalIndex = sessionIndex * QUESTIONS_PER_SESSION + currentIdx + 1
-      saveProgress(user.email, category, globalIndex, allQuestions.length)
+      saveProgress(user.email, categoryId, globalIndex, allQuestions.length)
+      
+      setResults(evaluation)
 
       // --- Challenge Logic ---
       if (evaluation.communication_score >= 95) {

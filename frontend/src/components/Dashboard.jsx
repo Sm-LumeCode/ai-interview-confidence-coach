@@ -4,6 +4,7 @@ import Navbar from './Navbar'
 import RoleSelector, { categories } from './RoleSelector'
 import { getAllProgress, syncProgressFromBackend } from '../utils/progressManager'
 import { getDailyProgressTimeline, syncDailyProgressFromBackend } from '../utils/dailyProgressManager'
+import { getAllCategoryProgress, syncCategoryProgressFromBackend, CATEGORY_TOTALS } from '../utils/categoryProgressManager'
 import { Target, Flame, TrendingUp, Quote } from 'lucide-react'
 
 const THEME_COLOR = '#10b981' // Vibrant Emerald Green
@@ -39,11 +40,25 @@ const Dashboard = ({ user, onLogout }) => {
   const [activeCategory, setActiveCategory] = useState('')
 
   const loadLocalData = () => {
-    const progress = getAllProgress(user.email)
-    setUserProgress(progress)
+    const roadmapProgress = getAllProgress(user.email)
+    const categoryProgress = getAllCategoryProgress(user.email)
+    
+    // Unify progress: map roadmap index or completed count
+    const unifiedProgress = {}
+    categories.forEach(cat => {
+      const catData = categoryProgress[cat.id]
+      unifiedProgress[cat.id] = {
+        completed: catData?.completed || 0,
+        totalQuestions: CATEGORY_TOTALS[cat.name] || 100,
+        currentQuestionIndex: roadmapProgress[cat.id]?.currentQuestionIndex || 0
+      }
+    })
+    setUserProgress(unifiedProgress)
 
     const timeline = getDailyProgressTimeline(user.email)
-    const totalQuestions = timeline.reduce((s, d) => s + (d.questionCount || 0), 0)
+    
+    // Link "Problems Solved" to the sum of completions across all categories
+    const totalQuestions = Object.values(categoryProgress).reduce((s, d) => s + (d.completed || 0), 0)
 
     // streak
     let streak = 0
@@ -73,7 +88,8 @@ const Dashboard = ({ user, onLogout }) => {
       try {
         await Promise.all([
           syncProgressFromBackend(user.email),
-          syncDailyProgressFromBackend(user.email)
+          syncDailyProgressFromBackend(user.email),
+          syncCategoryProgressFromBackend(user.email)
         ])
         loadLocalData() // Refresh UI with synced data
       } catch (err) {
@@ -116,105 +132,154 @@ const Dashboard = ({ user, onLogout }) => {
   }
 
   return (
-    <div className="app-layout">
+    <div className="app-layout" style={{ minHeight: '100vh', background: '#f8fafc' }}>
       <Navbar user={user} onLogout={onLogout} />
 
-      <main className="main-content" style={{ paddingTop: 0, position: 'relative' }}>
+      <main className="main-content" style={{ paddingTop: 0, position: 'relative', background: 'transparent' }}>
+        {/* Background Mesh Decor */}
+        <div style={{
+          position: 'fixed', top: 0, right: 0, width: '40vw', height: '40vw',
+          background: `radial-gradient(circle, ${THEME_COLOR}08 0%, transparent 70%)`,
+          zIndex: -1, pointerEvents: 'none'
+        }} />
         
         {/* Sticky Top Navbar for Categories */}
         <div style={{
           position: 'sticky',
           top: 0,
-          background: 'rgba(255, 255, 255, 0.9)',
-          backdropFilter: 'blur(12px)',
+          background: 'rgba(255, 255, 255, 0.85)',
+          backdropFilter: 'blur(16px)',
           zIndex: 40,
           padding: '16px 36px',
           margin: '0 -36px 32px -36px',
-          borderBottom: '1px solid #e2e8f0',
+          borderBottom: '1px solid rgba(16, 185, 129, 0.1)',
           display: 'flex',
           gap: 12,
           overflowX: 'auto',
-          boxShadow: '0 4px 20px rgba(0,0,0,0.02)',
+          boxShadow: '0 4px 30px rgba(0,0,0,0.03)',
         }}>
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => scrollToCategory(cat.id)}
               style={{
-                padding: '10px 16px',
+                padding: '10px 20px',
                 borderRadius: 99,
-                background: activeCategory === cat.id ? THEME_COLOR : 'transparent',
+                background: activeCategory === cat.id ? THEME_COLOR : 'white',
                 color: activeCategory === cat.id ? 'white' : '#64748b',
                 border: `1px solid ${activeCategory === cat.id ? THEME_COLOR : '#e2e8f0'}`,
                 cursor: 'pointer',
                 whiteSpace: 'nowrap',
-                fontWeight: 600,
-                fontSize: 14,
-                transition: 'all 0.2s',
+                fontWeight: 700,
+                fontSize: 13,
+                textTransform: 'uppercase',
+                letterSpacing: '0.03em',
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                 display: 'flex',
                 alignItems: 'center',
                 gap: 8,
-                boxShadow: activeCategory === cat.id ? `0 4px 12px ${THEME_COLOR}33` : 'none'
-              }}
-              onMouseEnter={e => {
-                if (activeCategory !== cat.id) {
-                  e.currentTarget.style.background = '#f8fafc'
-                  e.currentTarget.style.color = '#0f172a'
-                  e.currentTarget.style.borderColor = '#cbd5e1'
-                }
-              }}
-              onMouseLeave={e => {
-                if (activeCategory !== cat.id) {
-                  e.currentTarget.style.background = 'transparent'
-                  e.currentTarget.style.color = '#64748b'
-                  e.currentTarget.style.borderColor = '#e2e8f0'
-                }
+                boxShadow: activeCategory === cat.id ? `0 8px 20px ${THEME_COLOR}44` : '0 2px 8px rgba(0,0,0,0.02)'
               }}
             >
-              <cat.icon size={16} />
+              <cat.icon size={15} />
               {cat.name}
             </button>
           ))}
         </div>
 
-        {/* Header */}
-        <div className="page-header" style={{ marginTop: 20 }}>
-          <h1 className="page-title">Welcome back, {user.username}</h1>
-          <p className="page-subtitle">Here's your preparation overview.</p>
+        {/* Header Section */}
+        <div style={{ marginBottom: 48, position: 'relative' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginBottom: 12 }}>
+            <div style={{ width: 48, height: 4, background: THEME_COLOR, borderRadius: 2 }} />
+            <span style={{ color: THEME_COLOR, fontWeight: 800, fontSize: 13, letterSpacing: '0.1em', textTransform: 'uppercase' }}>Overview</span>
+          </div>
+          <h1 style={{ 
+            fontFamily: "'Plus Jakarta Sans', sans-serif", 
+            fontSize: 42, 
+            fontWeight: 800, 
+            color: '#0f172a', 
+            letterSpacing: '-0.02em',
+            marginBottom: 12
+          }}>
+            Welcome back, {user.username}
+          </h1>
+          <p style={{ fontSize: 18, color: '#64748b', fontWeight: 500 }}>
+            You've solved <span style={{ color: THEME_COLOR, fontWeight: 800 }}>{stats.totalQuestions}</span> problems so far. Keep pushing!
+          </p>
         </div>
 
-        {/* Stats Row - Standardized Colors */}
-        <div className="stats-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)', marginBottom: 40 }}>
+        {/* Stats Grid */}
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(3, 1fr)', 
+          gap: 24, 
+          marginBottom: 60 
+        }}>
           {[
-            { label: 'Problems Solved', value: stats.totalQuestions, icon: Target },
-            { label: 'Current Streak', value: stats.streak, icon: Flame, unit: 'days' },
-            { label: 'Avg Score', value: stats.avgScore, icon: TrendingUp, unit: '%' },
+            { label: 'Problems Solved', value: stats.totalQuestions, icon: Target, color: THEME_COLOR },
+            { label: 'Current Streak', value: stats.streak, icon: Flame, color: '#f59e0b', unit: 'days' },
+            { label: 'Avg Accuracy', value: stats.avgScore, icon: TrendingUp, color: '#3b82f6', unit: '%' },
           ].map((s, i) => (
-            <div key={i} className="stat-card animate-slide-up" style={{ animationDelay: `${i * 80}ms`, border: 'none', boxShadow: '0 4px 20px rgba(0,0,0,0.04)' }}>
-              <div className="stat-card-icon" style={{ background: THEME_LIGHT }}>
-                <s.icon size={20} color={THEME_COLOR} />
+            <div key={i} className="animate-slide-up" style={{ 
+              animationDelay: `${i * 100}ms`,
+              background: 'white',
+              padding: '32px',
+              borderRadius: 24,
+              border: '1px solid rgba(226, 232, 240, 0.6)',
+              boxShadow: '0 10px 40px rgba(0,0,0,0.03)',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 20,
+              transition: 'transform 0.3s ease',
+            }}
+            onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-5px)'}
+            onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
+            >
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                <div style={{ 
+                  width: 54, height: 54, borderRadius: 16, 
+                  background: `${s.color}10`, 
+                  display: 'flex', alignItems: 'center', justifyContent: 'center' 
+                }}>
+                  <s.icon size={26} color={s.color} />
+                </div>
+                <div style={{ fontSize: 12, fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                  {s.label}
+                </div>
               </div>
-              <p className="stat-card-label">{s.label}</p>
-              <p className="stat-card-value">
-                {s.value} {s.unit && <span style={{ fontSize: 16, fontWeight: 500, color: '#64748b' }}>{s.unit}</span>}
-              </p>
+              <div>
+                <span style={{ fontSize: 36, fontWeight: 800, color: '#0f172a' }}>{s.value}</span>
+                {s.unit && <span style={{ fontSize: 18, fontWeight: 600, color: '#94a3b8', marginLeft: 6 }}>{s.unit}</span>}
+              </div>
+              <div style={{ width: '100%', height: 4, background: '#f1f5f9', borderRadius: 2, overflow: 'hidden' }}>
+                <div style={{ width: '70%', height: '100%', background: s.color, borderRadius: 2, opacity: 0.3 }} />
+              </div>
             </div>
           ))}
         </div>
 
-        {/* Category picker */}
+        {/* Learning Paths */}
         <div className="animate-fade-in" style={{ marginTop: 20 }}>
-          <div style={{ textAlign: 'left', paddingLeft: 60, marginBottom: 40 }}>
-            <h2 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontSize: 32, color: '#0f172a', marginBottom: 16 }}>
-              Choose your Category
-            </h2>
+          <div style={{ textAlign: 'left', paddingLeft: 60, marginBottom: 48 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 12 }}>
+              <h2 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontSize: 36, color: '#0f172a', letterSpacing: '-0.02em' }}>
+                Preparation Roadmap
+              </h2>
+              <div style={{ height: 2, flex: 1, background: 'linear-gradient(to right, #e2e8f0, transparent)', marginLeft: 20 }} />
+            </div>
             <div style={{ maxWidth: 650 }}>
-              <TypewriterQuote text="Success is where preparation and opportunity meet. Start your journey today." />
+              <TypewriterQuote text="Success is the sum of small efforts, repeated day in and day out. Select your path and master it." />
             </div>
           </div>
           <RoleSelector onSelectRole={handleSelectRole} userProgress={userProgress} />
         </div>
       </main>
+      <style>{`
+        .animate-slide-up { animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; }
+        .animate-fade-in { animation: fadeIn 0.8s ease-out forwards; }
+        @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+      `}</style>
     </div>
   )
 }

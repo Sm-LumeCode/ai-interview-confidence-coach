@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { LogIn, Mail, Lock, AlertCircle, Eye, EyeOff } from 'lucide-react'
+import api from '../services/api'
 
 const Login = ({ onLogin }) => {
   const navigate = useNavigate()
@@ -15,14 +16,14 @@ const Login = ({ onLogin }) => {
     setError('')
     setLoading(true)
     try {
-      const existingUsers = JSON.parse(localStorage.getItem('users') || '[]')
-      const user = existingUsers.find(u => u.email === email)
-      if (!user) { setError('No account found with this email.'); setLoading(false); return }
-      if (user.password !== password) { setError('Incorrect password. Please try again.'); setLoading(false); return }
+      const response = await api.login({ email, password })
+      const { user } = response
+      
+      // user object from backend usually contains id, username, email
       onLogin({ id: user.id, username: user.username, email: user.email })
       navigate('/dashboard')
-    } catch {
-      setError('Login failed. Please try again.')
+    } catch (err) {
+      setError(err.message || 'Login failed. Please check your credentials.')
       setLoading(false)
     }
   }

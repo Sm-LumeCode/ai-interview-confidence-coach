@@ -1,3 +1,6 @@
+// utils/categoryProgressManager.js
+import api from '../services/api'
+
 const normalizeCategory = (category) =>
   category.replace(/&/g, '').replace(/\s+/g, '_').toLowerCase()
 
@@ -8,7 +11,8 @@ export const saveCategoryProgress = (
   confidenceScore
 ) => {
   if (userId && userId.startsWith('guest_')) return // Skip saving for guest users
-  const key = `category_progress_${userId}_${normalizeCategory(category)}`
+  const normalized = normalizeCategory(category)
+  const key = `category_progress_${userId}_${normalized}`
 
   const existing = localStorage.getItem(key)
 
@@ -28,12 +32,48 @@ export const saveCategoryProgress = (
   }
 
   localStorage.setItem(key, JSON.stringify(data))
+
+  // Sync to backend
+  api.saveCategoryProgress(userId, normalized, technicalScore, confidenceScore)
+    .catch(e => console.error("Failed to sync category progress:", e))
 }
 
 export const getCategoryProgress = (userId, category) => {
   const key = `category_progress_${userId}_${normalizeCategory(category)}`
   const data = localStorage.getItem(key)
   return data ? JSON.parse(data) : null
+}
+
+export const getAllCategoryProgress = (userId) => {
+  const categories = [
+    'software_development',
+    'data_analytics',
+    'data_science_ml',
+    'cloud_devops',
+    'cybersecurity',
+    'hr_round'
+  ]
+  const all = {}
+  categories.forEach(cat => {
+    const data = getCategoryProgress(userId, cat)
+    if (data) all[cat] = data
+  })
+  return all
+}
+
+export const syncCategoryProgressFromBackend = async (userId) => {
+  if (!userId || userId.startsWith('guest_')) return
+  try {
+    const data = await api.getCategoryProgress(userId)
+    if (data) {
+      Object.keys(data).forEach(cat => {
+        const key = `category_progress_${userId}_${cat}`
+        localStorage.setItem(key, JSON.stringify(data[cat]))
+      })
+    }
+  } catch (err) {
+    console.error("Failed to sync category progress from backend:", err)
+  }
 }
 export const CATEGORY_TOTALS = {
   'Software Development': 831,

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { UserPlus, Mail, Lock, User, AlertCircle, Eye, EyeOff } from 'lucide-react'
+import api from '../services/api'
 
 const InputField = ({ icon: Icon, type, placeholder, value, onChange, onFocus, onBlur, showToggle, onToggle, showPass, name }) => (
   <div style={{ position: 'relative' }}>
@@ -55,38 +56,43 @@ const Signup = ({ onLogin }) => {
     if (!formData.password) { setError('Please enter a password'); return }
     if (formData.password.length < 6) { setError('Password must be at least 6 characters'); return }
     if (formData.password !== formData.confirmPassword) { setError('Passwords do not match'); return }
+    
     setLoading(true)
     try {
-      const existingUsers = JSON.parse(localStorage.getItem('users') || '[]')
-      if (existingUsers.find(u => u.email === formData.email)) {
+      // Check if user exists via backend
+      const { exists } = await api.userExists(formData.email)
+      if (exists) {
         setError('An account with this email already exists.')
-        setLoading(false); return
+        setLoading(false)
+        return
       }
+      
       setTempUserData({ email: formData.email, password: formData.password })
       setShowUsernamePopup(true)
       setLoading(false)
-    } catch {
-      setError('Registration failed. Please try again.')
+    } catch (err) {
+      setError(err.message || 'Registration failed. Please try again.')
       setLoading(false)
     }
   }
 
-  const handleUsernameSubmit = () => {
+  const handleUsernameSubmit = async () => {
     if (!username.trim()) { setError('Please enter a username'); return }
     if (username.length < 3) { setError('Username must be at least 3 characters'); return }
+    
     setLoading(true)
     try {
-      const existingUsers = JSON.parse(localStorage.getItem('users') || '[]')
-      if (existingUsers.find(u => u.username === username)) {
-        setError('Username already taken. Please choose another.'); setLoading(false); return
-      }
-      const newUser = { id: Date.now().toString(), username, email: tempUserData.email, password: tempUserData.password, createdAt: new Date().toISOString() }
-      existingUsers.push(newUser)
-      localStorage.setItem('users', JSON.stringify(existingUsers))
-      onLogin({ id: newUser.id, username: newUser.username, email: newUser.email })
+      const response = await api.signup({
+        email: tempUserData.email,
+        password: tempUserData.password,
+        fullName: username // Using username as fullName for now, or we could add a fullName field
+      })
+      
+      const { user } = response
+      onLogin({ id: user.id, username: user.username, email: user.email })
       navigate('/dashboard')
-    } catch {
-      setError('Registration failed. Please try again.')
+    } catch (err) {
+      setError(err.message || 'Registration failed. Please try again.')
       setLoading(false)
     }
   }

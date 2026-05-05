@@ -159,6 +159,43 @@ class FirebaseService:
         progress = self._db.reference("users").child(uid).child("progress").get()
         return progress if isinstance(progress, dict) else {}
 
+    def save_category_progress(self, email: str, category: str, technical_score: int, confidence_score: int) -> None:
+        uid = self._get_uid_by_email(email)
+        if not uid:
+            return
+            
+        ref = self._db.reference("users").child(uid).child("categoryProgress").child(category)
+        existing = ref.get()
+        
+        if existing and isinstance(existing, dict):
+            technical_scores = existing.get("technicalScores", [])
+            confidence_scores = existing.get("confidenceScores", [])
+            technical_scores.append(technical_score)
+            confidence_scores.append(confidence_score)
+            
+            ref.update({
+                "completed": existing.get("completed", 0) + 1,
+                "technicalScores": technical_scores,
+                "confidenceScores": confidence_scores,
+                "lastUpdated": _utc_now()
+            })
+        else:
+            ref.set({
+                "category": category,
+                "completed": 1,
+                "technicalScores": [technical_score],
+                "confidenceScores": [confidence_score],
+                "createdAt": _utc_now(),
+                "lastUpdated": _utc_now()
+            })
+
+    def get_all_category_progress(self, email: str) -> Dict[str, Any]:
+        uid = self._get_uid_by_email(email)
+        if not uid:
+            return {}
+        data = self._db.reference("users").child(uid).child("categoryProgress").get()
+        return data if isinstance(data, dict) else {}
+
     def save_daily_progress(self, email: str, date: str, technical_score: int, confidence_score: int) -> None:
         uid = self._get_uid_by_email(email)
         if not uid:
