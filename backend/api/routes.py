@@ -442,3 +442,26 @@ async def chat_with_ai(request: ChatRequest):
     except Exception as e:
         print(f"ERROR: GROQ CHAT ERROR: {str(e)}")
         return {"response": "no", "error": str(e)}
+
+class ReportRequest(BaseModel):
+    email: str
+    fullName: str
+    level: int
+    points: int
+    rank: str
+
+@router.post("/auth/send-report")
+def send_report_handler(request: ReportRequest):
+    from services.email_service import EmailService
+    email_service = EmailService()
+    success = email_service.send_progress_report(
+        request.email, 
+        request.fullName, 
+        request.level, 
+        request.points, 
+        request.rank
+    )
+    if success:
+        return {"status": "success", "message": "Report sent to " + request.email}
+    else:
+        raise HTTPException(status_code=500, detail="Failed to send report. Check SMTP settings.")

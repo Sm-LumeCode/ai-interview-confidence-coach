@@ -80,3 +80,76 @@ class EmailService:
         except Exception as e:
             print(f"ERROR: [EMAIL ERROR] Critical failure during delivery: {str(e)}")
             return False
+    def send_progress_report(self, recipient_email, full_name, level, points, rank):
+        """
+        Sends a beautiful weekly progress report to the user.
+        """
+        if not self.smtp_user or not self.smtp_password:
+            return False
+            
+        try:
+            msg = MIMEMultipart()
+            msg['From'] = f"InterviewCoach AI <{self.smtp_user}>"
+            msg['To'] = recipient_email
+            msg['Subject'] = f"Weekly Progress Report: Level {level} Reached! \U0001f3c6"
+            
+            body = f"""
+            <html>
+                <body style="font-family: 'Inter', sans-serif; background-color: #f8fafc; padding: 40px; margin: 0;">
+                    <div style="max-width: 550px; margin: 0 auto; background-color: #ffffff; border-radius: 24px; box-shadow: 0 15px 45px rgba(0,0,0,0.06); overflow: hidden; border: 1px solid #f1f5f9;">
+                        
+                        <div style="background-color: #10b981; padding: 40px; text-align: center;">
+                            <div style="background: rgba(255,255,255,0.2); width: 60px; height: 60px; border-radius: 15px; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                                <span style="font-size: 30px;">\U0001f3af</span>
+                            </div>
+                            <h1 style="color: #ffffff; margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -1px;">Weekly Achievement</h1>
+                            <p style="color: #d1fae5; margin-top: 5px; font-size: 14px; font-weight: 600;">Great job this week, {full_name}!</p>
+                        </div>
+                        
+                        <div style="padding: 40px;">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px;">
+                                <div style="background: #f8fafc; padding: 20px; border-radius: 16px; border: 1px solid #e2e8f0; text-align: center;">
+                                    <p style="margin: 0; font-size: 11px; color: #64748b; font-weight: 800; text-transform: uppercase;">Current Level</p>
+                                    <p style="margin: 5px 0 0; font-size: 24px; font-weight: 900; color: #10b981;">{level}</p>
+                                </div>
+                                <div style="background: #f8fafc; padding: 20px; border-radius: 16px; border: 1px solid #e2e8f0; text-align: center;">
+                                    <p style="margin: 0; font-size: 11px; color: #64748b; font-weight: 800; text-transform: uppercase;">Total Points</p>
+                                    <p style="margin: 5px 0 0; font-size: 24px; font-weight: 900; color: #10b981;">{points}</p>
+                                </div>
+                            </div>
+
+                            <div style="background: #0f172a; padding: 24px; border-radius: 16px; text-align: center; margin-bottom: 30px;">
+                                <p style="margin: 0; font-size: 12px; color: #94a3b8; font-weight: 700; text-transform: uppercase;">Current Badge Status</p>
+                                <h2 style="color: #ffffff; margin: 8px 0 0; font-size: 22px; font-weight: 800;">{rank}</h2>
+                            </div>
+                            
+                            <p style="color: #475569; font-size: 15px; line-height: 1.7; text-align: center; margin-bottom: 30px;">
+                                You are consistently improving your interview confidence. Keep practicing to reach <b>Level 5: The Legend</b> and unlock more elite challenges!
+                            </p>
+                            
+                            <a href="http://localhost:3000/challenges" style="display: block; width: 100%; padding: 16px; background-color: #10b981; color: #ffffff; text-decoration: none; border-radius: 12px; font-weight: 700; text-align: center; box-shadow: 0 10px 20px rgba(16,185,129,0.2);">
+                                Resume Challenges
+                            </a>
+                        </div>
+                        
+                        <div style="background-color: #f8fafc; padding: 25px; text-align: center; border-top: 1px solid #f1f5f9;">
+                            <p style="color: #94a3b8; font-size: 12px; margin: 0; font-weight: 600;">
+                                \U0001f4ac Practicing smarter, not harder.
+                            </p>
+                        </div>
+                    </div>
+                </body>
+            </html>
+            """
+            msg.attach(MIMEText(body, 'html'))
+            
+            server = smtplib.SMTP(self.smtp_server, self.smtp_port)
+            server.starttls()
+            server.login(self.smtp_user, self.smtp_password)
+            server.send_message(msg)
+            server.quit()
+            
+            return True
+        except Exception as e:
+            print(f"Report Error: {str(e)}")
+            return False

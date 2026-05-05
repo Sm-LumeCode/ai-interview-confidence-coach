@@ -15,7 +15,8 @@ const getRank = (points) => {
   if (points < 1000) return { name: 'Bronze Novice', icon: Shield, color: '#10b981', bg: '#d1fae5', next: 1000 }
   if (points < 2500) return { name: 'Silver Pro', icon: Medal, color: '#34d399', bg: '#ecfdf5', next: 2500 }
   if (points < 5000) return { name: 'Gold Expert', icon: Award, color: '#059669', bg: '#a7f3d0', next: 5000 }
-  return { name: 'Diamond Master', icon: Crown, color: '#047857', bg: '#6ee7b7', next: null }
+  if (points < 10000) return { name: 'Diamond Master', icon: Crown, color: '#047857', bg: '#6ee7b7', next: 10000 }
+  return { name: 'Interview Legend', icon: Trophy, color: '#064e3b', bg: '#ecfdf5', next: null }
 }
 
 const InteractiveRoadmapContainer = ({ children }) => {
@@ -316,15 +317,26 @@ const Challenges = ({ user, onLogout }) => {
 
   LEVELS.forEach(lvl => {
     const lvlChallenges = challenges.filter(c => c.level === lvl.id)
-    lvlChallenges.forEach(ch => {
-      timelineNodes.push({ type: 'challenge', data: ch, isCompleted: ch.completed, y: isTopToggle ? -70 : 70, number: challengeCounter++ })
-      isTopToggle = !isTopToggle
+    let addedAnyInLevel = false
+    
+    lvlChallenges.forEach((ch, idx) => {
+      // Logic: Show if completed, or if unlocked, or if it's the first locked challenge in the level
+      const previousCompleted = idx === 0 || lvlChallenges[idx - 1].completed
+      const shouldShow = ch.completed || !ch.locked || previousCompleted
+
+      if (shouldShow) {
+        timelineNodes.push({ type: 'challenge', data: ch, isCompleted: ch.completed, y: isTopToggle ? -70 : 70, number: challengeCounter++ })
+        isTopToggle = !isTopToggle
+        addedAnyInLevel = true
+      }
     })
     
-    const isComplete = lvlChallenges.length > 0 && lvlChallenges.every(c => c.completed)
-    const isLocked = lvlChallenges.length > 0 && lvlChallenges.every(c => c.locked)
-    timelineNodes.push({ type: 'badge', data: lvl, isCompleted: isComplete, isComplete, isLocked, y: isTopToggle ? -70 : 70 })
-    isTopToggle = !isTopToggle
+    if (addedAnyInLevel) {
+      const isComplete = lvlChallenges.length > 0 && lvlChallenges.every(c => c.completed)
+      const isLocked = lvlChallenges.length > 0 && lvlChallenges.every(c => c.locked)
+      timelineNodes.push({ type: 'badge', data: lvl, isCompleted: isComplete, isComplete, isLocked, y: isTopToggle ? -70 : 70 })
+      isTopToggle = !isTopToggle
+    }
   })
 
   return (
