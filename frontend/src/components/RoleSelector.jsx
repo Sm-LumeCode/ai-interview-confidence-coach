@@ -4,7 +4,7 @@ import { Code, Database, Brain, Cloud, Shield, Users, ArrowRight } from 'lucide-
 const THEME_COLOR = '#10b981' // Vibrant Emerald Green
 const THEME_LIGHT = '#f0fdf4'
 
-const categories = [
+export const categories = [
   {
     id: 'software_development',
     name: 'Software Development',
@@ -67,7 +67,7 @@ const RoleSelector = ({ onSelectRole, userProgress = {} }) => {
             : 0
 
           return (
-            <div key={cat.id} style={{ position: 'relative' }}>
+            <div key={cat.id} id={`category-${cat.id}`} style={{ position: 'relative', scrollMarginTop: '120px' }}>
               {/* Dot on the line with Glow */}
               <div style={{
                 position: 'absolute',

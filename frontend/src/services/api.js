@@ -221,6 +221,33 @@ const api = {
     }
 
     return response.json()
+  },
+
+  // --- Progress Tracking ---
+  saveProgress: async (email, category, questionIndex, totalQuestions) => {
+    return fetchWithTimeout(`${API_BASE_URL}/progress/save`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, category, questionIndex, totalQuestions })
+    })
+  },
+
+  getProgress: async (email) => {
+    const res = await fetchWithTimeout(`${API_BASE_URL}/progress/${encodeURIComponent(email)}`)
+    return res.json()
+  },
+
+  saveDailyProgress: async (email, date, technicalScore, confidenceScore) => {
+    return fetchWithTimeout(`${API_BASE_URL}/progress/daily/save`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, date, technicalScore, confidenceScore })
+    })
+  },
+
+  getDailyProgress: async (email) => {
+    const res = await fetchWithTimeout(`${API_BASE_URL}/progress/daily/${encodeURIComponent(email)}`)
+    return res.json()
   }
 }
 
