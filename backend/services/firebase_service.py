@@ -68,7 +68,22 @@ class FirebaseService:
     def user_exists(self, email: str) -> bool:
         return self._get_uid_by_email(email) is not None
 
+    def change_password(self, email: str, old_password: str, new_password: str) -> None:
+        user = self.get_user_by_email(email)
+        if not user:
+            raise ValueError("No account found with this email.")
+        
+        if not _verify_password(old_password, user.get("passwordHash", "")):
+            raise ValueError("Current password is incorrect.")
+
+        uid = user.get("id")
+        self._db.reference("users").child(uid).update({
+            "passwordHash": _hash_password(new_password),
+            "updatedAt": _utc_now(),
+        })
+
     def reset_password(self, email: str, password: str) -> None:
+        # Legacy/Admin reset without checking old password (for forgotten passwords)
         uid = self._get_uid_by_email(email)
         if not uid:
             raise ValueError("No account found with this email.")
@@ -77,6 +92,30 @@ class FirebaseService:
             "passwordHash": _hash_password(password),
             "updatedAt": _utc_now(),
         })
+
+    def update_user(self, email: str, data: Dict[str, Any]) -> Dict[str, str]:
+        uid = self._get_uid_by_email(email)
+        if not uid:
+            raise ValueError("No account found with this email.")
+
+        # Filter out fields that shouldn't be updated directly via this method
+        allowed_fields = {
+            "username", "fullName", "bio", "location", "phone",
+            "twoFactorEnabled", "privacyModeEnabled", 
+            "emailNotificationsEnabled", "appNotificationsEnabled"
+        }
+        update_data = {k: v for k, v in data.items() if k in allowed_fields}
+        update_data["updatedAt"] = _utc_now()
+
+        try:
+            self._db.reference("users").child(uid).update(update_data)
+        except Exception as e:
+            print(f"Firebase Update Error: {str(e)}")
+            raise ValueError(f"Database update failed: {str(e)}")
+        
+        # Get the full updated record
+        updated_user = self._db.reference("users").child(uid).get()
+        return _public_user(updated_user)
 
     def list_public_users(self, limit: int = 10) -> List[Dict[str, str]]:
         data = self._db.reference("users").order_by_child("createdAt").limit_to_last(limit).get() or {}
@@ -187,12 +226,20 @@ def _make_username(full_name: str, email: str) -> str:
     return cleaned or "user"
 
 
-def _public_user(user: Dict[str, Any]) -> Dict[str, str]:
+def _public_user(user: Optional[Dict[str, Any]]) -> Dict[str, Any]:
+    if not user:
+        return {}
     return {
         "id": str(user.get("id", "")),
         "username": str(user.get("username", "")),
         "fullName": str(user.get("fullName", "")),
         "email": str(user.get("email", "")),
+        "bio": str(user.get("bio", "")),
+        "location": str(user.get("location", "San Francisco, CA")),
+        "twoFactorEnabled": bool(user.get("twoFactorEnabled", False)),
+        "privacyModeEnabled": bool(user.get("privacyModeEnabled", False)),
+        "emailNotificationsEnabled": bool(user.get("emailNotificationsEnabled", True)),
+        "appNotificationsEnabled": bool(user.get("appNotificationsEnabled", True)),
         "createdAt": str(user.get("createdAt", "")),
     }
 

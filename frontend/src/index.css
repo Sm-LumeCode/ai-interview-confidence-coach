@@ -18,7 +18,7 @@
   
   --sidebar-bg: var(--sidebar-dark);
   --sidebar-width: 260px;
-  --accent-green: var(--primary-teal);
+  --accent-green: hsl(168, 60%, 36%);
   --accent-green-light: hsl(168, 60%, 92%);
   --content-bg: var(--bg-cool-gray);
   --card-bg: #ffffff;

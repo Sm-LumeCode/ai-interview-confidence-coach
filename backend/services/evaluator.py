@@ -69,7 +69,7 @@ def check_hard_gate(answer: str) -> Tuple[bool, str]:
     
     # Gate 1: Extremely short (less than 10 meaningful words for real answer)
     meaningful_words = [w for w in words if len(w) > 2 and w.lower() not in {'the', 'and', 'but', 'for', 'with', 'from', 'that', 'this', 'or', 'an', 'of', 'to', 'in', 'is', 'a'}]
-    if len(meaningful_words) < 10:
+    if len(meaningful_words) < 6:
         return False, "answer_too_short"
     
     # Gate 2: Excessive repetition

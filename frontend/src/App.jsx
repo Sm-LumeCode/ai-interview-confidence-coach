@@ -37,6 +37,12 @@ function App() {
     localStorage.removeItem('user')
   }
 
+  const handleUpdateUser = (updatedData) => {
+    const newUser = { ...user, ...updatedData }
+    setUser(newUser)
+    localStorage.setItem('user', JSON.stringify(newUser))
+  }
+
   if (loading) {
     return (
       <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0f1117' }}>
@@ -62,7 +68,7 @@ function App() {
         <Route path="/interview/:category/:sessionIndex"
           element={user ? <InterviewSession user={user} onLogout={handleLogout} /> : <Navigate to="/login" />} />
 
-        <Route path="/profile"    element={user ? <Profile user={user} onLogout={handleLogout} /> : <Navigate to="/login" />} />
+        <Route path="/profile"    element={user ? <Profile user={user} onLogout={handleLogout} onUpdateUser={handleUpdateUser} /> : <Navigate to="/login" />} />
         <Route path="/progress"   element={user ? <Progress user={user} onLogout={handleLogout} /> : <Navigate to="/login" />} />
         <Route path="/challenges" element={user ? <Challenges user={user} onLogout={handleLogout} /> : <Navigate to="/login" />} />
         <Route path="/challenge/:challengeId" element={user ? <ChallengeSession user={user} onLogout={handleLogout} /> : <Navigate to="/login" />} />

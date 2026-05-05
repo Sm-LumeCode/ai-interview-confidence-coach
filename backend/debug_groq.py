@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 print("=" * 70)
-print("🔍 GROQ API DEBUG SCRIPT")
+print("--- GROQ API DEBUG SCRIPT ---")
 print("=" * 70)
 
 # Step 1: Check environment variables
@@ -22,13 +22,13 @@ groq_api_key = os.getenv("GROQ_API_KEY")
 groq_model = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
 
 if groq_api_key:
-    print(f"  ✅ GROQ_API_KEY found: {groq_api_key[:20]}...{groq_api_key[-10:]}")
+    print(f"  [OK] GROQ_API_KEY found: {groq_api_key[:20]}...{groq_api_key[-10:]}")
 else:
-    print(f"  ❌ GROQ_API_KEY NOT FOUND")
+    print(f"  [ERROR] GROQ_API_KEY NOT FOUND")
     print("  Fix: Add GROQ_API_KEY to .env file")
     exit(1)
 
-print(f"  ✅ GROQ_MODEL: {groq_model}")
+print(f"  [OK] GROQ_MODEL: {groq_model}")
 
 # Step 2: Test API endpoint
 print("\n[STEP 2] Testing Groq API endpoint...")
@@ -66,12 +66,12 @@ try:
     print(f"  Response Body: {response.text[:500]}")
     
     if response.status_code == 200:
-        print("\n  ✅ SUCCESS!")
+        print("\n  [SUCCESS] API call successful!")
         result = response.json()
         message = result.get("choices", [{}])[0].get("message", {}).get("content", "")
         print(f"  Message: {message}")
     else:
-        print(f"\n  ❌ ERROR!")
+        print(f"\n  [ERROR] API call failed!")
         print(f"  Status: {response.status_code}")
         try:
             error_detail = response.json()
@@ -80,13 +80,13 @@ try:
             print(f"  Error: {response.text}")
             
 except requests.exceptions.Timeout as e:
-    print(f"  ❌ TIMEOUT: {e}")
+    print(f"  [ERROR] TIMEOUT: {e}")
     print("  Fix: Check your internet connection or increase timeout")
 except requests.exceptions.ConnectionError as e:
-    print(f"  ❌ CONNECTION ERROR: {e}")
+    print(f"  [ERROR] CONNECTION ERROR: {e}")
     print("  Fix: Check internet connection or Groq API availability")
 except Exception as e:
-    print(f"  ❌ ERROR: {e}")
+    print(f"  [ERROR] ERROR: {e}")
     import traceback
     traceback.print_exc()
 

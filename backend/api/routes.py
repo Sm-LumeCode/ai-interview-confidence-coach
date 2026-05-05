@@ -12,6 +12,12 @@ from services.firebase_service import FirebaseConfigError, get_firebase_service
 
 router = APIRouter()
 
+def _firebase_or_503():
+    try:
+        return get_firebase_service()
+    except FirebaseConfigError as exc:
+        raise HTTPException(status_code=503, detail=str(exc))
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "data")
 
@@ -101,6 +107,38 @@ def reset_password(request: PasswordResetRequest):
     try:
         _firebase_or_503().reset_password(request.email, request.password)
         return {"status": "updated"}
+    except ValueError as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
+
+class ChangePasswordRequest(BaseModel):
+    email: str
+    oldPassword: str
+    newPassword: str
+
+@router.post("/auth/change-password")
+def change_password_route(request: ChangePasswordRequest):
+    try:
+        _firebase_or_503().change_password(request.email, request.oldPassword, request.newPassword)
+        return {"status": "updated"}
+    except ValueError as exc:
+        raise HTTPException(status_code=401, detail=str(exc))
+
+class ProfileUpdateRequest(BaseModel):
+    email: str
+    username: Optional[str] = None
+    fullName: Optional[str] = None
+    bio: Optional[str] = None
+    location: Optional[str] = None
+    twoFactorEnabled: Optional[bool] = None
+    privacyModeEnabled: Optional[bool] = None
+    emailNotificationsEnabled: Optional[bool] = None
+    appNotificationsEnabled: Optional[bool] = None
+
+@router.post("/auth/update-profile")
+def update_profile(request: ProfileUpdateRequest):
+    try:
+        updated_user = _firebase_or_503().update_user(request.email, request.dict(exclude_unset=True))
+        return {"user": updated_user}
     except ValueError as exc:
         raise HTTPException(status_code=404, detail=str(exc))
 

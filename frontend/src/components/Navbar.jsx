@@ -8,7 +8,18 @@ import {
 const Navbar = ({ user, onLogout }) => {
   const location = useLocation()
   const navigate = useNavigate()
-  const [collapsed, setCollapsed] = useState(false)
+  
+  const [collapsed, setCollapsed] = useState(() => {
+    return localStorage.getItem('sidebar_collapsed') === 'true'
+  })
+
+  const toggleSidebar = () => {
+    setCollapsed(prev => {
+      const newState = !prev
+      localStorage.setItem('sidebar_collapsed', newState)
+      return newState
+    })
+  }
 
   const isActive = (path) =>
     location.pathname === path || location.pathname.startsWith(path + '/')
@@ -81,7 +92,7 @@ const Navbar = ({ user, onLogout }) => {
             </div>
           )}
           <button
-            onClick={() => setCollapsed(c => !c)}
+            onClick={toggleSidebar}
             title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
             style={{
               background: 'none', border: 'none', cursor: 'pointer',
