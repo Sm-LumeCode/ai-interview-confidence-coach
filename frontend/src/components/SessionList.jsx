@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Navbar from './Navbar'
 import api from '../services/api'
-import { getProgress } from '../utils/progressManager'
+import { getProgress, syncProgressFromBackend } from '../utils/progressManager'
 import {
   ChevronRight, Lock, CheckCircle2, PlayCircle,
   ArrowLeft, Clock, Zap, BarChart2, AlertCircle
@@ -74,6 +74,31 @@ const SessionList = ({ user, onLogout }) => {
   const [loading, setLoading]     = useState(true)
   const [loadingProgress, setLoadingProgress] = useState(0) // ← NEW: Simulated progress
   const [error, setError]         = useState('')
+  const [answeredCount, setAnsweredCount] = useState(0)
+
+  const loadLocalProgress = () => {
+    const progress = getProgress(user.email, category)
+    setAnsweredCount(progress?.currentQuestionIndex ?? 0)
+  }
+
+  useEffect(() => {
+    // Load initially
+    loadLocalProgress()
+
+    // Sync from backend
+    const syncData = async () => {
+      try {
+        await syncProgressFromBackend(user.email)
+        loadLocalProgress()
+      } catch (err) {
+        console.error("Failed to sync progress:", err)
+      }
+    }
+
+    if (!user.email?.startsWith('guest_')) {
+      syncData()
+    }
+  }, [user.email, category])
 
   useEffect(() => {
     let interval
@@ -106,10 +131,6 @@ const SessionList = ({ user, onLogout }) => {
     return () => { if (interval) clearInterval(interval) }
   }, [category, loading])
 
-  // How many questions has the user answered in this category?
-  const progress = getProgress(user.email, category)
-  const answeredCount = progress?.currentQuestionIndex ?? 0
-
   // Split all questions into sessions of 5
   const sessions = []
   for (let i = 0; i < questions.length; i += QUESTIONS_PER_SESSION) {
@@ -119,8 +140,8 @@ const SessionList = ({ user, onLogout }) => {
   const totalSessions = sessions.length
   const completedSessions = Math.floor(answeredCount / QUESTIONS_PER_SESSION)
   
-  // Show 10 sessions initially, add 5 more when 5 are completed
-  const visibleSessionsCount = Math.max(10, (Math.floor(completedSessions / 5) + 1) * 5 + 5)
+  // Show 10 unlocked sessions initially, plus 5 locked ones to preview
+  const visibleSessionsCount = 10 + Math.floor(completedSessions / 5) * 5 + 5
   const visibleSessions = sessions.slice(0, visibleSessionsCount)
 
   const categoryLabel = CATEGORY_LABELS[category] || category.replace(/_/g, ' ')
@@ -235,190 +256,212 @@ const SessionList = ({ user, onLogout }) => {
           ))}
         </div>
 
-        {/* Session list */}
-        <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
-          {/* Table header */}
+        {/* Session list Roadmap */}
+        <div style={{ position: 'relative', maxWidth: 800, margin: '20px auto', paddingLeft: 60 }}>
+          {/* Vertical Line on the left */}
           <div style={{
-            display: 'grid',
-            gridTemplateColumns: '2fr 80px 100px 80px',
-            padding: '12px 20px',
-            background: '#f8fafc',
-            borderBottom: '1px solid #e2e8f0',
-            fontSize: 11, fontWeight: 700, color: '#94a3b8',
-            textTransform: 'uppercase', letterSpacing: '0.07em'
-          }}>
-            <span>Session</span>
-            <span style={{ textAlign: 'center' }}>Status</span>
-            <span style={{ textAlign: 'center' }}>Difficulty</span>
-            <span style={{ textAlign: 'center' }}>Action</span>
-          </div>
+            position: 'absolute',
+            left: 20,
+            top: 20,
+            bottom: 20,
+            width: 2,
+            background: `linear-gradient(to bottom, #f0fdf4, #10b98133, #f0fdf4)`,
+            zIndex: 0
+          }} />
 
-          {/* Session rows */}
-          {visibleSessions.map((sessionQs, sessionIdx) => {
-            const status = getSessionStatus(sessionIdx)
-            const isLocked = status === 'locked'
-            const isDone   = status === 'completed'
-            const isActive = status === 'active'
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
+            {visibleSessions.map((sessionQs, sessionIdx) => {
+              
+              const completedCount = Math.floor(answeredCount / QUESTIONS_PER_SESSION)
+              const unlockedLimit = 10 + Math.floor(completedCount / 5) * 5
+              
+              const isDone = answeredCount > (sessionIdx * QUESTIONS_PER_SESSION + QUESTIONS_PER_SESSION - 1)
+              const isLocked = sessionIdx >= unlockedLimit
+              const isActive = !isDone && !isLocked
 
-            // Standardized session difficulty distribution (Cycle of 10)
-            // Pattern: E, M, E, M, T, E, M, E, M, T (4-4-2 spread)
-            const modIdx = sessionIdx % 10
-            let mainDiff = 'easy'
-            if ([4, 9].includes(modIdx)) {
-              mainDiff = 'tough'
-            } else if ([1, 3, 6, 8].includes(modIdx)) {
-              mainDiff = 'medium'
-            }
-            
-            const ds = DIFF_STYLE[mainDiff] || DIFF_STYLE.medium
+              const modIdx = sessionIdx % 10
+              let mainDiff = 'easy'
+              if ([4, 9].includes(modIdx)) mainDiff = 'tough'
+              else if ([1, 3, 6, 8].includes(modIdx)) mainDiff = 'medium'
+              
+              const ds = DIFF_STYLE[mainDiff] || DIFF_STYLE.medium
 
-            // Progress within active session
-            const sessionStartQ = sessionIdx * QUESTIONS_PER_SESSION
-            const doneInSession = Math.max(0, Math.min(QUESTIONS_PER_SESSION, answeredCount - sessionStartQ))
+              const sessionStartQ = sessionIdx * QUESTIONS_PER_SESSION
+              const doneInSession = Math.max(0, Math.min(QUESTIONS_PER_SESSION, answeredCount - sessionStartQ))
 
-            return (
-              <div
-                key={sessionIdx}
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: '2fr 80px 100px 80px',
-                  padding: '14px 20px',
-                  borderBottom: sessionIdx < sessions.length - 1 ? '1px solid #f1f5f9' : 'none',
-                  alignItems: 'center',
-                  background: isActive ? '#f0fdf4' : 'white',
-                  transition: 'background 0.15s',
-                  opacity: isLocked ? 0.55 : 1,
-                  cursor: isLocked ? 'default' : 'pointer'
-                }}
-                onMouseEnter={e => { if (!isLocked) e.currentTarget.style.background = isActive ? '#ecfdf5' : '#f8fafc' }}
-                onMouseLeave={e => { e.currentTarget.style.background = isActive ? '#f0fdf4' : 'white' }}
-                onClick={() => {
-                  if (!isLocked) navigate(`/interview/${category}/${sessionIdx}`)
-                }}
-              >
-                {/* Session title + mini progress */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                  {/* Session icon */}
+              return (
+                <div key={sessionIdx} style={{ position: 'relative' }}>
+                  {/* Dot on the line with Glow */}
                   <div style={{
-                    width: 36, height: 36, borderRadius: 8, flexShrink: 0,
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    background: isDone ? '#d1fae5' : isActive ? '#dbeafe' : '#f1f5f9'
-                  }}>
-                    {isDone
-                      ? <CheckCircle2 size={18} color="#10b981" />
-                      : isLocked
-                      ? <Lock size={16} color="#94a3b8" />
-                      : <PlayCircle size={18} color="#3b82f6" />
-                    }
-                  </div>
+                    position: 'absolute',
+                    left: -48,
+                    top: 40,
+                    width: 18,
+                    height: 18,
+                    background: 'white',
+                    border: `4.5px solid ${isDone ? '#10b981' : isLocked ? '#cbd5e1' : '#3b82f6'}`,
+                    borderRadius: '50%',
+                    zIndex: 2,
+                    boxShadow: isActive ? `0 0 0 6px #3b82f615, 0 0 15px #3b82f625` : 'none'
+                  }} />
 
-                  <div>
-                    <p style={{
-                      fontFamily: "'Plus Jakarta Sans', sans-serif",
-                      fontWeight: 700, fontSize: 14,
-                      color: isLocked ? '#94a3b8' : '#0f172a',
-                      marginBottom: 3
+                  {/* Horizontal Connector Line */}
+                  <div style={{
+                    position: 'absolute',
+                    left: -32,
+                    top: 48,
+                    width: 32,
+                    height: 2,
+                    background: isLocked ? '#e2e8f0' : `${isDone ? '#10b981' : '#3b82f6'}33`,
+                    zIndex: 1
+                  }} />
+
+                  {/* Card */}
+                  <button
+                    onClick={() => { if (!isLocked) navigate(`/interview/${category}/${sessionIdx}`) }}
+                    className="animate-slide-up"
+                    style={{
+                      width: '100%',
+                      animationDelay: `${(sessionIdx % 10) * 80}ms`,
+                      background: 'white',
+                      border: `1px solid ${isActive ? '#bfdbfe' : '#e2e8f0'}`,
+                      borderRadius: 20,
+                      padding: '24px 32px',
+                      textAlign: 'left',
+                      cursor: isLocked ? 'default' : 'pointer',
+                      transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 24,
+                      boxShadow: isActive ? '0 4px 20px rgba(59, 130, 246, 0.08)' : '0 4px 20px rgba(0,0,0,0.03)',
+                      opacity: isLocked ? 0.6 : 1,
+                      position: 'relative',
+                    }}
+                    onMouseEnter={e => {
+                      if (!isLocked) {
+                        e.currentTarget.style.borderColor = isDone ? '#10b981' : '#3b82f6'
+                        e.currentTarget.style.boxShadow = isDone ? '0 12px 30px #10b98115' : '0 12px 30px #3b82f615'
+                        e.currentTarget.style.transform = 'translateX(10px)'
+                      }
+                    }}
+                    onMouseLeave={e => {
+                      if (!isLocked) {
+                        e.currentTarget.style.borderColor = isActive ? '#bfdbfe' : '#e2e8f0'
+                        e.currentTarget.style.boxShadow = isActive ? '0 4px 20px rgba(59, 130, 246, 0.08)' : '0 4px 20px rgba(0,0,0,0.03)'
+                        e.currentTarget.style.transform = 'translateX(0)'
+                      }
+                    }}
+                  >
+                    {/* Icon Box */}
+                    <div style={{
+                      width: 64, height: 64, borderRadius: 16,
+                      background: isDone ? '#d1fae5' : isLocked ? '#f1f5f9' : '#dbeafe',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      flexShrink: 0,
+                      boxShadow: `inset 0 0 0 1px ${isDone ? '#10b98133' : isLocked ? '#cbd5e1' : '#3b82f633'}`
                     }}>
-                      Session {sessionIdx + 1}
-                      {isDone && (
-                        <span style={{
-                          marginLeft: 8, fontSize: 10, fontWeight: 700,
-                          background: '#d1fae5', color: '#065f46',
-                          padding: '2px 7px', borderRadius: 999
-                        }}>COMPLETED</span>
-                      )}
-                      {isActive && !isDone && (
-                        <span style={{
-                          marginLeft: 8, fontSize: 10, fontWeight: 700,
-                          background: '#dbeafe', color: '#1e40af',
-                          padding: '2px 7px', borderRadius: 999
-                        }}>IN PROGRESS</span>
-                      )}
-                    </p>
+                      {isDone ? <CheckCircle2 size={30} color="#10b981" /> : isLocked ? <Lock size={26} color="#94a3b8" /> : <PlayCircle size={30} color="#3b82f6" />}
+                    </div>
 
-                    {/* Mini progress bar for active sessions */}
-                    {isActive && !isDone && (
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                        <div style={{ width: 100, background: '#e2e8f0', borderRadius: 999, height: 4, overflow: 'hidden' }}>
-                          <div style={{
-                            width: `${(doneInSession / QUESTIONS_PER_SESSION) * 100}%`,
-                            height: '100%', background: '#3b82f6', borderRadius: 999,
-                            transition: 'width 0.5s'
-                          }} />
+                    {/* Content */}
+                    <div style={{ flex: 1 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 6 }}>
+                        <div style={{
+                          fontFamily: "'Plus Jakarta Sans', sans-serif",
+                          fontWeight: 800, fontSize: 19, color: isLocked ? '#64748b' : '#0f172a'
+                        }}>
+                          Session {sessionIdx + 1}
                         </div>
-                        <span style={{ fontSize: 11, color: '#64748b' }}>
-                          {doneInSession}/{QUESTIONS_PER_SESSION}
+                        <span style={{
+                          fontSize: 11, fontWeight: 700,
+                          color: ds.color, background: ds.bg,
+                          padding: '3px 10px', borderRadius: 999
+                        }}>
+                          {ds.label}
                         </span>
                       </div>
-                    )}
+                      
+                      <div style={{ fontSize: 14, color: '#64748b', lineHeight: 1.6, marginBottom: 8 }}>
+                        {sessionQs.slice(0, 2).map(q => q.question?.substring(0, 45)).join(' · ')}…
+                      </div>
 
-                    {/* Question titles preview */}
-                    <p style={{ fontSize: 11, color: '#94a3b8', marginTop: isDone || isActive ? 0 : 2 }}>
-                      {sessionQs.slice(0, 2).map(q => q.question?.substring(0, 30)).join(' · ')}…
-                    </p>
-                  </div>
-                </div>
+                      {/* Mini progress bar for active sessions */}
+                      {isActive && doneInSession > 0 && (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                          <div style={{ width: 140, background: '#e2e8f0', borderRadius: 999, height: 6, overflow: 'hidden' }}>
+                            <div style={{
+                              width: `${(doneInSession / QUESTIONS_PER_SESSION) * 100}%`,
+                              height: '100%', background: '#3b82f6', borderRadius: 999,
+                              transition: 'width 0.5s'
+                            }} />
+                          </div>
+                          <span style={{ fontSize: 12, fontWeight: 600, color: '#64748b' }}>
+                            {doneInSession}/{QUESTIONS_PER_SESSION}
+                          </span>
+                        </div>
+                      )}
+                    </div>
 
-                {/* Status */}
-                <div style={{ textAlign: 'center' }}>
-                  {isDone
-                    ? <span style={{ fontSize: 11, fontWeight: 700, color: '#10b981' }}>✓ Done</span>
-                    : isLocked
-                    ? <span style={{ fontSize: 11, color: '#94a3b8' }}>🔒 Locked</span>
-                    : <span style={{ fontSize: 11, fontWeight: 700, color: '#3b82f6' }}>▶ Active</span>
-                  }
+                    {/* Action */}
+                    <div style={{ textAlign: 'right', minWidth: 120 }}>
+                      {isDone ? (
+                        <div>
+                          <div style={{ fontSize: 11, fontWeight: 800, color: '#10b981', marginBottom: 6, letterSpacing: '0.05em' }}>
+                            COMPLETED
+                          </div>
+                          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: '#64748b', fontSize: 12, fontWeight: 600 }}>
+                            Retry <ChevronRight size={14} />
+                          </div>
+                        </div>
+                      ) : isLocked ? (
+                        <div style={{
+                          background: '#f1f5f9', color: '#94a3b8',
+                          padding: '8px 16px', borderRadius: 99,
+                          fontWeight: 800, fontSize: 12, display: 'inline-flex', alignItems: 'center', gap: 6, letterSpacing: '0.05em'
+                        }}>
+                          LOCKED <Lock size={14} />
+                        </div>
+                      ) : (
+                        <div style={{
+                          background: '#eff6ff', color: '#3b82f6',
+                          padding: '8px 16px', borderRadius: 99,
+                          fontWeight: 800, fontSize: 12, display: 'inline-flex', alignItems: 'center', gap: 6, letterSpacing: '0.05em',
+                          border: '1px solid #bfdbfe'
+                        }}>
+                          START <ChevronRight size={14} />
+                        </div>
+                      )}
+                    </div>
+                  </button>
                 </div>
-
-                {/* Difficulty badge */}
-                <div style={{ textAlign: 'center' }}>
-                  <span style={{
-                    fontSize: 12, fontWeight: 700,
-                    color: ds.color, background: ds.bg,
-                    padding: '3px 10px', borderRadius: 999
-                  }}>
-                    {ds.label}
-                  </span>
-                </div>
-
-                {/* Action */}
-                <div style={{ textAlign: 'center' }}>
-                  {isLocked ? (
-                    <span style={{ color: '#94a3b8' }}>
-                      <Lock size={16} />
-                    </span>
-                  ) : (
-                    <button
-                      onClick={e => { e.stopPropagation(); navigate(`/interview/${category}/${sessionIdx}`) }}
-                      style={{
-                        background: isDone ? '#f1f5f9' : '#10b981',
-                        color: isDone ? '#64748b' : 'white',
-                        border: 'none', borderRadius: 6,
-                        padding: '5px 12px', fontSize: 12, fontWeight: 600,
-                        cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 5
-                      }}
-                    >
-                      {isDone ? 'Retry' : 'Start'}
-                      <ChevronRight size={13} />
-                    </button>
-                  )}
-                </div>
+              )
+            })}
+            
+            {visibleSessionsCount < sessions.length && (
+              <div style={{ position: 'relative', marginTop: 20 }}>
+                 <div style={{
+                    position: 'absolute', left: -42, top: 24, width: 6, height: 6,
+                    background: '#cbd5e1', borderRadius: '50%', zIndex: 2
+                  }} />
+                 <div style={{
+                    position: 'absolute', left: -42, top: 40, width: 6, height: 6,
+                    background: '#e2e8f0', borderRadius: '50%', zIndex: 2
+                  }} />
+                 <div style={{
+                    position: 'absolute', left: -42, top: 56, width: 6, height: 6,
+                    background: '#f1f5f9', borderRadius: '50%', zIndex: 2
+                  }} />
+                 
+                 <div style={{
+                   background: '#f8fafc', border: '1px dashed #cbd5e1', borderRadius: 20, padding: '32px', textAlign: 'center'
+                 }}>
+                   <Lock size={24} color="#94a3b8" style={{ margin: '0 auto 12px' }} />
+                   <p style={{ fontSize: 15, fontWeight: 700, color: '#475569', marginBottom: 4 }}>More Sessions Locked</p>
+                   <p style={{ fontSize: 13, color: '#64748b' }}>Complete 5 more sessions to unlock the next batch.</p>
+                 </div>
               </div>
-            )
-          })}
-          {visibleSessions.length < sessions.length && (
-            <div style={{
-              padding: '24px', textAlign: 'center', background: '#f8fafc',
-              borderTop: '1px solid #f1f5f9', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8
-            }}>
-              <Lock size={20} color="#94a3b8" />
-              <p style={{ fontSize: 13, fontWeight: 600, color: '#64748b' }}>
-                Complete more sessions to unlock further challenges
-              </p>
-              <p style={{ fontSize: 11, color: '#94a3b8' }}>
-                Keep practicing to see what's next!
-              </p>
-            </div>
-          )}
+            )}
+          </div>
         </div>
 
         {/* Badge legend */}

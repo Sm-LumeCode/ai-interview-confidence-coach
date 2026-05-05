@@ -1,3 +1,5 @@
+import api from '../services/api'
+
 // Save user progress for a specific category
 export const saveProgress = (userId, category, questionIndex, totalQuestions) => {
   if (userId && userId.startsWith('guest_')) return // Skip saving for guest users
@@ -8,6 +10,9 @@ export const saveProgress = (userId, category, questionIndex, totalQuestions) =>
     lastUpdated: new Date().toISOString()
   }
   localStorage.setItem(progressKey, JSON.stringify(progress))
+  
+  // Sync to backend asynchronously
+  api.saveProgress(userId, category, questionIndex, totalQuestions).catch(e => console.error("Failed to sync progress:", e))
 }
 
 // Get user progress for a specific category
@@ -46,4 +51,20 @@ export const getAllProgress = (userId) => {
   })
   
   return allProgress
+}
+
+// Sync progress from backend to localStorage
+export const syncProgressFromBackend = async (userId) => {
+  if (!userId || userId.startsWith('guest_')) return
+  try {
+    const data = await api.getProgress(userId)
+    if (data) {
+      Object.keys(data).forEach(category => {
+        const progressKey = `progress_${userId}_${category}`
+        localStorage.setItem(progressKey, JSON.stringify(data[category]))
+      })
+    }
+  } catch (err) {
+    console.error("Failed to sync progress from backend:", err)
+  }
 }

@@ -1,4 +1,5 @@
 // utils/dailyProgressManager.js
+import api from '../services/api'
 
 const getTodayKey = (userId) => {
   const today = new Date().toISOString().split('T')[0] // YYYY-MM-DD
@@ -10,34 +11,37 @@ export const saveDailyProgress = (
   { technicalScore, confidenceScore }
 ) => {
   if (userId && userId.startsWith('guest_')) return // Skip saving for guest users
+  const today = new Date().toISOString().split('T')[0]
   const key = getTodayKey(userId)
 
   const existing = localStorage.getItem(key)
   let data
 
   if (existing) {
-  data = JSON.parse(existing)
+    data = JSON.parse(existing)
 
-  data.technicalScores.push(technicalScore)
-  data.confidenceScores.push(confidenceScore)
+    data.technicalScores.push(technicalScore)
+    data.confidenceScores.push(confidenceScore)
 
-  // increment question count
-  data.questionCount = (data.questionCount || 0) + 1
-} else {
-  data = {
-    date: new Date().toISOString().split('T')[0],
-    technicalScores: [technicalScore],
-    confidenceScores: [
-      typeof confidenceScore === 'number' ? confidenceScore : 0
-    ],
-    questionCount: 1,
-    didPractice: true
+    // increment question count
+    data.questionCount = (data.questionCount || 0) + 1
+  } else {
+    data = {
+      date: today,
+      technicalScores: [technicalScore],
+      confidenceScores: [
+        typeof confidenceScore === 'number' ? confidenceScore : 0
+      ],
+      questionCount: 1,
+      didPractice: true
+    }
   }
-}
-
-
 
   localStorage.setItem(key, JSON.stringify(data))
+  
+  // Sync to backend asynchronously
+  api.saveDailyProgress(userId, today, technicalScore, typeof confidenceScore === 'number' ? confidenceScore : 0)
+    .catch(e => console.error("Failed to sync daily progress:", e))
 }
 
 export const getDailyProgress = (userId, date) => {
@@ -45,6 +49,7 @@ export const getDailyProgress = (userId, date) => {
   const saved = localStorage.getItem(key)
   return saved ? JSON.parse(saved) : null
 }
+
 // Get progress timeline from Day 1 to today
 export const getDailyProgressTimeline = (userId) => {
   const timeline = []
@@ -77,12 +82,12 @@ export const getDailyProgressTimeline = (userId) => {
         parsed.technicalScores.length
 
       const confidenceArr = Array.isArray(parsed.confidenceScores)
-  ? parsed.confidenceScores
-  : [0]
+        ? parsed.confidenceScores
+        : [0]
 
-const avgConfidence =
-  confidenceArr.reduce((a, b) => a + b, 0) /
-  confidenceArr.length
+      const avgConfidence =
+        confidenceArr.reduce((a, b) => a + b, 0) /
+        confidenceArr.length
 
       timeline.push({
         date: dateStr,
@@ -103,4 +108,31 @@ const avgConfidence =
   }
 
   return timeline
+}
+
+// Sync daily progress from backend to localStorage
+export const syncDailyProgressFromBackend = async (userId) => {
+  if (!userId || userId.startsWith('guest_')) return
+  try {
+    const data = await api.getDailyProgress(userId)
+    if (data) {
+      let earliestDate = null
+      Object.keys(data).forEach(dateStr => {
+        const key = `daily_progress_${userId}_${dateStr}`
+        localStorage.setItem(key, JSON.stringify(data[dateStr]))
+        if (!earliestDate || new Date(dateStr) < new Date(earliestDate)) {
+          earliestDate = dateStr
+        }
+      })
+      if (earliestDate) {
+        const startKey = `daily_progress_start_${userId}`
+        const currentStart = localStorage.getItem(startKey)
+        if (!currentStart || new Date(earliestDate) < new Date(currentStart)) {
+          localStorage.setItem(startKey, earliestDate)
+        }
+      }
+    }
+  } catch (err) {
+    console.error("Failed to sync daily progress from backend:", err)
+  }
 }

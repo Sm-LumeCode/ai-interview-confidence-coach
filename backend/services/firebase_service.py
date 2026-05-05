@@ -134,6 +134,69 @@ class FirebaseService:
         user = self._db.reference("users").child(uid).get()
         return user if isinstance(user, dict) else None
 
+    def save_progress(self, email: str, category: str, question_index: int, total_questions: int) -> None:
+        uid = self._get_uid_by_email(email)
+        if not uid:
+            return
+        
+        progress = {
+            "currentQuestionIndex": question_index,
+            "totalQuestions": total_questions,
+            "lastUpdated": _utc_now()
+        }
+        self._db.reference("users").child(uid).child("progress").child(category).set(progress)
+
+    def get_progress(self, email: str, category: str) -> Optional[Dict[str, Any]]:
+        uid = self._get_uid_by_email(email)
+        if not uid:
+            return None
+        return self._db.reference("users").child(uid).child("progress").child(category).get()
+
+    def get_all_progress(self, email: str) -> Dict[str, Any]:
+        uid = self._get_uid_by_email(email)
+        if not uid:
+            return {}
+        progress = self._db.reference("users").child(uid).child("progress").get()
+        return progress if isinstance(progress, dict) else {}
+
+    def save_daily_progress(self, email: str, date: str, technical_score: int, confidence_score: int) -> None:
+        uid = self._get_uid_by_email(email)
+        if not uid:
+            return
+            
+        ref = self._db.reference("users").child(uid).child("dailyProgress").child(date)
+        existing = ref.get()
+        
+        if existing and isinstance(existing, dict):
+            technical_scores = existing.get("technicalScores", [])
+            confidence_scores = existing.get("confidenceScores", [])
+            technical_scores.append(technical_score)
+            confidence_scores.append(confidence_score)
+            
+            ref.update({
+                "technicalScores": technical_scores,
+                "confidenceScores": confidence_scores,
+                "questionCount": existing.get("questionCount", 0) + 1,
+                "lastUpdated": _utc_now()
+            })
+        else:
+            ref.set({
+                "date": date,
+                "technicalScores": [technical_score],
+                "confidenceScores": [confidence_score],
+                "questionCount": 1,
+                "didPractice": True,
+                "createdAt": _utc_now(),
+                "lastUpdated": _utc_now()
+            })
+
+    def get_all_daily_progress(self, email: str) -> Dict[str, Any]:
+        uid = self._get_uid_by_email(email)
+        if not uid:
+            return {}
+        daily = self._db.reference("users").child(uid).child("dailyProgress").get()
+        return daily if isinstance(daily, dict) else {}
+
     def _get_uid_by_email(self, email: str) -> Optional[str]:
         uid = self._db.reference("userEmails").child(_email_key(email.strip().lower())).get()
         return uid if isinstance(uid, str) else None

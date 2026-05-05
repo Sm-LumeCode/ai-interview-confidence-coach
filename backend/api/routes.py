@@ -442,3 +442,71 @@ async def chat_with_ai(request: ChatRequest):
     except Exception as e:
         print(f"ERROR: GROQ CHAT ERROR: {str(e)}")
         return {"response": "no", "error": str(e)}
+
+# --- Progress Tracking Endpoints ---
+
+class SaveProgressRequest(BaseModel):
+    email: str
+    category: str
+    questionIndex: int
+    totalQuestions: int
+
+class SaveDailyProgressRequest(BaseModel):
+    email: str
+    date: str
+    technicalScore: int
+    confidenceScore: int
+
+@router.post("/progress/save")
+def save_user_progress(request: SaveProgressRequest):
+    if not request.email or request.email.startswith('guest_'):
+        return {"status": "skipped"}
+    try:
+        _firebase_or_503().save_progress(
+            request.email, 
+            request.category, 
+            request.questionIndex, 
+            request.totalQuestions
+        )
+        return {"status": "saved"}
+    except Exception as e:
+        print(f"❌ Save Progress Error: {e}")
+        raise HTTPException(status_code=500, detail="Failed to save progress")
+
+@router.get("/progress/{email}")
+def get_user_progress(email: str):
+    if not email or email.startswith('guest_'):
+        return {}
+    try:
+        progress = _firebase_or_503().get_all_progress(email)
+        return progress
+    except Exception as e:
+        print(f"❌ Get Progress Error: {e}")
+        return {}
+
+@router.post("/progress/daily/save")
+def save_daily_progress(request: SaveDailyProgressRequest):
+    if not request.email or request.email.startswith('guest_'):
+        return {"status": "skipped"}
+    try:
+        _firebase_or_503().save_daily_progress(
+            request.email,
+            request.date,
+            request.technicalScore,
+            request.confidenceScore
+        )
+        return {"status": "saved"}
+    except Exception as e:
+        print(f"❌ Save Daily Progress Error: {e}")
+        raise HTTPException(status_code=500, detail="Failed to save daily progress")
+
+@router.get("/progress/daily/{email}")
+def get_all_daily_progress(email: str):
+    if not email or email.startswith('guest_'):
+        return {}
+    try:
+        daily_progress = _firebase_or_503().get_all_daily_progress(email)
+        return daily_progress
+    except Exception as e:
+        print(f"❌ Get Daily Progress Error: {e}")
+        return {}
