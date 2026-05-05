@@ -22,7 +22,7 @@ class EmailService:
         For Gmail, they must use an 'App Password' if 2FA is enabled.
         """
         if not self.smtp_user or not self.smtp_password:
-            print("❌ [EMAIL ERROR] SMTP_USER or SMTP_PASSWORD not set in .env")
+            print("ERROR: [EMAIL ERROR] SMTP_USER or SMTP_PASSWORD not set in .env")
             return False
             
         try:
@@ -74,9 +74,9 @@ class EmailService:
             server.send_message(msg)
             server.quit()
             
-            print(f"✅ [EMAIL SUCCESS] OTP {otp_code} successfully delivered to {recipient_email}")
+            print(f"OK: [EMAIL SUCCESS] OTP {otp_code} successfully delivered to {recipient_email}")
             return True
             
         except Exception as e:
-            print(f"❌ [EMAIL ERROR] Critical failure during delivery: {str(e)}")
+            print(f"ERROR: [EMAIL ERROR] Critical failure during delivery: {str(e)}")
             return False

@@ -101,11 +101,13 @@ class FirebaseService:
         # Filter out fields that shouldn't be updated directly via this method
         allowed_fields = {
             "username", "fullName", "bio", "location", "phone",
-            "twoFactorEnabled", "privacyModeEnabled", 
+            "avatarColor", "photoUrl", "twoFactorEnabled", "privacyModeEnabled", 
             "emailNotificationsEnabled", "appNotificationsEnabled"
         }
         update_data = {k: v for k, v in data.items() if k in allowed_fields}
         update_data["updatedAt"] = _utc_now()
+
+        print(f"DEBUG: Updating user {uid} with fields: {list(update_data.keys())}")
 
         try:
             self._db.reference("users").child(uid).update(update_data)
@@ -239,6 +241,8 @@ def _public_user(user: Optional[Dict[str, Any]]) -> Dict[str, Any]:
         "email": str(user.get("email", "")),
         "bio": str(user.get("bio", "")),
         "location": str(user.get("location", "San Francisco, CA")),
+        "avatarColor": str(user.get("avatarColor", "#10b981")),
+        "photoUrl": user.get("photoUrl"),
         "twoFactorEnabled": bool(user.get("twoFactorEnabled", False)),
         "privacyModeEnabled": bool(user.get("privacyModeEnabled", False)),
         "emailNotificationsEnabled": bool(user.get("emailNotificationsEnabled", True)),

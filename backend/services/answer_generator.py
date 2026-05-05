@@ -133,12 +133,12 @@ def generate_ideal_answer(question: str, keywords: list = None) -> dict:
         print(f"[generate_ideal_answer] LLM paragraph: {word_count} words")
         if word_count >= 30:
             paragraph_source = "llm"
-            print(f"[generate_ideal_answer] ✅ Using LLM paragraph (meets {word_count} >= 30 word requirement)")
+            print(f"[generate_ideal_answer] OK: Using LLM paragraph (meets {word_count} >= 30 word requirement)")
         else:
             paragraph = ""
-            print(f"[generate_ideal_answer] ⚠️  LLM paragraph too short ({word_count} < 30 words), using fallback")
+            print(f"[generate_ideal_answer] WARNING: LLM paragraph too short ({word_count} < 30 words), using fallback")
     else:
-        print(f"[generate_ideal_answer] ⚠️  LLM paragraph call failed, using fallback")
+        print(f"[generate_ideal_answer] WARNING: LLM paragraph call failed, using fallback")
 
     if not paragraph:
         paragraph = _fallback_paragraph(question, keywords)
@@ -154,12 +154,12 @@ def generate_ideal_answer(question: str, keywords: list = None) -> dict:
     print(f"[generate_ideal_answer] LLM bullets: {len(bullets)} parsed")
     if len(bullets) < 3:
         if bullets_raw:
-            print(f"[generate_ideal_answer] ⚠️  Only {len(bullets)} bullets parsed from LLM, using fallback")
+            print(f"[generate_ideal_answer] WARNING: Only {len(bullets)} bullets parsed from LLM, using fallback")
         else:
-            print(f"[generate_ideal_answer] ⚠️  LLM bullets call failed, using fallback")
+            print(f"[generate_ideal_answer] WARNING: LLM bullets call failed, using fallback")
         bullets = _fallback_bullets(question, keywords)
     else:
-        print(f"[generate_ideal_answer] ✅ Using LLM bullets ({len(bullets)} bullets)")
+        print(f"[generate_ideal_answer] OK: Using LLM bullets ({len(bullets)} bullets)")
 
     final_word_count = len(paragraph.split())
     print(f"[generate_ideal_answer] Final result: {final_word_count} words, {len(bullets)} bullets, source={paragraph_source}")

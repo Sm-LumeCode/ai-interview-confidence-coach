@@ -291,9 +291,10 @@ def calculate_communication_score(answer: str) -> Tuple[int, Dict]:
 # ============================================================================
 
 FILLER_WORDS = {
-    'um', 'uh', 'umm', 'uhh', 'er', 'ah', 'like', 'you know',
-    'sort of', 'kind of', 'basically', 'actually', 'literally',
-    'i mean', 'you see', 'right', 'okay', 'hmm'
+    'um', 'uh', 'umm', 'uhh', 'uhm', 'uhmm', 'uhhh', 'ummm', 'er', 'ah', 'eh',
+    'like', 'you know', 'sort of', 'kind of', 'basically', 'actually', 'literally',
+    'i mean', 'you see', 'right', 'okay', 'hmm', 'huh', 'so', 'well', 'anyway',
+    'anyways', 'just', 'really', 'sorta', 'kinda', 'i guess', 'i suppose'
 }
 
 STUTTERING_PATTERNS = {
@@ -665,7 +666,7 @@ def evaluate_answer(
     elif overall_score >= 60:
         brief_feedback = "Good answer. You covered the main points. Work on adding more depth and examples."
     elif overall_score >= 45:
-        brief_feedback = "Fair answer. Focus on technical accuracy and clearer structure (definition → process → examples)."
+        brief_feedback = "Fair answer. Focus on technical accuracy and clearer structure (definition -> process -> examples)."
     elif overall_score >= 30:
         brief_feedback = "Needs improvement. Review the concepts and practice structured responses."
     else:

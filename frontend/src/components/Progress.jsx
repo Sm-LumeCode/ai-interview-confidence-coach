@@ -242,9 +242,9 @@ const Progress = ({ user, onLogout }) => {
 
         <ContributionCalendar timeline={dailyTimeline} />
 
-        <div className="card animate-fade-in" style={{ flex: 1, borderRadius: 24, display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative', minHeight: 600, overflow: 'visible', padding: '32px', background: '#f0fdf4', border: '1px solid #10b98120', boxShadow: '0 15px 40px rgba(0,0,0,0.03)' }}>
+        <div className="card animate-fade-in" style={{ flex: 1, borderRadius: 24, display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative', minHeight: 650, overflow: 'visible', padding: '32px', background: '#f0fdf4', border: '1px solid #10b98120', boxShadow: '0 15px 40px rgba(0,0,0,0.03)' }}>
           {/* Vibrant Green Grid Background */}
-          <div style={{ position: 'absolute', inset: 0, opacity: 0.18, pointerEvents: 'none', backgroundImage: `linear-gradient(#10b981 1px, transparent 1px), linear-gradient(90deg, #10b981 1px, transparent 1px)`, backgroundSize: '40px 40px', borderRadius: 24 }} />
+          <div style={{ position: 'absolute', inset: 0, opacity: 0.18, pointerEvents: 'none', backgroundImage: `linear-gradient(#10b981 1px, transparent 1px), linear-gradient(90deg, #10b981 1px, transparent 1px)`, backgroundSize: '40px 40px', borderRadius: 24, overflow: 'hidden' }} />
 
           <h2 className="card-title" style={{ width: '100%', textAlign: 'left', fontSize: 18, fontWeight: 900, marginBottom: 30, position: 'relative', zIndex: 2, display: 'flex', alignItems: 'center', gap: 12, color: '#0f172a' }}>
             <div style={{ padding: 8, background: '#ecfdf5', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -252,103 +252,136 @@ const Progress = ({ user, onLogout }) => {
             </div>
             Enterprise Skill Proficiency Architecture
           </h2>
-          <div style={{ position: 'relative', width: 440, height: 440, marginTop: 40, marginBottom: 60 }}>
-            {/* Connection Lines and Labels */}
-            <svg style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none', overflow: 'visible' }}>
-              {categories.map((cat, i) => {
-                const angle = (i * 60) * (Math.PI / 180)
-                const x = 220 + Math.cos(angle) * 175
-                const y = 220 + Math.sin(angle) * 175
-                const labelX = 220 + Math.cos(angle) * 260
-                const labelY = 220 + Math.sin(angle) * 260
-                const color = CAT_COLORS[cat.name]
-                const isHovered = hoveredId === cat.name
 
-                return (
-                  <g key={i}>
-                    <motion.line
-                      x1="220" y1="220" x2={x} y2={y}
-                      stroke={color} strokeWidth="2.5" strokeDasharray="6 4"
-                      animate={{ strokeDashoffset: [0, -20] }}
-                      transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
-                      opacity={isHovered ? 0.8 : 0.2}
-                    />
-                    <text
-                      x={labelX} y={labelY}
-                      textAnchor={Math.cos(angle) > 0.1 ? 'start' : (Math.cos(angle) < -0.1 ? 'end' : 'middle')}
-                      dominantBaseline="middle"
-                      style={{ fontSize: 14, fontWeight: 900, fill: isHovered ? color : '#475569', transition: 'all 0.3s' }}
-                    >
-                      {cat.name}
-                    </text>
-                  </g>
-                )
-              })}
+          {/* Responsive Honeycomb Container */}
+          <div style={{ 
+            position: 'relative', 
+            width: '100%', 
+            display: 'flex', 
+            justifyContent: 'center', 
+            alignItems: 'center',
+            overflow: 'visible',
+            padding: '60px 0',
+            minHeight: 500
+          }}>
+            <div style={{ 
+              position: 'relative', 
+              width: 440, 
+              height: 440,
+              transform: 'scale(var(--honeycomb-scale, 1))',
+              transition: 'transform 0.3s ease',
+              transformOrigin: 'center center',
+              zIndex: 5
+            }}>
+              {/* Connection Lines and Labels */}
+              <svg style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none', overflow: 'visible' }}>
+                {categories.map((cat, i) => {
+                  const angle = (i * 60) * (Math.PI / 180)
+                  const x = 220 + Math.cos(angle) * 175
+                  const y = 220 + Math.sin(angle) * 175
+                  const labelX = 220 + Math.cos(angle) * 260
+                  const labelY = 220 + Math.sin(angle) * 260
+                  const color = CAT_COLORS[cat.name]
+                  const isHovered = hoveredId === cat.name
 
-              {/* Line connecting Hexagon to Tooltip */}
-              {hoveredData && (
-                <motion.line
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  x1={220 + hoveredData.x} y1={220 + hoveredData.y}
-                  x2={hoveredData.isRight ? 220 + 400 : 220 - 400} y2={220 + hoveredData.y}
-                  stroke={hoveredData.color} strokeWidth="2.5" strokeDasharray="4 2"
-                />
-              )}
-            </svg>
+                  return (
+                    <g key={i}>
+                      <motion.line
+                        x1="220" y1="220" x2={x} y2={y}
+                        stroke={color} strokeWidth="2.5" strokeDasharray="6 4"
+                        animate={{ strokeDashoffset: [0, -20] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
+                        opacity={isHovered ? 0.8 : 0.2}
+                      />
+                      <text
+                        x={labelX} y={labelY + (Math.abs(Math.sin(angle)) < 0.1 ? 25 : 0)}
+                        textAnchor={Math.cos(angle) > 0.1 ? 'start' : (Math.cos(angle) < -0.1 ? 'end' : 'middle')}
+                        dominantBaseline="middle"
+                        style={{ fontSize: 14, fontWeight: 900, fill: isHovered ? color : '#475569', transition: 'all 0.3s' }}
+                      >
+                        {cat.name}
+                      </text>
+                    </g>
+                  )
+                })}
 
-            {/* Tooltip Overlay */}
-            <AnimatePresence>
-              {hoveredData && (
-                <motion.div
-                  initial={{ opacity: 0, x: hoveredData.isRight ? 100 : -100 }}
-                  animate={{
-                    opacity: 1,
-                    x: hoveredData.isRight ? 400 : -620,
-                    y: 220 + hoveredData.y - 100
-                  }}
-                  exit={{ opacity: 0 }}
-                  style={{
-                    position: 'absolute', left: '50%', width: 220, background: '#fff', borderRadius: 12, padding: 16,
-                    boxShadow: '0 25px 60px rgba(0,0,0,0.18)', border: `1px solid ${hoveredData.color}50`, pointerEvents: 'none', zIndex: 200
-                  }}
+                {/* Line connecting Hexagon to Tooltip */}
+                {hoveredData && (
+                  <motion.line
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    x1={220 + hoveredData.x} y1={220 + hoveredData.y}
+                    x2={hoveredData.isRight ? 220 + 320 : 220 - 320} y2={220 + hoveredData.y}
+                    stroke={hoveredData.color} strokeWidth="2.5" strokeDasharray="4 2"
+                  />
+                )}
+              </svg>
+
+              {/* Tooltip Overlay */}
+              <AnimatePresence>
+                {hoveredData && (
+                  <motion.div
+                    initial={{ opacity: 0, x: hoveredData.isRight ? 100 : -100 }}
+                    animate={{
+                      opacity: 1,
+                      x: hoveredData.isRight ? 320 : -540,
+                      y: 220 + hoveredData.y - 100
+                    }}
+                    exit={{ opacity: 0 }}
+                    style={{
+                      position: 'absolute', left: '50%', width: 220, background: '#fff', borderRadius: 12, padding: 16,
+                      boxShadow: '0 25px 60px rgba(0,0,0,0.18)', border: `1px solid ${hoveredData.color}50`, pointerEvents: 'none', zIndex: 200
+                    }}
+                  >
+                    <h4 style={{ margin: 0, fontSize: 14, fontWeight: 800, color: '#0f172a', marginBottom: 10 }}>{hoveredData.name}</h4>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, paddingBottom: 12, borderBottom: '1px solid #f1f5f9' }}>
+                      <div><p style={{ margin: 0, fontSize: 9, color: '#94a3b8', textTransform: 'uppercase', fontWeight: 800 }}>Avg Score</p><p style={{ margin: 0, fontSize: 18, fontWeight: 900, color: hoveredData.color }}>{hoveredData.score}%</p></div>
+                      <div><p style={{ margin: 0, fontSize: 9, color: '#94a3b8', textTransform: 'uppercase', fontWeight: 800 }}>Solved</p><p style={{ margin: 0, fontSize: 18, fontWeight: 900, color: '#0f172a' }}>{Math.round((hoveredData.completed / hoveredData.total) * 100)}%</p></div>
+                    </div>
+                    <div style={{ marginTop: 12, display: 'flex', flexDirection: 'column', gap: 6 }}>
+                      {[
+                        { label: 'Easy', val: Math.floor(hoveredData.completed * 0.5), c: '#10b981' },
+                        { label: 'Medium', val: Math.floor(hoveredData.completed * 0.3), c: '#f59e0b' },
+                        { label: 'Hard', val: hoveredData.completed - Math.floor(hoveredData.completed * 0.5) - Math.floor(hoveredData.completed * 0.3), c: '#ef4444' }
+                      ].map(l => (
+                        <div key={l.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span style={{ fontSize: 11, color: '#64748b' }}>{l.label} Questions</span>
+                          <span style={{ fontSize: 11, fontWeight: 800, color: l.c }}>{l.val}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center', zIndex: 5 }}>
+                <motion.div animate={{ scale: [1, 1.05, 1] }} transition={{ duration: 4, repeat: Infinity }}
+                  style={{ width: 140, height: 140, borderRadius: '50%', background: '#fff', border: '12px solid #f8fafc', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 20px 50px rgba(0,0,0,0.08)' }}
                 >
-                  <h4 style={{ margin: 0, fontSize: 14, fontWeight: 800, color: '#0f172a', marginBottom: 10 }}>{hoveredData.name}</h4>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, paddingBottom: 12, borderBottom: '1px solid #f1f5f9' }}>
-                    <div><p style={{ margin: 0, fontSize: 9, color: '#94a3b8', textTransform: 'uppercase', fontWeight: 800 }}>Avg Score</p><p style={{ margin: 0, fontSize: 18, fontWeight: 900, color: hoveredData.color }}>{hoveredData.score}%</p></div>
-                    <div><p style={{ margin: 0, fontSize: 9, color: '#94a3b8', textTransform: 'uppercase', fontWeight: 800 }}>Solved</p><p style={{ margin: 0, fontSize: 18, fontWeight: 900, color: '#0f172a' }}>{Math.round((hoveredData.completed / hoveredData.total) * 100)}%</p></div>
-                  </div>
-                  <div style={{ marginTop: 12, display: 'flex', flexDirection: 'column', gap: 6 }}>
-                    {[
-                      { label: 'Easy', val: Math.floor(hoveredData.completed * 0.5), c: '#10b981' },
-                      { label: 'Medium', val: Math.floor(hoveredData.completed * 0.3), c: '#f59e0b' },
-                      { label: 'Hard', val: hoveredData.completed - Math.floor(hoveredData.completed * 0.5) - Math.floor(hoveredData.completed * 0.3), c: '#ef4444' }
-                    ].map(l => (
-                      <div key={l.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ fontSize: 11, color: '#64748b' }}>{l.label} Questions</span>
-                        <span style={{ fontSize: 11, fontWeight: 800, color: l.c }}>{l.val}</span>
-                      </div>
-                    ))}
+                  <div style={{ textAlign: 'center' }}>
+                    <p style={{ margin: 0, fontSize: 11, fontWeight: 800, color: '#94a3b8', textTransform: 'uppercase' }}>Overall</p>
+                    <p style={{ margin: 0, fontSize: 32, fontWeight: 900, color: '#10b981' }}>{avgTechnical}%</p>
                   </div>
                 </motion.div>
-              )}
-            </AnimatePresence>
-
-            <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center', zIndex: 5 }}>
-              <motion.div animate={{ scale: [1, 1.05, 1] }} transition={{ duration: 4, repeat: Infinity }}
-                style={{ width: 140, height: 140, borderRadius: '50%', background: '#fff', border: '12px solid #f8fafc', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 20px 50px rgba(0,0,0,0.08)' }}
-              >
-                <div style={{ textAlign: 'center' }}>
-                  <p style={{ margin: 0, fontSize: 11, fontWeight: 800, color: '#94a3b8', textTransform: 'uppercase' }}>Overall</p>
-                  <p style={{ margin: 0, fontSize: 32, fontWeight: 900, color: '#10b981' }}>{avgTechnical}%</p>
-                </div>
-              </motion.div>
+              </div>
+              {categories.map((cat, i) => (
+                <BladeNode key={cat.name} cat={cat} data={categoryProgress.find(cp => cp.name === cat.name)} index={i} hoveredId={hoveredId} setHoveredId={setHoveredId} />
+              ))}
             </div>
-            {categories.map((cat, i) => (
-              <BladeNode key={cat.name} cat={cat} data={categoryProgress.find(cp => cp.name === cat.name)} index={i} hoveredId={hoveredId} setHoveredId={setHoveredId} />
-            ))}
           </div>
         </div>
+
+        <style>{`
+          @media (max-width: 1200px) {
+            .card { --honeycomb-scale: 0.75; }
+          }
+          @media (max-width: 900px) {
+            .card { --honeycomb-scale: 0.55; }
+          }
+          @media (max-width: 600px) {
+            .card { --honeycomb-scale: 0.4; }
+          }
+        `}</style>
       </main>
     </div>
   )

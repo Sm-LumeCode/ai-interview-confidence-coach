@@ -1,5 +1,5 @@
 // Profile Component - Clean Slate v1.0.2
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Navbar from './Navbar'
 import { 
   User, Mail, Calendar, Edit2, Save, X, 
@@ -15,14 +15,29 @@ const Profile = ({ user, onLogout, onUpdateUser }) => {
     email: user.email || '',
     bio: user.bio || '',
     location: user.location || "San Francisco, CA",
+    avatarColor: user.avatarColor || '#10b981',
   })
 
+  const fileInputRef = useRef(null)
   const [activeTab, setActiveTab] = useState('account')
   const [message, setMessage] = useState('')
   const [isSaving, setIsSaving] = useState(false)
   const [isChangingPassword, setIsChangingPassword] = useState(false)
+  const [isSelectingAvatar, setIsSelectingAvatar] = useState(false)
+  const [showPhotoMenu, setShowPhotoMenu] = useState(false)
   const [newPassword, setNewPassword] = useState('')
   const [oldPassword, setOldPassword] = useState('')
+
+  const AVATAR_OPTIONS = [
+    { name: 'Emerald', color: '#10b981' },
+    { name: 'Teal', color: '#14b8a6' },
+    { name: 'Indigo', color: '#6366f1' },
+    { name: 'Rose', color: '#f43f5e' },
+    { name: 'Amber', color: '#f59e0b' },
+    { name: 'Violet', color: '#8b5cf6' },
+    { name: 'Cyan', color: '#06b6d4' },
+    { name: 'Slate', color: '#475569' },
+  ]
 
   // Sync profile data when user prop changes (e.g. after a save)
   useEffect(() => {
@@ -33,6 +48,8 @@ const Profile = ({ user, onLogout, onUpdateUser }) => {
         email: user.email || '',
         bio: user.bio || '',
         location: user.location || "San Francisco, CA",
+        avatarColor: user.avatarColor || '#10b981',
+        photoUrl: user.photoUrl || null
       })
     }
   }, [user, isEditing])
@@ -45,6 +62,7 @@ const Profile = ({ user, onLogout, onUpdateUser }) => {
   const updateSetting = async (field, value) => {
     setIsSaving(true)
     try {
+      console.log(`Updating ${field} for ${user.email}`)
       const response = await fetch('/api/auth/update-profile', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -54,12 +72,22 @@ const Profile = ({ user, onLogout, onUpdateUser }) => {
         })
       })
 
-      const data = await response.json()
-      if (!response.ok) throw new Error(data.detail || 'Failed to update setting')
+      const text = await response.text()
+      let data
+      try {
+        data = JSON.parse(text)
+      } catch (e) {
+        throw new Error('Server returned an invalid response. Please check backend logs.')
+      }
+
+      if (!response.ok) {
+        console.error('Server error during update:', data)
+        throw new Error(data.detail || 'Failed to update setting')
+      }
 
       onUpdateUser(data.user)
       const humanName = field.replace(/([A-Z])/g, ' $1').toLowerCase()
-      showMessage(`Successfully ${value ? 'enabled' : 'disabled'} ${humanName}`)
+      showMessage(`Successfully updated ${humanName}`)
     } catch (err) {
       console.error('Update failed:', err)
       showMessage('Error: ' + err.message)
@@ -84,7 +112,9 @@ const Profile = ({ user, onLogout, onUpdateUser }) => {
           username: profileData.username,
           fullName: profileData.fullName,
           bio: profileData.bio,
-          location: profileData.location
+          location: profileData.location,
+          avatarColor: profileData.avatarColor,
+          photoUrl: profileData.photoUrl
         })
       })
 
@@ -101,6 +131,64 @@ const Profile = ({ user, onLogout, onUpdateUser }) => {
     } finally {
       setIsSaving(false)
     }
+  }
+
+  const handleAvatarSelect = (color) => {
+    const newData = { ...profileData, avatarColor: color, photoUrl: null }
+    setProfileData(newData)
+    if (!isEditing) {
+      // Direct update
+      setIsSaving(true)
+      fetch('/api/auth/update-profile', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: user.email,
+          avatarColor: color,
+          photoUrl: null
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        onUpdateUser(data.user)
+        showMessage('Avatar color updated')
+      })
+      .finally(() => setIsSaving(false))
+    }
+    setIsSelectingAvatar(false)
+    setShowPhotoMenu(false)
+  }
+
+  const handlePhotoUpload = (e) => {
+    const file = e.target.files[0]
+    if (!file) return
+
+    if (file.size > 800000) {
+      showMessage('Error: File size too large (max 800KB)')
+      return
+    }
+
+    const reader = new FileReader()
+    reader.onloadend = () => {
+      const base64String = reader.result
+      setProfileData({ ...profileData, photoUrl: base64String })
+      if (!isEditing) {
+        updateSetting('photoUrl', base64String)
+      }
+      setShowPhotoMenu(false)
+      showMessage('Photo uploaded successfully!')
+    }
+    reader.readAsDataURL(file)
+  }
+
+  const handleRemovePhoto = () => {
+    const newData = { ...profileData, photoUrl: null }
+    setProfileData(newData)
+    if (!isEditing) {
+      updateSetting('photoUrl', null)
+    }
+    setShowPhotoMenu(false)
+    showMessage('Photo removed')
   }
 
   const handleUpdatePassword = async () => {
@@ -182,12 +270,19 @@ const Profile = ({ user, onLogout, onUpdateUser }) => {
   )
 
   return (
-    <div className="app-layout" style={{ background: '#f8fafc' }}>
+    <div className="app-layout" style={{ background: '#f8fafc' }} onClick={() => setShowPhotoMenu(false)}>
+      <input 
+        type="file" 
+        ref={fileInputRef} 
+        style={{ display: 'none' }} 
+        accept="image/*" 
+        onChange={handlePhotoUpload} 
+      />
       {message && (
         <div style={{
           position: 'fixed', top: 24, right: 24, background: '#0f172a', color: 'white',
           padding: '12px 20px', borderRadius: 12, fontSize: 14, fontWeight: 600,
-          boxShadow: '0 10px 25px rgba(0,0,0,0.1)', zIndex: 1000,
+          boxShadow: '0 10px 25px rgba(0,0,0,0.1)', zIndex: 2000,
           display: 'flex', alignItems: 'center', gap: 10, animation: 'slideIn 0.3s ease'
         }}>
           <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#10b981' }} />
@@ -199,32 +294,57 @@ const Profile = ({ user, onLogout, onUpdateUser }) => {
       `}</style>
       <Navbar user={user} onLogout={onLogout} />
 
-      {isChangingPassword && (
+      {(isChangingPassword || isSelectingAvatar) && (
         <div style={{
           position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
           background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(4px)',
           display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1100,
           padding: 20
-        }}>
+        }} onClick={e => e.stopPropagation()}>
           <div className="animate-slide-up" style={{
-            background: 'white', padding: 32, borderRadius: 24, width: '100%', maxWidth: 400,
+            background: 'white', padding: 32, borderRadius: 24, width: '100%', maxWidth: 450,
             boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
           }}>
-            <SectionTitle title="Update Password" subtitle="Verify your identity and choose a strong new password." />
-            <div style={{ marginBottom: 20 }}>
-              <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: '#64748b', marginBottom: 8 }}>Current Password</label>
-              <input type="password" autoFocus style={{ width: '100%', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 12, padding: '12px 16px', color: '#1e293b', fontSize: 14, outline: 'none' }} placeholder="Enter current password" value={oldPassword} onChange={e => setOldPassword(e.target.value)} />
-            </div>
-            <div style={{ marginBottom: 24 }}>
-              <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: '#64748b', marginBottom: 8 }}>New Password</label>
-              <input type="password" style={{ width: '100%', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 12, padding: '12px 16px', color: '#1e293b', fontSize: 14, outline: 'none' }} placeholder="Enter new password (min 6 chars)" value={newPassword} onChange={e => setNewPassword(e.target.value)} />
-            </div>
-            <div style={{ display: 'flex', gap: 12 }}>
-              <button className="btn-secondary" onClick={() => setIsChangingPassword(false)} disabled={isSaving} style={{ flex: 1, background: '#f8fafc', border: '1px solid #e2e8f0' }}>Cancel</button>
-              <button className="btn-primary" onClick={handleUpdatePassword} disabled={isSaving} style={{ flex: 2, background: '#10b981', color: 'white', opacity: isSaving ? 0.7 : 1 }}>
-                {isSaving ? 'Updating...' : 'Update Password'}
-              </button>
-            </div>
+            {isChangingPassword ? (
+              <>
+                <SectionTitle title="Update Password" subtitle="Verify your identity and choose a strong new password." />
+                <div style={{ marginBottom: 20 }}>
+                  <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: '#64748b', marginBottom: 8 }}>Current Password</label>
+                  <input type="password" autoFocus style={{ width: '100%', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 12, padding: '12px 16px', color: '#1e293b', fontSize: 14, outline: 'none' }} placeholder="Enter current password" value={oldPassword} onChange={e => setOldPassword(e.target.value)} />
+                </div>
+                <div style={{ marginBottom: 24 }}>
+                  <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: '#64748b', marginBottom: 8 }}>New Password</label>
+                  <input type="password" style={{ width: '100%', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 12, padding: '12px 16px', color: '#1e293b', fontSize: 14, outline: 'none' }} placeholder="Enter new password (min 6 chars)" value={newPassword} onChange={e => setNewPassword(e.target.value)} />
+                </div>
+                <div style={{ display: 'flex', gap: 12 }}>
+                  <button className="btn-secondary" onClick={() => setIsChangingPassword(false)} disabled={isSaving} style={{ flex: 1, background: '#f8fafc', border: '1px solid #e2e8f0' }}>Cancel</button>
+                  <button className="btn-primary" onClick={handleUpdatePassword} disabled={isSaving} style={{ flex: 2, background: '#10b981', color: 'white', opacity: isSaving ? 0.7 : 1 }}>
+                    {isSaving ? 'Updating...' : 'Update Password'}
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <SectionTitle title="Choose Avatar" subtitle="Select a color scheme for your profile avatar." />
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginBottom: 32 }}>
+                  {AVATAR_OPTIONS.map(opt => (
+                    <button
+                      key={opt.name}
+                      onClick={() => handleAvatarSelect(opt.color)}
+                      style={{
+                        width: '100%', aspectRatio: '1/1', borderRadius: '50%', background: opt.color,
+                        border: profileData.avatarColor === opt.color ? '4px solid #0f172a' : '4px solid #fff',
+                        cursor: 'pointer', transition: 'transform 0.2s',
+                        boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+                      }}
+                      onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.1)'}
+                      onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+                    />
+                  ))}
+                </div>
+                <button className="btn-secondary" onClick={() => setIsSelectingAvatar(false)} style={{ width: '100%', background: '#f8fafc', border: '1px solid #e2e8f0' }}>Close</button>
+              </>
+            )}
           </div>
         </div>
       )}
@@ -235,24 +355,7 @@ const Profile = ({ user, onLogout, onUpdateUser }) => {
           <p className="page-subtitle" style={{ color: '#64748b' }}>Manage your professional profile and security preferences</p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '260px 1fr', gap: 48 }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-            {[
-              { id: 'account', label: 'Public Profile', icon: User },
-              { id: 'security', label: 'Security & Privacy', icon: Shield },
-              { id: 'notifications', label: 'Notifications', icon: Bell },
-            ].map(tab => (
-              <button key={tab.id} onClick={() => setActiveTab(tab.id)} style={{
-                display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px', borderRadius: 12, border: 'none',
-                background: activeTab === tab.id ? '#ffffff' : 'transparent', color: activeTab === tab.id ? '#10b981' : '#64748b',
-                boxShadow: activeTab === tab.id ? '0 4px 12px rgba(0,0,0,0.05)' : 'none', fontSize: 14, fontWeight: 600, cursor: 'pointer',
-                textAlign: 'left', transition: 'all 0.2s', border: activeTab === tab.id ? '1px solid #e2e8f0' : '1px solid transparent'
-              }}>
-                <tab.icon size={18} /> {tab.label}
-              </button>
-            ))}
-          </div>
-
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 260px', gap: 48 }}>
           <div style={{ background: '#ffffff', padding: '40px', borderRadius: 24, border: '1px solid #e2e8f0', boxShadow: '0 4px 20px rgba(0,0,0,0.03)', minHeight: 650 }}>
             {activeTab === 'account' && (
               <div className="animate-fade-in">
@@ -272,20 +375,60 @@ const Profile = ({ user, onLogout, onUpdateUser }) => {
                   )}
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: 32, marginBottom: 48, padding: '24px', background: '#f8fafc', borderRadius: 20, border: '1px solid #f1f5f9' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 48, padding: '40px', background: '#f0fdf4', borderRadius: 32, border: '1px solid #10b98120', position: 'relative' }}>
                   <div style={{ position: 'relative' }}>
-                    <div style={{ width: 110, height: 110, borderRadius: '50%', background: 'linear-gradient(135deg, #10b981, #059669)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 800, fontSize: 44, boxShadow: '0 12px 24px rgba(16,185,129,0.25)', border: '4px solid #fff' }}>
-                      {profileData.username.charAt(0).toUpperCase()}
+                    <div 
+                      onClick={(e) => { e.stopPropagation(); setShowPhotoMenu(!showPhotoMenu); }}
+                      style={{ 
+                        width: 140, height: 140, borderRadius: '50%', 
+                        background: profileData.photoUrl ? `url(${profileData.photoUrl})` : `linear-gradient(135deg, ${profileData.avatarColor}, ${profileData.avatarColor}dd)`, 
+                        backgroundSize: 'cover', backgroundPosition: 'center',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', 
+                        fontWeight: 800, fontSize: 56, boxShadow: `0 15px 35px ${profileData.avatarColor}40`, 
+                        border: '6px solid #fff', cursor: 'pointer', transition: 'all 0.3s ease'
+                      }}
+                      onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.05) rotate(5deg)'}
+                      onMouseLeave={e => e.currentTarget.style.transform = 'scale(1) rotate(0deg)'}
+                    >
+                      {!profileData.photoUrl && profileData.username.charAt(0).toUpperCase()}
                     </div>
-                    <button style={{ position: 'absolute', bottom: 4, right: 4, width: 34, height: 34, borderRadius: '50%', background: '#fff', border: '1px solid #e2e8f0', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#64748b', cursor: 'pointer', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}><Camera size={16} /></button>
+                    <div style={{ position: 'absolute', bottom: 6, right: 6, width: 38, height: 38, borderRadius: '50%', background: '#fff', border: '1px solid #e2e8f0', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10b981', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+                      <Camera size={18} />
+                    </div>
+
+                    {/* Photo Action Menu */}
+                    {showPhotoMenu && (
+                      <div style={{
+                        position: 'absolute', top: '110%', left: '50%', transform: 'translateX(-50%)',
+                        background: '#fff', borderRadius: 16, padding: '8px', width: 220,
+                        boxShadow: '0 15px 40px rgba(0,0,0,0.15)', border: '1px solid #f1f5f9', zIndex: 100
+                      }} onClick={e => e.stopPropagation()}>
+                        <button 
+                          onClick={() => setIsSelectingAvatar(true)}
+                          style={{ width: '100%', padding: '12px 16px', borderRadius: 10, border: 'none', background: 'transparent', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 12, cursor: 'pointer', color: '#1e293b', fontSize: 13, fontWeight: 600 }}>
+                          <Edit2 size={16} color="#10b981" /> Choose Color Avatar
+                        </button>
+                        <button 
+                          onClick={() => fileInputRef.current?.click()}
+                          style={{ width: '100%', padding: '12px 16px', borderRadius: 10, border: 'none', background: 'transparent', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 12, cursor: 'pointer', color: '#1e293b', fontSize: 13, fontWeight: 600 }}>
+                          <Camera size={16} color="#3b82f6" /> Upload New Photo
+                        </button>
+                        {(profileData.photoUrl || profileData.avatarColor !== '#10b981') && (
+                          <>
+                            <div style={{ height: 1, background: '#f1f5f9', margin: '4px 0' }} />
+                            <button 
+                              onClick={handleRemovePhoto}
+                              style={{ width: '100%', padding: '12px 16px', borderRadius: 10, border: 'none', background: 'transparent', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 12, cursor: 'pointer', color: '#ef4444', fontSize: 13, fontWeight: 600 }}>
+                              <Trash2 size={16} /> Remove / Reset
+                            </button>
+                          </>
+                        )}
+                      </div>
+                    )}
                   </div>
-                  <div>
-                    <h3 style={{ fontSize: 16, fontWeight: 700, color: '#0f172a', marginBottom: 4 }}>Profile Picture</h3>
-                    <p style={{ fontSize: 13, color: '#64748b', marginBottom: 16 }}>JPG, GIF or PNG. Max size of 800K</p>
-                    <div style={{ display: 'flex', gap: 12 }}>
-                      <button style={{ background: '#fff', border: '1px solid #e2e8f0', color: '#1e293b', padding: '8px 16px', borderRadius: 8, fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Upload Image</button>
-                      <button style={{ background: 'none', border: 'none', color: '#ef4444', padding: '8px 16px', borderRadius: 8, fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Remove</button>
-                    </div>
+                  <div style={{ textAlign: 'center', marginTop: 20 }}>
+                    <h3 style={{ fontSize: 20, fontWeight: 800, color: '#0f172a', marginBottom: 4 }}>{profileData.fullName || 'New Member'}</h3>
+                    <p style={{ fontSize: 14, color: '#64748b' }}>{profileData.photoUrl ? 'Custom Image' : 'Color Avatar'}</p>
                   </div>
                 </div>
 
@@ -343,6 +486,23 @@ const Profile = ({ user, onLogout, onUpdateUser }) => {
                 <SettingRow icon={Bell} label="Application Alerts" description={user.appNotificationsEnabled === false ? "Paused" : "Real-time challenge updates"} actionLabel={isSaving ? "..." : (user.appNotificationsEnabled === false ? "Enable" : "Disable")} onClick={() => updateSetting('appNotificationsEnabled', !user.appNotificationsEnabled)} disabled={isSaving} />
               </div>
             )}
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+            {[
+              { id: 'account', label: 'Public Profile', icon: User },
+              { id: 'security', label: 'Security & Privacy', icon: Shield },
+              { id: 'notifications', label: 'Notifications', icon: Bell },
+            ].map(tab => (
+              <button key={tab.id} onClick={() => setActiveTab(tab.id)} style={{
+                display: 'flex', alignItems: 'center', gap: 12, padding: '14px 20px', borderRadius: 16, border: 'none',
+                background: activeTab === tab.id ? '#10b981' : 'transparent', color: activeTab === tab.id ? '#ffffff' : '#64748b',
+                boxShadow: activeTab === tab.id ? '0 8px 20px rgba(16,185,129,0.25)' : 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer',
+                textAlign: 'left', transition: 'all 0.2s'
+              }}>
+                <tab.icon size={18} /> {tab.label}
+              </button>
+            ))}
           </div>
         </div>
       </main>

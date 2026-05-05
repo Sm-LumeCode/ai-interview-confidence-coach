@@ -135,6 +135,8 @@ class ProfileUpdateRequest(BaseModel):
     fullName: Optional[str] = None
     bio: Optional[str] = None
     location: Optional[str] = None
+    avatarColor: Optional[str] = None
+    photoUrl: Optional[str] = None
     twoFactorEnabled: Optional[bool] = None
     privacyModeEnabled: Optional[bool] = None
     emailNotificationsEnabled: Optional[bool] = None
@@ -147,6 +149,11 @@ def update_profile(request: ProfileUpdateRequest):
         return {"user": updated_user}
     except ValueError as exc:
         raise HTTPException(status_code=404, detail=str(exc))
+    except Exception as exc:
+        print(f"CRITICAL PROFILE UPDATE ERROR: {str(exc)}")
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(exc)}")
 
 # Get questions by category
 @router.get("/questions/{category}")
@@ -209,10 +216,10 @@ def evaluate_interview_answer(request: EvaluationRequest):
             )
         
         print("="*70)
-        print(f"⚡ FAST EVALUATION REQUEST")
+        print(f"[FAST EVALUATION REQUEST]")
         print(f"Question: {request.question[:60]}...")
         print(f"Answer length: {len(request.answer)} chars")
-        print(f"Keywords: {request.keywords}")
+        print(f"Transcript Snippet: {request.answer[:200]}")
         print("="*70)
         
         start_time = time.time()
@@ -227,7 +234,7 @@ def evaluate_interview_answer(request: EvaluationRequest):
         elapsed_time = time.time() - start_time
         
         print("="*70)
-        print(f"✅ EVALUATION COMPLETE in {elapsed_time:.3f}s")
+        print(f"OK: EVALUATION COMPLETE in {elapsed_time:.3f}s")
         print(f"Technical: {result['technical_score']}% (Context: {result.get('llm_context_validation', 'N/A')})")
         print(f"Communication: {result['communication_score']}%")
         print(f"Confidence: {result['confidence_score']}%")
@@ -244,7 +251,7 @@ def evaluate_interview_answer(request: EvaluationRequest):
         return result
     
     except Exception as e:
-        print(f"❌ EVALUATION ERROR: {str(e)}")
+        print(f"ERROR: EVALUATION ERROR: {str(e)}")
         import traceback
         traceback.print_exc()
         
@@ -268,7 +275,7 @@ def generate_answer(request: AnswerGenerationRequest):
             )
         
         print("="*70)
-        print(f"💡 GENERATING IDEAL ANSWER")
+        print(f"INFO: GENERATING IDEAL ANSWER")
         print(f"Question: {request.question[:60]}...")
         print("="*70)
         
@@ -282,7 +289,7 @@ def generate_answer(request: AnswerGenerationRequest):
         elapsed_time = time.time() - start_time
         
         print("="*70)
-        print(f"✅ ANSWER GENERATED in {elapsed_time:.3f}s")
+        print(f"OK: ANSWER GENERATED in {elapsed_time:.3f}s")
         print(f"Word count: {result['word_count']}")
         print("="*70)
         
@@ -291,7 +298,7 @@ def generate_answer(request: AnswerGenerationRequest):
         return result
     
     except Exception as e:
-        print(f"❌ GENERATION ERROR: {str(e)}")
+        print(f"ERROR: GENERATION ERROR: {str(e)}")
         import traceback
         traceback.print_exc()
         
@@ -321,7 +328,7 @@ async def transcribe_audio(audio: UploadFile = File(...)):
                 os.remove(tmp_path)
                 
     except Exception as e:
-        print(f"❌ TRANSCRIPTION ERROR: {str(e)}")
+        print(f"ERROR: TRANSCRIPTION ERROR: {str(e)}")
         raise HTTPException(
             status_code=500,
             detail=f"Transcription failed: {str(e)}"
@@ -348,7 +355,7 @@ def send_otp_handler(request: OTPRequest):
     otp = str(random.randint(1001, 9999))
     email_service = EmailService()
     
-    print(f"🔄 [OTP] Processing request for {request.email}...")
+    print(f"OTP: Processing request for {request.email}...")
     success = email_service.send_otp(request.email, otp)
     
     if success:
@@ -358,7 +365,7 @@ def send_otp_handler(request: OTPRequest):
         # Fallback simulation if credentials are missing
         # We store it anyway so the user can 'verify' even without a real email if they check logs
         otp_storage[request.email] = otp
-        print(f"⚠️ [SIMULATION] Credentials missing, OTP for {request.email} is: {otp}")
+        print(f"WARNING: [SIMULATION] Credentials missing, OTP for {request.email} is: {otp}")
         return {
             "status": "simulated", 
             "message": "Simulated OTP (Backend credentials missing). Check console/logs.",
@@ -398,7 +405,7 @@ async def chat_with_ai(request: ChatRequest):
     print(f"DEBUG: Chat request received. Model: {model}")
     
     if not api_key:
-        print("❌ ERROR: No GROQ_API_KEY found in environment")
+        print("ERROR: No GROQ_API_KEY found in environment")
         return {"response": "no", "error": "API Key missing"}
         
     try:
@@ -433,5 +440,5 @@ async def chat_with_ai(request: ChatRequest):
         return {"response": response_text}
         
     except Exception as e:
-        print(f"❌ GROQ CHAT ERROR: {str(e)}")
+        print(f"ERROR: GROQ CHAT ERROR: {str(e)}")
         return {"response": "no", "error": str(e)}

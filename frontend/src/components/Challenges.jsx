@@ -227,10 +227,11 @@ const ChallengeNode = ({ ch, index, nodeNum, yOffset, isCompleted, onStart }) =>
             <div
               style={{
                 width: '100%', padding: '10px', borderRadius: 10, textAlign: 'center',
-                background: ch.completed ? '#ecfdf5' : ch.locked ? '#f8fafc' : `${ch.color}15`,
-                color: ch.completed ? '#10b981' : ch.locked ? '#94a3b8' : ch.color,
+                background: ch.completed ? '#10b981' : ch.locked ? '#f8fafc' : `${ch.color}15`,
+                color: ch.completed ? '#ffffff' : ch.locked ? '#94a3b8' : ch.color,
                 fontSize: 13, fontWeight: 800,
-                userSelect: 'none'
+                userSelect: 'none',
+                boxShadow: ch.completed ? '0 4px 12px rgba(16,185,129,0.2)' : 'none'
               }}
             >
               {ch.completed ? 'Completed' : ch.locked ? 'Locked' : 'Pending'}
