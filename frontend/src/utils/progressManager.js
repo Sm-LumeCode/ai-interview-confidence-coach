@@ -1,5 +1,6 @@
 // Save user progress for a specific category
 export const saveProgress = (userId, category, questionIndex, totalQuestions) => {
+  if (userId && userId.startsWith('guest_')) return // Skip saving for guest users
   const progressKey = `progress_${userId}_${category}`
   const progress = {
     currentQuestionIndex: questionIndex,

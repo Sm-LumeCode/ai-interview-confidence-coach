@@ -9,6 +9,7 @@ export const saveDailyProgress = (
   userId,
   { technicalScore, confidenceScore }
 ) => {
+  if (userId && userId.startsWith('guest_')) return // Skip saving for guest users
   const key = getTodayKey(userId)
 
   const existing = localStorage.getItem(key)

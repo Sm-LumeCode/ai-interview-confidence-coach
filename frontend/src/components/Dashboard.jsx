@@ -4,7 +4,33 @@ import Navbar from './Navbar'
 import RoleSelector from './RoleSelector'
 import { getAllProgress } from '../utils/progressManager'
 import { getDailyProgressTimeline } from '../utils/dailyProgressManager'
-import { Target, Flame, TrendingUp, BarChart3 } from 'lucide-react'
+import { Target, Flame, TrendingUp, BarChart3, Quote } from 'lucide-react'
+
+const THEME_COLOR = '#10b981' // Vibrant Emerald Green
+const THEME_LIGHT = '#f0fdf4'
+
+const TypewriterQuote = ({ text }) => {
+  const [displayedText, setDisplayedText] = useState('')
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    if (index < text.length) {
+      const timeout = setTimeout(() => {
+        setDisplayedText(prev => prev + text[index])
+        setIndex(prev => prev + 1)
+      }, 50)
+      return () => clearTimeout(timeout)
+    }
+  }, [index, text])
+
+  return (
+    <div style={{ display: 'flex', gap: 12, alignItems: 'flex-start', color: '#64748b', fontStyle: 'italic', fontSize: 16, lineHeight: 1.6 }}>
+      <Quote size={20} style={{ flexShrink: 0, marginTop: 4, opacity: 0.4, color: THEME_COLOR }} />
+      <span>{displayedText}<span style={{ borderRight: `2px solid ${THEME_COLOR}`, marginLeft: 2, animation: 'blink 0.7s infinite' }} /></span>
+      <style>{`@keyframes blink { 50% { opacity: 0 } }`}</style>
+    </div>
+  )
+}
 
 const Dashboard = ({ user, onLogout }) => {
   const navigate = useNavigate()
@@ -53,51 +79,35 @@ const Dashboard = ({ user, onLogout }) => {
           <p className="page-subtitle">Here's your preparation overview.</p>
         </div>
 
-        {/* Stats Row */}
-        <div className="stats-grid" style={{ gridTemplateColumns: 'repeat(4, 1fr)', marginBottom: 32 }}>
-          <div className="stat-card animate-slide-up">
-            <div className="stat-card-icon" style={{ background: '#d1fae5' }}>
-              <Target size={20} color="#10b981" />
+        {/* Stats Row - Standardized Colors */}
+        <div className="stats-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)', marginBottom: 32 }}>
+          {[
+            { label: 'Problems Solved', value: stats.totalQuestions, icon: Target },
+            { label: 'Current Streak', value: stats.streak, icon: Flame, unit: 'days' },
+            { label: 'Avg Score', value: stats.avgScore, icon: TrendingUp, unit: '%' },
+          ].map((s, i) => (
+            <div key={i} className="stat-card animate-slide-up" style={{ animationDelay: `${i * 80}ms` }}>
+              <div className="stat-card-icon" style={{ background: THEME_LIGHT }}>
+                <s.icon size={20} color={THEME_COLOR} />
+              </div>
+              <p className="stat-card-label">{s.label}</p>
+              <p className="stat-card-value">
+                {s.value} {s.unit && <span style={{ fontSize: 16, fontWeight: 500, color: '#64748b' }}>{s.unit}</span>}
+              </p>
             </div>
-            <p className="stat-card-label">Problems Solved</p>
-            <p className="stat-card-value">{stats.totalQuestions}</p>
-          </div>
-
-          <div className="stat-card animate-slide-up" style={{ animationDelay: '80ms' }}>
-            <div className="stat-card-icon" style={{ background: '#fef3c7' }}>
-              <Flame size={20} color="#f59e0b" />
-            </div>
-            <p className="stat-card-label">Current Streak</p>
-            <p className="stat-card-value">
-              {stats.streak} <span style={{ fontSize: 16, fontWeight: 500, color: '#64748b' }}>days</span>
-            </p>
-          </div>
-
-          <div className="stat-card animate-slide-up" style={{ animationDelay: '160ms' }}>
-            <div className="stat-card-icon" style={{ background: '#dbeafe' }}>
-              <TrendingUp size={20} color="#3b82f6" />
-            </div>
-            <p className="stat-card-label">Avg Score</p>
-            <p className="stat-card-value">
-              {stats.avgScore}<span style={{ fontSize: 18, color: '#64748b' }}>%</span>
-            </p>
-          </div>
-
-          <div className="stat-card animate-slide-up" style={{ animationDelay: '240ms' }}>
-            <div className="stat-card-icon" style={{ background: '#ede9fe' }}>
-              <BarChart3 size={20} color="#8b5cf6" />
-            </div>
-            <p className="stat-card-label">Categories</p>
-            <p className="stat-card-value">6</p>
-          </div>
+          ))}
         </div>
 
         {/* Category picker */}
-        <div className="card animate-fade-in">
-          <h2 className="card-title">Choose a Category</h2>
-          <p style={{ fontSize: 13, color: '#64748b', marginBottom: 20, marginTop: -8 }}>
-            Each category is split into sessions of 5 questions. Complete a session to unlock the next.
-          </p>
+        <div className="animate-fade-in" style={{ marginTop: 40 }}>
+          <div style={{ textAlign: 'left', paddingLeft: 60, marginBottom: 40 }}>
+            <h2 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontSize: 32, color: '#0f172a', marginBottom: 16 }}>
+              Choose your Category
+            </h2>
+            <div style={{ maxWidth: 650 }}>
+              <TypewriterQuote text="Success is where preparation and opportunity meet. Start your journey today." />
+            </div>
+          </div>
           <RoleSelector onSelectRole={handleSelectRole} userProgress={userProgress} />
         </div>
       </main>

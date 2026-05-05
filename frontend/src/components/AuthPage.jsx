@@ -38,6 +38,7 @@ const AuthPage = ({ onLogin }) => {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const [successMsg, setSuccessMsg] = useState('')
+  const [guestUsername, setGuestUsername] = useState('')
 
   useEffect(() => {
     api.listAuthUsers()
@@ -72,14 +73,25 @@ const AuthPage = ({ onLogin }) => {
         .then(data => setRegisteredUsers(data.users || []))
         .catch(() => setRegisteredUsers([]))
       setShowGoogleModal(true)
-    } else {
-      setLoading(true)
-      setTimeout(() => {
-        onLogin({ id: `gh_${Date.now()}`, username: 'github_user', email: 'github@demo.com' })
-        setLoading(false)
-        navigate('/dashboard')
-      }, 1000)
+    } else if (provider === 'Guest') {
+      setMode('guest')
     }
+  }
+
+  const handleGuestLogin = (e) => {
+    e.preventDefault()
+    if (!guestUsername.trim()) return
+    setLoading(true)
+    setTimeout(() => {
+      onLogin({ 
+        id: `guest_${Date.now()}`, 
+        username: guestUsername, 
+        email: 'guest@coach.ai',
+        isGuest: true 
+      })
+      setLoading(false)
+      navigate('/dashboard')
+    }, 800)
   }
 
   const handleGoogleSelect = (user) => {
@@ -257,9 +269,11 @@ const AuthPage = ({ onLogin }) => {
             <div className="p-8 lg:p-12">
               <div className="text-center mb-8">
                 <h2 className="text-4xl font-black mb-2 text-slate-900 tracking-tight">
-                  {mode === 'login' ? 'Sign In' : mode === 'signup' ? 'Sign Up' : mode === 'forgotPassword' ? 'Forgot PW' : mode === 'otpVerification' ? 'Verify OTP' : 'Reset PW'}
+                  {mode === 'login' ? 'Sign In' : mode === 'signup' ? 'Sign Up' : mode === 'forgotPassword' ? 'Forgot PW' : mode === 'otpVerification' ? 'Verify OTP' : mode === 'guest' ? 'Guest Mode' : 'Reset PW'}
                 </h2>
-                <p className="text-slate-400 font-medium">{mode === 'login' ? 'Welcome back, Coach!' : 'Join the next generation of leaders.'}</p>
+                <p className="text-slate-400 font-medium">
+                  {mode === 'guest' ? 'No progress will be saved in Guest Mode.' : mode === 'login' ? 'Welcome back, Coach!' : 'Join the next generation of leaders.'}
+                </p>
               </div>
 
               {error && <div className="mb-6 p-4 bg-red-50 border border-red-100 text-red-600 text-xs rounded-2xl font-bold flex gap-3 items-center"><AlertCircle size={18} /> {error}</div>}
@@ -267,8 +281,8 @@ const AuthPage = ({ onLogin }) => {
 
               {(mode === 'login' || mode === 'signup') && (
                 <div className="grid grid-cols-2 gap-4 mb-8">
-                  <button onClick={() => handleSocialClick('GitHub')} type="button" className="flex items-center justify-center gap-3 py-3 border border-slate-200 rounded-2xl hover:bg-slate-50 transition-all font-black text-slate-700 text-sm shadow-sm group">
-                    <Github size={20} className="group-hover:rotate-12 transition-transform" /> GitHub
+                  <button onClick={() => handleSocialClick('Guest')} type="button" className="flex items-center justify-center gap-3 py-3 border border-slate-200 rounded-2xl hover:bg-slate-50 transition-all font-black text-slate-700 text-sm shadow-sm group">
+                    <User size={20} className="group-hover:rotate-12 transition-transform text-teal-600" /> Guest User
                   </button>
                   <button onClick={() => handleSocialClick('Google')} type="button" className="flex items-center justify-center gap-3 py-3 border border-slate-200 rounded-2xl hover:bg-slate-50 transition-all font-black text-slate-700 text-sm shadow-sm group">
                     <Chrome size={20} className="text-blue-500 group-hover:scale-110 transition-transform" /> Google
@@ -276,7 +290,8 @@ const AuthPage = ({ onLogin }) => {
                 </div>
               )}
 
-              <form onSubmit={handleSubmit} className="space-y-5">
+              {(mode !== 'guest') && (
+                <form onSubmit={handleSubmit} className="space-y-5">
                 {mode === 'signup' && (
                   <div>
                     <label className="block text-[11px] font-black uppercase text-slate-400 mb-2 ml-1">Full Name</label>
@@ -322,10 +337,37 @@ const AuthPage = ({ onLogin }) => {
                     mode === 'signup' ? 'Create Account' :
                     mode === 'forgotPassword' ? 'Send OTP' :
                     mode === 'otpVerification' ? 'Verify Identity' :
+                    mode === 'guest' ? 'Enter as Guest' :
                     'Update Password'
                   )}
                 </button>
               </form>
+            )}
+
+            {mode === 'guest' && (
+              <form onSubmit={handleGuestLogin} className="space-y-6">
+                <div>
+                  <label className="block text-[11px] font-black uppercase text-slate-400 mb-2 ml-1">Choose a Username</label>
+                  <div className="relative group">
+                    <User className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-teal-600 transition-colors" size={20} />
+                    <input 
+                      type="text" 
+                      required 
+                      value={guestUsername} 
+                      onChange={e => setGuestUsername(e.target.value)} 
+                      className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:border-teal-500 focus:bg-white transition-all outline-none font-medium" 
+                      placeholder="Ex: Guest123" 
+                    />
+                  </div>
+                </div>
+                <button type="submit" disabled={loading} className="w-full py-5 bg-slate-900 text-white rounded-2xl font-black shadow-xl hover:bg-slate-800 transition-all flex items-center justify-center gap-3 active:scale-[0.98] disabled:opacity-50">
+                  {loading ? <Loader2 className="animate-spin" size={20} /> : 'Enter Coaching Dashboard'}
+                </button>
+                <button onClick={() => setMode('login')} type="button" className="w-full text-center text-xs font-black text-slate-400 hover:text-slate-600 uppercase tracking-widest">
+                  Back to Sign In
+                </button>
+              </form>
+            )}
 
               <div className="mt-8 text-center pt-8 border-t border-slate-100">
                 <p className="text-sm font-bold text-slate-400">

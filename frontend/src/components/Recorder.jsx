@@ -1,13 +1,14 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useImperativeHandle, forwardRef } from 'react'
 import { Mic, MicOff, RotateCcw, Send, AlertCircle, Loader2, FileText, RefreshCw } from 'lucide-react'
 import { API_BASE_URL } from '../services/api'
 
-const Recorder = ({ onRecordingComplete }) => {
+const Recorder = forwardRef(({ onRecordingComplete }, ref) => {
   // phases: idle | recording | transcribing | done | error
   const [phase, setPhase] = useState('idle')
   const [recordingTime, setRecordingTime] = useState(0)
   const [transcribedText, setTranscribedText] = useState('')
   const [error, setError] = useState('')
+  const [isAutoSubmitting, setIsAutoSubmitting] = useState(false) // ← NEW
 
   const mediaRecorderRef = useRef(null)
   const audioChunksRef = useRef([])
@@ -132,6 +133,10 @@ const Recorder = ({ onRecordingComplete }) => {
 
       setTranscribedText(text)
       setPhase('done')
+      if (isAutoSubmitting) {
+        onRecordingComplete(text.trim())
+        reset()
+      }
     } catch (err) {
       console.error('Transcription error:', err)
       setError(`Transcription failed: ${err.message}. Please try recording again.`)
@@ -163,6 +168,18 @@ const Recorder = ({ onRecordingComplete }) => {
     onRecordingComplete(transcribedText.trim())
     reset()
   }
+
+  useImperativeHandle(ref, () => ({
+    forceSubmit: () => {
+      setIsAutoSubmitting(true)
+      if (phase === 'recording') {
+        stopRecording();
+      } else if (phase === 'done' && transcribedText.trim()) {
+        onRecordingComplete(transcribedText.trim())
+        reset()
+      }
+    }
+  }))
 
   // ─── UI ────────────────────────────────────────────────────
 
@@ -443,6 +460,6 @@ const Recorder = ({ onRecordingComplete }) => {
       `}</style>
     </div>
   )
-}
+})
 
 export default Recorder

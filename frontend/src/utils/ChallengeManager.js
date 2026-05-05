@@ -135,6 +135,7 @@ export const getChallengeData = (email) => {
 }
 
 export const saveChallengeResult = (email, challengeId, score, points) => {
+  if (email && email.startsWith('guest_')) return // Skip saving for guest users
   const data = getChallengeData(email)
   if (!data.challenges[challengeId]) {
     data.challenges[challengeId] = { completed: false, bestScore: 0, attempts: 0 }
@@ -176,6 +177,22 @@ export const getEnrichedChallenges = (email, streak = 0) => {
       .map(([k]) => k)
   )
 
+  // Dynamically compute completed sessions
+  let totalSessionsCompleted = 0;
+  try {
+    const categories = [
+      'software_development', 'data_analytics', 'data_science_ml', 
+      'cloud_devops', 'cybersecurity', 'hr_round'
+    ];
+    categories.forEach(cat => {
+      const saved = localStorage.getItem(`progress_${email}_${cat}`);
+      if (saved) {
+        const p = JSON.parse(saved);
+        totalSessionsCompleted += Math.floor((p.currentQuestionIndex || 0) / 5);
+      }
+    });
+  } catch (e) {}
+
   return CHALLENGES.map(def => {
     const saved = data.challenges[def.id] || {}
     const isLocked = def.unlockedBy ? !completedIds.has(def.unlockedBy) : false
@@ -183,11 +200,19 @@ export const getEnrichedChallenges = (email, streak = 0) => {
     // Derive metric progress from different sources
     let metricProgress = saved.metricCount || 0
     if (def.metricKey === 'streak') metricProgress = streak
+    if (def.metricKey === 'sessionsCompleted') metricProgress = Math.max(metricProgress, totalSessionsCompleted)
+
+    let isCompleted = saved.completed || false;
+    if (!isCompleted && metricProgress >= def.metricTotal) {
+      isCompleted = true;
+      // We don't save to localStorage here to avoid side effects during render,
+      // but the UI will show it as completed!
+    }
 
     return {
       ...def,
       locked: isLocked,
-      completed: saved.completed || false,
+      completed: isCompleted,
       bestScore: saved.bestScore || 0,
       attempts: saved.attempts || 0,
       metricProgress: Math.min(metricProgress, def.metricTotal),

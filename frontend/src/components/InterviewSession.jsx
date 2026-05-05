@@ -5,11 +5,12 @@ import QuestionCard from './QuestionCard'
 import Recorder from './Recorder'
 import ResultPanel from './ResultPanel'
 import IdealAnswer from './IdealAnswer'
-import { ChevronRight, ChevronLeft, Home, RotateCcw, Clock, AlertCircle, Trophy } from 'lucide-react'
+import { ChevronRight, ChevronLeft, Home, RotateCcw, Clock, AlertCircle, Trophy, Zap } from 'lucide-react'
 import api from '../services/api'
 import { saveProgress, getProgress, resetProgress } from '../utils/progressManager'
 import { saveDailyProgress } from '../utils/dailyProgressManager'
 import { saveCategoryProgress } from '../utils/categoryProgressManager'
+import { incrementChallengeMetric, getChallengeData } from '../utils/ChallengeManager'
 
 const QUESTIONS_PER_SESSION = 5
 
@@ -42,7 +43,11 @@ const InterviewSession = ({ user, onLogout }) => {
   const [aiFeedback, setAiFeedback]             = useState(null)
   const [error, setError]                       = useState('')
   const [sessionComplete, setSessionComplete]   = useState(false)
+  const [showInstructions, setShowInstructions] = useState(true) // ← NEW: Show instructions first
+  const [sessionType, setSessionType]           = useState('easy')
+  const [sessionCounts, setSessionCounts]       = useState({ easy: 4, medium: 1, tough: 0 })
   const submissionInFlightRef = useRef(false)
+  const recorderRef = useRef(null) // ← NEW: Ref for recorder
   const idealAnswerRequestRef = useRef('')
 
   // Timer
@@ -50,6 +55,7 @@ const InterviewSession = ({ user, onLogout }) => {
   const [timerActive, setTimerActive]       = useState(false)
   const [timerExpired, setTimerExpired]     = useState(false)
   const [showTimeUpPopup, setShowTimeUpPopup] = useState(false)
+  const [loadingProgress, setLoadingProgress] = useState(0) // ← NEW: for circle progress
 
   // ── Load questions ─────────────────────────────────────────────────────────
   useEffect(() => {
@@ -60,9 +66,41 @@ const InterviewSession = ({ user, onLogout }) => {
         const data = await api.getQuestions(category)
         setAllQuestions(data)
 
-        const start = sessionIndex * QUESTIONS_PER_SESSION
-        const slice = data.slice(start, start + QUESTIONS_PER_SESSION)
-        setSessionQuestions(slice)
+        // Determine session type based on index (Cycle of 10)
+        // Pattern: E, M, E, M, T, E, M, E, M, T (4-4-2 spread)
+        const modIndex = sessionIndex % 10
+        let type = 'easy'
+        let counts = { easy: 4, medium: 1, tough: 0 }
+
+        if ([4, 9].includes(modIndex)) {
+          type = 'tough'
+          counts = { easy: 3, medium: 1, tough: 1 }
+        } else if ([1, 3, 6, 8].includes(modIndex)) {
+          type = 'medium'
+          counts = { easy: 3, medium: 2, tough: 0 }
+        }
+
+        setSessionType(type)
+        setSessionCounts(counts)
+
+        // Split questions into pools
+        const easyPool   = data.filter(q => q.difficulty?.toLowerCase() === 'easy')
+        const mediumPool = data.filter(q => q.difficulty?.toLowerCase() === 'medium')
+        const toughPool  = data.filter(q => q.difficulty?.toLowerCase() === 'hard' || q.difficulty?.toLowerCase() === 'tough')
+
+        const sample = (arr, n) => {
+          if (!arr || arr.length === 0) return []
+          const shuffled = [...arr].sort(() => 0.5 - Math.random())
+          return shuffled.slice(0, n)
+        }
+
+        const sampled = [
+          ...sample(easyPool, counts.easy),
+          ...sample(mediumPool, counts.medium),
+          ...sample(toughPool, counts.tough)
+        ]
+        
+        setSessionQuestions(sampled)
 
         const globalAnswered = getProgress(user.email, category)?.currentQuestionIndex ?? 0
         const sessionStart = sessionIndex * QUESTIONS_PER_SESSION
@@ -79,16 +117,32 @@ const InterviewSession = ({ user, onLogout }) => {
     fetchQuestions()
   }, [category, sessionIndex, user.email])
 
+  // Simulation for loading progress
+  useEffect(() => {
+    if (loading) {
+      const interval = setInterval(() => {
+        setLoadingProgress(prev => {
+          if (prev >= 98) return 98
+          const increment = Math.random() * 30
+          return Math.min(prev + increment, 98)
+        })
+      }, 50)
+      return () => clearInterval(interval)
+    } else {
+      setLoadingProgress(100)
+    }
+  }, [loading])
+
   // ── Timer per question ─────────────────────────────────────────────────────
   useEffect(() => {
-    if (sessionQuestions.length > 0 && !showResults) {
-      const diff = sessionQuestions[currentIdx]?.difficulty || 'medium'
-      const time = diff === 'easy' ? 180 : diff === 'hard' ? 480 : 300
+    if (sessionQuestions.length > 0 && !showResults && !showInstructions) { // ← Added !showInstructions
+      const diff = (sessionQuestions[currentIdx]?.difficulty || 'medium').toLowerCase()
+      const time = (diff === 'easy') ? 180 : (diff === 'hard' || diff === 'difficult') ? 480 : 300
       setTimeRemaining(time)
       setTimerActive(true)
       setTimerExpired(false)
     }
-  }, [currentIdx, sessionQuestions, showResults])
+  }, [currentIdx, sessionQuestions, showResults, showInstructions])
 
   useEffect(() => {
     let interval = null
@@ -98,8 +152,9 @@ const InterviewSession = ({ user, onLogout }) => {
           if (prev <= 1) {
             setTimerActive(false)
             setTimerExpired(true)
-            setShowTimeUpPopup(true)
-            setTimeout(() => { setShowTimeUpPopup(false); handleTimeUpAutoAdvance() }, 2000)
+            if (recorderRef.current) {
+              recorderRef.current.forceSubmit()
+            }
             return 0
           }
           return prev - 1
@@ -133,6 +188,20 @@ const InterviewSession = ({ user, onLogout }) => {
 
       const globalIndex = sessionIndex * QUESTIONS_PER_SESSION + currentIdx + 1
       saveProgress(user.email, category, globalIndex, allQuestions.length)
+
+      // --- Challenge Logic ---
+      if (evaluation.communication_score >= 95) {
+        incrementChallengeMetric(user.email, 'communication-expert', 1)
+      }
+      if (evaluation.overall_score === 100 || evaluation.technical_score === 100) {
+        incrementChallengeMetric(user.email, 'perfect-score', 1)
+      }
+      
+      const qTime = sessionQuestions[currentIdx]?.difficulty === 'easy' ? 180 : sessionQuestions[currentIdx]?.difficulty === 'hard' ? 480 : 300;
+      if (qTime - timeRemaining < 120) {
+        incrementChallengeMetric(user.email, 'speed-demon', 1)
+      }
+      // -----------------------
 
       setShowResults(true)
       setEvaluating(false)
@@ -228,6 +297,14 @@ const InterviewSession = ({ user, onLogout }) => {
       setCurrentIdx(currentIdx + 1)
     } else {
       setSessionComplete(true)
+      // Session finished
+      incrementChallengeMetric(user.email, 'first-victory', 1)
+      
+      // Check if category is completed
+      const progress = getProgress(user.email, category);
+      if (progress && progress.currentQuestionIndex >= progress.totalQuestions) {
+        incrementChallengeMetric(user.email, 'category-master', 1)
+      }
     }
   }
 
@@ -236,11 +313,9 @@ const InterviewSession = ({ user, onLogout }) => {
   }
 
   const handleResetSession = () => {
-    if (window.confirm('Restart this session from Q1? Progress for this session will be lost.')) {
-      const globalStart = sessionIndex * QUESTIONS_PER_SESSION
-      saveProgress(user.email, category, globalStart, allQuestions.length)
-      setCurrentIdx(0); resetQuestion()
-    }
+    const globalStart = sessionIndex * QUESTIONS_PER_SESSION
+    saveProgress(user.email, category, globalStart, allQuestions.length)
+    setCurrentIdx(0); resetQuestion()
   }
 
   const fmt = (s) => `${Math.floor(s / 60)}:${(s % 60).toString().padStart(2, '0')}`
@@ -250,18 +325,105 @@ const InterviewSession = ({ user, onLogout }) => {
   const timerColor = timeRemaining <= 30 ? '#ef4444' : timeRemaining <= 60 ? '#f59e0b' : '#10b981'
   const timerBg    = timeRemaining <= 30 ? 'rgba(239,68,68,0.1)' : timeRemaining <= 60 ? 'rgba(245,158,11,0.1)' : 'rgba(16,185,129,0.1)'
 
+  // ── Instructions Modal ───────────────────────────────────────────────────
+  if (showInstructions) {
+    const totalMinutes = (sessionCounts.easy * 3) + (sessionCounts.medium * 5) + (sessionCounts.tough * 8)
+
+    return (
+      <div className="app-layout">
+        <Navbar user={user} onLogout={onLogout} />
+        <main className="main-content" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div className="card animate-slide-up" style={{ maxWidth: 480, textAlign: 'center', padding: '40px 32px' }}>
+            <div style={{
+              width: 64, height: 64, borderRadius: '50%',
+              background: 'rgba(16, 185, 129, 0.1)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              margin: '0 auto 24px'
+            }}>
+              <Zap size={32} color="#10b981" />
+            </div>
+
+            <h2 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontSize: 24, color: '#0f172a', marginBottom: 12 }}>
+              Session Instructions
+            </h2>
+            <p style={{ fontSize: 15, color: '#64748b', marginBottom: 28, lineHeight: 1.6 }}>
+              This session consists of 5 questions designed to test your knowledge across different levels.
+            </p>
+
+            <div style={{ textAlign: 'left', background: '#f8fafc', borderRadius: 12, padding: '20px', marginBottom: 32 }}>
+              {sessionCounts.easy > 0 && (
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 12, fontSize: 14 }}>
+                  <span style={{ color: '#475569', fontWeight: 600 }}>• {sessionCounts.easy} Easy Questions</span>
+                  <span style={{ color: '#10b981', fontWeight: 700 }}>3 min each</span>
+                </div>
+              )}
+              {sessionCounts.medium > 0 && (
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 12, fontSize: 14 }}>
+                  <span style={{ color: '#475569', fontWeight: 600 }}>• {sessionCounts.medium} Medium Question{sessionCounts.medium > 1 ? 's' : ''}</span>
+                  <span style={{ color: '#f59e0b', fontWeight: 700 }}>5 min each</span>
+                </div>
+              )}
+              {sessionCounts.tough > 0 && (
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 12, fontSize: 14 }}>
+                  <span style={{ color: '#475569', fontWeight: 600 }}>• {sessionCounts.tough} Tough Question{sessionCounts.tough > 1 ? 's' : ''}</span>
+                  <span style={{ color: '#ef4444', fontWeight: 700 }}>8 min each</span>
+                </div>
+              )}
+              <div style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between', fontSize: 14 }}>
+                <span style={{ color: '#0f172a', fontWeight: 800 }}>Total Session Time</span>
+                <span style={{ color: '#0f172a', fontWeight: 800 }}>{totalMinutes} Minutes</span>
+              </div>
+            </div>
+
+            <p style={{ fontSize: 16, fontWeight: 700, color: '#0f172a', marginBottom: 24 }}>
+              All the best! 👍
+            </p>
+
+            <button
+              onClick={() => setShowInstructions(false)}
+              className="btn-primary"
+              style={{ width: '100%', justifyContent: 'center', padding: '14px' }}
+            >
+              Start the Session
+            </button>
+          </div>
+        </main>
+      </div>
+    )
+  }
+
   // ── Loading ────────────────────────────────────────────────────────────────
   if (loading) {
+    const radius = 30
+    const circum = 2 * Math.PI * radius
+    const offset = circum - (loadingProgress / 100) * circum
+
     return (
       <div className="app-layout">
         <Navbar user={user} onLogout={onLogout} />
         <main className="main-content" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ textAlign: 'center' }}>
-            <div style={{ width: 48, height: 48, border: '3px solid #e2e8f0', borderTopColor: '#10b981', borderRadius: '50%', animation: 'spin 0.8s linear infinite', margin: '0 auto 16px' }} />
-            <p style={{ color: '#64748b', fontSize: 15 }}>Loading session…</p>
+            <div style={{ position: 'relative', width: 80, height: 80, margin: '0 auto 20px' }}>
+              <svg width="80" height="80" style={{ transform: 'rotate(-90deg)' }}>
+                <circle cx="40" cy="40" r={radius} fill="none" stroke="#e2e8f0" strokeWidth="5" />
+                <circle
+                  cx="40" cy="40" r={radius} fill="none" stroke="#10b981" strokeWidth="5"
+                  strokeDasharray={circum}
+                  strokeDashoffset={offset}
+                  strokeLinecap="round"
+                  style={{ transition: 'stroke-dashoffset 0.3s ease-out' }}
+                />
+              </svg>
+              <div style={{
+                position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontSize: 16, color: '#10b981'
+              }}>
+                {Math.round(loadingProgress)}%
+              </div>
+            </div>
+            <p style={{ color: '#64748b', fontSize: 15, fontWeight: 500 }}>Preparing your questions…</p>
           </div>
         </main>
-        <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
       </div>
     )
   }
@@ -342,26 +504,25 @@ const InterviewSession = ({ user, onLogout }) => {
             {!showResults && (
               <div style={{
                 display: 'flex', alignItems: 'center', gap: 10,
-                background: timerBg, border: `1px solid ${timerColor}44`,
-                borderRadius: 12, padding: '10px 16px'
+                background: timerBg, border: `1.5px solid ${timerColor}88`,
+                borderRadius: 999, padding: '6px 16px',
+                boxShadow: `0 2px 8px ${timerColor}15`
               }}>
-                <div style={{ position: 'relative', width: 40, height: 40 }}>
-                  <svg width="40" height="40" style={{ transform: 'rotate(-90deg)' }}>
-                    <circle cx="20" cy="20" r="16" fill="none" stroke="#e2e8f0" strokeWidth="3" />
-                    <circle cx="20" cy="20" r="16" fill="none" stroke={timerColor} strokeWidth="3"
-                      strokeDasharray={`${(pct / 100) * 100} 100`} strokeLinecap="round" />
-                  </svg>
-                  <Clock size={14} color={timerColor} style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)' }} />
+                <Clock size={16} color={timerColor} />
+                <div style={{ 
+                  fontFamily: "'Plus Jakarta Sans', sans-serif", 
+                  fontSize: 20, fontWeight: 800, color: timerColor, 
+                  letterSpacing: '-0.5px' 
+                }}>
+                  {fmt(timeRemaining)}
                 </div>
-                <div>
-                  <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 20, fontWeight: 700, color: timerColor, lineHeight: 1 }}>
-                    {fmt(timeRemaining)}
-                  </div>
-                  <span className={`badge ${q?.difficulty === 'easy' ? 'badge-green' : q?.difficulty === 'hard' ? 'badge-red' : 'badge-yellow'}`}
-                    style={{ fontSize: 10, marginTop: 3 }}>
-                    {(q?.difficulty || 'medium').toUpperCase()}
-                  </span>
-                </div>
+                <div style={{ width: 1, height: 16, background: timerColor, opacity: 0.2 }} />
+                <span style={{ 
+                  fontSize: 9, fontWeight: 800, color: timerColor, 
+                  textTransform: 'uppercase', letterSpacing: '0.05em' 
+                }}>
+                  {(q?.difficulty || 'medium').toUpperCase()}
+                </span>
               </div>
             )}
 
@@ -418,7 +579,7 @@ const InterviewSession = ({ user, onLogout }) => {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
           <QuestionCard question={q} currentQuestion={currentIdx + 1} totalQuestions={QUESTIONS_PER_SESSION} />
 
-          {!showResults && <Recorder onRecordingComplete={handleRecordingComplete} />}
+          {!showResults && <Recorder ref={recorderRef} onRecordingComplete={handleRecordingComplete} />}
 
           {evaluating && (
             <div className="card" style={{ textAlign: 'center', padding: '40px 24px' }}>
@@ -486,17 +647,6 @@ const InterviewSession = ({ user, onLogout }) => {
         </div>
       </main>
 
-      {showTimeUpPopup && (
-        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100 }}>
-          <div style={{ background: 'white', borderRadius: 16, padding: 40, maxWidth: 380, textAlign: 'center', boxShadow: '0 25px 60px rgba(0,0,0,0.3)' }}>
-            <div style={{ width: 64, height: 64, borderRadius: '50%', background: '#fee2e2', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
-              <Clock size={32} color="#ef4444" />
-            </div>
-            <h2 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: 22, marginBottom: 8 }}>Time's Up!</h2>
-            <p style={{ color: '#64748b', fontSize: 14 }}>Moving to next question…</p>
-          </div>
-        </div>
-      )}
 
       <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
     </div>

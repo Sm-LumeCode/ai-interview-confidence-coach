@@ -197,10 +197,9 @@ const ChallengeNode = ({ ch, index, nodeNum, yOffset, isCompleted, onStart }) =>
             zIndex: 5
           }} />
 
-          {/* White Card */}
+          {/* White Card - Static */}
           <motion.div
-            onClick={(e) => e.stopPropagation()} // Prevent triggering background ripple
-            whileHover={{ scale: ch.locked ? 1 : 1.02 }}
+            onClick={(e) => e.stopPropagation()} 
             style={{
               background: '#ffffff',
               color: '#0f172a',
@@ -224,20 +223,18 @@ const ChallengeNode = ({ ch, index, nodeNum, yOffset, isCompleted, onStart }) =>
                 <div style={{ width: `${pct}%`, height: '100%', background: ch.completed ? '#10b981' : ch.color, borderRadius: 999 }} />
               </div>
             </div>
-            <button
-              onClick={() => !ch.locked && onStart(ch.id)}
-              disabled={ch.locked}
+            {/* Status Indicator (Static) */}
+            <div
               style={{
-                width: '100%', padding: '10px', borderRadius: 10, border: 'none',
+                width: '100%', padding: '10px', borderRadius: 10, textAlign: 'center',
                 background: ch.completed ? '#ecfdf5' : ch.locked ? '#f8fafc' : `${ch.color}15`,
                 color: ch.completed ? '#10b981' : ch.locked ? '#94a3b8' : ch.color,
                 fontSize: 13, fontWeight: 800,
-                cursor: ch.locked ? 'not-allowed' : 'pointer',
-                transition: 'all 0.2s'
+                userSelect: 'none'
               }}
             >
               {ch.completed ? 'Completed' : ch.locked ? 'Locked' : 'Pending'}
-            </button>
+            </div>
           </motion.div>
         </div>
       </motion.div>

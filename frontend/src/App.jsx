@@ -9,6 +9,8 @@ import Profile from './components/Profile'
 import Progress from './components/Progress'
 import Challenges from './components/Challenges'
 import ChallengeSession from './components/ChallengeSession'
+import BrowseQuestions from './components/BrowseQuestions'
+import FloatingHelpBot from './components/FloatingHelpBot'
 
 function App() {
   const [user, setUser] = useState(null)
@@ -56,6 +58,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/browse" element={<BrowseQuestions />} />
         <Route path="/signup" element={<AuthPage onLogin={handleLogin} />} />
         <Route path="/login"  element={<AuthPage onLogin={handleLogin} />} />
         <Route path="/dashboard" element={user ? <Dashboard user={user} onLogout={handleLogout} /> : <Navigate to="/login" />} />
@@ -73,6 +76,7 @@ function App() {
         <Route path="/challenges" element={user ? <Challenges user={user} onLogout={handleLogout} /> : <Navigate to="/login" />} />
         <Route path="/challenge/:challengeId" element={user ? <ChallengeSession user={user} onLogout={handleLogout} /> : <Navigate to="/login" />} />
       </Routes>
+      <FloatingHelpBot />
     </Router>
   )
 }

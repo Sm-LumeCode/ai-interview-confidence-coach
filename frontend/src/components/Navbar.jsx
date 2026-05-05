@@ -201,8 +201,11 @@ const Navbar = ({ user, onLogout }) => {
             </div>
             {!collapsed && (
               <div style={{ minWidth: 0 }}>
-                <div style={{ fontSize: 13, fontWeight: 600, color: '#e2e8f0', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                <div style={{ fontSize: 13, fontWeight: 600, color: '#e2e8f0', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', display: 'flex', alignItems: 'center', gap: 6 }}>
                   {user?.username || 'User'}
+                  {user?.isGuest && (
+                    <span style={{ fontSize: 9, background: '#1e2430', color: '#10b981', padding: '1px 6px', borderRadius: 4, fontWeight: 800, border: '1px solid #10b98133', textTransform: 'uppercase' }}>Guest</span>
+                  )}
                 </div>
                 <div style={{ fontSize: 11, color: '#475569', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                   {user?.email || ''}

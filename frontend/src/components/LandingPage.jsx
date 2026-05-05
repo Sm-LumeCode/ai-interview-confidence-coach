@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion, useAnimation, useInView } from 'framer-motion'
 import { 
   Mic2, 
@@ -35,6 +35,10 @@ const LandingPage = () => {
     } else {
       navigate('/login')
     }
+  }
+
+  const handleBrowse = () => {
+    window.dispatchEvent(new CustomEvent('open-app-support'))
   }
 
   return (
@@ -116,10 +120,14 @@ const LandingPage = () => {
               >
                 Start Free Session <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </button>
-              <button className="px-8 py-4 bg-white text-slate-700 border border-slate-200 rounded-2xl font-bold hover:bg-slate-50 transition-all flex items-center gap-2 shadow-sm">
+              <button 
+                onClick={handleBrowse}
+                className="px-8 py-4 bg-white text-slate-700 border border-slate-200 rounded-2xl font-bold hover:bg-slate-50 transition-all flex items-center gap-2 shadow-sm"
+              >
                 <Search size={18} /> Browse Questions
               </button>
             </div>
+
             <div className="flex items-center justify-center gap-10 text-sm text-slate-400 font-medium lowercase">
               <div className="flex items-center gap-2">
                 <CheckCircle2 size={16} className="text-[hsl(168,60%,36%)]" /> voice enabled
@@ -277,31 +285,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-24 px-6">
-        <div className="max-w-5xl mx-auto">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="relative bg-[hsl(168,60%,36%)] rounded-[2.5rem] p-12 md:p-24 text-center overflow-hidden shadow-2xl"
-          >
-            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.1),transparent)]" />
-            <div className="relative z-10">
-              <h2 className="text-4xl md:text-5xl font-black text-white mb-6">Ready to Ace Your Next Interview?</h2>
-              <p className="text-teal-50 text-lg mb-12 max-w-xl mx-auto">
-                Join thousands of candidates who built their confidence with InterviewCoach today.
-              </p>
-              <button 
-                onClick={handleStart}
-                className="group flex items-center gap-2 px-10 py-5 bg-white text-[hsl(168,60%,36%)] rounded-2xl font-bold shadow-xl hover:bg-slate-50 transition-all mx-auto"
-              >
-                Join Now <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-              </button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+
 
       <footer className="py-12 border-t border-slate-200 text-center text-slate-400 text-sm font-medium">
         <p>© 2024 InterviewCoach AI. All rights reserved.</p>
