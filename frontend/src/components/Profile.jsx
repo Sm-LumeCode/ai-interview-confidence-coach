@@ -7,6 +7,7 @@ import {
   ChevronRight, Trash2, Key, Send, Users, LogOut, CheckCircle
 } from 'lucide-react'
 import { getChallengeData, getEnrichedChallenges, LEVELS } from '../utils/ChallengeManager'
+import { API_BASE_URL } from '../services/api'
 
 const Profile = ({ user, onLogout, onUpdateUser }) => {
   const [isEditing, setIsEditing] = useState(false)
@@ -147,7 +148,7 @@ const Profile = ({ user, onLogout, onUpdateUser }) => {
       const enriched = getEnrichedChallenges(user.email, 0)
       const currentLevel = (enriched.filter(c => c.completed).length > 0) ? Math.max(...enriched.filter(c => c.completed).map(c => c.level)) : 1
       
-      const res = await fetch('http://localhost:8000/api/auth/send-report', {
+      const res = await fetch(`${API_BASE_URL}/auth/send-report`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

@@ -200,7 +200,7 @@ const SessionList = ({ user, onLogout }) => {
               <AlertCircle size={24} color="#ef4444" />
             </div>
             <h2 style={{ fontSize: 18, color: '#0f172a', marginBottom: 8 }}>Failed to Load Questions</h2>
-            <p style={{ color: '#64748b', fontSize: 14, marginBottom: 24 }}>{error} Make sure the backend is running at http://localhost:8000.</p>
+            <p style={{ color: '#64748b', fontSize: 14, marginBottom: 24 }}>{error} Please check your internet connection or try again later.</p>
             <div style={{ display: 'flex', gap: 12 }}>
               <button onClick={() => navigate('/dashboard')} className="btn-secondary" style={{ flex: 1, justifyContent: 'center' }}>Back to Dashboard</button>
               <button 

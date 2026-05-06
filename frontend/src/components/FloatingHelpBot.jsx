@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { HelpCircle, X, Send, Brain } from 'lucide-react'
+import { API_BASE_URL } from '../services/api'
 
 const FloatingHelpBot = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -28,7 +29,7 @@ const FloatingHelpBot = () => {
     try {
       setErrorMsg('')
       console.log('Sending chat request:', { message, history: chat })
-      const response = await fetch('http://127.0.0.1:8000/api/chat', {
+      const response = await fetch(`${API_BASE_URL}/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message, history: chat })
@@ -58,7 +59,7 @@ const FloatingHelpBot = () => {
     setLoading(true)
     setErrorMsg('Testing connection...')
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/test-chat', {
+      const response = await fetch(`${API_BASE_URL}/test-chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: 'test', history: [] })
