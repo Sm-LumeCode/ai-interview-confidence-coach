@@ -10,6 +10,11 @@ frontend/.env
 backend/firebase-service-account*.json
 backend/serviceAccountKey*.json
 backend/firebase-credentials*.json
+backend/firebase-key.json
+backend/*.json
+!backend/package.json
+!backend/package-lock.json
+!backend/.env.example
 
 # Python artifacts
 __pycache__/
