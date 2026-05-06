@@ -2,7 +2,7 @@
 
 An AI-powered interview preparation platform designed to help candidates build confidence through realistic role-based simulations, real-time feedback, and performance tracking.
 
-### 🔗 [Live Demo](https://ai-interview-coach-pink-three.vercel.app/)
+Demo link: [InterviewCoach](https://ai-interview-coach-pink-three.vercel.app/)
 
 ---
 
