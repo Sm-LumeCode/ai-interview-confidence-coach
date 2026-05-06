@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Navbar from './Navbar'
 import RoleSelector, { categories } from './RoleSelector'
 import { getAllProgress, syncProgressFromBackend } from '../utils/progressManager'
 import { getDailyProgressTimeline, syncDailyProgressFromBackend } from '../utils/dailyProgressManager'
@@ -133,9 +132,7 @@ const Dashboard = ({ user, onLogout }) => {
 
   return (
     <div className="app-layout" style={{ minHeight: '100vh', background: '#f8fafc' }}>
-      <Navbar user={user} onLogout={onLogout} />
-
-      <main className="main-content" style={{ paddingTop: 0, position: 'relative', background: 'transparent' }}>
+      <main className="main-content" style={{ paddingTop: '20px', position: 'relative', background: 'transparent' }}>
         {/* Background Mesh Decor */}
         <div style={{
           position: 'fixed', top: 0, right: 0, width: '40vw', height: '40vw',

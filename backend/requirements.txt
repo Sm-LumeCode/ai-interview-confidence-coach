@@ -14,3 +14,4 @@ httpx==0.28.1
 colorama==0.4.6
 click==8.3.3
 groq
+gunicorn==23.0.0
