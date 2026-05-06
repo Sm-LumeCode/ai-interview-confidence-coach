@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Navbar from './Navbar'
 import RoleSelector, { categories } from './RoleSelector'
 import { getAllProgress, syncProgressFromBackend } from '../utils/progressManager'
 import { getDailyProgressTimeline, syncDailyProgressFromBackend } from '../utils/dailyProgressManager'
@@ -36,7 +37,7 @@ const Dashboard = ({ user, onLogout }) => {
   const navigate = useNavigate()
   const [userProgress, setUserProgress] = useState({})
   const [stats, setStats] = useState({ totalQuestions: 0, streak: 0, avgScore: 0 })
-  const [activeCategory, setActiveCategory] = useState('')
+
 
   const loadLocalData = () => {
     const roadmapProgress = getAllProgress(user.email)
@@ -101,38 +102,20 @@ const Dashboard = ({ user, onLogout }) => {
     }
   }, [user.email])
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 150
-      for (const cat of categories) {
-        const element = document.getElementById(`category-${cat.id}`)
-        if (element) {
-          const { offsetTop, offsetHeight } = element
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveCategory(cat.id)
-          }
-        }
-      }
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+
 
   // Clicking a category goes to the sessions list, not directly into interview
   const handleSelectRole = (categoryId) => {
     navigate(`/sessions/${categoryId}`)
   }
 
-  const scrollToCategory = (categoryId) => {
-    const element = document.getElementById(`category-${categoryId}`)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
+
 
   return (
     <div className="app-layout" style={{ minHeight: '100vh', background: '#f8fafc' }}>
-      <main className="main-content" style={{ paddingTop: '20px', position: 'relative', background: 'transparent' }}>
+      <Navbar user={user} onLogout={onLogout} />
+
+      <main className="main-content" style={{ paddingTop: 0, position: 'relative', background: 'transparent' }}>
         {/* Background Mesh Decor */}
         <div style={{
           position: 'fixed', top: 0, right: 0, width: '40vw', height: '40vw',
@@ -140,49 +123,7 @@ const Dashboard = ({ user, onLogout }) => {
           zIndex: -1, pointerEvents: 'none'
         }} />
         
-        {/* Sticky Top Navbar for Categories */}
-        <div style={{
-          position: 'sticky',
-          top: 0,
-          background: 'rgba(255, 255, 255, 0.85)',
-          backdropFilter: 'blur(16px)',
-          zIndex: 40,
-          padding: '16px 36px',
-          margin: '0 -36px 32px -36px',
-          borderBottom: '1px solid rgba(16, 185, 129, 0.1)',
-          display: 'flex',
-          gap: 12,
-          overflowX: 'auto',
-          boxShadow: '0 4px 30px rgba(0,0,0,0.03)',
-        }}>
-          {categories.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => scrollToCategory(cat.id)}
-              style={{
-                padding: '10px 20px',
-                borderRadius: 99,
-                background: activeCategory === cat.id ? THEME_COLOR : 'white',
-                color: activeCategory === cat.id ? 'white' : '#64748b',
-                border: `1px solid ${activeCategory === cat.id ? THEME_COLOR : '#e2e8f0'}`,
-                cursor: 'pointer',
-                whiteSpace: 'nowrap',
-                fontWeight: 700,
-                fontSize: 13,
-                textTransform: 'uppercase',
-                letterSpacing: '0.03em',
-                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                display: 'flex',
-                alignItems: 'center',
-                gap: 8,
-                boxShadow: activeCategory === cat.id ? `0 8px 20px ${THEME_COLOR}44` : '0 2px 8px rgba(0,0,0,0.02)'
-              }}
-            >
-              <cat.icon size={15} />
-              {cat.name}
-            </button>
-          ))}
-        </div>
+
 
         {/* Header Section */}
         <div style={{ marginBottom: 48, position: 'relative' }}>
