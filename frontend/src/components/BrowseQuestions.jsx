@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Search, ArrowLeft, ChevronRight, MessageSquare, Zap, Target, Users, Code, Database, Brain, Cloud, Shield } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
+import api from '../services/api'
 
 const categories = [
   { id: 'software_development', name: 'Software Development', icon: Code, color: '#3b82f6' },
@@ -28,11 +29,8 @@ const BrowseQuestions = () => {
   const fetchQuestions = async (categoryId) => {
     setLoading(true)
     try {
-      const response = await fetch(`http://localhost:8000/api/questions/${categoryId}`)
-      if (response.ok) {
-        const data = await response.json()
-        setQuestions(data)
-      }
+      const data = await api.getQuestions(categoryId)
+      setQuestions(data)
     } catch (error) {
       console.error('Error fetching questions:', error)
     } finally {

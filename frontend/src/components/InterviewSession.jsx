@@ -199,7 +199,7 @@ const InterviewSession = ({ user, onLogout }) => {
 
       // 3. Save roadmap progress (unlocking logic)
       const globalIndex = sessionIndex * QUESTIONS_PER_SESSION + currentIdx + 1
-      saveProgress(user.email, categoryId, globalIndex, allQuestions.length)
+      saveProgress(user.email, category, globalIndex, allQuestions.length)
       
       setResults(evaluation)
 
