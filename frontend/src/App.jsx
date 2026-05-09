@@ -8,6 +8,7 @@ import SessionList from './components/SessionList'
 import Profile from './components/Profile'
 import Progress from './components/Progress'
 import Challenges from './components/Challenges'
+import Improvements from './components/Improvements'
 import ChallengeSession from './components/ChallengeSession'
 import BrowseQuestions from './components/BrowseQuestions'
 import FloatingHelpBot from './components/FloatingHelpBot'
@@ -85,6 +86,7 @@ function App() {
 
         <Route path="/profile"    element={user ? <Profile user={user} onLogout={handleLogout} onUpdateUser={handleUpdateUser} /> : <Navigate to="/login" />} />
         <Route path="/progress"   element={user ? <Progress user={user} onLogout={handleLogout} /> : <Navigate to="/login" />} />
+        <Route path="/improvements" element={user ? <Improvements user={user} onLogout={handleLogout} /> : <Navigate to="/login" />} />
         <Route path="/challenges" element={user ? <Challenges user={user} onLogout={handleLogout} /> : <Navigate to="/login" />} />
         <Route path="/challenge/:challengeId" element={user ? <ChallengeSession user={user} onLogout={handleLogout} /> : <Navigate to="/login" />} />
       </Routes>

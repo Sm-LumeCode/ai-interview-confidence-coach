@@ -1,5 +1,6 @@
 import json
 import re
+from typing import Optional
 
 from services.groq_client import call_groq_chat
 
@@ -34,7 +35,7 @@ Return exactly this JSON shape:
 }}"""
 
 
-def _call_llm(prompt: str, timeout: int = 25) -> str | None:
+def _call_llm(prompt: str, timeout: int = 25) -> Optional[str]:
     return call_groq_chat(
         prompt,
         timeout=timeout,
@@ -43,7 +44,7 @@ def _call_llm(prompt: str, timeout: int = 25) -> str | None:
     )
 
 
-def _extract_json(raw: str) -> dict | None:
+def _extract_json(raw: str) -> Optional[dict]:
     if not raw:
         return None
 

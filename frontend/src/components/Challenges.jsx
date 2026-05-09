@@ -343,7 +343,24 @@ const Challenges = ({ user, onLogout }) => {
     <div className="app-layout">
       <Navbar user={user} onLogout={onLogout} />
 
-      <main className="main-content" style={{ background: '#f8fafc', minHeight: '100vh', display: 'flex', flexDirection: 'column', paddingTop: '32px' }}>
+      <main className="main-content" style={{ background: '#f8fafc', minHeight: '100vh', display: 'flex', flexDirection: 'column', paddingTop: '24px' }}>
+        
+        {/* ── New Heading Section ── */}
+        <div style={{ marginBottom: 32 }}>
+          <h1 style={{ 
+            fontFamily: "'Plus Jakarta Sans', sans-serif", 
+            fontSize: 32, 
+            fontWeight: 800, 
+            color: '#0f172a', 
+            marginBottom: 8,
+            letterSpacing: '-0.02em'
+          }}>
+            Challenges
+          </h1>
+          <p style={{ fontSize: 16, color: '#64748b', fontWeight: 500 }}>
+            Sharpen your interview skills daily
+          </p>
+        </div>
         
         {/* ── Top Premium Light Green Stats Cards ── */}
         <div style={{ display: 'flex', gap: 20, marginBottom: 16, flexWrap: 'wrap' }}>

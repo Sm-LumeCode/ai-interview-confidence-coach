@@ -234,6 +234,49 @@ class FirebaseService:
         daily = self._db.reference("users").child(uid).child("dailyProgress").get()
         return daily if isinstance(daily, dict) else {}
 
+    def save_improvement_question(self, email: str, question_data: Dict[str, Any]) -> None:
+        uid = self._get_uid_by_email(email)
+        if not uid:
+            return
+        
+        # Use a hash of the question text as the key to avoid duplicates
+        question_text = question_data.get("question", "")
+        question_id = hashlib.sha256(question_text.encode("utf-8")).hexdigest()[:16]
+        
+        ref = self._db.reference("users").child(uid).child("improvements").child("saved").child(question_id)
+        ref.set({
+            **question_data,
+            "savedAt": _utc_now()
+        })
+
+    def get_improvement_questions(self, email: str) -> Dict[str, Any]:
+        uid = self._get_uid_by_email(email)
+        if not uid:
+            return {}
+        data = self._db.reference("users").child(uid).child("improvements").child("saved").get()
+        return data if isinstance(data, dict) else {}
+
+    def save_weak_question(self, email: str, question_data: Dict[str, Any]) -> None:
+        uid = self._get_uid_by_email(email)
+        if not uid:
+            return
+        
+        question_text = question_data.get("question", "")
+        question_id = hashlib.sha256(question_text.encode("utf-8")).hexdigest()[:16]
+        
+        ref = self._db.reference("users").child(uid).child("improvements").child("weak").child(question_id)
+        ref.set({
+            **question_data,
+            "detectedAt": _utc_now()
+        })
+
+    def get_weak_questions(self, email: str) -> Dict[str, Any]:
+        uid = self._get_uid_by_email(email)
+        if not uid:
+            return {}
+        data = self._db.reference("users").child(uid).child("improvements").child("weak").get()
+        return data if isinstance(data, dict) else {}
+
     def _get_uid_by_email(self, email: str) -> Optional[str]:
         uid = self._db.reference("userEmails").child(_email_key(email.strip().lower())).get()
         return uid if isinstance(uid, str) else None

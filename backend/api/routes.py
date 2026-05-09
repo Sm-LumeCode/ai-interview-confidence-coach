@@ -57,6 +57,23 @@ class ChatRequest(BaseModel):
     message: str
     history: Optional[List[dict]] = []
 
+class ImprovementSaveRequest(BaseModel):
+    email: str
+    question: str
+    category: str
+    previousAnswer: str
+    technicalScore: int
+    confidenceScore: int
+
+class WeakQuestionSaveRequest(BaseModel):
+    email: str
+    question: str
+    category: str
+    previousAnswer: str
+    technicalScore: int
+    confidenceScore: int
+    reason: str # e.g. "low_score", "skipped", "filler_words"
+
 
 def _firebase_or_503():
     try:
@@ -561,3 +578,103 @@ def get_all_daily_progress(email: str):
     except Exception as e:
         print(f"❌ Get Daily Progress Error: {e}")
         return {}
+
+# --- Improvements Endpoints ---
+
+@router.post("/improvements/save")
+def save_improvement(request: ImprovementSaveRequest):
+    if not request.email or request.email.startswith('guest_'):
+        return {"status": "skipped"}
+    try:
+        _firebase_or_503().save_improvement_question(request.email, request.dict())
+        return {"status": "saved"}
+    except Exception as e:
+        print(f"❌ Save Improvement Error: {e}")
+        raise HTTPException(status_code=500, detail="Failed to save improvement question")
+
+@router.get("/improvements/{email}")
+def get_improvements(email: str):
+    if not email or email.startswith('guest_'):
+        return {}
+    try:
+        data = _firebase_or_503().get_improvement_questions(email)
+        return data
+    except Exception as e:
+        print(f"❌ Get Improvements Error: {e}")
+        return {}
+
+@router.post("/improvements/weak/save")
+def save_weak_question(request: WeakQuestionSaveRequest):
+    if not request.email or request.email.startswith('guest_'):
+        return {"status": "skipped"}
+    try:
+        _firebase_or_503().save_weak_question(request.email, request.dict())
+        return {"status": "saved"}
+    except Exception as e:
+        print(f"❌ Save Weak Question Error: {e}")
+        raise HTTPException(status_code=500, detail="Failed to save weak question")
+
+@router.get("/improvements/weak/{email}")
+def get_weak_questions(email: str):
+    if not email or email.startswith('guest_'):
+        return {}
+    try:
+        data = _firebase_or_503().get_weak_questions(email)
+        return data
+    except Exception as e:
+        print(f"❌ Get Weak Questions Error: {e}")
+        return {}
+
+@router.get("/improvements/recommendations/{email}")
+def get_recommendations(email: str):
+    if not email or email.startswith('guest_'):
+        return {"recommendations": []}
+    
+    try:
+        # 1. Fetch weak questions to understand areas of improvement
+        weak_data = _firebase_or_503().get_weak_questions(email)
+        saved_data = _firebase_or_503().get_improvement_questions(email)
+        
+        all_questions = []
+        if isinstance(weak_data, dict):
+            all_questions.extend([q.get("question", "") for q in weak_data.values()])
+        if isinstance(saved_data, dict):
+            all_questions.extend([q.get("question", "") for q in saved_data.values()])
+            
+        if not all_questions:
+            return {"recommendations": ["Core Fundamentals", "Problem Solving", "Communication Skills"]}
+
+        # 2. Use LLM to generate recommendations
+        api_key = os.getenv("GROQ_API_KEY")
+        if not api_key:
+            return {"recommendations": ["Technical Knowledge", "Confidence Building"]}
+            
+        from groq import Groq
+        client = Groq(api_key=api_key)
+        
+        prompt = f"""Based on these interview questions that the user struggled with or saved for review, recommend 4 specific topics or domains they should focus on practicing.
+Questions:
+{chr(10).join(all_questions[:10])}
+
+Return only a JSON array of strings. Example: ["OOPS Concepts", "System Design", "Database Indexing", "Behavioral Answers"]"""
+
+        completion = client.chat.completions.create(
+            messages=[{"role": "user", "content": prompt}],
+            model=os.getenv("GROQ_MODEL", "llama-3.1-8b-instant"),
+            temperature=0.4,
+            max_tokens=200,
+        )
+        
+        response_text = completion.choices[0].message.content
+        # Extract JSON array if LLM added extra text
+        import re
+        match = re.search(r'\[.*\]', response_text, re.DOTALL)
+        if match:
+            recommendations = json.loads(match.group())
+            return {"recommendations": recommendations}
+        
+        return {"recommendations": ["Advanced Topics", "Communication"]}
+        
+    except Exception as e:
+        print(f"❌ Get Recommendations Error: {e}")
+        return {"recommendations": ["General Interview Prep"]}

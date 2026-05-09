@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import {
   LayoutDashboard, TrendingUp, Trophy, User, LogOut,
-  Code2, ChevronRight, PanelLeftClose, PanelLeftOpen
+  Code2, ChevronRight, PanelLeftClose, PanelLeftOpen, Bookmark
 } from 'lucide-react'
 
 const Navbar = ({ user, onLogout }) => {
@@ -25,10 +25,11 @@ const Navbar = ({ user, onLogout }) => {
     location.pathname === path || location.pathname.startsWith(path + '/')
 
   const candidateLinks = [
-    { to: '/dashboard',  icon: LayoutDashboard, label: 'Dashboard' },
-    { to: '/progress',   icon: TrendingUp,      label: 'Analytics'  },
-    { to: '/challenges', icon: Trophy,           label: 'Challenges' },
-    { to: '/profile',    icon: User,             label: 'Profile'    },
+    { to: '/dashboard',    icon: LayoutDashboard, label: 'Dashboard' },
+    { to: '/improvements', icon: Bookmark,         label: 'Improvements' },
+    { to: '/progress',     icon: TrendingUp,      label: 'Analytics'  },
+    { to: '/challenges',   icon: Trophy,           label: 'Challenges' },
+    { to: '/profile',      icon: User,             label: 'Profile'    },
   ]
 
   const W = collapsed ? 68 : 260

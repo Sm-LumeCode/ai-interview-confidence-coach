@@ -11,6 +11,8 @@ import { saveProgress, getProgress, resetProgress, syncProgressFromBackend } fro
 import { saveDailyProgress, syncDailyProgressFromBackend } from '../utils/dailyProgressManager'
 import { saveCategoryProgress } from '../utils/categoryProgressManager'
 import { incrementChallengeMetric, getChallengeData } from '../utils/ChallengeManager'
+import { saveForReview, saveWeakQuestion } from '../utils/improvementsManager'
+import { Bookmark, Star } from 'lucide-react'
 
 const QUESTIONS_PER_SESSION = 5
 
@@ -20,7 +22,8 @@ const CATEGORY_MAP = {
   data_science_ml:      'Data Science & ML',
   cloud_devops:         'Cloud & DevOps',
   cybersecurity:        'Cybersecurity',
-  hr_round:             'HR Round'
+  hr_round:             'HR Round',
+  improvements:         'Personalized Revision'
 }
 
 const InterviewSession = ({ user, onLogout }) => {
@@ -56,6 +59,7 @@ const InterviewSession = ({ user, onLogout }) => {
   const [timerExpired, setTimerExpired]     = useState(false)
   const [showTimeUpPopup, setShowTimeUpPopup] = useState(false)
   const [loadingProgress, setLoadingProgress] = useState(0) // ← NEW: for circle progress
+  const [isSaved, setIsSaved] = useState(false) // ← NEW: for review later toast
 
   // ── Load questions ─────────────────────────────────────────────────────────
   useEffect(() => {
@@ -70,6 +74,28 @@ const InterviewSession = ({ user, onLogout }) => {
             syncProgressFromBackend(user.email),
             syncDailyProgressFromBackend(user.email)
           ]).catch(e => console.error("Session sync failed:", e))
+        }
+
+        if (category === 'improvements') {
+          // Specialized practice mode for revision
+          const saved = await getSavedReviewQuestions(user.email)
+          const weak = await getWeakQuestions(user.email)
+          const pool = [...saved, ...weak]
+          
+          if (pool.length === 0) {
+            setError('No questions found for revision. Save some questions first!')
+            setLoading(false)
+            return
+          }
+
+          // Shuffle and take 5 (or less if pool is smaller)
+          const sampled = pool.sort(() => 0.5 - Math.random()).slice(0, QUESTIONS_PER_SESSION)
+          setSessionQuestions(sampled)
+          setAllQuestions(pool)
+          setSessionType('revision')
+          setSessionCounts({ easy: 0, medium: 0, tough: 0, revision: sampled.length })
+          setLoading(false)
+          return
         }
 
         const data = await api.getQuestions(category)
@@ -202,6 +228,17 @@ const InterviewSession = ({ user, onLogout }) => {
       saveProgress(user.email, category, globalIndex, allQuestions.length)
       
       setResults(evaluation)
+      
+      // Auto-save weak questions if scores are low (<60%)
+      if (evaluation.technical_score < 60 || evaluation.communication_score < 60) {
+        saveWeakQuestion(user.email, {
+          question: q.question,
+          category: q.category || category, // Use original category if available
+          previousAnswer: answerText,
+          technicalScore: evaluation.technical_score,
+          confidenceScore: evaluation.communication_score
+        })
+      }
 
       // --- Challenge Logic ---
       if (evaluation.communication_score >= 95) {
@@ -303,6 +340,25 @@ const InterviewSession = ({ user, onLogout }) => {
     idealAnswerRequestRef.current = ''
     setShowResults(false); setResults(null); setIdealAnswer(null)
     setAiFeedback(null); setGeneratingFeedback(false); setSubmittedAnswer('')
+    setIsSaved(false)
+  }
+
+  const handleReviewLater = async () => {
+    if (isSaved) return
+    try {
+      const q = sessionQuestions[currentIdx]
+      await saveForReview(user.email, {
+        question: q.question,
+        category: category,
+        previousAnswer: submittedAnswer,
+        technicalScore: results.technical_score,
+        confidenceScore: results.communication_score
+      })
+      setIsSaved(true)
+      setTimeout(() => setIsSaved(false), 3000)
+    } catch (err) {
+      console.error("Failed to save for review:", err)
+    }
   }
 
   const handleNextQuestion = () => {
@@ -638,7 +694,25 @@ const InterviewSession = ({ user, onLogout }) => {
 
               {idealAnswer && !generatingAnswer && <IdealAnswer idealAnswer={idealAnswer} />}
 
-              <div className="card" style={{ padding: '16px 24px' }}>
+              <div className="card" style={{ padding: '16px 24px', position: 'relative' }}>
+                <AnimatePresence>
+                  {isSaved && (
+                    <motion.div 
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0 }}
+                      style={{ 
+                        position: 'absolute', top: -40, left: '50%', transform: 'translateX(-50%)',
+                        background: '#10b981', color: 'white', padding: '6px 16px', borderRadius: 8,
+                        fontSize: 12, fontWeight: 700, boxShadow: '0 4px 12px rgba(16,185,129,0.3)',
+                        display: 'flex', alignItems: 'center', gap: 6, zIndex: 100
+                      }}
+                    >
+                      <Star size={14} fill="white" /> Added to Improvements
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
                 <div style={{ display: 'flex', gap: 12 }}>
                   <button
                     onClick={handlePreviousQuestion}
@@ -648,6 +722,21 @@ const InterviewSession = ({ user, onLogout }) => {
                   >
                     <ChevronLeft size={15} /> Previous
                   </button>
+                  
+                  <button 
+                    onClick={handleReviewLater} 
+                    className="btn-secondary" 
+                    style={{ 
+                      flex: 1, 
+                      justifyContent: 'center', 
+                      background: isSaved ? '#f0fdf4' : 'white',
+                      borderColor: isSaved ? '#10b981' : '#e2e8f0',
+                      color: isSaved ? '#10b981' : '#475569'
+                    }}
+                  >
+                    <Bookmark size={15} fill={isSaved ? '#10b981' : 'none'} /> {isSaved ? 'Saved' : 'Review Later'}
+                  </button>
+
                   <button onClick={handleNextQuestion} className="btn-primary" style={{ flex: 1, justifyContent: 'center' }}>
                     {currentIdx < QUESTIONS_PER_SESSION - 1
                       ? <> Next Question <ChevronRight size={15} /> </>

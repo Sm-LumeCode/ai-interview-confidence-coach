@@ -256,6 +256,40 @@ const api = {
   getCategoryProgress: async (email) => {
     const res = await fetchWithTimeout(`${API_BASE_URL}/progress/category/${encodeURIComponent(email)}`)
     return res.json()
+  },
+
+  // --- Improvements ---
+  saveImprovementQuestion: async (data) => {
+    const response = await fetchWithTimeout(`${API_BASE_URL}/improvements/save`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    return response.json()
+  },
+
+  getImprovementQuestions: async (email) => {
+    const res = await fetchWithTimeout(`${API_BASE_URL}/improvements/${encodeURIComponent(email)}`)
+    return res.json()
+  },
+
+  saveWeakQuestion: async (data) => {
+    const response = await fetchWithTimeout(`${API_BASE_URL}/improvements/weak/save`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    return response.json()
+  },
+
+  getWeakQuestions: async (email) => {
+    const res = await fetchWithTimeout(`${API_BASE_URL}/improvements/weak/${encodeURIComponent(email)}`)
+    return res.json()
+  },
+
+  getRecommendations: async (email) => {
+    const res = await fetchWithTimeout(`${API_BASE_URL}/improvements/recommendations/${encodeURIComponent(email)}`)
+    return res.json()
   }
 }
 

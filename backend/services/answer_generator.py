@@ -1,4 +1,5 @@
 import re
+from typing import Optional
 
 from services.groq_client import call_groq_chat
 
@@ -23,7 +24,7 @@ Start each line with a dash.
 Do not write an introduction, heading, or summary."""
 
 
-def _call_llm(prompt: str, timeout: int = 25, max_tokens: int = 350) -> str | None:
+def _call_llm(prompt: str, timeout: int = 25, max_tokens: int = 350) -> Optional[str]:
     return call_groq_chat(
         prompt,
         timeout=timeout,
